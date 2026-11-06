@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <YR_SamokCoffinProgress>{0} 보존 중; 부활까지 {1}</YR_SamokCoffinProgress>
+  <YR_SamokCoffinAutoHaul>심연의 신부 시신 수용</YR_SamokCoffinAutoHaul>
+  <YR_SamokCoffinAutoHaulDesc>운반 담당자가 성인 심연의 신부 시신을 비어 있는 촉수 침대로 옮깁니다. 시신은 보존되며 5일 후 동일한 폰이 부활합니다. 살아 있는 점유자가 있으면 시신을 수용하지 않습니다.</YR_SamokCoffinAutoHaulDesc>
+  <YR_SamokCoffinEject>시신 꺼내기</YR_SamokCoffinEject>
+  <YR_SamokCoffinEjectDesc>시신을 안전하게 꺼냅니다. 부활 진행도가 초기화되며, 다시 켤 때까지 이 침대로 자동 운반하지 않습니다.</YR_SamokCoffinEjectDesc>
+  <YR_SamokCoffinHaul>{0}의 시신을 촉수 관으로 운반</YR_SamokCoffinHaul>
+</LanguageData>

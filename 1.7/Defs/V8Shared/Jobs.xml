@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <JobDef>
+    <defName>YR_Job_SelfBondageBed</defName>
+    <driverClass>YR_RJW.JobDriver_SelfUseBondageBed</driverClass>
+    <reportString>bound</reportString>
+  </JobDef>
+  <JobDef><defName>YR_EnterAnimationFacility</defName><driverClass>YR_Hentai_Prime_AnimationBed.JobDriver_EnterAnimationFacility</driverClass><reportString>시설에 들어가는 중.</reportString></JobDef>
+</Defs>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+ <Operation Class="PatchOperationSequence"><operations>
+  <!-- Starter altar intentionally stays Meat_Human 200 + Stony stuff 200: first tree has no harvested material yet. -->
+  <!-- Costs: tree and existing conversion bed/coffin add raw 50 each while retaining Steel 50 + industrial component 1; TreeMilking changes egg 4 to raw 4; original nutrition pool changes human meat 15 to raw 15; recreation spa costs raw 100 + Baekyun fluid 50. No fuel/consumption/electrical components touched. -->
+  <!-- Fixed-cost organic buildings: baseline HP * 1.53 = 90% of the same baseline with granite's 1.7 factor. Rounded to integer HP. -->
+  <li Class="PatchOperationAdd"><xpath>Defs/ThingDef[defName="Building_Tentacle_Tree"]/costList</xpath><value><YR_SamokTentacleRaw>50</YR_SamokTentacleRaw></value></li>
+  <li Class="PatchOperationAdd"><xpath>Defs/ThingDef[defName="YR_Building_Tentacle"]/costList</xpath><value><YR_SamokTentacleRaw>50</YR_SamokTentacleRaw></value></li>
+  <li Class="PatchOperationReplace"><xpath>Defs/ThingDef[defName="YR_Building_TentacleMilking"]/costList</xpath><value><costList><YR_SamokTentacleRaw>4</YR_SamokTentacleRaw></costList></value></li>
+  <li Class="PatchOperationReplace"><xpath>Defs/ThingDef[defName="YR_Tentacle_CNMS"]/costList</xpath><value><costList><YR_SamokTentacleRaw>15</YR_SamokTentacleRaw></costList></value></li>
+  <li Class="PatchOperationReplace"><xpath>Defs/ThingDef[defName="YR_SamokSwimmingPool"]/costList</xpath><value><costList><YR_SamokTentacleRaw>100</YR_SamokTentacleRaw><YR_BaekyunFluid>50</YR_BaekyunFluid></costList></value></li>
+  <!-- Exact inherited targets: YR_Tentacle_Deco, YR_Tentacle_Light, YR_Tentacle_EggDeco, YR_Tentacle_Rug_A, YR_Tentacle_Rug_B, YR_Tentacle_Rug_C. Each changes Meat_Human 3 to TentacleRaw 3. -->
+  <li Class="PatchOperationReplace"><xpath>Defs/ThingDef[@Name="YR_V7TreeDecorBase"]/costList</xpath><value><costList><YR_SamokTentacleRaw>3</YR_SamokTentacleRaw></costList></value></li>
+  <li Class="PatchOperationReplace"><xpath>Defs/ThingDef[defName="Building_Tentacle_Tree"]/statBases/MaxHitPoints</xpath><value><MaxHitPoints>612</MaxHitPoints></value></li>
+  <li Class="PatchOperationAdd"><xpath>Defs/ThingDef[defName="Building_Tentacle_Tree"]/statBases</xpath><value><Flammability>0</Flammability></value></li>
+  <li Class="PatchOperationReplace"><xpath>Defs/ThingDef[defName="YR_Building_Tentacle" or defName="YR_Building_TentacleMilking"]/statBases/MaxHitPoints</xpath><value><MaxHitPoints>214</MaxHitPoints></value></li>
+  <li Class="PatchOperationReplace"><xpath>Defs/ThingDef[defName="YR_Building_Tentacle" or defName="YR_Building_TentacleMilking" or defName="YR_Tentacle_CNMS" or defName="YR_SamokSwimmingPool" or @Name="YR_V7TreeDecorBase"]/statBases/Flammability</xpath><value><Flammability>0</Flammability></value></li>
+  <li Class="PatchOperationReplace"><xpath>Defs/ThingDef[defName="YR_Tentacle_CNMS"]/statBases/MaxHitPoints</xpath><value><MaxHitPoints>184</MaxHitPoints></value></li>
+  <li Class="PatchOperationReplace"><xpath>Defs/ThingDef[defName="YR_SamokSwimmingPool"]/statBases/MaxHitPoints</xpath><value><MaxHitPoints>612</MaxHitPoints></value></li>
+  <li Class="PatchOperationReplace"><xpath>Defs/ThingDef[@Name="YR_V7TreeDecorBase"]/statBases/MaxHitPoints</xpath><value><MaxHitPoints>214</MaxHitPoints></value></li>
+ </operations></Operation>
+</Patch>
+

@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Defs>
+  <BodyTypeDef ParentName="YR_RJW_BodyType_Base">
+    <defName>Hulk_YR_Bote</defName>
+    <headOffset>(0.10, 0.34)</headOffset>
+    <bodyGraphicScale>(1, 1.25)</bodyGraphicScale>
+    <bodyNakedGraphicPath>Yuran/Yuranlike/Bodies/Naked_YR_BB</bodyNakedGraphicPath>
+  </BodyTypeDef>
+  <BodyTypeDef ParentName="YR_RJW_BodyType_Base">
+    <defName>Female_YR_Bote</defName>
+    <headOffset>(0.10, 0.34)</headOffset>
+    <bodyGraphicScale>(1, 1)</bodyGraphicScale>
+    <bodyNakedGraphicPath>Yuran/Yuranlike/Bodies/Naked_YR_BB</bodyNakedGraphicPath>
+  </BodyTypeDef>
+  <BodyTypeDef ParentName="YR_RJW_BodyType_Base">
+    <defName>Fat_YR_Bote</defName>
+    <headOffset>(0.09, 0.34)</headOffset>
+    <bodyGraphicScale>(1.5, 1)</bodyGraphicScale>
+    <bodyNakedGraphicPath>Yuran/Yuranlike/Bodies/Naked_YR_BB</bodyNakedGraphicPath>
+  </BodyTypeDef>
+  <BodyTypeDef ParentName="YR_RJW_BodyType_Base">
+    <defName>Male_YR_Bote</defName>
+    <headOffset>(0.04, 0.34)</headOffset>
+    <bodyGraphicScale>(1, 0.9)</bodyGraphicScale>
+    <bodyNakedGraphicPath>Yuran/Yuranlike/Bodies/Naked_YR_BB</bodyNakedGraphicPath>
+  </BodyTypeDef>
+</Defs>

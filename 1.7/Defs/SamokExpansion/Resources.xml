@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <ThingDef ParentName="ResourceBase">
+    <defName>YR_Baekgyojil</defName>
+    <label>백교질</label>
+    <description>백윤액을 사목의 연단낭에 투입하면 얻을 수 있는 정체불명의 생체 물질.
+
+희뿌연 백색을 띠는 표면은 은은한 윤기를 머금고 있으며, 만져보면 부드럽고 유연하지만 강한 충격을 가하면 금속처럼 단단하게 저항한다. 놀랍게도 이 물질은 천보다 조금 무거운 정도에 불과하면서도, 플라스틸에 버금가는 강도와 우라늄을 연상시키는 둔탁한 충격 저항성을 지니고 있다.
+
+불길에 휩싸여도 타오르지 않으며, 얇게 펼치면 체온을 보존하는 직물로, 형태를 잡으면 견고한 건축 자재나 무기의 재료로 사용할 수 있다.
+
+다만 이 기묘한 물질은 가공 과정에서 좀처럼 제작자의 의도대로 형태를 유지하지 않는다. 분명 무생물일 터인데도 손길을 거부하듯 미세하게 수축하고 뒤틀려, 원하는 형태를 완성하는 데 상당한 시간과 노력이 필요하다.
+
+어째서 하나의 물질이 금속의 강인함과 직물의 유연함을 동시에 지니는지, 심지어 어떤 원리로 만들어지는지조차 밝혀진 바 없다.
+
+우리는 그저 이 물질을 '백교질'이라 부르며, 그것이 무엇인지 알지 못한 채 사용하고 있을 뿐이다.</description>
+    <graphicData>
+      <texPath>Yuran/Things/Item/Resource/Baekgyojil</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(0.8,0.8)</drawSize>
+    </graphicData>
+    <stackLimit>75</stackLimit>
+    <useHitPoints>false</useHitPoints>
+    <healthAffectsPrice>false</healthAffectsPrice>
+    <statBases>
+      <MarketValue>5</MarketValue>
+      <Mass>0.0286</Mass>
+      <Flammability>0</Flammability>
+      <StuffPower_Armor_Sharp>0.912</StuffPower_Armor_Sharp>
+      <StuffPower_Armor_Blunt>0.432</StuffPower_Armor_Blunt>
+      <StuffPower_Armor_Heat>0.52</StuffPower_Armor_Heat>
+      <StuffPower_Insulation_Cold>19.8</StuffPower_Insulation_Cold>
+      <StuffPower_Insulation_Heat>19.8</StuffPower_Insulation_Heat>
+      <SharpDamageMultiplier>0.88</SharpDamageMultiplier>
+      <BluntDamageMultiplier>1.2</BluntDamageMultiplier>
+    </statBases>
+    <thingCategories>
+      <li>ResourcesRaw</li>
+      <li>Textiles</li>
+    </thingCategories>
+    <stuffProps>
+      <categories>
+        <li>Metallic</li>
+        <li>Fabric</li>
+      </categories>
+      <commonality>0</commonality>
+      <appearance>Metal</appearance>
+      <color>(0.94,0.91,0.85)</color>
+      <isAirtight>true</isAirtight>
+      <statFactors>
+        <MaxHitPoints>1</MaxHitPoints>
+        <Flammability>0</Flammability>
+        <WorkToMake>1.5</WorkToMake>
+        <WorkToBuild>1.5</WorkToBuild>
+      </statFactors>
+    </stuffProps>
+  </ThingDef>
+  <ThingDef ParentName="ResourceBase">
+    <defName>YR_PulsatingTissue</defName>
+    <label>맥동조직</label>
+    <description>인간형 고기를 사목의 연단낭에서 재구성한 생체조직. 두꺼운 근섬유가 서로 맞물려 살아 있는 듯 천천히 수축한다. 각종 생체시설과 동력기관을 배양하는 데 사용한다.</description>
+    <graphicData>
+      <texPath>Yuran/Things/Item/Resource/PulsatingTissue</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(0.75,0.75)</drawSize>
+    </graphicData>
+    <stackLimit>75</stackLimit>
+    <statBases>
+      <MarketValue>4</MarketValue>
+      <Mass>0.1</Mass>
+      <MaxHitPoints>60</MaxHitPoints>
+      <Flammability>0</Flammability>
+    </statBases>
+    <thingCategories>
+      <li>ResourcesRaw</li>
+    </thingCategories>
+  </ThingDef>
+</Defs>

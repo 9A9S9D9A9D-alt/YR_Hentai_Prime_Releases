@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <!-- FullHead still defines coverage. Explicit flags bypass 1.7's automatic
+       FullHead hair/beard/eyes suppression for these sparse root decorations.
+       The mask inherits this from its headgear parent. -->
+  <Operation Class="PatchOperationAdd">
+    <xpath>/Defs/ThingDef[defName="YR_AP_Tentacle_Headgear"]/apparel</xpath>
+    <value>
+      <renderSkipFlags>
+        <li>None</li>
+      </renderSkipFlags>
+    </value>
+  </Operation>
+</Patch>

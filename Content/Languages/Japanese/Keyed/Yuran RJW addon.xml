@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<LanguageData>
+  <YR_StopAnimation>アニメーションを停止</YR_StopAnimation>
+  <YR_GainTrait>{0}は{2}の特性を得ました.(理由：{1})</YR_GainTrait>
+  <YR_RemoveUnrecruitable>{0}の{2}が失われました.(理由：{1})</YR_RemoveUnrecruitable>
+  <YR_ForcePlay>楽しむ</YR_ForcePlay>
+</LanguageData>

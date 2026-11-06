@@ -1,0 +1,243 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Patch>
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>RimJobWorld</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+        <li Class="PatchOperationConditional">
+          <xpath>/Defs/HediffDef[defName = "RJW_pregnancy"]/comps</xpath>
+          <nomatch Class="PatchOperationAdd">
+            <xpath>/Defs/HediffDef[defName = "RJW_pregnancy"]</xpath>
+            <value>
+              <comps>
+                <li MayRequire="SutSutMan.MinchoTheMintChocoSlimeHARver" Class="ChangeLook.HediffCompProperties_ChangeLook">
+                  <severity>0.5</severity>
+                </li>
+                <li Class="YR_RJW.HediffCompProperties_ChangeBodyType">
+                  <bodyTypePostfix>_YR_Bote</bodyTypePostfix>
+                  <races>
+                    <li MayRequire="RooAndGloomy.YuranRaceMod">Yuran_Race</li>
+                    <li MayRequire="RooAndGloomy.YuranRaceMod">Yuran_Race_Miko</li>
+                    <li MayRequire="Nemonian.MY">Alien_Moyo</li>
+                    <li MayRequire="VAMV.MaruRaceMod">Maru</li>
+                  </races>
+                  <ticks>600</ticks>
+                  <unPreferencePostfixs>
+                    <li>_YR_BB</li>
+                  </unPreferencePostfixs>
+                  <severity>0.5</severity>
+                  <compSetting>
+                    <compPostTick>
+                      <activeComp>true</activeComp>
+                      <addHediffDefs>
+                        <li>YR_Milking_Hediff</li>
+                      </addHediffDefs>
+                    </compPostTick>
+                    <compPostPostRemoved>
+                      <activeComp>true</activeComp>
+                      <addHediffDefs>
+                        <li>YR_BB_Hediff</li>
+                      </addHediffDefs>
+                    </compPostPostRemoved>
+                  </compSetting>
+                </li>
+              </comps>
+            </value>
+          </nomatch>
+          <match Class="PatchOperationAdd">
+            <xpath>/Defs/HediffDef[defName = "RJW_pregnancy"]/comps</xpath>
+            <value>
+              <li MayRequire="SutSutMan.MinchoTheMintChocoSlimeHARver" Class="ChangeLook.HediffCompProperties_ChangeLook">
+                <severity>0.5</severity>
+              </li>
+              <li Class="YR_RJW.HediffCompProperties_ChangeBodyType">
+                <bodyTypePostfix>_YR_Bote</bodyTypePostfix>
+                <races>
+                  <li MayRequire="RooAndGloomy.YuranRaceMod">Yuran_Race</li>
+                  <li MayRequire="RooAndGloomy.YuranRaceMod">Yuran_Race_Miko</li>
+                  <li MayRequire="Nemonian.MY">Alien_Moyo</li>
+                  <li MayRequire="VAMV.MaruRaceMod">Maru</li>
+                </races>
+                <ticks>600</ticks>
+                <unPreferencePostfixs>
+                  <li>_YR_BB</li>
+                </unPreferencePostfixs>
+                <severity>0.5</severity>
+                <compSetting>
+                  <compPostTick>
+                    <activeComp>true</activeComp>
+                    <addHediffDefs>
+                      <li>YR_Milking_Hediff</li>
+                    </addHediffDefs>
+                  </compPostTick>
+                  <compPostPostRemoved>
+                    <activeComp>true</activeComp>
+                    <addHediffDefs>
+                      <li>YR_BB_Hediff</li>
+                    </addHediffDefs>
+                  </compPostPostRemoved>
+                </compSetting>
+              </li>
+            </value>
+          </match>
+        </li>
+        <li Class="PatchOperationConditional">
+          <xpath>/Defs/HediffDef[defName = "RJW_pregnancy_beast"]/comps</xpath>
+          <nomatch Class="PatchOperationAdd">
+            <xpath>/Defs/HediffDef[defName = "RJW_pregnancy_beast"]</xpath>
+            <value>
+              <comps>
+                <li MayRequire="SutSutMan.MinchoTheMintChocoSlimeHARver" Class="ChangeLook.HediffCompProperties_ChangeLook">
+                  <severity>0.5</severity>
+                </li>
+                <li Class="YR_RJW.HediffCompProperties_ChangeBodyType">
+                  <bodyTypePostfix>_YR_Bote</bodyTypePostfix>
+                  <races>
+                    <li MayRequire="RooAndGloomy.YuranRaceMod">Yuran_Race</li>
+                    <li MayRequire="RooAndGloomy.YuranRaceMod">Yuran_Race_Miko</li>
+                    <li MayRequire="Nemonian.MY">Alien_Moyo</li>
+                    <li MayRequire="VAMV.MaruRaceMod">Maru</li>
+                  </races>
+                  <ticks>600</ticks>
+                  <unPreferencePostfixs>
+                    <li>_YR_BB</li>
+                  </unPreferencePostfixs>
+                  <severity>0.5</severity>
+                  <compSetting>
+                    <compPostTick>
+                      <activeComp>true</activeComp>
+                      <addHediffDefs>
+                        <li>YR_Milking_Hediff</li>
+                      </addHediffDefs>
+                    </compPostTick>
+                    <compPostPostRemoved>
+                      <activeComp>true</activeComp>
+                      <addHediffDefs>
+                        <li>YR_BB_Hediff</li>
+                      </addHediffDefs>
+                    </compPostPostRemoved>
+                  </compSetting>
+                </li>
+              </comps>
+            </value>
+          </nomatch>
+          <match Class="PatchOperationAdd">
+            <xpath>/Defs/HediffDef[defName = "RJW_pregnancy_beast"]/comps</xpath>
+            <value>
+              <li MayRequire="SutSutMan.MinchoTheMintChocoSlimeHARver" Class="ChangeLook.HediffCompProperties_ChangeLook">
+                <severity>0.5</severity>
+              </li>
+              <li Class="YR_RJW.HediffCompProperties_ChangeBodyType">
+                <bodyTypePostfix>_YR_Bote</bodyTypePostfix>
+                <races>
+                  <li MayRequire="RooAndGloomy.YuranRaceMod">Yuran_Race</li>
+                  <li MayRequire="RooAndGloomy.YuranRaceMod">Yuran_Race_Miko</li>
+                  <li MayRequire="Nemonian.MY">Alien_Moyo</li>
+                  <li MayRequire="VAMV.MaruRaceMod">Maru</li>
+                </races>
+                <ticks>600</ticks>
+                <unPreferencePostfixs>
+                  <li>_YR_BB</li>
+                </unPreferencePostfixs>
+                <severity>0.5</severity>
+                <compSetting>
+                  <compPostTick>
+                    <activeComp>true</activeComp>
+                    <addHediffDefs>
+                      <li>YR_Milking_Hediff</li>
+                    </addHediffDefs>
+                  </compPostTick>
+                  <compPostPostRemoved>
+                    <activeComp>true</activeComp>
+                    <addHediffDefs>
+                      <li>YR_BB_Hediff</li>
+                    </addHediffDefs>
+                  </compPostPostRemoved>
+                </compSetting>
+              </li>
+            </value>
+          </match>
+        </li>
+        <li Class="PatchOperationConditional">
+          <xpath>/Defs/HediffDef[defName = "RJW_pregnancy_mech"]/comps</xpath>
+          <nomatch Class="PatchOperationAdd">
+            <xpath>/Defs/HediffDef[defName = "RJW_pregnancy_mech"]</xpath>
+            <value>
+              <comps>
+                <li MayRequire="SutSutMan.MinchoTheMintChocoSlimeHARver" Class="ChangeLook.HediffCompProperties_ChangeLook">
+                  <severity>0.5</severity>
+                </li>
+                <li Class="YR_RJW.HediffCompProperties_ChangeBodyType">
+                  <bodyTypePostfix>_YR_Bote</bodyTypePostfix>
+                  <races>
+                    <li MayRequire="RooAndGloomy.YuranRaceMod">Yuran_Race</li>
+                    <li MayRequire="RooAndGloomy.YuranRaceMod">Yuran_Race_Miko</li>
+                    <li MayRequire="Nemonian.MY">Alien_Moyo</li>
+                    <li MayRequire="VAMV.MaruRaceMod">Maru</li>
+                  </races>
+                  <ticks>600</ticks>
+                  <unPreferencePostfixs>
+                    <li>_YR_BB</li>
+                  </unPreferencePostfixs>
+                  <severity>0.5</severity>
+                  <compSetting>
+                    <compPostTick>
+                      <activeComp>true</activeComp>
+                      <addHediffDefs>
+                        <li>YR_Milking_Hediff</li>
+                      </addHediffDefs>
+                    </compPostTick>
+                    <compPostPostRemoved>
+                      <activeComp>true</activeComp>
+                      <addHediffDefs>
+                        <li>YR_BB_Hediff</li>
+                      </addHediffDefs>
+                    </compPostPostRemoved>
+                  </compSetting>
+                </li>
+              </comps>
+            </value>
+          </nomatch>
+          <match Class="PatchOperationAdd">
+            <xpath>/Defs/HediffDef[defName = "RJW_pregnancy_mech"]/comps</xpath>
+            <value>
+              <li MayRequire="SutSutMan.MinchoTheMintChocoSlimeHARver" Class="ChangeLook.HediffCompProperties_ChangeLook">
+                <severity>0.5</severity>
+              </li>
+              <li Class="YR_RJW.HediffCompProperties_ChangeBodyType">
+                <bodyTypePostfix>_YR_Bote</bodyTypePostfix>
+                <races>
+                  <li MayRequire="RooAndGloomy.YuranRaceMod">Yuran_Race</li>
+                  <li MayRequire="RooAndGloomy.YuranRaceMod">Yuran_Race_Miko</li>
+                  <li MayRequire="Nemonian.MY">Alien_Moyo</li>
+                  <li MayRequire="VAMV.MaruRaceMod">Maru</li>
+                </races>
+                <ticks>600</ticks>
+                <unPreferencePostfixs>
+                  <li>_YR_BB</li>
+                </unPreferencePostfixs>
+                <severity>0.5</severity>
+                <compSetting>
+                  <compPostTick>
+                    <activeComp>true</activeComp>
+                    <addHediffDefs>
+                      <li>YR_Milking_Hediff</li>
+                    </addHediffDefs>
+                  </compPostTick>
+                  <compPostPostRemoved>
+                    <activeComp>true</activeComp>
+                    <addHediffDefs>
+                      <li>YR_BB_Hediff</li>
+                    </addHediffDefs>
+                  </compPostPostRemoved>
+                </compSetting>
+              </li>
+            </value>
+          </match>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+</Patch>

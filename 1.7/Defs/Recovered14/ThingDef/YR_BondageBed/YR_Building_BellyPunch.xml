@@ -1,0 +1,738 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Defs>
+  <ThingDef ParentName="YR_BondageBedBase">
+    <defName>YR_Building_BellyPunch</defName>
+    <label>pillar of painful love</label>
+    <description>This is just an ordinary pillar with no special features. However, for masochists who enjoy pain, it appears as a tool that can receive affection. When a strong impact hits the organs located in the lower abdomen, the brain of this pervert exudes pleasure substances to withstand the pain, and they will become addicted to both pain and pleasure.\n\nIf this twisted love is continuously poured onto a prisoner, they will undoubtedly accept it someday.</description>
+    <descriptionHyperlinks>
+    </descriptionHyperlinks>
+    <passability>PassThroughOnly</passability>
+    <tickerType>Normal</tickerType>
+    <graphicData>
+      <texPath>Yuran/Things/Building/Furniture/BellyPunch/Bed/Texture</texPath>
+      <graphicClass>Graphic_Multi</graphicClass>
+      <drawSize>(1.5,1.5)</drawSize>
+    </graphicData>
+    <altitudeLayer>BuildingOnTop</altitudeLayer>
+    <building>
+      <isEdifice>false</isEdifice>
+    </building>
+    <minifiedDef />
+    <thingCategories Inherit="false" />
+    <comps>
+      <li Class="YR_RJW.CompProperties_Usable_BondageBed">
+        <compClass>YR_RJW.CompUsableAdvancedBondageBed</compClass>
+        <useJob>YR_Job_BondageBed</useJob>
+        <useLabel>bound</useLabel>
+        <forbiddenHediffDefs>
+          <li>YR_Tentacle_Hediff</li>
+          <li>Pregnant</li>
+          <li MayRequire="rim.job.world">RJW_pregnancy</li>
+          <li MayRequire="rim.job.world">RJW_pregnancy_beast</li>
+          <li MayRequire="rim.job.world">RJW_pregnancy_mech</li>
+        </forbiddenHediffDefs>
+        <settingException>
+        </settingException>
+        <neverRelease>false</neverRelease>
+      </li>
+      <li Class="YR_RJW.CompProperties_ShowHatApparel">
+        <showHatGizmo>false</showHatGizmo>
+        <showApparelGizmo>false</showApparelGizmo>
+      </li>
+      <li Class="YR_RJW.CompProperties_SpawnDummyForJoy">
+        <spawnDummy>YR_DummyForJoy_BellyPunch</spawnDummy>
+        <voiceProbability>70</voiceProbability>
+        <climaxListNumForVoice>4</climaxListNumForVoice>
+        <climaxSound>BellyPunchSound</climaxSound>
+        <femaleEroVoice>OohSound</femaleEroVoice>
+        <needTicks>50</needTicks>
+        <occupantPawnHediffSettings>
+          <li>
+            <hediffDefs>
+              <li>YR_BellyPunch_Hediff</li>
+            </hediffDefs>
+          </li>
+        </occupantPawnHediffSettings>
+        <reduceResistanceAndWillSetting>
+          <ticks>1000</ticks>
+          <reduceResistance>0.0005</reduceResistance>
+          <reduceWill>0.0005</reduceWill>
+        </reduceResistanceAndWillSetting>
+        <apparelSetting>
+          <hideHat>false</hideHat>
+          <hideApparel>false</hideApparel>
+        </apparelSetting>
+      </li>
+      <li Class="YR_RJW.CompProperties_ChangeBedTexture">
+        <ticks>4</ticks>
+        <graphicData>
+          <texPath>Yuran/Yuranlike/Bodies/Dummy/YR_Bote</texPath>
+          <graphicClass>Graphic_Multi</graphicClass>
+          <shaderType>Cutout</shaderType>
+          <drawSize>(1.05,1.05)</drawSize>
+          <color>(1,1,1,1)</color>
+        </graphicData>
+        <joyPawnSetting>
+          <offsetConditions>
+            <li>
+              <offset>(0.0, -0.5)</offset>
+            </li>
+          </offsetConditions>
+          <movingOffset>
+            <li>(0, 0, 0.0000)</li>
+            <li>(0, 0, 0.0125)</li>
+            <li>(0, 0, 0.0250)</li>
+            <li>(0, 0, 0.0375)</li>
+            <li>(0, 0, 0.0750)</li>
+            <li>(0, 0, 0.1000)</li>
+            <li>(0, 0, 0.0750)</li>
+            <li>(0, 0, 0.0375)</li>
+            <li>(0, 0, 0.0250)</li>
+            <li>(0, 0, 0.0125)</li>
+          </movingOffset>
+          <startBedAniWhenJoying>true</startBedAniWhenJoying>
+        </joyPawnSetting>
+        <pathByRaces>
+          <li>
+            <headOffSets>
+              <li>(0,0,0.000)</li>
+              <li>(0,0,0.000)</li>
+              <li>(0,0,0.000)</li>
+              <li>(0,0,0.000)</li>
+              <li>(0,0,0.003)</li>
+              <li>(0,0,0.006)</li>
+              <li>(0,0,0.009)</li>
+              <li>(0,0,0.006)</li>
+              <li>(0,0,0.003)</li>
+              <li>(0,0,0.000)</li>
+            </headOffSets>
+            <headOffsetConditions>
+              <li>
+                <condition>
+                  <races>
+                    <li MayRequire="RooAndGloomy.YuranRaceMod">Yuran_Race</li>
+                    <li MayRequire="RooAndGloomy.YuranRaceMod">Yuran_Race_Miko</li>
+                    <li MayRequire="RooAndGloomy.YuranRaceMod">Yuran_Race_Miko_BlackSnake</li>
+                  </races>
+                </condition>
+                <offset>(0,0.035)</offset>
+                <Break>true</Break>
+              </li>
+              <li>
+                <condition>
+                  <races>
+                    <li MayRequire="bep.littlefairy.ttwsfabr">LittleFairy_Pawn</li>
+                    <li MayRequire="bep.mofy.twfiaclr">Mofy_Pawn</li>
+                    <li MayRequire="bep.resurreviewy.tnair">Resurreviewy_Pawn</li>
+                    <li MayRequire="bep.glassy.terr">Glassy_Pawn</li>
+                    <li MayRequire="bep.sweety.mcsr">Sweety_Pawn</li>
+                    <li MayRequire="bep.legacyfairy.tftr">LegacyFairy_Pawn</li>
+                    <li MayRequire="bep.magiaplant.tfmr">MagiaPlant_Pawn</li>
+                    <li MayRequire="bep.forgotty.tfcr">Forgotty_Pawn</li>
+                    <li MayRequire="bep.maddy.twmr">Maddy_Pawn</li>
+                  </races>
+                </condition>
+                <offset>(0,-0.16)</offset>
+                <Break>true</Break>
+              </li>
+              <li>
+                <condition>
+                  <races>
+                    <li MayRequire="Roo.AntyRaceMod">Anty</li>
+                  </races>
+                </condition>
+                <offset>(0,-0.05)</offset>
+                <Break>true</Break>
+              </li>
+              <li>
+                <condition>
+                  <races>
+                    <li MayRequire="miho.fortifiedoutremer">Alien_Miho</li>
+                  </races>
+                </condition>
+                <offset>(0,-0.1)</offset>
+                <Break>true</Break>
+              </li>
+              <li>
+                <offset>(0,0)</offset>
+                <Break>true</Break>
+              </li>
+            </headOffsetConditions>
+            <pathByConditions>
+              <li>
+                <pathSets>
+                  <li>
+                    <condition>
+                      <ordinaryHumanlikeOnly>true</ordinaryHumanlikeOnly>
+                      <allMatch>true</allMatch>
+                      <neverRaces>
+                        <li MayRequire="miho.fortifiedoutremer">Alien_Miho</li>
+                        <li MayRequire="melondove.wolfeinrace">Wolfein_Race</li>
+                      </neverRaces>
+                    </condition>
+                    <bodyColor>true</bodyColor>
+                    <pathIsPawnBody>true</pathIsPawnBody>
+                  </li>
+                </pathSets>
+              </li>
+              <li>
+                <condition>
+                  <races>
+                    <li MayRequire="bep.littlefairy.ttwsfabr">LittleFairy_Pawn</li>
+                    <li MayRequire="bep.mofy.twfiaclr">Mofy_Pawn</li>
+                    <li MayRequire="bep.resurreviewy.tnair">Resurreviewy_Pawn</li>
+                    <li MayRequire="bep.glassy.terr">Glassy_Pawn</li>
+                    <li MayRequire="bep.sweety.mcsr">Sweety_Pawn</li>
+                    <li MayRequire="bep.legacyfairy.tftr">LegacyFairy_Pawn</li>
+                    <li MayRequire="bep.magiaplant.tfmr">MagiaPlant_Pawn</li>
+                    <li MayRequire="bep.forgotty.tfcr">Forgotty_Pawn</li>
+                    <li MayRequire="bep.maddy.twmr">Maddy_Pawn</li>
+                    <li>Cow</li>
+                  </races>
+                </condition>
+                <pathSets>
+                  <li>
+                    <condition>
+                      <races>
+                        <li MayRequire="bep.littlefairy.ttwsfabr">LittleFairy_Pawn</li>
+                        <li MayRequire="bep.mofy.twfiaclr">Mofy_Pawn</li>
+                        <li MayRequire="bep.resurreviewy.tnair">Resurreviewy_Pawn</li>
+                        <li MayRequire="bep.glassy.terr">Glassy_Pawn</li>
+                        <li MayRequire="bep.sweety.mcsr">Sweety_Pawn</li>
+                        <li MayRequire="bep.legacyfairy.tftr">LegacyFairy_Pawn</li>
+                        <li MayRequire="bep.magiaplant.tfmr">MagiaPlant_Pawn</li>
+                        <li MayRequire="bep.forgotty.tfcr">Forgotty_Pawn</li>
+                        <li MayRequire="bep.maddy.twmr">Maddy_Pawn</li>
+                      </races>
+                    </condition>
+                    <offset>(0,-0.07)</offset>
+                    <layerOffset>6.7</layerOffset>
+                    <autoSetBodyPosition>true</autoSetBodyPosition>
+                    <paths>
+                      <li>Yuran/Things/Building/Furniture/BellyPunch/Body/BellyPunch/0</li>
+                      <li>Yuran/Things/Building/Furniture/BellyPunch/Body/BellyPunch/0</li>
+                      <li>Yuran/Things/Building/Furniture/BellyPunch/Body/BellyPunch/0</li>
+                      <li>Yuran/Things/Building/Furniture/BellyPunch/Body/BellyPunch/0</li>
+                      <li>Yuran/Things/Building/Furniture/BellyPunch/Body/BellyPunch/1</li>
+                      <li>Yuran/Things/Building/Furniture/BellyPunch/Body/BellyPunch/1</li>
+                      <li>Yuran/Things/Building/Furniture/BellyPunch/Body/BellyPunch/0</li>
+                      <li>Yuran/Things/Building/Furniture/BellyPunch/Body/BellyPunch/0</li>
+                      <li>Yuran/Things/Building/Furniture/BellyPunch/Body/BellyPunch/0</li>
+                      <li>Yuran/Things/Building/Furniture/BellyPunch/Body/BellyPunch/0</li>
+                    </paths>
+                  </li>
+                </pathSets>
+              </li>
+              <li MayRequire="Nemonian.MY">
+                <condition>
+                  <races>
+                    <li MayRequire="Nemonian.MY">Alien_Moyo</li>
+                  </races>
+                </condition>
+                <pathSets>
+                  <li>
+                    <offset>(0,0.1)</offset>
+                    <drawSize>(1.5,1.5)</drawSize>
+                    <layerOffset>7</layerOffset>
+                    <isHeadPart>true</isHeadPart>
+                    <paths>
+                      <li>Yuran/Things/Building/Furniture/GloryHole/Body/Tongue/Moyo/1</li>
+                      <li>Yuran/Things/Building/Furniture/GloryHole/Body/Tongue/Moyo/2</li>
+                      <li>Yuran/Things/Building/Furniture/GloryHole/Body/Tongue/Moyo/3</li>
+                      <li>Yuran/Things/Building/Furniture/GloryHole/Body/Tongue/Moyo/4</li>
+                      <li>Yuran/Things/Building/Furniture/GloryHole/Body/Tongue/Moyo/3</li>
+                      <li>Yuran/Things/Building/Furniture/GloryHole/Body/Tongue/Moyo/2</li>
+                    </paths>
+                  </li>
+                </pathSets>
+              </li>
+              <li MayRequire="RooAndGloomy.YuranRaceMod">
+                <condition>
+                  <races>
+                    <li MayRequire="RooAndGloomy.YuranRaceMod">Yuran_Race</li>
+                    <li MayRequire="RooAndGloomy.YuranRaceMod">Yuran_Race_Miko</li>
+                    <li MayRequire="RooAndGloomy.YuranRaceMod">Yuran_Race_Miko_BlackSnake</li>
+                  </races>
+                </condition>
+                <pathSets>
+                  <li>
+                    <offset>(0,-0.485)</offset>
+                    <drawSize>(0.6666,0.6666)</drawSize>
+                    <rotation>South</rotation>
+                    <layerOffset>7.0125</layerOffset>
+                    <isHeadPart>true</isHeadPart>
+                    <paths>
+                      <li>Yuran/Yuranlike/Addon/MilkingMachine/Face/1</li>
+                      <li>Yuran/Yuranlike/Addon/MilkingMachine/Face/2</li>
+                      <li>Yuran/Yuranlike/Addon/MilkingMachine/Face/3</li>
+                      <li>Yuran/Yuranlike/Addon/MilkingMachine/Face/4</li>
+                      <li>Yuran/Yuranlike/Addon/MilkingMachine/Face/7</li>
+                      <li>Yuran/Yuranlike/Addon/MilkingMachine/Face/4</li>
+                      <li>Yuran/Yuranlike/Addon/MilkingMachine/Face/3</li>
+                      <li>Yuran/Yuranlike/Addon/MilkingMachine/Face/2</li>
+                    </paths>
+                  </li>
+                </pathSets>
+              </li>
+              <li MayRequire="Roo.AntyRaceMod">
+                <condition>
+                  <races>
+                    <li MayRequire="Roo.AntyRaceMod">Anty</li>
+                  </races>
+                </condition>
+                <pathSets>
+                  <li>
+                    <offset>(0,0.1)</offset>
+                    <layerOffset>6.5</layerOffset>
+                    <autoSetBodyPosition>true</autoSetBodyPosition>
+                    <paths>
+                      <li>Yuran/Things/Building/Furniture/MilkingMachine/Body/Race/Anty/Tail/AntyTailMale</li>
+                    </paths>
+                  </li>
+                </pathSets>
+              </li>
+              <li MayRequire="miho.fortifiedoutremer">
+                <condition>
+                  <races>
+                    <li MayRequire="miho.fortifiedoutremer">Alien_Miho</li>
+                  </races>
+                </condition>
+                <pathSets>
+                  <li>
+                    <condition>
+                      <genders>
+                        <li>Female</li>
+                      </genders>
+                      <allMatch>true</allMatch>
+                    </condition>
+                    <individualAnimationOffSets>
+                      <li>(0,0,0.000)</li>
+                      <li>(0,0,0.000)</li>
+                      <li>(0,0,0.000)</li>
+                      <li>(0,0,0.000)</li>
+                      <li>(0,0,0.006)</li>
+                      <li>(0,0,0.009)</li>
+                      <li>(0,0,0.006)</li>
+                      <li>(0,0,0.003)</li>
+                      <li>(0,0,0.000)</li>
+                      <li>(0,0,0.000)</li>
+                    </individualAnimationOffSets>
+                    <drawSize>(1,1)</drawSize>
+                    <bodyColor>true</bodyColor>
+                    <pawnBodyReplacement>true</pawnBodyReplacement>
+                    <paths>
+                      <li>Yuran/Things/Building/Furniture/BellyPunch/Body/Race/Miho/Female/2</li>
+                      <li>Yuran/Things/Building/Furniture/BellyPunch/Body/Race/Miho/Female/2</li>
+                      <li>Yuran/Things/Building/Furniture/BellyPunch/Body/Race/Miho/Female/2</li>
+                      <li>Yuran/Things/Building/Furniture/BellyPunch/Body/Race/Miho/Female/2</li>
+                      <li>Yuran/Things/Building/Furniture/BellyPunch/Body/Race/Miho/Female/3</li>
+                      <li>Yuran/Things/Building/Furniture/BellyPunch/Body/Race/Miho/Female/3</li>
+                      <li>Yuran/Things/Building/Furniture/BellyPunch/Body/Race/Miho/Female/1</li>
+                      <li>Yuran/Things/Building/Furniture/BellyPunch/Body/Race/Miho/Female/1</li>
+                      <li>Yuran/Things/Building/Furniture/BellyPunch/Body/Race/Miho/Female/1</li>
+                      <li>Yuran/Things/Building/Furniture/BellyPunch/Body/Race/Miho/Female/1</li>
+                    </paths>
+                    <rotation>South</rotation>
+                  </li>
+                  <li>
+                    <condition>
+                      <genders>
+                        <li>Male</li>
+                      </genders>
+                      <allMatch>true</allMatch>
+                    </condition>
+                    <individualAnimationOffSets>
+                      <li>(0,0,0.000)</li>
+                      <li>(0,0,0.000)</li>
+                      <li>(0,0,0.000)</li>
+                      <li>(0,0,0.000)</li>
+                      <li>(0,0,0.006)</li>
+                      <li>(0,0,0.009)</li>
+                      <li>(0,0,0.006)</li>
+                      <li>(0,0,0.003)</li>
+                      <li>(0,0,0.000)</li>
+                      <li>(0,0,0.000)</li>
+                    </individualAnimationOffSets>
+                    <drawSize>(1,1)</drawSize>
+                    <bodyColor>true</bodyColor>
+                    <pawnBodyReplacement>true</pawnBodyReplacement>
+                    <paths>
+                      <li>Yuran/Things/Building/Furniture/BellyPunch/Body/Race/Miho/Male/2</li>
+                      <li>Yuran/Things/Building/Furniture/BellyPunch/Body/Race/Miho/Male/2</li>
+                      <li>Yuran/Things/Building/Furniture/BellyPunch/Body/Race/Miho/Male/2</li>
+                      <li>Yuran/Things/Building/Furniture/BellyPunch/Body/Race/Miho/Male/2</li>
+                      <li>Yuran/Things/Building/Furniture/BellyPunch/Body/Race/Miho/Male/3</li>
+                      <li>Yuran/Things/Building/Furniture/BellyPunch/Body/Race/Miho/Male/3</li>
+                      <li>Yuran/Things/Building/Furniture/BellyPunch/Body/Race/Miho/Male/1</li>
+                      <li>Yuran/Things/Building/Furniture/BellyPunch/Body/Race/Miho/Male/1</li>
+                      <li>Yuran/Things/Building/Furniture/BellyPunch/Body/Race/Miho/Male/1</li>
+                      <li>Yuran/Things/Building/Furniture/BellyPunch/Body/Race/Miho/Male/1</li>
+                    </paths>
+                    <rotation>South</rotation>
+                  </li>
+                </pathSets>
+              </li>
+              <li>
+                <pathSets>
+                  <li>
+                    <condition>
+                      <races>
+                        <li MayRequire="Nemonian.MY">Alien_Moyo</li>
+                        <li MayRequire="RooAndGloomy.YuranRaceMod">Yuran_Race</li>
+                        <li MayRequire="RooAndGloomy.YuranRaceMod">Yuran_Race_Miko</li>
+                        <li MayRequire="VAMV.MaruRaceMod">Maru</li>
+                        <li MayRequire="miho.fortifiedoutremer">Alien_Miho</li>
+                        <li MayRequire="bep.littlefairy.ttwsfabr">LittleFairy_Pawn</li>
+                        <li MayRequire="bep.mofy.twfiaclr">Mofy_Pawn</li>
+                        <li MayRequire="bep.resurreviewy.tnair">Resurreviewy_Pawn</li>
+                        <li MayRequire="bep.glassy.terr">Glassy_Pawn</li>
+                        <li MayRequire="bep.sweety.mcsr">Sweety_Pawn</li>
+                        <li MayRequire="bep.legacyfairy.tftr">LegacyFairy_Pawn</li>
+                        <li MayRequire="bep.magiaplant.tfmr">MagiaPlant_Pawn</li>
+                        <li MayRequire="bep.forgotty.tfcr">Forgotty_Pawn</li>
+                        <li MayRequire="bep.maddy.twmr">Maddy_Pawn</li>
+                        <li>Cow</li>
+                        <li MayRequire="RooAndGloomy.YuranRaceMod">Yuran_Race_Miko_BlackSnake</li>
+                      </races>
+                      <reverseCondition>true</reverseCondition>
+                    </condition>
+                    <offset>(0,0.025)</offset>
+                    <layerOffset>6.7</layerOffset>
+                    <autoSetBodyPosition>true</autoSetBodyPosition>
+                    <paths>
+                      <li>Yuran/Things/Building/Furniture/BellyPunch/Body/BellyPunch/0</li>
+                      <li>Yuran/Things/Building/Furniture/BellyPunch/Body/BellyPunch/0</li>
+                      <li>Yuran/Things/Building/Furniture/BellyPunch/Body/BellyPunch/0</li>
+                      <li>Yuran/Things/Building/Furniture/BellyPunch/Body/BellyPunch/0</li>
+                      <li>Yuran/Things/Building/Furniture/BellyPunch/Body/BellyPunch/1</li>
+                      <li>Yuran/Things/Building/Furniture/BellyPunch/Body/BellyPunch/1</li>
+                      <li>Yuran/Things/Building/Furniture/BellyPunch/Body/BellyPunch/0</li>
+                      <li>Yuran/Things/Building/Furniture/BellyPunch/Body/BellyPunch/0</li>
+                      <li>Yuran/Things/Building/Furniture/BellyPunch/Body/BellyPunch/0</li>
+                      <li>Yuran/Things/Building/Furniture/BellyPunch/Body/BellyPunch/0</li>
+                    </paths>
+                  </li>
+                </pathSets>
+              </li>
+              <li>
+                <pathSets>
+                  <li>
+                    <offset>(0,0)</offset>
+                    <layerOffset>7</layerOffset>
+                    <paths>
+                      <li>Yuran/Things/Building/Furniture/BellyPunch/Body/Bound/1</li>
+                    </paths>
+                  </li>
+                  <li>
+                    <condition>
+                      <hediffDefs>
+                        <li>YR_BellyPunch_Hediff</li>
+                      </hediffDefs>
+                    </condition>
+                    <offsetConditions>
+                      <li>
+                        <condition>
+                          <races>
+                            <li MayRequire="bep.littlefairy.ttwsfabr">LittleFairy_Pawn</li>
+                            <li MayRequire="bep.mofy.twfiaclr">Mofy_Pawn</li>
+                            <li MayRequire="bep.resurreviewy.tnair">Resurreviewy_Pawn</li>
+                            <li MayRequire="bep.glassy.terr">Glassy_Pawn</li>
+                            <li MayRequire="bep.sweety.mcsr">Sweety_Pawn</li>
+                            <li MayRequire="bep.legacyfairy.tftr">LegacyFairy_Pawn</li>
+                            <li MayRequire="bep.magiaplant.tfmr">MagiaPlant_Pawn</li>
+                            <li MayRequire="bep.forgotty.tfcr">Forgotty_Pawn</li>
+                            <li MayRequire="bep.maddy.twmr">Maddy_Pawn</li>
+                            <li>Cow</li>
+                          </races>
+                        </condition>
+                        <offset>(0,-0.07)</offset>
+                      </li>
+                    </offsetConditions>
+                    <offset>(0,0.025)</offset>
+                    <layerOffset>6.8</layerOffset>
+                    <autoSetBodyPosition>true</autoSetBodyPosition>
+                    <paths>
+                      <li>Yuran/Things/Building/Furniture/BellyPunch/Body/Bruise/1</li>
+                    </paths>
+                  </li>
+                  <li>
+                    <condition>
+                      <hediffDefs>
+                        <li>YR_BellyPunch_Hediff</li>
+                      </hediffDefs>
+                    </condition>
+                    <offsetConditions>
+                      <li MayRequire="Roo.AntyRaceMod">
+                        <condition>
+                          <races>
+                            <li MayRequire="Roo.AntyRaceMod">Anty</li>
+                          </races>
+                        </condition>
+                        <offset>(0,0.05)</offset>
+                      </li>
+                      <li MayRequire="miho.fortifiedoutremer">
+                        <condition>
+                          <races>
+                            <li MayRequire="miho.fortifiedoutremer">Alien_Miho</li>
+                          </races>
+                        </condition>
+                        <offset>(0,0.05)</offset>
+                      </li>
+                      <li>
+                        <condition>
+                          <races>
+                            <li MayRequire="bep.littlefairy.ttwsfabr">LittleFairy_Pawn</li>
+                            <li MayRequire="bep.mofy.twfiaclr">Mofy_Pawn</li>
+                            <li MayRequire="bep.resurreviewy.tnair">Resurreviewy_Pawn</li>
+                            <li MayRequire="bep.glassy.terr">Glassy_Pawn</li>
+                            <li MayRequire="bep.sweety.mcsr">Sweety_Pawn</li>
+                            <li MayRequire="bep.legacyfairy.tftr">LegacyFairy_Pawn</li>
+                            <li MayRequire="bep.magiaplant.tfmr">MagiaPlant_Pawn</li>
+                            <li MayRequire="bep.forgotty.tfcr">Forgotty_Pawn</li>
+                            <li MayRequire="bep.maddy.twmr">Maddy_Pawn</li>
+                            <li>Cow</li>
+                          </races>
+                        </condition>
+                        <offset>(0,-0.05)</offset>
+                      </li>
+                    </offsetConditions>
+                    <offset>(0,0.025)</offset>
+                    <layerOffset>6.7</layerOffset>
+                    <autoSetBodyPosition>true</autoSetBodyPosition>
+                    <paths>
+                      <li>Yuran/Things/Building/Furniture/BellyPunch/Body/Pee/Up</li>
+                    </paths>
+                    <makeTestGizmoString>pee</makeTestGizmoString>
+                  </li>
+                  <li>
+                    <condition>
+                      <hediffDefs>
+                        <li>YR_BellyPunch_Hediff</li>
+                      </hediffDefs>
+                    </condition>
+                    <offset>(0,0.025)</offset>
+                    <layerOffset>6.7</layerOffset>
+                    <paths>
+                      <li>Yuran/Things/Building/Furniture/BellyPunch/Body/Pee/Down</li>
+                    </paths>
+                  </li>
+                </pathSets>
+              </li>
+              <li MayRequire="melondove.wolfeinrace">
+                <condition>
+                  <races>
+                    <li>Wolfein_Race</li>
+                  </races>
+                </condition>
+                <pathSets>
+                  <li>
+                    <condition>
+                      <genders>
+                        <li>Female</li>
+                      </genders>
+                      <allMatch>true</allMatch>
+                    </condition>
+                    <individualAnimationOffSets>
+                      <li>(0,0,0.000)</li>
+                      <li>(0,0,0.000)</li>
+                      <li>(0,0,0.000)</li>
+                      <li>(0,0,0.000)</li>
+                      <li>(0,0,0.006)</li>
+                      <li>(0,0,0.009)</li>
+                      <li>(0,0,0.006)</li>
+                      <li>(0,0,0.003)</li>
+                      <li>(0,0,0.000)</li>
+                      <li>(0,0,0.000)</li>
+                    </individualAnimationOffSets>
+                    <drawSize>(1,1)</drawSize>
+                    <bodyColor>true</bodyColor>
+                    <pawnBodyReplacement>true</pawnBodyReplacement>
+                    <paths>
+                      <li>Yuran/Things/Building/Furniture/BellyPunch/Body/Race/Miho/Female/2</li>
+                      <li>Yuran/Things/Building/Furniture/BellyPunch/Body/Race/Miho/Female/2</li>
+                      <li>Yuran/Things/Building/Furniture/BellyPunch/Body/Race/Miho/Female/2</li>
+                      <li>Yuran/Things/Building/Furniture/BellyPunch/Body/Race/Miho/Female/2</li>
+                      <li>Yuran/Things/Building/Furniture/BellyPunch/Body/Race/Miho/Female/3</li>
+                      <li>Yuran/Things/Building/Furniture/BellyPunch/Body/Race/Miho/Female/3</li>
+                      <li>Yuran/Things/Building/Furniture/BellyPunch/Body/Race/Miho/Female/1</li>
+                      <li>Yuran/Things/Building/Furniture/BellyPunch/Body/Race/Miho/Female/1</li>
+                      <li>Yuran/Things/Building/Furniture/BellyPunch/Body/Race/Miho/Female/1</li>
+                      <li>Yuran/Things/Building/Furniture/BellyPunch/Body/Race/Miho/Female/1</li>
+                    </paths>
+                    <rotation>South</rotation>
+                  </li>
+                  <li>
+                    <condition>
+                      <genders>
+                        <li>Male</li>
+                      </genders>
+                      <allMatch>true</allMatch>
+                    </condition>
+                    <individualAnimationOffSets>
+                      <li>(0,0,0.000)</li>
+                      <li>(0,0,0.000)</li>
+                      <li>(0,0,0.000)</li>
+                      <li>(0,0,0.000)</li>
+                      <li>(0,0,0.006)</li>
+                      <li>(0,0,0.009)</li>
+                      <li>(0,0,0.006)</li>
+                      <li>(0,0,0.003)</li>
+                      <li>(0,0,0.000)</li>
+                      <li>(0,0,0.000)</li>
+                    </individualAnimationOffSets>
+                    <drawSize>(1,1)</drawSize>
+                    <bodyColor>true</bodyColor>
+                    <pawnBodyReplacement>true</pawnBodyReplacement>
+                    <paths>
+                      <li>Yuran/Things/Building/Furniture/BellyPunch/Body/Race/Miho/Male/2</li>
+                      <li>Yuran/Things/Building/Furniture/BellyPunch/Body/Race/Miho/Male/2</li>
+                      <li>Yuran/Things/Building/Furniture/BellyPunch/Body/Race/Miho/Male/2</li>
+                      <li>Yuran/Things/Building/Furniture/BellyPunch/Body/Race/Miho/Male/2</li>
+                      <li>Yuran/Things/Building/Furniture/BellyPunch/Body/Race/Miho/Male/3</li>
+                      <li>Yuran/Things/Building/Furniture/BellyPunch/Body/Race/Miho/Male/3</li>
+                      <li>Yuran/Things/Building/Furniture/BellyPunch/Body/Race/Miho/Male/1</li>
+                      <li>Yuran/Things/Building/Furniture/BellyPunch/Body/Race/Miho/Male/1</li>
+                      <li>Yuran/Things/Building/Furniture/BellyPunch/Body/Race/Miho/Male/1</li>
+                      <li>Yuran/Things/Building/Furniture/BellyPunch/Body/Race/Miho/Male/1</li>
+                    </paths>
+                    <rotation>South</rotation>
+                  </li>
+                </pathSets>
+              </li>
+            </pathByConditions>
+          </li>
+        </pathByRaces>
+      </li>
+      <li Class="YR_RJW.CompProperties_LovePillar" />
+      <li Class="YR_RJW.CompProperties_SA0PillarV45" MayRequire="OTYOTY.SizedApparel" />
+    </comps>
+    <statBases>
+      <MaxHitPoints>140</MaxHitPoints>
+      <Flammability>1.0</Flammability>
+      <Beauty>1</Beauty>
+      <WorkToBuild>800</WorkToBuild>
+      <Mass>30</Mass>
+      <BedRestEffectiveness>1</BedRestEffectiveness>
+      <Comfort>0.75</Comfort>
+      <ImmunityGainSpeedFactor>1.07</ImmunityGainSpeedFactor>
+      <SurgerySuccessChanceFactor>1</SurgerySuccessChanceFactor>
+    </statBases>
+    <size>(1,1)</size>
+    <costList>
+      <WoodLog>100</WoodLog>
+    </costList>
+    <hasInteractionCell>true</hasInteractionCell>
+    <placeWorkers>
+      <li>PlaceWorker_PreventInteractionSpotOverlap</li>
+    </placeWorkers>
+    <drawPlaceWorkersWhileSelected>True</drawPlaceWorkersWhileSelected>
+    <interactionCellOffset>(0,0,1)</interactionCellOffset>
+    <techLevel>Medieval</techLevel>
+    <researchPrerequisites>
+    </researchPrerequisites>
+    <uiIconScale>1</uiIconScale>
+  </ThingDef>
+  <ThingDef ParentName="EtherealThingBase">
+    <defName>YR_DummyForJoy_BellyPunch</defName>
+    <label>belly punch(dummy for joy)</label>
+    <description>TEST</description>
+    <thingClass>YR_RJW.DummyForJoy</thingClass>
+    <tickerType>Normal</tickerType>
+    <drawerType>RealtimeOnly</drawerType>
+    <hasInteractionCell>true</hasInteractionCell>
+    <interactionCellOffset>(0,0,1)</interactionCellOffset>
+    <rotatable>true</rotatable>
+    <placeWorkers>
+      <li>PlaceWorker_PreventInteractionSpotOverlap</li>
+    </placeWorkers>
+    <defaultPlacingRot>South</defaultPlacingRot>
+  </ThingDef>
+  <JobDef>
+    <defName>Play_BellyPunch</defName>
+    <driverClass>YR_RJW.JobDriver_WatchDummy</driverClass>
+    <reportString>using pillar of painful love.</reportString>
+    <joyDuration>4000</joyDuration>
+    <joyMaxParticipants>1</joyMaxParticipants>
+    <joyKind>YR_Gaming_BellyPunch</joyKind>
+    <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+  </JobDef>
+  <JoyGiverDef>
+    <defName>Play_BellyPunch</defName>
+    <giverClass>JoyGiver_InteractBuildingInteractionCell</giverClass>
+    <baseChance>10</baseChance>
+    <thingDefs>
+      <li>YR_DummyForJoy_BellyPunch</li>
+    </thingDefs>
+    <jobDef>Play_BellyPunch</jobDef>
+    <desireSit>false</desireSit>
+    <joyKind>YR_Gaming_BellyPunch</joyKind>
+  </JoyGiverDef>
+  <JoyKindDef>
+    <defName>YR_Gaming_BellyPunch</defName>
+    <label>belly punch</label>
+  </JoyKindDef>
+  <HediffDef>
+    <defName>YR_BellyPunch_Hediff</defName>
+    <hediffClass>HediffWithComps</hediffClass>
+    <label>receiving violent love</label>
+    <description>Love, accompanied by violence, has been hammered into the abdomen. Although it hurts at first, if keep taking it, will eventually be able to enjoy the pain and feel love within it.</description>
+    <defaultLabelColor>(0.392, 0.678, 0.737)</defaultLabelColor>
+    <scenarioCanAdd>false</scenarioCanAdd>
+    <maxSeverity>1</maxSeverity>
+    <initialSeverity>0.001</initialSeverity>
+    <isBad>false</isBad>
+    <stages>
+      <li>
+        <vomitMtbDays>0.4</vomitMtbDays>
+        <painOffset>0.25</painOffset>
+      </li>
+    </stages>
+    <comps>
+      <li Class="HediffCompProperties_SeverityPerDay">
+        <severityPerDay>-0.1</severityPerDay>
+        <showHoursToRecover>true</showHoursToRecover>
+      </li>
+      <li Class="YR_RJW.HediffCompProperties_Disciplined">
+        <ticks>50</ticks>
+        <traitDefs>
+          <li>Masochist</li>
+        </traitDefs>
+        <addTraitSeverity>0.99</addTraitSeverity>
+        <removeHediffPostAddTrait>false</removeHediffPostAddTrait>
+      </li>
+    </comps>
+  </HediffDef>
+  <ThoughtDef>
+    <defName>YR_BellyPunch_Hediff</defName>
+    <workerClass>ThoughtWorker_Hediff</workerClass>
+    <hediff>YR_BellyPunch_Hediff</hediff>
+    <nullifyingTraits>
+      <li>Masochist</li>
+    </nullifyingTraits>
+    <neverNullifyIfAnyTrait>
+      <li>Wimp</li>
+    </neverNullifyIfAnyTrait>
+    <stages>
+      <li>
+        <label>receiving violent love</label>
+        <description>This... this isn't love... I hate it...</description>
+        <baseMoodEffect>-3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+  <ThoughtDef>
+    <defName>YR_BellyPunch_Hediff_Masochist</defName>
+    <workerClass>ThoughtWorker_Hediff</workerClass>
+    <hediff>YR_BellyPunch_Hediff</hediff>
+    <requiredTraits>
+      <li>Masochist</li>
+    </requiredTraits>
+    <stages>
+      <li>
+        <label>receiving violent love (masochist)</label>
+        <description>I can feel love being pounded into my stomach. I wish this pain could last forever...</description>
+        <baseMoodEffect>3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+</Defs>

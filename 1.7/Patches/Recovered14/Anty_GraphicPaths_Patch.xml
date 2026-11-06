@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Patch>
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Anty the war ant race</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName = "Anty"]/alienRace/graphicPaths/body/extendedGraphics</xpath>
+          <value>
+            <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+              <path>Antylike/Bodies/AddonGraphic/Tentacle/Naked_Thin</path>
+              <extendedGraphics>
+                <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+                  <path>Antylike/Bodies/AddonGraphic/Tentacle/PanPanPlay/Naked_Thin</path>
+                  <conditions>
+                    <Hediff>YR_PanPanPlay_Hediff</Hediff>
+                  </conditions>
+                </li>
+              </extendedGraphics>
+              <conditions>
+                <Hediff>YR_TentacleApparel_Hediff</Hediff>
+              </conditions>
+            </li>
+            <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+              <path>Antylike/Bodies/AddonGraphic/Tentacle/Naked_Thin</path>
+              <extendedGraphics>
+                <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+                  <path>Antylike/Bodies/AddonGraphic/Tentacle/PanPanPlay/Naked_Thin</path>
+                  <conditions>
+                    <Hediff>YR_PanPanPlay_Hediff</Hediff>
+                  </conditions>
+                </li>
+              </extendedGraphics>
+              <conditions>
+                <Hediff>YR_Tentacle_Hediff</Hediff>
+              </conditions>
+            </li>
+            <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+              <path>Antylike/Bodies/AddonGraphic/PanPanPlay/Naked_Thin</path>
+              <conditions>
+                <Hediff>YR_PanPanPlay_Hediff</Hediff>
+              </conditions>
+            </li>
+          </value>
+          <order>Prepend</order>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName = "Anty"]/alienRace/graphicPaths/apparel/individualPaths</xpath>
+          <value>
+            <li>
+              <key>YR_AP_Tentacle</key>
+              <value>Yuran/Yuranlike/Apparel/Bote/YR_AP_Tentacle/Anty/Texture</value>
+            </li>
+            <li>
+              <key>YR_AP_Tentacle_Headgear</key>
+              <value>Yuran/Yuranlike/Apparel/Bote/YR_AP_Tentacle_Headgear/Anty/Texture</value>
+            </li>
+            <li>
+              <key>YR_AP_Tentacle_Headgear_Mask</key>
+              <value>Yuran/Yuranlike/Apparel/Bote/YR_AP_Tentacle_Headgear_Mask/Anty/Texture</value>
+            </li>
+          </value>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+</Patch>

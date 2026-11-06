@@ -1,0 +1,11 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<LanguageData>
+  <YR_PowerMode1_Hediff.label>시설 모드 1</YR_PowerMode1_Hediff.label>
+  <YR_PowerMode2_Hediff.label>시설 모드 2</YR_PowerMode2_Hediff.label>
+  <YR_MilkingMachine_DisableNeed.label>시설의 생명 유지 지원</YR_MilkingMachine_DisableNeed.label>
+  <YR_Building_LoveRoom_Hediff.label>러브룸 이용 중</YR_Building_LoveRoom_Hediff.label>
+  <YR_Building_Mimic_Hediff.label>미믹에게 붙잡힘</YR_Building_Mimic_Hediff.label>
+  <YR_North_Hediff.label>뒤쪽 방향</YR_North_Hediff.label>
+  <YR_Bote_Hediff.label>배 부풀림</YR_Bote_Hediff.label>
+  <YR_LoveRoomHoneyHigh.label>러브룸 꿀의 효과</YR_LoveRoomHoneyHigh.label>
+</LanguageData>

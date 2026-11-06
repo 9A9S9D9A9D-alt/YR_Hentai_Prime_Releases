@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Defs>
+  <ThingDef ParentName="DrugBase">
+    <defName>YR_LoveRoomHoney</defName>
+    <label>honey of love room</label>
+    <description>Honey produced by Love Room plant, altered after being mixed with the bodily fluids secreted from the victim experiencing both pain and pleasure./n/nIt is able to transfer strong emotions, particularly the pain of near-death state and pleasure of living flesh of the prey to the imbiber. Those hooked on the experience, the alluring scent and the curative properties of the honey shall find themself crawling toward the Love Chamber, either to enter themself or to offer another person.</description>
+    <descriptionHyperlinks>
+      <HediffDef>YR_LoveRoomHoneyHigh</HediffDef>
+    </descriptionHyperlinks>
+    <graphicData>
+      <texPath>Yuran/Things/Item/Drug/YR_LoveRoomHoney</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+      <drawSize>0.5</drawSize>
+    </graphicData>
+    <socialPropernessMatters>false</socialPropernessMatters>
+    <rotatable>false</rotatable>
+    <statBases>
+      <WorkToMake>600</WorkToMake>
+      <MarketValue>18</MarketValue>
+      <Mass>0.005</Mass>
+      <Flammability>0.7</Flammability>
+    </statBases>
+    <techLevel>Industrial</techLevel>
+    <ingestible>
+      <foodType>Fluid, Processed</foodType>
+      <joyKind>Chemical</joyKind>
+      <joy>0.40</joy>
+      <baseIngestTicks>210</baseIngestTicks>
+      <nurseable>true</nurseable>
+      <drugCategory>Social</drugCategory>
+      <ingestSound>Ingest_Drink</ingestSound>
+      <ingestHoldUsesTable>false</ingestHoldUsesTable>
+      <ingestCommandString>Drink {0}</ingestCommandString>
+      <ingestReportString>Drinking {0}.</ingestReportString>
+      <outcomeDoers>
+        <li Class="IngestionOutcomeDoer_GiveHediff">
+          <hediffDef>YR_LoveRoomHoneyHigh</hediffDef>
+          <severity>1.0</severity>
+        </li>
+        <li MayRequire="rim.job.world" Class="YR_RJW.IngestionOutcomeDoer_OffsetNeed_Race">
+          <need>Sex</need>
+          <offset>-0.15</offset>
+        </li>
+      </outcomeDoers>
+    </ingestible>
+    <comps>
+      <li Class="CompProperties_Drug">
+        <listOrder>1000</listOrder>
+        <overdoseSeverityOffset>0.08~0.14</overdoseSeverityOffset>
+      </li>
+    </comps>
+  </ThingDef>
+  <HediffDef>
+    <defName>YR_LoveRoomHoneyHigh</defName>
+    <hediffClass>Hediff_High</hediffClass>
+    <label>YR_LoveRoomHoney</label>
+    <description>Heave! Cough! Choke! I can't breathe...! Wheeze....! I feel like I'm about to come...!</description>
+    <defaultLabelColor>(1,0,0.5)</defaultLabelColor>
+    <scenarioCanAdd>false</scenarioCanAdd>
+    <maxSeverity>1.0</maxSeverity>
+    <isBad>false</isBad>
+    <stages>
+      <li>
+        <statOffsets>
+          <InjuryHealingFactor>0.15</InjuryHealingFactor>
+        </statOffsets>
+      </li>
+    </stages>
+    <comps>
+      <li Class="HediffCompProperties_SeverityPerDay">
+        <severityPerDay>-0.33333</severityPerDay>
+        <showHoursToRecover>true</showHoursToRecover>
+      </li>
+      <li MayRequire="rim.job.world" Class="YR_RJW.HediffCompProperties_Need">
+        <need>Sex</need>
+        <offset>-0.005</offset>
+        <ticks>1200</ticks>
+        <raceOnly>
+          <race>
+            <li MayRequire="RooAndGloomy.YuranRaceMod">Yuran_Race</li>
+          </race>
+          <offset>-0.01</offset>
+        </raceOnly>
+      </li>
+    </comps>
+  </HediffDef>
+</Defs>

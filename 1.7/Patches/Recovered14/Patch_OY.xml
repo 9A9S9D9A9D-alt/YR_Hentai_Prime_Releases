@@ -1,0 +1,367 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <!--Samok root apparel stays globally wearable. RootGearCompatibility adds the four items to every humanlike HAR whitelist, including these optional races, without race-exclusive apparelList registration.-->
+  <Operation Class="PatchOperationFindMod">
+    <success>Always</success>
+    <mods>
+      <li>LittleFairy the Those Who Seek Flesh and Blood Race</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <success>Always</success>
+      <operations>
+        <li Class="PatchOperationTest">
+          <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="LittleFairy_Pawn"]/alienRace/graphicPaths/apparel</xpath>
+          <success>Invert</success>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="LittleFairy_Pawn"]/alienRace/graphicPaths</xpath>
+          <value>
+            <apparel>
+            </apparel>
+          </value>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationFindMod">
+    <success>Always</success>
+    <mods>
+      <li>Mofy the WhiteFox in a Cold Land Race</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <success>Always</success>
+      <operations>
+        <li Class="PatchOperationTest">
+          <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Mofy_Pawn"]/alienRace/graphicPaths/apparel</xpath>
+          <success>Invert</success>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Mofy_Pawn"]/alienRace/graphicPaths</xpath>
+          <value>
+            <apparel>
+            </apparel>
+          </value>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationFindMod">
+    <success>Always</success>
+    <mods>
+      <li>Resurreviewy the nxious about immortality race</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <success>Always</success>
+      <operations>
+        <li Class="PatchOperationTest">
+          <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Resurreviewy_Pawn"]/alienRace/graphicPaths/apparel</xpath>
+          <success>Invert</success>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Resurreviewy_Pawn"]/alienRace/graphicPaths</xpath>
+          <value>
+            <apparel>
+            </apparel>
+          </value>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationFindMod">
+    <success>Always</success>
+    <mods>
+      <li>Glassy the Earth Running Race</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <success>Always</success>
+      <operations>
+        <li Class="PatchOperationTest">
+          <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Glassy_Pawn"]/alienRace/graphicPaths/apparel</xpath>
+          <success>Invert</success>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Glassy_Pawn"]/alienRace/graphicPaths</xpath>
+          <value>
+            <apparel>
+            </apparel>
+          </value>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationFindMod">
+    <success>Always</success>
+    <mods>
+      <li>Sweety the MilkChocolate Soul Race</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <success>Always</success>
+      <operations>
+        <li Class="PatchOperationTest">
+          <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Sweety_Pawn"]/alienRace/graphicPaths/apparel</xpath>
+          <success>Invert</success>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Sweety_Pawn"]/alienRace/graphicPaths</xpath>
+          <value>
+            <apparel>
+            </apparel>
+          </value>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationFindMod">
+    <success>Always</success>
+    <mods>
+      <li>LittleFairy the Those Who Seek Flesh and Blood Race</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <success>Always</success>
+      <operations>
+        <li Class="PatchOperationTest">
+          <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="LittleFairy_Pawn"]/alienRace/graphicPaths/apparel/individualPaths</xpath>
+          <success>Invert</success>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="LittleFairy_Pawn"]/alienRace/graphicPaths/apparel</xpath>
+          <value>
+            <individualPaths>
+            </individualPaths>
+          </value>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationFindMod">
+    <success>Always</success>
+    <mods>
+      <li>Mofy the WhiteFox in a Cold Land Race</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <success>Always</success>
+      <operations>
+        <li Class="PatchOperationTest">
+          <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName = "Mofy_Pawn"]/alienRace/graphicPaths/apparel/individualPaths</xpath>
+          <success>Invert</success>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName = "Mofy_Pawn"]/alienRace/graphicPaths/apparel</xpath>
+          <value>
+            <individualPaths>
+            </individualPaths>
+          </value>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationFindMod">
+    <success>Always</success>
+    <mods>
+      <li>Resurreviewy the nxious about immortality race</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <success>Always</success>
+      <operations>
+        <li Class="PatchOperationTest">
+          <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName = "Resurreviewy_Pawn"]/alienRace/graphicPaths/apparel/individualPaths</xpath>
+          <success>Invert</success>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName = "Resurreviewy_Pawn"]/alienRace/graphicPaths/apparel</xpath>
+          <value>
+            <individualPaths>
+            </individualPaths>
+          </value>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationFindMod">
+    <success>Always</success>
+    <mods>
+      <li>Glassy the Earth Running Race</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <success>Always</success>
+      <operations>
+        <li Class="PatchOperationTest">
+          <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName = "Glassy_Pawn"]/alienRace/graphicPaths/apparel/individualPaths</xpath>
+          <success>Invert</success>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName = "Glassy_Pawn"]/alienRace/graphicPaths/apparel</xpath>
+          <value>
+            <individualPaths>
+            </individualPaths>
+          </value>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationFindMod">
+    <success>Always</success>
+    <mods>
+      <li>Sweety the MilkChocolate Soul Race</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <success>Always</success>
+      <operations>
+        <li Class="PatchOperationTest">
+          <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName = "Sweety_Pawn"]/alienRace/graphicPaths/apparel/individualPaths</xpath>
+          <success>Invert</success>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName = "Sweety_Pawn"]/alienRace/graphicPaths/apparel</xpath>
+          <value>
+            <individualPaths>
+            </individualPaths>
+          </value>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationFindMod">
+    <success>Always</success>
+    <mods>
+      <li>LegacyFairy the forgotten technology race</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <success>Always</success>
+      <operations>
+        <li Class="PatchOperationTest">
+          <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName = "LegacyFairy_Pawn"]/alienRace/graphicPaths/apparel/individualPaths</xpath>
+          <success>Invert</success>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName = "LegacyFairy_Pawn"]/alienRace/graphicPaths/apparel</xpath>
+          <value>
+            <individualPaths>
+            </individualPaths>
+          </value>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationFindMod">
+    <success>Always</success>
+    <mods>
+      <li>MagiaPlant the Forgotten Magical race</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <success>Always</success>
+      <operations>
+        <li Class="PatchOperationTest">
+          <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName = "MagiaPlant_Pawn"]/alienRace/graphicPaths/apparel/individualPaths</xpath>
+          <success>Invert</success>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName = "MagiaPlant_Pawn"]/alienRace/graphicPaths/apparel</xpath>
+          <value>
+            <individualPaths>
+            </individualPaths>
+          </value>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationFindMod">
+    <success>Always</success>
+    <mods>
+      <li>Forgotty the Forgotten Cyborg race</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <success>Always</success>
+      <operations>
+        <li Class="PatchOperationTest">
+          <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName = "Forgotty_Pawn"]/alienRace/graphicPaths/apparel/individualPaths</xpath>
+          <success>Invert</success>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName = "Forgotty_Pawn"]/alienRace/graphicPaths/apparel</xpath>
+          <value>
+            <individualPaths>
+            </individualPaths>
+          </value>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationFindMod">
+    <success>Always</success>
+    <mods>
+      <li>Maddy the Wears Madness race</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <success>Always</success>
+      <operations>
+        <li Class="PatchOperationTest">
+          <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName = "Maddy_Pawn"]/alienRace/graphicPaths/apparel/individualPaths</xpath>
+          <success>Invert</success>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName = "Maddy_Pawn"]/alienRace/graphicPaths/apparel</xpath>
+          <value>
+            <individualPaths>
+            </individualPaths>
+          </value>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationFindMod">
+    <success>Always</success>
+    <mods>
+      <li>LittleFairy the Those Who Seek Flesh and Blood Race</li>
+    </mods>
+    <match Class="PatchOperationAdd">
+      <success>Always</success>
+      <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="LittleFairy_Pawn"]/alienRace/graphicPaths/apparel/individualPaths</xpath>
+      <value>
+        <li>
+          <key>YR_AP_Tentacle</key>
+          <value>OY_Yuran_Addon/Equipment/TentacleArmor_LitF/TentacleArmor</value>
+        </li>
+        <li>
+          <key>YR_AP_Tentacle_Headgear</key>
+          <value>Things/Inv/MR_Invisible</value>
+        </li>
+        <li>
+          <key>YR_AP_Tentacle_Headgear_Mask</key>
+          <value>OY_Yuran_Addon/Equipment/TentacleArmor_HeadGear/TentacleArmor</value>
+        </li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationFindMod">
+    <success>Always</success>
+    <mods>
+      <li>Mofy the WhiteFox in a Cold Land Race</li>
+      <li>Resurreviewy the nxious about immortality race</li>
+      <li>Glassy the Earth Running Race</li>
+      <li>Sweety the MilkChocolate Soul Race</li>
+      <li>LegacyFairy the forgotten technology race</li>
+      <li>MagiaPlant the Forgotten Magical race</li>
+      <li>Forgotty the Forgotten Cyborg race</li>
+      <li>Maddy the Wears Madness race</li>
+    </mods>
+    <match Class="PatchOperationAdd">
+      <success>Always</success>
+      <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName = "Mofy_Pawn" or defName = "Resurreviewy_Pawn" or defName = "Glassy_Pawn" or defName = "Sweety_Pawn" or defName = "LegacyFairy_Pawn" or defName = "MagiaPlant_Pawn" or defName = "Forgotty_Pawn" or defName = "Maddy_Pawn"]/alienRace/graphicPaths/apparel/individualPaths</xpath>
+      <value>
+        <li>
+          <key>YR_AP_Tentacle</key>
+          <value>OY_Yuran_Addon/Equipment/TentacleArmor/TentacleArmor</value>
+        </li>
+        <li>
+          <key>YR_AP_Tentacle_Headgear</key>
+          <value>Things/Inv/MR_Invisible</value>
+        </li>
+        <li>
+          <key>YR_AP_Tentacle_Headgear_Mask</key>
+          <value>OY_Yuran_Addon/Equipment/TentacleArmor_HeadGear/TentacleArmor</value>
+        </li>
+      </value>
+    </match>
+  </Operation>
+</Patch>

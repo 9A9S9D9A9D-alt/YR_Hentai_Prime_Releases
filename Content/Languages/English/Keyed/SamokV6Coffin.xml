@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <YR_SamokCoffinProgress>Preserving {0}; resurrection in {1}</YR_SamokCoffinProgress>
+  <YR_SamokCoffinAutoHaul>Receive bride corpses</YR_SamokCoffinAutoHaul>
+  <YR_SamokCoffinAutoHaulDesc>Haulers bring adult abyss-bride corpses to this empty tentacle bed. The body is preserved and the same pawn resurrects after five days. Living occupants prevent corpse storage.</YR_SamokCoffinAutoHaulDesc>
+  <YR_SamokCoffinEject>Eject bride corpse</YR_SamokCoffinEject>
+  <YR_SamokCoffinEjectDesc>Release the corpse safely. This resets resurrection progress and disables automatic hauling to this bed until enabled again.</YR_SamokCoffinEjectDesc>
+  <YR_SamokCoffinHaul>Carry {0} to the tentacle coffin</YR_SamokCoffinHaul>
+</LanguageData>

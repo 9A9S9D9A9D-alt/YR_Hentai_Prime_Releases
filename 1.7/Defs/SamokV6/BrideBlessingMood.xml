@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Defs>
+  <ThoughtDef>
+    <defName>YR_SamokBrideBlessingMood</defName>
+    <workerClass>YR_RJW.ThoughtWorker_SamokBlessingV49</workerClass>
+    <stages>
+      <li>
+        <label>사목의 축복을 받음</label>
+        <description>아아, 사목의 나무께서 나에게 축복을 내려주셨어.</description>
+        <baseMoodEffect>15</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+</Defs>

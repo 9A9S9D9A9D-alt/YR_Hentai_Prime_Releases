@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Defs>
+  <PawnRelationDef>
+    <defName>YR_Byproduct</defName>
+    <label>byproduct</label>
+    <importance>85</importance>
+    <opinionOffset>50</opinionOffset>
+    <implied>false</implied>
+    <reflexive>false</reflexive>
+  </PawnRelationDef>
+  <PawnRelationDef>
+    <defName>YR_BreedingSource</defName>
+    <label>breeding stick</label>
+    <labelFemale>breeding pouch</labelFemale>
+    <importance>85</importance>
+    <opinionOffset>50</opinionOffset>
+    <implied>false</implied>
+    <reflexive>false</reflexive>
+  </PawnRelationDef>
+</Defs>

@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Defs>
+  <YR_RJW.HairAddonPatchDef>
+    <defName>YR_HairAddonPatchDef</defName>
+    <addonPatchs>
+      <li MayRequire="RooAndGloomy.YuranRaceMod">
+        <race>Yuran_Race</race>
+        <addHediffGraphics>
+          <li>
+            <listNum>6</listNum>
+            <hediffGraphics>
+              <YR_Building_Tentacle_Hediff>Yuran/Yuranlike/Bodies/Dummy/YR_Bote</YR_Building_Tentacle_Hediff>
+              <YR_HideApparel_Hediff>Yuran/Yuranlike/Bodies/Dummy/YR_Bote</YR_HideApparel_Hediff>
+            </hediffGraphics>
+          </li>
+          <li>
+            <listNum>7</listNum>
+            <hediffGraphics>
+              <YR_Building_Tentacle_Hediff>Yuran/Yuranlike/Bodies/Dummy/YR_Bote</YR_Building_Tentacle_Hediff>
+              <YR_HideHat_Hediff>Yuran/Yuranlike/Bodies/Dummy/YR_Bote</YR_HideHat_Hediff>
+            </hediffGraphics>
+          </li>
+          <li>
+            <listNum>8</listNum>
+            <hediffGraphics>
+              <YR_Building_Tentacle_Hediff>Yuran/Yuranlike/Bodies/Dummy/YR_Bote</YR_Building_Tentacle_Hediff>
+              <YR_HideApparel_Hediff>Yuran/Yuranlike/Bodies/Dummy/YR_Bote</YR_HideApparel_Hediff>
+            </hediffGraphics>
+          </li>
+        </addHediffGraphics>
+      </li>
+    </addonPatchs>
+  </YR_RJW.HairAddonPatchDef>
+</Defs>

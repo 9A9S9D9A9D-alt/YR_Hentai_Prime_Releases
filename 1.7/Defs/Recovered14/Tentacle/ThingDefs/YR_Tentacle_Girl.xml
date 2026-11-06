@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <ThinkTreeDef>
+    <defName>YR_SamokDaughter</defName>
+    <thinkRoot Class="ThinkNode_Priority">
+      <subNodes>
+        <li Class="ThinkNode_Subtree"><treeDef>Downed</treeDef></li>
+        <li Class="ThinkNode_Subtree"><treeDef>BurningResponse</treeDef></li>
+        <li Class="ThinkNode_QueuedJob" />
+        <li Class="JobGiver_Orders" />
+        <li Class="JobGiver_Haul" />
+        <li Class="JobGiver_WanderColony" />
+      </subNodes>
+    </thinkRoot>
+  </ThinkTreeDef>
+  <ThinkTreeDef>
+    <defName>YR_SamokDaughterConstant</defName>
+    <thinkRoot Class="ThinkNode_Priority" />
+  </ThinkTreeDef>
+  <ThingDef ParentName="AnimalThingBase">
+    <defName>YR_Tentacle_Girl</defName>
+    <label>daughter of the evil tree</label>
+    <description>사목의 나무가 생산하는 단명 생체 일꾼. 동물로 분류되며 정착민 인구에 포함되지 않는다. 사망으로 인한 무드 불이익이 없다. 유란의 육체 구조를 바탕으로 직접 조작하고 운반과 시설 이용을 수행한다. 의상은 착용하지 못하지만 무기는 사용할 수 있다. 욕구가 없고 진공에 견디며 상처를 빠르게 회복하지만, 잃은 부위는 재생하지 못한다. 생산 후 수명은 3일이다.</description>
+    <statBases>
+      <MoveSpeed>4.14</MoveSpeed>
+      <MarketValue>200</MarketValue>
+      <ArmorRating_Blunt>0.05</ArmorRating_Blunt>
+      <ArmorRating_Sharp>0.05</ArmorRating_Sharp>
+      <ComfyTemperatureMin>-15</ComfyTemperatureMin>
+      <ComfyTemperatureMax>40</ComfyTemperatureMax>
+      <Wildness>0.85</Wildness>
+      <CarryingCapacity>75</CarryingCapacity>
+      <VacuumResistance MayRequire="Ludeon.RimWorld.Odyssey">1</VacuumResistance>
+    </statBases>
+    <uiIconScale>1.25</uiIconScale>
+    <tools>
+      <li>
+        <label>teeth</label>
+        <capacities>
+          <li>Bite</li>
+        </capacities>
+        <power>5</power>
+        <cooldownTime>2.6</cooldownTime>
+        <linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+      </li>
+    </tools>
+    <comps>
+      <li Class="CompProperties_Lifespan">
+        <lifespanTicks>180000</lifespanTicks>
+      </li>
+      <li Class="YR_RJW.CompProperties_SamokDaughter" />
+    </comps>
+    <race>
+      <needsRest>false</needsRest>
+      <trainability>None</trainability>
+      <body>Yuran_Body</body>
+      <baseBodySize>0.9</baseBodySize>
+      <baseHungerRate>0.0825</baseHungerRate>
+      <baseHealthScale>0.95</baseHealthScale>
+      <thinkTreeMain>YR_SamokDaughter</thinkTreeMain>
+      <thinkTreeConstant>YR_SamokDaughterConstant</thinkTreeConstant>
+      <foodType>OmnivoreHuman</foodType>
+      <leatherDef>Leather_Lizard</leatherDef>
+      <lifeExpectancy>100</lifeExpectancy>
+      <lifeStageAges>
+        <li>
+          <def>AnimalAdult</def>
+          <minAge>0</minAge>
+        </li>
+      </lifeStageAges>
+      <soundMeleeHitPawn>Pawn_Melee_SmallScratch_HitPawn</soundMeleeHitPawn>
+      <soundMeleeHitBuilding>Pawn_Melee_SmallScratch_HitBuilding</soundMeleeHitBuilding>
+      <soundMeleeMiss>Pawn_Melee_SmallScratch_Miss</soundMeleeMiss>
+      <renderTree>Animal</renderTree>
+      <fleshType>Yuran_flesh</fleshType>
+      <intelligence>Animal</intelligence>
+      <bloodDef>Filth_YR_Hana</bloodDef>
+      <bloodSmearDef>Filth_YR_Hana</bloodSmearDef>
+    </race>
+    <tradeability>None</tradeability>
+  </ThingDef>
+  <PawnKindDef ParentName="AnimalKindBase">
+    <defName>YR_Tentacle_Girl</defName>
+    <label>daughter of the evil tree</label>
+    <canArriveManhunter>false</canArriveManhunter>
+    <defaultFactionType>PlayerColony</defaultFactionType>
+    <race>YR_Tentacle_Girl</race>
+    <combatPower>100</combatPower>
+    <initialResistanceRange>0</initialResistanceRange>
+    <initialWillRange>0</initialWillRange>
+    <ecoSystemWeight>0.40</ecoSystemWeight>
+    <lifeStages>
+      <li>
+        <bodyGraphicData>
+          <texPath>Yuran/Tentacle_Girllike/Tentacle_Girl/Tentacle_Girl</texPath>
+          <drawSize>1.5</drawSize>
+          <shadowData>
+            <volume>(0.45, 0.45, 0.45)</volume>
+            <offset>(0,0,0)</offset>
+          </shadowData>
+        </bodyGraphicData>
+        <dessicatedBodyGraphicData>
+          <texPath>Yuran/Tentacle_Girllike/Tentacle_Girl/Tentacle_Girl</texPath>
+          <drawSize>1.5</drawSize>
+        </dessicatedBodyGraphicData>
+      </li>
+    </lifeStages>
+  </PawnKindDef>
+  <HediffGiverSetDef>
+    <defName>YR_Tentacle_Girl_Haul_Spawn</defName>
+    <hediffGivers>
+      <li Class="YR_RJW.HediffGiver_RandomAgeCurved_NoAlram">
+        <hediff>YR_Tentacle_Girl_Haul_Spawn</hediff>
+        <partsToAffect>
+          <li>Heart</li>
+        </partsToAffect>
+        <allowOnLodgers>false</allowOnLodgers>
+        <allowOnQuestRewardPawns>false</allowOnQuestRewardPawns>
+        <allowOnQuestReservedPawns>false</allowOnQuestReservedPawns>
+        <allowOnBeggars>false</allowOnBeggars>
+        <minPlayerPopulation>1</minPlayerPopulation>
+        <ageFractionMtbDaysCurve>
+          <points>
+            <li>(0, 0.001)</li>
+            <li>(1, 9999)</li>
+          </points>
+        </ageFractionMtbDaysCurve>
+      </li>
+    </hediffGivers>
+  </HediffGiverSetDef>
+  <HediffDef>
+    <defName>YR_Tentacle_Girl_Haul_Spawn</defName>
+    <hediffClass>HediffWithComps</hediffClass>
+    <description>.</description>
+    <label>fall</label>
+    <initialSeverity>1.0</initialSeverity>
+    <maxSeverity>1.0</maxSeverity>
+    <minSeverity>0.001</minSeverity>
+    <comps>
+      <li Class="HediffCompProperties_SeverityPerDay">
+        <severityPerDay>-0.33</severityPerDay>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <minSeverity>0</minSeverity>
+        <becomeVisible>false</becomeVisible>
+        <hediffGivers>
+          <li Class="YR_RJW.HediffGiver_Random">
+            <hediff>YR_Tentacle_Girl_Spawn_End</hediff>
+            <mtbDays>0.00001</mtbDays>
+          </li>
+        </hediffGivers>
+      </li>
+      <li>
+        <minSeverity>0.002</minSeverity>
+        <becomeVisible>false</becomeVisible>
+      </li>
+      <li>
+        <becomeVisible>false</becomeVisible>
+        <minSeverity>0.9999999</minSeverity>
+        <capMods>
+          <li>
+            <capacity>Moving</capacity>
+            <offset>-1</offset>
+          </li>
+        </capMods>
+      </li>
+    </stages>
+  </HediffDef>
+  <HediffDef>
+    <defName>YR_Tentacle_Girl_Spawn_End</defName>
+    <hediffClass>HediffWithComps</hediffClass>
+    <description>.</description>
+    <label>contract termination</label>
+    <initialSeverity>1.0</initialSeverity>
+    <maxSeverity>1.0</maxSeverity>
+    <minSeverity>0.001</minSeverity>
+    <comps>
+    </comps>
+    <stages>
+      <li>
+        <capMods>
+          <li>
+            <capacity>Moving</capacity>
+            <offset>-0.7</offset>
+          </li>
+        </capMods>
+      </li>
+    </stages>
+  </HediffDef>
+</Defs>

@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='utf-8'?>
+<LanguageData>
+  <YR_ForcePlay>开始设施互动</YR_ForcePlay>
+  <YR_CaptureEntity>指定设施</YR_CaptureEntity>
+  <YR_CaptureEntityDesc>为{0}选择设施。</YR_CaptureEntityDesc>
+  <YR_CancelCapture>取消设施指定</YR_CancelCapture>
+  <YR_CancelCaptureDesc>取消{0}的设施指定。</YR_CancelCaptureDesc>
+  <YR_ReleaseVictim>释放{0}</YR_ReleaseVictim>
+  <YR_ReleaseVictimDesc>将{0}从设施中释放。</YR_ReleaseVictimDesc>
+  <YR_TieUpPawn>安置到设施</YR_TieUpPawn>
+  <YR_TieUpPawn_Condition>不满足设施使用条件。</YR_TieUpPawn_Condition>
+  <YRP_OfferingNeeded>供奉：{0}/{2}；还需 {1}。上限：{3}。</YRP_OfferingNeeded>
+  <YRP_OfferingExtra>成长完成。已供奉 {0}；还可供奉 {1}，上限 {2}。</YRP_OfferingExtra>
+  <YRP_OfferingMaximum>已达供奉上限：{0}/{1}。</YRP_OfferingMaximum>
+  <YRP_DebugAddOffering>开发者：增加一次供奉</YRP_DebugAddOffering>
+  <YRP_DebugMaxOffering>开发者：供奉设为上限</YRP_DebugMaxOffering>
+  <YRP_DebugOfferingDescription>用于原版供奉进度的开发者命令。储备燃料独立计算。</YRP_DebugOfferingDescription>
+  <YRP_AdultOnly>仅达到设定的最低生理年龄和种族成年阶段的成年类人可以使用。</YRP_AdultOnly>
+  <YRP_NoTargets>地图上没有存活的目标。</YRP_NoTargets>
+</LanguageData>

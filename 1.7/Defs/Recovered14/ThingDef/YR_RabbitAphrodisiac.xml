@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Defs>
+  <ThingDef ParentName="MakeableDrugPillBase">
+    <defName>YR_RabbitAphrodisiac</defName>
+    <label>yuran rabbit aphrodisiac</label>
+    <description>A very powerful aphrodisiac that makes a lewd whore who can't think of anything but scratching the vagina with a cock, with just a drop in mouth. It's made to discipline Yuran, but it has a similar effect on other races.\n\nMore milk comes out when milkable Yuran are consumed.</description>
+    <descriptionHyperlinks>
+      <HediffDef>YR_RabbitAphrodisiacHigh</HediffDef>
+    </descriptionHyperlinks>
+    <graphicData>
+      <texPath>Yuran/Things/Item/Drug/YR_RabbitAphrodisiac</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>0.5</drawSize>
+    </graphicData>
+    <socialPropernessMatters>false</socialPropernessMatters>
+    <rotatable>false</rotatable>
+    <statBases>
+      <WorkToMake>600</WorkToMake>
+      <MarketValue>18</MarketValue>
+      <Mass>0.005</Mass>
+      <Flammability>0.7</Flammability>
+    </statBases>
+    <techLevel>Industrial</techLevel>
+    <ingestible>
+      <drugCategory>Medical</drugCategory>
+      <outcomeDoers>
+        <li Class="IngestionOutcomeDoer_GiveHediff">
+          <hediffDef>YR_RabbitAphrodisiacHigh</hediffDef>
+          <severity>1.0</severity>
+        </li>
+        <li MayRequire="rim.job.world" Class="YR_RJW.IngestionOutcomeDoer_OffsetNeed_Race">
+          <need>Sex</need>
+          <offset>-0.15</offset>
+          <raceOnly>
+            <race>
+              <li MayRequire="RooAndGloomy.YuranRaceMod">Yuran_Race</li>
+            </race>
+            <offset>-0.3</offset>
+          </raceOnly>
+        </li>
+      </outcomeDoers>
+    </ingestible>
+    <recipeMaker>
+      <recipeUsers>
+        <li>DrugLab</li>
+      </recipeUsers>
+    </recipeMaker>
+    <costList>
+      <MedicineHerbal>1</MedicineHerbal>
+      <PsychoidLeaves>2</PsychoidLeaves>
+    </costList>
+    <comps>
+      <li Class="CompProperties_Drug">
+        <listOrder>1000</listOrder>
+        <overdoseSeverityOffset>0.08~0.14</overdoseSeverityOffset>
+      </li>
+    </comps>
+  </ThingDef>
+  <HediffDef>
+    <defName>YR_RabbitAphrodisiacHigh</defName>
+    <hediffClass>Hediff_High</hediffClass>
+    <label>YR_RabbitAphrodisiac</label>
+    <description>Became a lewd female who could only think of a cock.</description>
+    <defaultLabelColor>(1,0,0.5)</defaultLabelColor>
+    <scenarioCanAdd>true</scenarioCanAdd>
+    <maxSeverity>1.0</maxSeverity>
+    <isBad>false</isBad>
+    <comps>
+      <li Class="HediffCompProperties_SeverityPerDay">
+        <severityPerDay>-0.5</severityPerDay>
+        <showHoursToRecover>true</showHoursToRecover>
+      </li>
+      <li MayRequire="rim.job.world" Class="YR_RJW.HediffCompProperties_Need">
+        <need>Sex</need>
+        <offset>-0.005</offset>
+        <ticks>1200</ticks>
+        <raceOnly>
+          <race>
+            <li MayRequire="RooAndGloomy.YuranRaceMod">Yuran_Race</li>
+          </race>
+          <offset>-0.01</offset>
+        </raceOnly>
+      </li>
+    </comps>
+  </HediffDef>
+</Defs>

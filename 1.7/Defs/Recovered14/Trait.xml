@@ -1,0 +1,84 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<Defs>
+  <TraitDef>
+    <defName>YR_Disciplined</defName>
+    <commonality>0</commonality>
+    <degreeDatas>
+      <li>
+        <label>disciplined</label>
+        <description>{PAWN_nameDef} has been thoroughly disciplined and has become obscene in both body and mind. {PAWN_nameDef} is no longer ashamed to don't wear anything.</description>
+      </li>
+    </degreeDatas>
+  </TraitDef>
+  <TraitDef>
+    <defName>YR_Tentalcle</defName>
+    <commonality>0</commonality>
+    <degreeDatas>
+      <li>
+        <label>abyss bride</label>
+        <description>Whether by others or by herself, {PAWN_nameDef} has abandoned her life as an ordinary woman, and has become a plaything for a evil tree. There will be only excited in her future that will completely destroy her reason.</description>
+      </li>
+    </degreeDatas>
+    <requiredWorkTags>
+      <li>Violent</li>
+    </requiredWorkTags>
+    <disabledWorkTags>
+      <li>ManualDumb</li>
+      <li>ManualSkilled</li>
+      <li>Caring</li>
+      <li>Social</li>
+      <li>Commoner</li>
+      <li>Intellectual</li>
+      <li>Animals</li>
+      <li>Artistic</li>
+      <li>Crafting</li>
+      <li>Cooking</li>
+      <li>Firefighting</li>
+      <li>Cleaning</li>
+      <li>Hauling</li>
+      <li>PlantWork</li>
+      <li>Mining</li>
+      <li>Hunting</li>
+      <li>Constructing</li>
+      <li>Shooting</li>
+    </disabledWorkTags>
+  </TraitDef>
+  <TraitDef>
+    <defName>YR_Tentalcle_NonColonist</defName>
+    <commonality>0</commonality>
+    <degreeDatas>
+      <li>
+        <label>abyss bride</label>
+        <description>Whether by others or by herself, {PAWN_nameDef} has abandoned her life as an ordinary woman, and has become a plaything for a evil tree. There will be only excited in her future that will completely destroy her reason.</description>
+      </li>
+    </degreeDatas>
+    <disabledWorkTags>
+      <li>Violent</li>
+      <li>Shooting</li>
+      <li>AllWork</li>
+    </disabledWorkTags>
+  </TraitDef>
+  <TraitDef>
+    <defName>YR_Tentalcle_Blessed</defName>
+    <commonality>0</commonality>
+    <degreeDatas>
+      <li>
+        <label>심연의 신부(축복)</label>
+        <description>{PAWN_nameDef}(은)는 사목의 축복을 받았습니다. 15일 동안 심연의 신부 효과를 유지하면서 해당 특성의 작업 결격이 해제되며 사냥과 사격도 사용할 수 있습니다. 사목 크립 위에서는 이동·전투·재생 효과가 추가로 강화됩니다. 기간이 끝나면 원래 심연의 신부 특성으로 돌아갑니다.</description>
+      </li>
+    </degreeDatas>
+    <requiredWorkTags>
+      <li>Violent</li>
+    </requiredWorkTags>
+  </TraitDef>
+  <TraitDef>
+    <defName>YR_Tentalcle_NonColonist_Blessed</defName>
+    <commonality>0</commonality>
+    <degreeDatas>
+      <li>
+        <label>심연의 신부(축복)</label>
+        <description>{PAWN_nameDef}(은)는 사목의 축복을 받았습니다. 15일 동안 심연의 신부 효과를 유지하면서 해당 특성의 작업 결격이 해제되며 사냥과 사격도 사용할 수 있습니다. 사목 크립 위에서는 이동·전투·재생 효과가 추가로 강화됩니다. 기간이 끝나면 원래 심연의 신부 특성으로 돌아갑니다.</description>
+      </li>
+    </degreeDatas>
+  </TraitDef>
+</Defs>

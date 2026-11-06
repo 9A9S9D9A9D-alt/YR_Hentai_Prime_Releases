@@ -1,0 +1,19 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<LanguageData>
+  <YR_Tentacle_Egg_Install.label>사목의 씨앗 심기</YR_Tentacle_Egg_Install.label>
+  <YR_Tentacle_Egg_Install.description>사목의 씨앗을 심습니다.</YR_Tentacle_Egg_Install.description>
+  <YR_Tentacle_Egg_Install.jobString>사목의 씨앗 심는 중</YR_Tentacle_Egg_Install.jobString>
+  <YR_Tentacle_Egg_Remove.label>사목의 씨앗 제거</YR_Tentacle_Egg_Remove.label>
+  <YR_Tentacle_Egg_Remove.description>사목의 씨앗을 제거합니다.</YR_Tentacle_Egg_Remove.description>
+  <YR_Tentacle_Egg_Remove.jobString>사목의 씨앗 제거 중</YR_Tentacle_Egg_Remove.jobString>
+  <YR_Tentacle_Egg_Remove.successfullyRemovedHediffMessage>{0}(이)가 성공적으로 {1}의 사목의 씨앗을 제거했습니다.</YR_Tentacle_Egg_Remove.successfullyRemovedHediffMessage>
+  <YR_Tentacle_Meal_Cook.label>사목의 정식 준비</YR_Tentacle_Meal_Cook.label>
+  <YR_Tentacle_Meal_Cook.description>사목의 씨앗을 조리해 정식을 만듭니다. 소금과 밀가루로 촉수 겉의 점액을 얼마나 잘 제거하느냐가 관건이죠.</YR_Tentacle_Meal_Cook.description>
+  <YR_Tentacle_Meal_Cook.jobString>사목의 정식 조리 중</YR_Tentacle_Meal_Cook.jobString>
+  <YR_Tentacle_Meal_CookBulk.label>사목의 정식 4인분 준비</YR_Tentacle_Meal_CookBulk.label>
+  <YR_Tentacle_Meal_CookBulk.description>사목의 씨앗을 조리해 정식 4인분을 만듭니다. 소금과 밀가루로 촉수 겉의 점액을 얼마나 잘 제거하느냐가 관건이죠.</YR_Tentacle_Meal_CookBulk.description>
+  <YR_Tentacle_Meal_CookBulk.jobString>사목의 정식 대량 조리 중</YR_Tentacle_Meal_CookBulk.jobString>
+  <YR_InsertEggVibrator.label>에그 진동기 삽입</YR_InsertEggVibrator.label>
+  <YR_InsertEggVibrator.description>에그 진동기를 삽입합니다.</YR_InsertEggVibrator.description>
+  <YR_InsertEggVibrator.jobString>에그 진동기 삽입 중</YR_InsertEggVibrator.jobString>
+</LanguageData>

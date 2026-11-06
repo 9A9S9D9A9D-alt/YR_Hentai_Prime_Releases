@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Defs>
+  <YR_RJW.EroVoiceDef>
+    <defName>BellyPunchSound</defName>
+    <soundDefs>
+      <li>BellyPunchSound_1</li>
+    </soundDefs>
+  </YR_RJW.EroVoiceDef>
+</Defs>

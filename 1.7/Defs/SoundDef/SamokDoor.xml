@@ -1,0 +1,11 @@
+<Defs>
+  <SoundDef>
+    <defName>YR_SamokDoorOpen</defName>
+    <context>MapOnly</context>
+    <maxSimultaneous>1</maxSimultaneous>
+    <subSounds><li>
+      <grains><li Class="AudioGrain_Clip"><clipPath>Yuran/Samok/DoorOpen</clipPath></li></grains>
+      <volumeRange>19</volumeRange><distRange>10~25</distRange>
+    </li></subSounds>
+  </SoundDef>
+</Defs>

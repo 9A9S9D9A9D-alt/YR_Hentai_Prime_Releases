@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Patch>
+  <Operation Class="PatchOperationAdd">
+    <xpath>/Defs/ThingDef[defName = "Human"]/recipes</xpath>
+    <value>
+      <li>YR_InsertEggVibrator</li>
+      <li>YR_Tentacle_Egg_Install</li>
+      <li>YR_Tentacle_Egg_Remove</li>
+    </value>
+  </Operation>
+</Patch>

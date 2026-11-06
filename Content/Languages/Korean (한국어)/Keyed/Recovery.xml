@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='utf-8'?>
+<LanguageData>
+  <YRP_AdultRule>인간형 성인만 참여합니다. 생물학적 나이 18세 이상과 종족의 성인 성장 단계를 모두 충족해야 합니다.</YRP_AdultRule>
+  <YRP_MinimumAge>최소 생물학적 나이: {0}</YRP_MinimumAge>
+  <YRP_AdultOnly>설정한 최소 생물학적 나이와 종족의 성인 성장 단계를 충족한 인간형 성인만 이용할 수 있습니다.</YRP_AdultOnly>
+  <YRP_Animations>애니메이션 시설 활성화</YRP_Animations>
+  <YRP_Sounds>시설 소리 활성화</YRP_Sounds>
+  <YRP_Portraits>시설 초상화 렌더링 활성화</YRP_Portraits>
+  <YRP_RjwGuard>시설 이용자의 RJW 작업 충돌 방지</YRP_RjwGuard>
+  <YRP_Samok>사목 제단·나무 활성화</YRP_Samok>
+  <YRP_AltarCost>제단 완성에 필요한 시체 수: {0}</YRP_AltarCost>
+  <YRP_GrowthCost>나무 성숙에 추가로 필요한 시체 수: {0}</YRP_GrowthCost>
+  <YRP_TreeSummoned>사목의 제단이 나무로 성장했습니다.</YRP_TreeSummoned>
+  <YRP_TreeProgress>성장을 위해 소비한 시체: {0} / {1}</YRP_TreeProgress>
+  <YRP_Disabled>모드 설정에서 비활성화됨</YRP_Disabled>
+  <YRP_Pulse>방어 파동</YRP_Pulse>
+  <YRP_PulseDescription>비축 연료 {0}을 소비하여 맵 전체에 방어 파동을 사용합니다. 아군은 4초, 적은 8초간 기절합니다.</YRP_PulseDescription>
+  <YRP_ImmatureTree>아직 성장 중입니다.</YRP_ImmatureTree>
+  <YRP_NeedFuel>비축한 시체 {0}구가 필요합니다.</YRP_NeedFuel>
+  <YRP_Cooldown>파동이 재충전 중입니다.</YRP_Cooldown>
+  <YRP_NoTargets>맵에 살아 있는 대상이 없습니다.</YRP_NoTargets>
+  <YR_CaptureEntity>시설 대상 지정</YR_CaptureEntity>
+  <YR_CaptureEntityDesc>{0}의 대상 시설을 선택합니다.</YR_CaptureEntityDesc>
+  <YR_CancelCapture>시설 지정 취소</YR_CancelCapture>
+  <YR_CancelCaptureDesc>{0}의 시설 지정을 취소합니다.</YR_CancelCaptureDesc>
+  <YR_ReleaseVictim>{0} 해제</YR_ReleaseVictim>
+  <YR_ReleaseVictimDesc>{0}을 시설에서 해제합니다.</YR_ReleaseVictimDesc>
+  <YR_TieUpPawn>시설에 배치</YR_TieUpPawn>
+  <YR_TieUpPawn_Condition>시설 이용 조건을 충족하지 않습니다.</YR_TieUpPawn_Condition>
+  <YRP_OfferingNeeded>봉헌 {0}/{2}회 · 성장까지 {1}회 남음 · 최대 {3}회</YRP_OfferingNeeded>
+  <YRP_OfferingExtra>성장 완료 · 봉헌 {0}회 · 추가 봉헌 가능 {1}회 · 최대 {2}회</YRP_OfferingExtra>
+  <YRP_OfferingMaximum>최대 봉헌량에 도달했습니다: {0}/{1}회</YRP_OfferingMaximum>
+  <YRP_DebugAddOffering>개발자: 봉헌 1회 추가</YRP_DebugAddOffering>
+  <YRP_DebugMaxOffering>개발자: 최대 봉헌량으로 설정</YRP_DebugMaxOffering>
+  <YRP_DebugOfferingDescription>원본 봉헌 진행용 개발자 명령입니다. 비축 연료는 별도입니다.</YRP_DebugOfferingDescription>
+</LanguageData>

@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='utf-8'?>
+<LanguageData>
+  <YR_InsertEggVibrator.label>ピンクローター 挿入</YR_InsertEggVibrator.label>
+  <YR_InsertEggVibrator.description>ピンクローターを挿入します.</YR_InsertEggVibrator.description>
+  <YR_InsertEggVibrator.jobString>ピンクローターを挿入中.</YR_InsertEggVibrator.jobString>
+  <YR_Tentacle_Egg_Install.label>淫妖樹の種を植える</YR_Tentacle_Egg_Install.label>
+  <YR_Tentacle_Egg_Install.description>淫妖樹の種を身体に埋め込みます.</YR_Tentacle_Egg_Install.description>
+  <YR_Tentacle_Egg_Install.jobString>淫妖樹の種を植えている.</YR_Tentacle_Egg_Install.jobString>
+  <YR_Tentacle_Egg_Remove.label>淫妖樹の種を除去する</YR_Tentacle_Egg_Remove.label>
+  <YR_Tentacle_Egg_Remove.description>淫妖樹の種を取り除きます.</YR_Tentacle_Egg_Remove.description>
+  <YR_Tentacle_Egg_Remove.jobString>淫妖樹の種を除去中.</YR_Tentacle_Egg_Remove.jobString>
+  <YR_Tentacle_Egg_Remove.successfullyRemovedHediffMessage>{0}は{1}の淫妖樹の種を取り除くことに成功しました.</YR_Tentacle_Egg_Remove.successfullyRemovedHediffMessage>
+  <YR_Tentacle_Meal_Cook.label>淫妖樹定食を作る</YR_Tentacle_Meal_Cook.label>
+  <YR_Tentacle_Meal_Cook.description>淫妖樹定食を作ります.塩と小麦粉でいかにうまく触手の外側の粘液を除去するかがポイントです.</YR_Tentacle_Meal_Cook.description>
+  <YR_Tentacle_Meal_Cook.jobString>淫妖樹定食を調理中.</YR_Tentacle_Meal_Cook.jobString>
+  <YR_Tentacle_Meal_CookBulk.label>淫妖樹定食を4食分作る</YR_Tentacle_Meal_CookBulk.label>
+  <YR_Tentacle_Meal_CookBulk.description>淫妖樹定食を作ります.塩と小麦粉でいかにうまく触手の外側の粘液を除去するかがポイントです.</YR_Tentacle_Meal_CookBulk.description>
+  <YR_Tentacle_Meal_CookBulk.jobString>淫妖樹定食を4食分調理中.</YR_Tentacle_Meal_CookBulk.jobString>
+</LanguageData>

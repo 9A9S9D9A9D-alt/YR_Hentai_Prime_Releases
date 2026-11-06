@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Patch>
+  <Operation Class="PatchOperationAdd">
+    <xpath>/Defs/HediffDef[defName="YR_MilkingMachineAddon_Hediff"]/comps/li[@Class="YR_RJW.HediffCompProperties_GiveDiffirenceHediff"]/conditionAndHediffs</xpath>
+    <value>
+      <li>
+        <bedDefs>
+          <li>YR_Building_LoveRoom</li>
+        </bedDefs>
+        <hediffDefs>
+          <li>YR_Building_LoveRoom_Hediff</li>
+        </hediffDefs>
+      </li>
+      <li>
+        <bedDefs>
+          <li>YR_Building_EggMachine</li>
+        </bedDefs>
+        <hediffDefs>
+          <li>YR_Bote_Hediff</li>
+        </hediffDefs>
+      </li>
+      <li>
+        <bedDefs>
+          <li>YR_Building_TentacleMilking</li>
+        </bedDefs>
+        <hediffDefs>
+          <li>YR_BB_Hediff</li>
+        </hediffDefs>
+      </li>
+      <li>
+        <bedDefs>
+          <li>YR_Building_Mimic</li>
+        </bedDefs>
+        <hediffDefs>
+          <li>YR_Building_Mimic_Hediff</li>
+        </hediffDefs>
+      </li>
+    </value>
+  </Operation>
+</Patch>

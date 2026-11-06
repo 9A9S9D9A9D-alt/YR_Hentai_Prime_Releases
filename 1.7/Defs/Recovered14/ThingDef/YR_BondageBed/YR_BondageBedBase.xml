@@ -1,0 +1,63 @@
+﻿<Defs>
+  <ThingDef Name="YR_BondageBedBase" ParentName="FurnitureBase" Abstract="True">
+    <thingClass>YR_RJW.Building_BaseBondageBed</thingClass>
+    <drawGUIOverlay>true</drawGUIOverlay>
+    <canOverlapZones>false</canOverlapZones>
+    <passability>PassThroughOnly</passability>
+    <tickerType>Normal</tickerType>
+    <drawerType>MapMeshAndRealTime</drawerType>
+    <graphicData>
+      <shaderType>CutoutComplex</shaderType>
+      <drawSize>(2.25,2.25)</drawSize>
+      <color>(255,255,255)</color>
+      <damageData>
+        <rect>(0,0.05,1,1.95)</rect>
+      </damageData>
+      <shadowData>
+        <volume>(1,1,1)</volume>
+        <offset>(0, 0, 0)</offset>
+      </shadowData>
+    </graphicData>
+    <rotatable>false</rotatable>
+    <defaultPlacingRot>South</defaultPlacingRot>
+    <designationCategory>YR_RJW_Furniture</designationCategory>
+    <comps>
+      <li Class="CompProperties_AffectedByFacilities">
+        <linkableFacilities>
+          <li>YR_CNMS</li>
+        </linkableFacilities>
+      </li>
+      <li Class="CompProperties_UseEffect">
+        <compClass>YR_RJW.CompEffectBondageBed</compClass>
+      </li>
+      <li Class="CompProperties_UseEffect">
+        <compClass>YR_RJW.CompRemoveEffectBondageBed</compClass>
+      </li>
+      <li Class="CompProperties_AssignableToPawn">
+        <drawAssignmentOverlay>false</drawAssignmentOverlay>
+        <compClass>YR_RJW.CompAssignableToPawn_NonGizmo</compClass>
+      </li>
+    </comps>
+    <building>
+      <bed_canBeMedical>false</bed_canBeMedical>
+      <bed_showSleeperBody>true</bed_showSleeperBody>
+      <bed_healPerDay>4</bed_healPerDay>
+    </building>
+    <pathCost>60</pathCost>
+    <castEdgeShadows>False</castEdgeShadows>
+    <designationHotKey>Misc2</designationHotKey>
+    <placeWorkers>
+      <li>PlaceWorker_ShowFacilitiesConnections</li>
+    </placeWorkers>
+  <drawOffscreen>true</drawOffscreen></ThingDef>
+  <JobDef>
+    <defName>YR_Job_BondageBed</defName>
+    <driverClass>YR_RJW.JobDriver_UseBondageBed</driverClass>
+    <reportString>bound</reportString>
+  </JobDef>
+  <JobDef>
+    <defName>YR_Job_ReleaseBed</defName>
+    <driverClass>YR_RJW.JobDriver_ReleaseBondageBed</driverClass>
+    <reportString>release</reportString>
+  </JobDef>
+</Defs>

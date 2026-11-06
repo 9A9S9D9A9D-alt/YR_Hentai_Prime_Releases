@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Defs>
+  <ThoughtDef>
+    <defName>YR_Pregnant_Thought</defName>
+    <workerClass>YR_RJW.ThoughtWorker_Pregnant</workerClass>
+    <validWhileDespawned>true</validWhileDespawned>
+    <stages>
+      <li>
+        <visible>false</visible>
+      </li>
+      <li>
+        <label>I can feel my baby</label>
+        <description>Oh, my baby is full in my stomach!</description>
+        <baseMoodEffect>10</baseMoodEffect>
+      </li>
+      <li>
+        <label>I can meet my baby soon</label>
+        <description>Hehe! I'm looking forward to it!</description>
+        <baseMoodEffect>20</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+  <ThoughtDef>
+    <defName>YR_EggVibrator_Hediff</defName>
+    <workerClass>ThoughtWorker_Hediff</workerClass>
+    <hediff>YR_EggVibrator_Hediff</hediff>
+    <stages>
+      <li>
+        <label>egg vibrator activate</label>
+        <description>Hgg... It's vibrating... in my body...</description>
+        <baseMoodEffect>3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+</Defs>

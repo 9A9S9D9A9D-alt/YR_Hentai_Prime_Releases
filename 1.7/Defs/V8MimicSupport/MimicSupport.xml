@@ -1,0 +1,173 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Defs>
+  <ThingDef ParentName="BaseInsect">
+    <defName>YR_Mimic</defName>
+    <label>YR_Mimic</label>
+    <description>YR_Mimic</description>
+    <statBases>
+      <MoveSpeed>3.60</MoveSpeed>
+      <ComfyTemperatureMin>-40</ComfyTemperatureMin>
+      <MarketValue>500</MarketValue>
+      <LeatherAmount>0</LeatherAmount>
+      <ArmorRating_Blunt>0.18</ArmorRating_Blunt>
+      <ArmorRating_Sharp>0.27</ArmorRating_Sharp>
+      <Wildness>0.4</Wildness>
+    </statBases>
+    <uiIconScale>1.15</uiIconScale>
+    <tools>
+      <li>
+        <label>venom-fangs</label>
+        <capacities>
+          <li>YR_Mimic_ToxicBite</li>
+        </capacities>
+        <power>12</power>
+        <cooldownTime>2</cooldownTime>
+        <linkedBodyPartsGroup>Mouth</linkedBodyPartsGroup>
+        <surpriseAttack>
+          <extraMeleeDamages>
+            <li>
+              <def>Stun</def>
+              <amount>14</amount>
+            </li>
+          </extraMeleeDamages>
+        </surpriseAttack>
+      </li>
+    </tools>
+    <race>
+      <thinkTreeConstant>YR_Mimic_Constant</thinkTreeConstant>
+      <body>BeetleLikeWithClaw</body>
+      <baseHungerRate>0.35</baseHungerRate>
+      <baseBodySize>1.2</baseBodySize>
+      <baseHealthScale>2.5</baseHealthScale>
+      <meatLabel>insect meat</meatLabel>
+      <lifeExpectancy>6</lifeExpectancy>
+      <trainability>Advanced</trainability>
+      <lifeStageAges>
+        <li>
+          <def>EusocialInsectAdult</def>
+          <minAge>0</minAge>
+          <soundWounded>Pawn_BigInsect_Pain</soundWounded>
+          <soundDeath>Pawn_BigInsect_Death</soundDeath>
+          <soundCall>Pawn_BigInsect_Call</soundCall>
+          <soundAngry>Pawn_BigInsect_Angry</soundAngry>
+        </li>
+      </lifeStageAges>
+      <soundMeleeHitPawn>Pawn_Melee_BigBash_HitPawn</soundMeleeHitPawn>
+      <soundMeleeHitBuilding>Pawn_Melee_BigBash_HitBuilding</soundMeleeHitBuilding>
+      <soundMeleeMiss>Pawn_Melee_BigBash_Miss</soundMeleeMiss>
+    </race>
+    <tradeTags>
+      <li>AnimalInsect</li>
+    </tradeTags>
+    <comps>
+      <li Class="YR_RJW.MimicProperties_Pawn">
+        <bedDef>YR_Building_Mimic</bedDef>
+        <doorDef>YR_Mimic_Door</doorDef>
+      </li>
+    </comps>
+  </ThingDef>
+  <PawnKindDef ParentName="AnimalKindBase">
+    <defName>YR_Mimic</defName>
+    <label>YR_Mimic</label>
+    <race>YR_Mimic</race>
+    <combatPower>40</combatPower>
+    <canArriveManhunter>false</canArriveManhunter>
+    <ecoSystemWeight>0.50</ecoSystemWeight>
+    <lifeStages>
+      <li>
+        <bodyGraphicData>
+          <texPath>Yuran/Mimic/Texture</texPath>
+          <drawSize>2.25</drawSize>
+          <color>(255,255,255)</color>
+        </bodyGraphicData>
+        <dessicatedBodyGraphicData>
+          <texPath>Yuran/Mimic/Texture</texPath>
+          <drawSize>2.25</drawSize>
+        </dessicatedBodyGraphicData>
+      </li>
+    </lifeStages>
+  </PawnKindDef>
+  <DamageDef ParentName="Bite">
+    <defName>YR_Mimic_ToxicBite</defName>
+    <label>toxic bite</label>
+    <additionalHediffs>
+      <li>
+        <hediff>Anesthetic</hediff>
+        <severityPerDamageDealt>0.5</severityPerDamageDealt>
+        <victimSeverityScaling>ToxicResistance</victimSeverityScaling>
+        <inverseStatScaling>true</inverseStatScaling>
+        <victimSeverityScalingByInvBodySize>true</victimSeverityScalingByInvBodySize>
+      </li>
+    </additionalHediffs>
+    <applyAdditionalHediffsIfHuntingForFood>false</applyAdditionalHediffsIfHuntingForFood>
+    <impactSoundType>Toxic</impactSoundType>
+    <damageEffecter>Impact_Toxic</damageEffecter>
+  </DamageDef>
+  <ManeuverDef>
+    <defName>YR_Mimic_ToxicBite</defName>
+    <requiredCapacity>YR_Mimic_ToxicBite</requiredCapacity>
+    <verb>
+      <verbClass>Verb_MeleeAttackDamage</verbClass>
+      <meleeDamageDef>YR_Mimic_ToxicBite</meleeDamageDef>
+    </verb>
+    <logEntryDef>MeleeAttack</logEntryDef>
+    <combatLogRulesHit>Maneuver_Bite_MeleeHit</combatLogRulesHit>
+    <combatLogRulesDeflect>Maneuver_Bite_MeleeDeflect</combatLogRulesDeflect>
+    <combatLogRulesMiss>Maneuver_Bite_MeleeMiss</combatLogRulesMiss>
+    <combatLogRulesDodge>Maneuver_Bite_MeleeDodge</combatLogRulesDodge>
+  </ManeuverDef>
+  <ToolCapacityDef>
+    <defName>YR_Mimic_ToxicBite</defName>
+    <label>toxic bite</label>
+  </ToolCapacityDef>
+  <ThinkTreeDef>
+    <defName>YR_Mimic_Constant</defName>
+    <thinkRoot Class="ThinkNode_Priority">
+      <subNodes>
+        <li Class="ThinkNode_Subtree">
+          <treeDef>Despawned</treeDef>
+        </li>
+        <li Class="ThinkNode_ConditionalCanDoConstantThinkTreeJobNow">
+          <subNodes>
+            <li Class="JobGiver_AnimalFlee" />
+            <li Class="ThinkNode_Subtree">
+              <treeDef>JoinAutoJoinableCaravan</treeDef>
+            </li>
+          </subNodes>
+        </li>
+        <li Class="ThinkNode_ConditionalCanDoLordJobNow">
+          <subNodes>
+            <li Class="ThinkNode_Subtree">
+              <treeDef>LordDutyConstant</treeDef>
+            </li>
+          </subNodes>
+        </li>
+        <li Class="YR_RJW.MimicJobGiver_Nearby">
+          <radius>75</radius>
+        </li>
+      </subNodes>
+    </thinkRoot>
+  </ThinkTreeDef>
+  <JobDef>
+    <defName>YR_Mimic_CaptureDownedPawn</defName>
+    <driverClass>YR_RJW.MimicJobDriver_CaptureDownedPawn</driverClass>
+    <reportString>carrying TargetA.</reportString>
+    <carryThingAfterJob>true</carryThingAfterJob>
+  </JobDef>
+  <ThingDef ParentName="DoorBase">
+    <designationCategory />
+    <defName>YR_Mimic_Door</defName>
+    <label>queen lewd worm's mucus</label>
+    <description>A glob of mucus discharged by the maggot queen to prevent the fleeing of her host.</description>
+    <stuffCategories Inherit="False" />
+    <useStuffTerrainAffordance>false</useStuffTerrainAffordance>
+    <graphicData>
+      <texPath>Yuran/Things/Building/Furniture/Maggot/Bugdoor</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <damageData>
+        <enabled>false</enabled>
+      </damageData>
+      <drawSize>(2,1.5)</drawSize>
+    </graphicData>
+  </ThingDef>
+</Defs>

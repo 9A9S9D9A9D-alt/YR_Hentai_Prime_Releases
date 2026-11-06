@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<Defs>
+ 
+<BodyTypeDef ParentName="Mincho_Large_BodyType">
+		<defName>Mincho_Body_Large_Mintchoco_Slime_Bote</defName>
+		<bodyNakedGraphicPath>Mincho_Appearance/Mincho_Body/Naked_Mincho_Body_Large_Mintchoco_Slime_Bote</bodyNakedGraphicPath>
+		<bodyDessicatedGraphicPath>Mincho_Appearance/Mincho_Body/Naked_Mincho_Body_Large_Mintchoco_Slime_Bote</bodyDessicatedGraphicPath>
+	</BodyTypeDef>
+
+	<BodyTypeDef ParentName="Mincho_Large_BodyType">
+		<defName>Mincho_Body_Large_Mintchoco_Humanlike_Bote</defName>
+		<bodyNakedGraphicPath>Mincho_Appearance/Mincho_Body/Naked_Mincho_Body_Large_Mintchoco_Humanlike_Bote</bodyNakedGraphicPath>
+		<bodyDessicatedGraphicPath>Mincho_Appearance/Mincho_Body/Naked_Mincho_Body_Large_Mintchoco_Humanlike_Bote</bodyDessicatedGraphicPath>
+	</BodyTypeDef>
+
+	<BodyTypeDef ParentName="Mincho_Large_BodyType">
+		<defName>Mincho_Body_Large_BluePolarBear_Slime_Bote</defName>
+		<bodyNakedGraphicPath>Mincho_Appearance/Mincho_Body/Naked_Mincho_Body_Large_BluePolarBear_Slime_Bote</bodyNakedGraphicPath>
+		<bodyDessicatedGraphicPath>Mincho_Appearance/Mincho_Body/Naked_Mincho_Body_Large_BluePolarBear_Slime_Bote</bodyDessicatedGraphicPath>
+	</BodyTypeDef>
+
+	<BodyTypeDef ParentName="Mincho_Large_BodyType">
+		<defName>Mincho_Body_Large_BluePolarBear_Humanlike_Bote</defName>
+		<bodyNakedGraphicPath>Mincho_Appearance/Mincho_Body/Naked_Mincho_Body_Large_BluePolarBear_Humanlike_Bote</bodyNakedGraphicPath>
+		<bodyDessicatedGraphicPath>Mincho_Appearance/Mincho_Body/Naked_Mincho_Body_Large_BluePolarBear_Humanlike_Bote</bodyDessicatedGraphicPath>
+	</BodyTypeDef>
+
+	<BodyTypeDef ParentName="Mincho_Large_BodyType">
+		<defName>Mincho_Body_Large_PinkFallInLove_Slime_Bote</defName>
+		<bodyNakedGraphicPath>Mincho_Appearance/Mincho_Body/Naked_Mincho_Body_Large_PinkFallInLove_Slime_Bote</bodyNakedGraphicPath>
+		<bodyDessicatedGraphicPath>Mincho_Appearance/Mincho_Body/Naked_Mincho_Body_Large_PinkFallInLove_Slime_Bote</bodyDessicatedGraphicPath>
+	</BodyTypeDef>
+
+	<BodyTypeDef ParentName="Mincho_Large_BodyType">
+		<defName>Mincho_Body_Large_PinkFallInLove_Humanlike_Bote</defName>
+		<bodyNakedGraphicPath>Mincho_Appearance/Mincho_Body/Naked_Mincho_Body_Large_PinkFallInLove_Humanlike_Bote_east</bodyNakedGraphicPath>
+		<bodyDessicatedGraphicPath>Mincho_Appearance/Mincho_Body/Naked_Mincho_Body_Large_PinkFallInLove_Humanlike_Bote_east</bodyDessicatedGraphicPath>
+	</BodyTypeDef>
+</Defs>

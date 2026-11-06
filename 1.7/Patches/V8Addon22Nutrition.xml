@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[defName="YR_CNMS"]/comps</xpath>
+    <value>
+      <li Class="YR_RJW.CompProperties_CNMS">
+        <showMessageIfOwned>true</showMessageIfOwned><stackLimit>50</stackLimit><nutrition>0.09</nutrition>
+        <anotherCNMSDefnames><li>YR_CNMS</li><li>YR_CNMS_Wall</li><li>YR_Tentacle_CNMS</li></anotherCNMSDefnames>
+      </li>
+      <li Class="CompProperties_Refuelable">
+        <fuelLabel>stored nutrition</fuelLabel><fuelGizmoLabel>nutrition</fuelGizmoLabel><outOfFuelMessage>stored nutrition exhausted</outOfFuelMessage>
+        <fuelFilter><thingDefs><li>YR_NutritionPack</li></thingDefs></fuelFilter>
+        <fuelCapacity>500</fuelCapacity><targetFuelLevelConfigurable>true</targetFuelLevelConfigurable><initialConfigurableTargetFuelLevel>250</initialConfigurableTargetFuelLevel>
+        <autoRefuelPercent>0.2</autoRefuelPercent><showFuelGizmo>true</showFuelGizmo><showAllowAutoRefuelToggle>true</showAllowAutoRefuelToggle>
+        <consumeFuelOnlyWhenUsed>true</consumeFuelOnlyWhenUsed><fuelIconPath>Yuran/Things/Item/Resource/YR_NutritionPack</fuelIconPath>
+      </li>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities[li="YR_CNMS"]</xpath>
+    <value><li>YR_CNMS_Wall</li><li>YR_Tentacle_CNMS</li></value>
+  </Operation>
+</Patch>

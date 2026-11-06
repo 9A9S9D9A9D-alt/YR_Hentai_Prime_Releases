@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Patch>
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Moyo-From the depth</li>
+      <li>Nemonian.MY</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+        <li Class="PatchOperationConditional">
+          <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName = "Alien_Moyo"]/alienRace/graphicPaths/apparel</xpath>
+          <nomatch Class="PatchOperationAdd">
+            <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName = "Alien_Moyo"]/alienRace/graphicPaths</xpath>
+            <value>
+              <apparel />
+            </value>
+          </nomatch>
+        </li>
+        <li Class="PatchOperationConditional">
+          <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName = "Alien_Moyo"]/alienRace/graphicPaths/apparel/individualPaths</xpath>
+          <nomatch Class="PatchOperationAdd">
+            <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName = "Alien_Moyo"]/alienRace/graphicPaths/apparel</xpath>
+            <value>
+              <individualPaths />
+            </value>
+          </nomatch>
+        </li>
+        <li Class="PatchOperationConditional">
+          <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName = "Alien_Moyo"]/alienRace/graphicPaths/apparel/individualPaths</xpath>
+          <match Class="PatchOperationAdd">
+            <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName = "Alien_Moyo"]/alienRace/graphicPaths/apparel/individualPaths</xpath>
+            <value>
+              <li>
+                <key>YR_AP_Tentacle</key>
+                <value>Yuran/Yuranlike/Apparel/Bote/YR_AP_Tentacle/Moyo/Texture</value>
+              </li>
+              <li>
+                <key>YR_AP_Tentacle_Headgear</key>
+                <value>Yuran/Yuranlike/Apparel/Bote/YR_AP_Tentacle_Headgear/Common/Texture</value>
+              </li>
+              <li>
+                <key>YR_AP_Tentacle_Headgear_Mask</key>
+                <value>Yuran/Yuranlike/Apparel/Bote/YR_AP_Tentacle_Headgear_Mask/Common/Texture</value>
+              </li>
+            </value>
+          </match>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Moyo-From the depth</li>
+      <li>Nemonian.MY</li>
+    </mods>
+    <match Class="PatchOperationReplace">
+      <xpath>*/AlienRace.ThingDef_AlienRace[defName="Alien_Moyo"]/alienRace/styleSettings/li[1]/value/styleTagsOverride/li</xpath>
+      <value>
+        <li>Moyo_HairDummyCategory</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Moyo-From the depth</li>
+      <li>Nemonian.MY</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+        <li Class="PatchOperationReplace">
+          <xpath>*/ThingDef[defName="Moyo_BodyStrap"]/graphicData/texPath</xpath>
+          <value>
+            <texPath>Things/Apparel/MoyoSlaveEro1</texPath>
+          </value>
+        </li>
+        <li Class="PatchOperationReplace">
+          <xpath>*/ThingDef[defName="Moyo_BodyStrap"]/apparel/wornGraphicPath</xpath>
+          <value>
+            <wornGraphicPath>Things/Apparel/MoyoSlaveEro</wornGraphicPath>
+          </value>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+</Patch>

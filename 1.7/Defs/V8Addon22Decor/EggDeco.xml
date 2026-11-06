@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Defs>
+  <ThingDef ParentName="YR_V7TreeStandingDecorBase">
+    <defName>YR_Tentacle_EggDeco</defName>
+    <label>evil tree egg</label>
+    <description>An egg sac that formed by chance from a reaction of mixing semen and vaginal secretion. A form of unfertilized egg, there is continuous mucous discharge of mixed bodily fluids.</description>
+    <graphicData>
+      <texPath>Yuran/Things/Building/Furniture/Tentacle/Egg/Middle/1</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(6,6)</drawSize>
+      <onGroundRandomRotateAngle>20</onGroundRandomRotateAngle>
+    </graphicData>
+    <size>(1,1)</size>
+    <tickerType>Rare</tickerType>
+    <uiIconScale>0.7</uiIconScale>
+  </ThingDef>
+</Defs>

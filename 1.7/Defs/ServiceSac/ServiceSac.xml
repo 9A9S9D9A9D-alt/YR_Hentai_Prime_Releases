@@ -1,0 +1,248 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Defs>
+ <ThingDef ParentName="BuildingBase">
+  <defName>YR_ServiceSac</defName>
+  <label>봉사낭</label>
+  <description>사목의 촉수를 엮어 만들어낸 기괴한 생체시설. 부드러운 육질의 내부는 살아 있는 생물처럼 끊임없이 꿈틀거리며, 수용된 자의 생체 반응에 따라 유백색의 점성 체액인 백윤액을 분비한다.
+
+봉사낭 내부에서 보내는 시간은 지극한 황홀감과 극심한 신경계 피로를 동시에 남긴다. 일반적인 생명체는 이용 후 한동안 몸을 가누지 못하며, 회복하기 전에 다시 이용하면 생명까지 잃을 수 있다.
+
+그러나 심연의 신부에게는 이러한 후유증이 나타나지 않는다. 오히려 반복해서 이용할수록 깊은 도취감에 빠져든다고 전해진다.
+
+봉사낭 안에서 무슨 일이 벌어지는지 묻는다면, 누구도 제대로 된 답을 들려주지 못할 것이다. 비밀을 지키려는 것도, 기억을 잃어버린 것도 아니다.
+
+&lt;b&gt;그저 그 안에서 겪은 일을 인간의 언어로 설명하는 것이 불가능할 뿐이다.&lt;/b&gt;
+
+봉사낭은 전력 없이 작동하며, 백윤액은 각종 생체시설의 건설과 백교질 가공에 사용된다.</description>
+  <thingClass>YR_RJW.Building_ServiceSac</thingClass>
+  <size>(2,3)</size>
+  <placeWorkers>
+   <li>YR_RJW.PlaceWorker_OnSamokCreep</li>
+  </placeWorkers>
+  <rotatable>true</rotatable>
+  <tickerType>Normal</tickerType>
+  <drawerType>RealtimeOnly</drawerType>
+  <altitudeLayer>Building</altitudeLayer>
+  <passability>PassThroughOnly</passability>
+  <pathCost>40</pathCost>
+  <fillPercent>0.4</fillPercent>
+  <hasInteractionCell>true</hasInteractionCell>
+  <interactionCellOffset>(0,0,-2)</interactionCellOffset>
+  <designationCategory>YR_RJW_Furniture</designationCategory>
+  <uiOrder>2090</uiOrder>
+  <uiIconScale>0.65</uiIconScale>
+  <graphicData>
+   <texPath>Yuran/Things/Building/ServiceSac/Open</texPath>
+   <graphicClass>Graphic_Single</graphicClass>
+   <drawSize>(2.5,3.75)</drawSize>
+   <drawRotated>true</drawRotated>
+  </graphicData>
+  <comps>
+   <li Class="YR_RJW.CompProperties_ServiceSacInterior" />
+   <li Class="YR_RJW.CompProperties_ServiceSacSound">
+    <soundClosed MayRequire="Ludeon.RimWorld.Ideology">BiosculpterPod_Enter</soundClosed>
+    <soundOpened MayRequire="Ludeon.RimWorld.Ideology">BiosculpterPod_Exit</soundOpened>
+    <soundOccupied>YR_ServiceSac_Voice</soundOccupied>
+    <soundMotion>YR_ServiceSac_TentacleLoop</soundMotion>
+   </li>
+  </comps>
+  <costList>
+   <YR_SamokTentacleRaw>75</YR_SamokTentacleRaw>
+  </costList>
+  <statBases>
+   <MaxHitPoints>300</MaxHitPoints>
+   <WorkToBuild>2000</WorkToBuild>
+   <Mass>20</Mass>
+   <Flammability>0</Flammability>
+   <Beauty>2</Beauty>
+  </statBases>
+  <building>
+   <isEdifice>true</isEdifice>
+   <deconstructible>true</deconstructible>
+   <ai_chillDestination>false</ai_chillDestination>
+  </building>
+  <terrainAffordanceNeeded>Medium</terrainAffordanceNeeded>
+ </ThingDef>
+ <ThingDef ParentName="OrganicProductBase">
+  <defName>YR_BaekyunFluid</defName>
+  <label>백윤액</label>
+  <description>봉사낭에서 생성되는 우윳빛 액체 원재료. 음식의 재료로 쓰거나 다른 제품의 2차 가공에 사용할 수 있다.</description>
+  <graphicData>
+   <texPath>Yuran/Things/Item/Resource/BaekyunFluid</texPath>
+   <graphicClass>Graphic_Single</graphicClass>
+   <drawSize>0.7</drawSize>
+  </graphicData>
+  <stackLimit>75</stackLimit>
+  <socialPropernessMatters>true</socialPropernessMatters>
+  <statBases>
+   <MarketValue>1</MarketValue>
+   <Mass>0.045</Mass>
+   <MaxHitPoints>60</MaxHitPoints>
+   <Nutrition>0.05</Nutrition>
+   <Flammability>0</Flammability>
+  </statBases>
+  <thingCategories>
+   <li>AnimalProductRaw</li>
+   <li>ResourcesRaw</li>
+  </thingCategories>
+  <ingestible>
+   <foodType>AnimalProduct, Fluid</foodType>
+   <preferability>RawTasty</preferability>
+   <ingestEffect>EatVegetarian</ingestEffect>
+   <ingestSound>RawVegetable_Eat</ingestSound>
+  </ingestible>
+ </ThingDef>
+ <JobDef>
+  <defName>YR_CarryToServiceSac</defName>
+  <driverClass>YR_RJW.JobDriver_CarryToServiceSac</driverClass>
+  <reportString>TargetB를 봉사낭으로 호송하는 중.</reportString>
+  <casualInterruptible>false</casualInterruptible>
+ </JobDef>
+ <JobDef>
+  <defName>YR_EnterServiceSac</defName>
+  <driverClass>YR_RJW.JobDriver_EnterServiceSac</driverClass>
+  <reportString>봉사낭으로 들어가는 중.</reportString>
+  <casualInterruptible>false</casualInterruptible>
+ </JobDef>
+ <SoundDef>
+  <defName>YR_ServiceSac_Voice</defName>
+  <sustain>true</sustain>
+  <context>MapOnly</context>
+  <maxSimultaneous>4</maxSimultaneous>
+  <priorityMode>PrioritizeNearest</priorityMode>
+  <subSounds>
+   <li>
+    <muteWhenPaused>true</muteWhenPaused>
+    <sustainLoop>false</sustainLoop>
+    <startDelayRange>0</startDelayRange>
+    <sustainIntervalRange>0</sustainIntervalRange>
+    <sustainRelease>0.02</sustainRelease>
+    <repeatMode>NeverLastHalf</repeatMode>
+    <volumeRange>16~22</volumeRange>
+    <distRange>6~25</distRange>
+    <grains>
+     <li Class="AudioGrain_Clip">
+      <clipPath>ServiceSacGapless/OohSound_1</clipPath>
+     </li>
+     <li Class="AudioGrain_Clip">
+      <clipPath>ServiceSacGapless/OohSound_2</clipPath>
+     </li>
+     <li Class="AudioGrain_Clip">
+      <clipPath>ServiceSacGapless/OohSound_3</clipPath>
+     </li>
+     <li Class="AudioGrain_Clip">
+      <clipPath>ServiceSacGapless/OohSound_4</clipPath>
+     </li>
+     <li Class="AudioGrain_Clip">
+      <clipPath>ServiceSacGapless/OohSound_5</clipPath>
+     </li>
+     <li Class="AudioGrain_Clip">
+      <clipPath>ServiceSacGapless/OohSound_6</clipPath>
+     </li>
+     <li Class="AudioGrain_Clip">
+      <clipPath>ServiceSacGapless/OohSound_7</clipPath>
+     </li>
+     <li Class="AudioGrain_Clip">
+      <clipPath>ServiceSacGapless/OohSound_8</clipPath>
+     </li>
+    </grains>
+   </li>
+  </subSounds>
+ </SoundDef>
+ <SoundDef>
+  <defName>YR_ServiceSac_TentacleLoop</defName>
+  <sustain>true</sustain>
+  <context>MapOnly</context>
+  <maxSimultaneous>4</maxSimultaneous>
+  <priorityMode>PrioritizeNearest</priorityMode>
+  <subSounds>
+   <li>
+    <muteWhenPaused>true</muteWhenPaused>
+    <sustainLoop>false</sustainLoop>
+    <sustainIntervalRange>0</sustainIntervalRange>
+    <sustainRelease>0.02</sustainRelease>
+    <volumeRange>14</volumeRange>
+    <distRange>6~25</distRange>
+    <grains>
+     <li Class="AudioGrain_Clip">
+      <clipPath>ServiceSacGapless/EjaculationSound_1</clipPath>
+     </li>
+     <li Class="AudioGrain_Clip">
+      <clipPath>ServiceSacGapless/EjaculationSound_2</clipPath>
+     </li>
+     <li Class="AudioGrain_Clip">
+      <clipPath>ServiceSacGapless/EjaculationSound_3</clipPath>
+     </li>
+     <li Class="AudioGrain_Clip">
+      <clipPath>ServiceSacGapless/EjaculationSound_4</clipPath>
+     </li>
+     <li Class="AudioGrain_Clip">
+      <clipPath>ServiceSacGapless/EjaculationSound_5</clipPath>
+     </li>
+     <li Class="AudioGrain_Clip">
+      <clipPath>ServiceSacGapless/EjaculationSound_6</clipPath>
+     </li>
+     <li Class="AudioGrain_Clip">
+      <clipPath>ServiceSacGapless/EjaculationSound_7</clipPath>
+     </li>
+     <li Class="AudioGrain_Clip">
+      <clipPath>ServiceSacGapless/EjaculationSound_8</clipPath>
+     </li>
+     <li Class="AudioGrain_Clip">
+      <clipPath>ServiceSacGapless/EjaculationSound_9</clipPath>
+     </li>
+     <li Class="AudioGrain_Clip">
+      <clipPath>ServiceSacGapless/EjaculationSound_10</clipPath>
+     </li>
+     <li Class="AudioGrain_Clip">
+      <clipPath>ServiceSacGapless/EjaculationSound_11</clipPath>
+     </li>
+     <li Class="AudioGrain_Clip">
+      <clipPath>ServiceSacGapless/EjaculationSound_12</clipPath>
+     </li>
+     <li Class="AudioGrain_Clip">
+      <clipPath>ServiceSacGapless/EjaculationSound_13</clipPath>
+     </li>
+     <li Class="AudioGrain_Clip">
+      <clipPath>ServiceSacGapless/EjaculationSound_14</clipPath>
+     </li>
+     <li Class="AudioGrain_Clip">
+      <clipPath>ServiceSacGapless/EjaculationSound_15</clipPath>
+     </li>
+     <li Class="AudioGrain_Clip">
+      <clipPath>ServiceSacGapless/EjaculationSound_16</clipPath>
+     </li>
+     <li Class="AudioGrain_Clip">
+      <clipPath>ServiceSacGapless/EjaculationSound_17</clipPath>
+     </li>
+     <li Class="AudioGrain_Clip">
+      <clipPath>ServiceSacGapless/EjaculationSound_18</clipPath>
+     </li>
+     <li Class="AudioGrain_Clip">
+      <clipPath>ServiceSacGapless/EjaculationSound_19</clipPath>
+     </li>
+     <li Class="AudioGrain_Clip">
+      <clipPath>ServiceSacGapless/EjaculationSound_20</clipPath>
+     </li>
+     <li Class="AudioGrain_Clip">
+      <clipPath>ServiceSacGapless/EjaculationSound_21</clipPath>
+     </li>
+     <li Class="AudioGrain_Clip">
+      <clipPath>ServiceSacGapless/EjaculationSound_22</clipPath>
+     </li>
+     <li Class="AudioGrain_Clip">
+      <clipPath>ServiceSacGapless/EjaculationSound_23</clipPath>
+     </li>
+     <li Class="AudioGrain_Clip">
+      <clipPath>ServiceSacGapless/EjaculationSound_24</clipPath>
+     </li>
+     <li Class="AudioGrain_Clip">
+      <clipPath>ServiceSacGapless/EjaculationSound_25</clipPath>
+     </li>
+    </grains>
+    <repeatMode>NeverLastHalf</repeatMode>
+    <startDelayRange>0</startDelayRange>
+   </li>
+  </subSounds>
+ </SoundDef>
+</Defs>

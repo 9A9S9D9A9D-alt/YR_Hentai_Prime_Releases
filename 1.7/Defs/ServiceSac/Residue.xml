@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+ <ThingDef ParentName="BaseFilth">
+  <defName>YR_Filth_BaekyunResidue</defName><label>백윤액 흔적</label><description>봉사낭에서 흘러나와 바닥에 남은 점성액. 청소하면 제거할 수 있다.</description>
+  <graphicData><texPath>Yuran/Things/Filth/BaekyunPuddle</texPath><graphicClass>Graphic_Single</graphicClass><drawSize>(2,1.4)</drawSize><color>(1,0.98,0.94,0.8)</color></graphicData>
+  <filth><placementMask><li>Unnatural</li></placementMask><ignoreFilthMultiplierStat>true</ignoreFilthMultiplierStat><rainWashes>false</rainWashes><disappearsInDays>0</disappearsInDays><cleaningWorkToReduceThickness>35</cleaningWorkToReduceThickness><canFilthAttach>false</canFilthAttach><maxThickness>100</maxThickness></filth>
+ </ThingDef>
+ <JobDef><defName>YR_CleanServiceSac</defName><driverClass>YR_RJW.JobDriver_CleanServiceSac</driverClass><reportString>TargetA 내부를 청소하는 중.</reportString></JobDef>
+ <WorkGiverDef><defName>YR_CleanServiceSac</defName><label>봉사낭 내부 청소</label><giverClass>YR_RJW.WorkGiver_CleanServiceSac</giverClass><workType>Cleaning</workType><priorityInType>85</priorityInType><verb>내부 청소</verb><gerund>내부 청소 중</gerund><scanThings>true</scanThings></WorkGiverDef>
+</Defs>

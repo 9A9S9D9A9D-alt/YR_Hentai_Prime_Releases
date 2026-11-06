@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='utf-8'?>
+<loadFolders>
+  <v1.7>
+    <li>1.7</li>
+    <li>Content</li>
+    <li IfModActive="RooAndGloomy.YuranRaceMod">YuranRaceMod</li>
+    <li IfModActive="SutSutMan.MinchoTheMintChocoSlimeHARver">MinchoRaceMod</li>
+    <li IfModActive="Roo.AntyRaceMod">AntyRaceMod</li>
+    <li IfModActive="VAMV.Furmaru">Furmaru</li>
+  </v1.7>
+</loadFolders>

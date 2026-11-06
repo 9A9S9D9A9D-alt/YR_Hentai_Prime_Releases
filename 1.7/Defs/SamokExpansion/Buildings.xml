@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+ <ThingDef ParentName="BuildingBase">
+  <defName>YR_SamokLeylineCore</defName><label>사목의 지맥핵</label>
+  <description>사목의 촉수와 백윤액을 엮어 배양한 작은 생체기관. 땅속으로 가느다란 뿌리를 내려 메마른 지반에 양분을 공급하며, 심연의 신부에게 사목의 기운을 전하는 매개가 된다.
+
+지맥핵이 뿌리내린 곳을 기점으로 촉수와 백윤액을 덧대면 사목의 지반을 넓혀갈 수 있다. 스스로 영역을 넓히지는 않지만, 그 위에 선 신부는 발밑에서 전해지는 희미한 맥동을 느낀다고 한다.</description>
+  <thingClass>YR_RJW.Building_SamokLeylineCore</thingClass><size>(1,1)</size><rotatable>false</rotatable><tickerType>Never</tickerType>
+  <drawerType>MapMeshOnly</drawerType><altitudeLayer>Building</altitudeLayer><passability>PassThroughOnly</passability><fillPercent>0.2</fillPercent><pathCost>20</pathCost>
+  <terrainAffordanceNeeded>Medium</terrainAffordanceNeeded><designationCategory>YR_RJW_Furniture</designationCategory><uiIconScale>0.65</uiIconScale>
+  <graphicData><texPath>Yuran/Things/Building/LeylineCore/Texture</texPath><graphicClass>Graphic_Single</graphicClass><drawSize>(1.3,1.3)</drawSize></graphicData>
+  <costList><YR_SamokTentacleRaw>30</YR_SamokTentacleRaw><YR_BaekyunFluid>30</YR_BaekyunFluid></costList>
+  <statBases><MaxHitPoints>250</MaxHitPoints><WorkToBuild>1200</WorkToBuild><Mass>10</Mass><Flammability>0</Flammability><Beauty>2</Beauty></statBases>
+  <building><isEdifice>false</isEdifice><deconstructible>true</deconstructible></building>
+ </ThingDef>
+ <ThingDef ParentName="BuildingBase">
+  <defName>YR_SamokRefinery</defName><label>사목의 연단낭</label><description>사목의 촉수와 백윤액으로 배양한 기괴한 생체기관.
+
+연단낭은 투입된 물질을 집어삼킨 뒤 한동안 미세하게 맥동하며, 내부에서는 무언가를 짓이기고 으깨는 듯한 소리와 함께, 정체를 알 수 없는 고깃덩어리가 꿈틀거리며 서로 뒤엉키는 듯한 기괴한 소리가 새어 나온다.
+
+시간이 지나면 연단낭은 자신이 삼킨 것에 따라 서로 다른 물질을 토해 낸다.
+
+백윤액에서는 금속처럼 단단하면서도 섬유처럼 유연한 물질이, 인간형 고기에서는 스스로 꿈틀거리며 맥동하는 조직이, 심장에서는 생명력을 품은 듯 끊임없이 박동하는 기묘한 핵이 모습을 드러낸다.
+
+그러나 그것들이 어떤 원리로 만들어지는지, 어째서 죽은 장기에서 살아 있는 듯한 조직이 태어나는지는 누구도 밝혀내지 못했다.
+
+우리는 이 기관에 무엇을 넣어야 무엇이 나오는지는 알고 있다. 하지만 그 안에서 대체 무슨 일이 벌어지는지는 여전히 알지 못한다.</description>
+  <thingClass>YR_RJW.Building_SamokRefinery</thingClass><size>(2,2)</size><rotatable>false</rotatable><tickerType>Rare</tickerType>
+  <drawerType>RealtimeOnly</drawerType><altitudeLayer>Building</altitudeLayer><passability>PassThroughOnly</passability><pathCost>50</pathCost><fillPercent>0.6</fillPercent>
+  <hasInteractionCell>true</hasInteractionCell><interactionCellOffset>(0,0,-1)</interactionCellOffset>
+  <terrainAffordanceNeeded>Medium</terrainAffordanceNeeded><designationCategory>Production</designationCategory><uiIconScale>0.65</uiIconScale>
+  <graphicData><texPath>Yuran/Things/Building/SamokRefinery/Texture</texPath><graphicClass>Graphic_Single</graphicClass><drawSize>(2.2,2.2)</drawSize></graphicData>
+  <costList><YR_SamokTentacleRaw>50</YR_SamokTentacleRaw><YR_BaekyunFluid>30</YR_BaekyunFluid></costList>
+  <statBases><MaxHitPoints>350</MaxHitPoints><WorkToBuild>1800</WorkToBuild><Mass>25</Mass><Flammability>0</Flammability><Beauty>0</Beauty></statBases>
+  <building><isEdifice>true</isEdifice><deconstructible>true</deconstructible></building>
+ </ThingDef>
+ <JobDef><defName>YR_SupplySamokRefinery</defName><driverClass>YR_RJW.JobDriver_SupplySamokRefinery</driverClass><reportString>TargetA에 원료를 공급하는 중.</reportString></JobDef>
+ <WorkGiverDef><defName>YR_SupplySamokRefinery</defName><label>연단낭에 원료 공급</label><giverClass>YR_RJW.WorkGiver_SupplySamokRefinery</giverClass><workType>Hauling</workType><priorityInType>85</priorityInType><verb>원료 공급</verb><gerund>원료 공급 중</gerund><scanThings>true</scanThings></WorkGiverDef>
+</Defs>

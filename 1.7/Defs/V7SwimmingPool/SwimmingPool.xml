@@ -1,0 +1,111 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Defs>
+ <ThingDef ParentName="BuildingBase">
+  <defName>YR_SamokSwimmingPool</defName>
+  <label>영양액 웅덩이</label>
+  <description>사목의 촉수가 둘러싼 생체 웅덩이. 백윤액을 채우면 영양액 속에서 수영하거나 몸을 담가 휴식할 수 있으며, 이용하는 동안 일반 부상이 서서히 회복된다.</description>
+  <thingClass>YR_RJW.Building_SamokSwimmingPool</thingClass>
+  <tickerType>Normal</tickerType>
+  <comps>
+   <li Class="YR_RJW.CompProperties_SamokSpa" />
+   <li Class="YR_RJW.CompProperties_SamokSpaSound">
+    <soundAmbient>YR_SamokSpaAmbient</soundAmbient>
+   </li>
+   <li Class="CompProperties_Refuelable">
+    <fuelCapacity>75</fuelCapacity>
+    <fuelConsumptionRate>15</fuelConsumptionRate>
+    <initialFuelPercent>0</initialFuelPercent>
+    <autoRefuelPercent>0.2</autoRefuelPercent>
+    <consumeFuelOnlyWhenUsed>false</consumeFuelOnlyWhenUsed>
+    <consumeFuelOnlyWhenPowered>false</consumeFuelOnlyWhenPowered>
+    <factorByDifficulty>false</factorByDifficulty>
+    <functionsInVacuum>true</functionsInVacuum>
+    <showFuelGizmo>true</showFuelGizmo>
+    <showAllowAutoRefuelToggle>true</showAllowAutoRefuelToggle>
+    <drawOutOfFuelOverlay>false</drawOutOfFuelOverlay>
+    <fuelLabel>백윤액</fuelLabel>
+    <fuelGizmoLabel>영양액 충전량</fuelGizmoLabel>
+    <outOfFuelMessage>백윤액이 비어 있습니다.</outOfFuelMessage>
+    <fuelIconPath>Yuran/Things/Item/Resource/BaekyunFluid</fuelIconPath>
+    <fuelFilter>
+     <thingDefs>
+      <li>YR_BaekyunFluid</li>
+     </thingDefs>
+    </fuelFilter>
+   </li>
+  </comps>
+  <graphicData>
+   <texPath>Yuran/Things/Building/Furniture/Tentacle/SwimmingPool/Texture</texPath>
+   <graphicClass>Graphic_Single</graphicClass>
+   <drawSize>(6,6)</drawSize>
+  </graphicData>
+  <size>(6,6)</size>
+  <rotatable>false</rotatable>
+  <altitudeLayer>FloorEmplacement</altitudeLayer>
+  <passability>PassThroughOnly</passability>
+  <pathCost>20</pathCost>
+  <fillPercent>0</fillPercent>
+  <terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
+  <designationCategory>Joy</designationCategory>
+  <researchPrerequisites>
+   <li>ComplexFurniture</li>
+  </researchPrerequisites>
+  <costList>
+   <YR_SamokTentacleRaw>100</YR_SamokTentacleRaw>
+   <YR_BaekyunFluid>50</YR_BaekyunFluid>
+  </costList>
+  <statBases>
+   <MaxHitPoints>400</MaxHitPoints>
+   <WorkToBuild>4500</WorkToBuild>
+   <Mass>120</Mass>
+   <Flammability>0.3</Flammability>
+   <Beauty>8</Beauty>
+   <JoyGainFactor>1</JoyGainFactor>
+  </statBases>
+  <building>
+   <isEdifice>false</isEdifice>
+   <joyKind>YR_SamokSwimming</joyKind>
+  </building>
+  <drawerType>RealtimeOnly</drawerType>
+ </ThingDef>
+ <JoyKindDef>
+  <defName>YR_SamokSwimming</defName>
+  <label>수영</label>
+ </JoyKindDef>
+ <JobDef>
+  <defName>YR_SamokSwim</defName>
+  <driverClass>YR_RJW.JobDriver_SamokSwimming</driverClass>
+  <neverShowWeapon>true</neverShowWeapon>
+  <reportString>수영하는 중.</reportString>
+  <joyKind>YR_SamokSwimming</joyKind>
+  <joyDuration>2500</joyDuration>
+  <joyMaxParticipants>4</joyMaxParticipants>
+  <joyGainRate>1</joyGainRate>
+ </JobDef>
+ <JoyGiverDef>
+  <defName>YR_SamokSwimming</defName>
+  <giverClass>YR_RJW.JoyGiver_SamokSwimming</giverClass>
+  <baseChance>2</baseChance>
+  <jobDef>YR_SamokSwim</jobDef>
+  <joyKind>YR_SamokSwimming</joyKind>
+  <thingDefs>
+   <li>YR_SamokSwimmingPool</li>
+  </thingDefs>
+ </JoyGiverDef>
+ <JobDef>
+  <defName>YR_SamokBath</defName>
+  <driverClass>YR_RJW.JobDriver_SamokBath</driverClass>
+  <neverShowWeapon>true</neverShowWeapon>
+  <reportString>영양액에 몸을 담그고 쉬는 중.</reportString>
+ </JobDef>
+ <JobDef>
+  <defName>YR_SamokCarryToSpa</defName>
+  <driverClass>YR_RJW.JobDriver_SamokCarryPatient</driverClass>
+  <reportString>환자를 영양액 웅덩이로 옮기는 중.</reportString>
+ </JobDef>
+ <JobDef>
+  <defName>YR_SamokRetrievePatient</defName>
+  <driverClass>YR_RJW.JobDriver_SamokCarryPatient</driverClass>
+  <reportString>환자를 영양액 웅덩이에서 데려오는 중.</reportString>
+ </JobDef>
+</Defs>

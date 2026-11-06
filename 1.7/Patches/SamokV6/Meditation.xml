@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <Operation Class="PatchOperationFindMod">
+    <mods><li>Royalty</li></mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="Building_Tentacle_Tree"]/comps/li[@Class="CompProperties_MeditationFocus"]/focusTypes</xpath>
+          <value><li>YR_SamokBrideFocus</li></value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="Building_Tentacle_Tree"]/comps</xpath>
+          <value>
+            <li Class="CompProperties_SpawnSubplant">
+              <compClass>YR_RJW.CompSamokMeditationSubplants</compClass>
+              <subplant>YR_SamokMeditationTentacle</subplant>
+              <spawnSound>AnimaTreeProgress</spawnSound>
+            </li>
+            <li Class="YR_RJW.CompProperties_SamokMeditation" />
+          </value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/TraitDef[defName="YR_Tentalcle" or defName="YR_Tentalcle_NonColonist" or defName="YR_Tentalcle_Blessed" or defName="YR_Tentalcle_NonColonist_Blessed"]/degreeDatas/li</xpath>
+          <value><allowedMeditationFocusTypes><li>YR_SamokBrideFocus</li></allowedMeditationFocusTypes></value>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+</Patch>

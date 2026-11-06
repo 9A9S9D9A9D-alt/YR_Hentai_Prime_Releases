@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<LanguageData>
+  <YR_StopAnimation>Stop animation</YR_StopAnimation>
+  <YR_GainTrait>{0} got {2} trait. (Cause: {1})</YR_GainTrait>
+  <YR_RemoveUnrecruitable>{0}'s {2} has been lost. (Cause: {1})</YR_RemoveUnrecruitable>
+  <YR_ForcePlay>Let's Pang Pang play</YR_ForcePlay>
+</LanguageData>

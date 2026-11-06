@@ -1,0 +1,447 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <ThingDef ParentName="YR_BondageBedBase">
+    <designationCategory />
+    <defName>YR_Building_Tentacle</defName>
+    <label>evil tree(bed)</label>
+    <description>This is a pile of tentacles united by the evil tree that for rape the offered woman. The woman lying on this pile of tentacles is raped by a tree, and eggs are planted in the uterus. When the planted eggs wake up and completely root in the woman's body, the tentacles pile will release their own sexual slavery - the "abyss bride."</description>
+    <passability>PassThroughOnly</passability>
+    <tickerType>Normal</tickerType>
+    <graphicData>
+      <texPath>Yuran/Things/Building/Furniture/Tentacle/Bed/Texture</texPath>
+      <graphicClass>Graphic_Multi</graphicClass>
+    </graphicData>
+    <altitudeLayer>BuildingOnTop</altitudeLayer>
+    <building>
+      <isEdifice>false</isEdifice>
+    </building>
+    <minifiedDef />
+    <thingCategories Inherit="false" />
+    <comps>
+      <li Class="YR_RJW.CompProperties_Usable_BondageBed">
+        <compClass>YR_RJW.CompUsableAdvancedBondageBed</compClass>
+        <useJob>YR_Job_BondageBed</useJob>
+        <useLabel>bound</useLabel>
+        <settingException>
+          <femaleOnly>false</femaleOnly>
+          <maleOnly>false</maleOnly>
+          <genderExceptionRaces>
+            <li MayRequire="Roo.AntyRaceMod">Anty</li>
+          </genderExceptionRaces>
+          <ageExceptionRaces>
+            <li MayRequire="bep.littlefairy.ttwsfabr">LittleFairy_Pawn</li>
+            <li MayRequire="bep.mofy.twfiaclr">Mofy_Pawn</li>
+            <li MayRequire="bep.resurreviewy.tnair">Resurreviewy_Pawn</li>
+            <li MayRequire="bep.glassy.terr">Glassy_Pawn</li>
+            <li MayRequire="bep.sweety.mcsr">Sweety_Pawn</li>
+            <li MayRequire="bep.legacyfairy.tftr">LegacyFairy_Pawn</li>
+            <li MayRequire="bep.magiaplant.tfmr">MagiaPlant_Pawn</li>
+            <li MayRequire="bep.forgotty.tfcr">Forgotty_Pawn</li>
+            <li MayRequire="bep.maddy.twmr">Maddy_Pawn</li>
+          </ageExceptionRaces>
+        </settingException>
+        <canWorkHediffDefs>
+          <li>YR_Tentacle_Hediff</li>
+        </canWorkHediffDefs>
+        <forbiddenHediffDefs>
+          <li>YR_Tentacle_Hediff</li>
+        </forbiddenHediffDefs>
+        <neverRelease>true</neverRelease>
+      </li>
+      <li Class="YR_RJW.CompProperties_Building_Tentacle">
+        <soundAmbient>YR_MilkingMachin_Sound</soundAmbient>
+        <ticks>180000</ticks>
+        <showMessage>true</showMessage>
+        <hediffDefs>
+          <li>YR_Tentacle_Hediff</li>
+        </hediffDefs>
+      </li>
+      <li Class="YR_RJW.CompProperties_ShowHatApparel">
+        <showHatGizmo>false</showHatGizmo>
+        <showApparelGizmo>false</showApparelGizmo>
+      </li>
+      <li Class="YR_RJW.CompProperties_RespawnBed">
+      </li>
+      <li Class="YR_RJW.CompProperties_ChangeBedTexture">
+        <ticks>6</ticks>
+        <graphicData>
+          <texPath>Yuran/Yuranlike/Bodies/Dummy/YR_Bote</texPath>
+          <graphicClass>Graphic_Multi</graphicClass>
+          <shaderType>Cutout</shaderType>
+          <drawSize>(1.05,1.05)</drawSize>
+          <color>(1,1,1,1)</color>
+        </graphicData>
+        <pathByRaces>
+          <li>
+            <headOffSets>
+              <li>(0,0,0)</li>
+            </headOffSets>
+            <headOffsetConditions>
+              <li>
+                <condition>
+                  <races>
+                    <li MayRequire="bep.littlefairy.ttwsfabr">LittleFairy_Pawn</li>
+                    <li MayRequire="bep.mofy.twfiaclr">Mofy_Pawn</li>
+                    <li MayRequire="bep.resurreviewy.tnair">Resurreviewy_Pawn</li>
+                    <li MayRequire="bep.glassy.terr">Glassy_Pawn</li>
+                    <li MayRequire="bep.sweety.mcsr">Sweety_Pawn</li>
+                    <li MayRequire="bep.legacyfairy.tftr">LegacyFairy_Pawn</li>
+                    <li MayRequire="bep.magiaplant.tfmr">MagiaPlant_Pawn</li>
+                    <li MayRequire="bep.forgotty.tfcr">Forgotty_Pawn</li>
+                    <li MayRequire="bep.maddy.twmr">Maddy_Pawn</li>
+                    <li MayRequire="Roo.AntyRaceMod">Anty</li>
+                  </races>
+                </condition>
+                <offset>(0,-0.125)</offset>
+                <Break>true</Break>
+              </li>
+              <li>
+                <condition>
+                  <races>
+                    <li MayRequire="miho.fortifiedoutremer">Alien_Miho</li>
+                  </races>
+                </condition>
+                <offset>(0,-0.2)</offset>
+                <Break>true</Break>
+              </li>
+              <li>
+                <condition>
+                  <races>
+                    <li MayRequire="Nemonian.MY">Alien_Moyo</li>
+                    <li MayRequire="VAMV.MaruRaceMod">Maru</li>
+                  </races>
+                </condition>
+                <offset>(0,-0.05)</offset>
+                <Break>true</Break>
+              </li>
+              <li>
+                <condition>
+                  <races>
+                    <li MayRequire="Millap.AOC">AOC</li>
+                  </races>
+                </condition>
+                <offset>(0,-0.08)</offset>
+                <Break>true</Break>
+              </li>
+            </headOffsetConditions>
+            <pathByConditions>
+              <li>
+                <pathSets>
+                  <li>
+                    <individualAnimationOffSets>
+                      <li>(0,0,0.004)</li>
+                      <li>(0,0,0.002)</li>
+                      <li>(0,0,0.000)</li>
+                      <li>(0,0,0.000)</li>
+                      <li>(0,0,0.000)</li>
+                      <li>(0,0,0.002)</li>
+                    </individualAnimationOffSets>
+                    <bodyColor>true</bodyColor>
+                    <pathIsPawnBody>true</pathIsPawnBody>
+                  </li>
+                </pathSets>
+              </li>
+              <li>
+                <condition>
+                  <races>
+                    <li MayRequire="bep.littlefairy.ttwsfabr">LittleFairy_Pawn</li>
+                    <li MayRequire="bep.mofy.twfiaclr">Mofy_Pawn</li>
+                    <li MayRequire="bep.resurreviewy.tnair">Resurreviewy_Pawn</li>
+                    <li MayRequire="bep.glassy.terr">Glassy_Pawn</li>
+                    <li MayRequire="bep.sweety.mcsr">Sweety_Pawn</li>
+                    <li MayRequire="bep.legacyfairy.tftr">LegacyFairy_Pawn</li>
+                    <li MayRequire="bep.magiaplant.tfmr">MagiaPlant_Pawn</li>
+                    <li MayRequire="bep.forgotty.tfcr">Forgotty_Pawn</li>
+                    <li MayRequire="bep.maddy.twmr">Maddy_Pawn</li>
+                    <li>Cow</li>
+                  </races>
+                  <reverseCondition>true</reverseCondition>
+                </condition>
+                <pathSets>
+                  <li>
+                    <offsetConditions>
+                      <li>
+                        <condition>
+                          <races>
+                            <li MayRequire="SutSutMan.MinchoTheMintChocoSlimeHARver">Mincho_ThingDef</li>
+                          </races>
+                        </condition>
+                        <offset>(0,-0.46)</offset>
+                      </li>
+                      <li>
+                        <condition>
+                          <races>
+                            <li MayRequire="Roo.AntyRaceMod">Anty</li>
+                            <li MayRequire="Nemonian.MY">Alien_Moyo</li>
+                          </races>
+                        </condition>
+                        <offset>(0,-0.66)</offset>
+                      </li>
+                      <li>
+                        <condition>
+                          <races>
+                            <li MayRequire="miho.fortifiedoutremer">Alien_Miho</li>
+                          </races>
+                        </condition>
+                        <offset>(0,-0.8)</offset>
+                      </li>
+                      <li>
+                        <condition>
+                          <races>
+                            <li MayRequire="Millap.AOC">AOC</li>
+                          </races>
+                        </condition>
+                        <offset>(0,-0.55)</offset>
+                      </li>
+                    </offsetConditions>
+                    <isHeadPart>true</isHeadPart>
+                    <offset>(0,-0.64)</offset>
+                    <layerOffset>7.72973</layerOffset>
+                    <paths>
+                      <li>Yuran/Things/Building/Furniture/Tentacle/Mask/Mask</li>
+                    </paths>
+                  </li>
+                  <li>
+                    <condition>
+                      <neverRaces>
+                        <li MayRequire="Roo.AntyRaceMod">Anty</li>
+                      </neverRaces>
+                      <allMatch>true</allMatch>
+                    </condition>
+                    <offsetConditions>
+                      <li>
+                        <condition>
+                          <races>
+                            <li MayRequire="SutSutMan.MinchoTheMintChocoSlimeHARver">Mincho_ThingDef</li>
+                          </races>
+                        </condition>
+                        <offset>(0,-0.46)</offset>
+                      </li>
+                      <li>
+                        <condition>
+                          <races>
+                            <li MayRequire="Nemonian.MY">Alien_Moyo</li>
+                          </races>
+                        </condition>
+                        <offset>(0,-0.66)</offset>
+                      </li>
+                      <li>
+                        <condition>
+                          <races>
+                            <li MayRequire="miho.fortifiedoutremer">Alien_Miho</li>
+                          </races>
+                        </condition>
+                        <offset>(0,-0.8)</offset>
+                      </li>
+                      <li>
+                        <condition>
+                          <races>
+                            <li MayRequire="Millap.AOC">AOC</li>
+                          </races>
+                        </condition>
+                        <offset>(0,-0.53)</offset>
+                      </li>
+                    </offsetConditions>
+                    <isHeadPart>true</isHeadPart>
+                    <offset>(0,-0.64)</offset>
+                    <layerOffset>7.72974</layerOffset>
+                    <paths>
+                      <li>Yuran/Things/Building/Furniture/Tentacle/Blindfold/Blindfold</li>
+                    </paths>
+                  </li>
+                  <li MayRequire="Roo.AntyRaceMod">
+                    <condition>
+                      <races>
+                        <li MayRequire="Roo.AntyRaceMod">Anty</li>
+                      </races>
+                    </condition>
+                    <isHeadPart>true</isHeadPart>
+                    <offset>(0,-0.685)</offset>
+                    <layerOffset>7.72974</layerOffset>
+                    <drawSize>(1.25,1.5)</drawSize>
+                    <paths>
+                      <li>Yuran/Things/Building/Furniture/Tentacle/Blindfold/Blindfold</li>
+                    </paths>
+                  </li>
+                  <li>
+                    <offsetConditions>
+                      <li>
+                        <condition>
+                          <races>
+                            <li MayRequire="SutSutMan.MinchoTheMintChocoSlimeHARver">Mincho_ThingDef</li>
+                          </races>
+                        </condition>
+                        <offset>(0,-0.85)</offset>
+                      </li>
+                      <li>
+                        <condition>
+                          <races>
+                            <li MayRequire="Millap.Bori">Alien_SP</li>
+                          </races>
+                        </condition>
+                        <offset>(0,-0.94)</offset>
+                      </li>
+                      <li>
+                        <condition>
+                          <races>
+                            <li MayRequire="Roo.AntyRaceMod">Anty</li>
+                          </races>
+                        </condition>
+                        <offset>(0,-1.04)</offset>
+                      </li>
+                      <li>
+                        <condition>
+                          <races>
+                            <li MayRequire="Millap.AOC">AOC</li>
+                          </races>
+                        </condition>
+                        <offset>(0,-0.92)</offset>
+                      </li>
+                    </offsetConditions>
+                    <offset>(0,-1)</offset>
+                    <layerOffset>6.6</layerOffset>
+                    <autoSetBodyPosition>true</autoSetBodyPosition>
+                    <paths>
+                      <li>Yuran/Things/Building/Furniture/Tentacle/Neck/Neck</li>
+                    </paths>
+                  </li>
+                  <li>
+                    <offset>(0,-1)</offset>
+                    <layerOffset>7</layerOffset>
+                    <paths>
+                      <li>Yuran/Things/Building/Furniture/Tentacle/Front/1</li>
+                      <li>Yuran/Things/Building/Furniture/Tentacle/Front/2</li>
+                      <li>Yuran/Things/Building/Furniture/Tentacle/Front/3</li>
+                      <li>Yuran/Things/Building/Furniture/Tentacle/Front/4</li>
+                      <li>Yuran/Things/Building/Furniture/Tentacle/Front/5</li>
+                      <li>Yuran/Things/Building/Furniture/Tentacle/Front/6</li>
+                    </paths>
+                  </li>
+                </pathSets>
+              </li>
+              <li>
+                <condition>
+                  <races>
+                    <li MayRequire="bep.littlefairy.ttwsfabr">LittleFairy_Pawn</li>
+                    <li MayRequire="bep.mofy.twfiaclr">Mofy_Pawn</li>
+                    <li MayRequire="bep.resurreviewy.tnair">Resurreviewy_Pawn</li>
+                    <li MayRequire="bep.glassy.terr">Glassy_Pawn</li>
+                    <li MayRequire="bep.sweety.mcsr">Sweety_Pawn</li>
+                    <li MayRequire="bep.legacyfairy.tftr">LegacyFairy_Pawn</li>
+                    <li MayRequire="bep.magiaplant.tfmr">MagiaPlant_Pawn</li>
+                    <li MayRequire="bep.forgotty.tfcr">Forgotty_Pawn</li>
+                    <li MayRequire="bep.maddy.twmr">Maddy_Pawn</li>
+                    <li>Cow</li>
+                  </races>
+                </condition>
+                <pathSets>
+                  <li>
+                    <isHeadPart>true</isHeadPart>
+                    <offset>(0,-1)</offset>
+                    <layerOffset>7.72973</layerOffset>
+                    <paths>
+                      <li>OY_Yuran_Addon/Body/Tentacle_Mask/Mask</li>
+                    </paths>
+                  </li>
+                  <li>
+                    <isHeadPart>true</isHeadPart>
+                    <offset>(0,-0.845)</offset>
+                    <layerOffset>7.72974</layerOffset>
+                    <drawSize>(0.8,0.85)</drawSize>
+                    <paths>
+                      <li>Yuran/Things/Building/Furniture/Tentacle/Blindfold/Blindfold</li>
+                    </paths>
+                  </li>
+                  <li>
+                    <offset>(0,-1)</offset>
+                    <layerOffset>7</layerOffset>
+                    <paths>
+                      <li>OY_Yuran_Addon/Body/Tentacle_Bed/Tentacle_1</li>
+                      <li>OY_Yuran_Addon/Body/Tentacle_Bed/Tentacle_2</li>
+                      <li>OY_Yuran_Addon/Body/Tentacle_Bed/Tentacle_3</li>
+                      <li>OY_Yuran_Addon/Body/Tentacle_Bed/Tentacle_4</li>
+                      <li>OY_Yuran_Addon/Body/Tentacle_Bed/Tentacle_5</li>
+                      <li>OY_Yuran_Addon/Body/Tentacle_Bed/Tentacle_6</li>
+                    </paths>
+                  </li>
+                </pathSets>
+              </li>
+              <li>
+                <pathSets>
+                  <li>
+                    <offset>(0,-1)</offset>
+                    <layerOffset>7.73</layerOffset>
+                    <paths>
+                      <li>Yuran/Things/Building/Furniture/Tentacle/Egg/LeftLower/1</li>
+                      <li>Yuran/Things/Building/Furniture/Tentacle/Egg/LeftLower/2</li>
+                      <li>Yuran/Things/Building/Furniture/Tentacle/Egg/LeftLower/3</li>
+                      <li>Yuran/Things/Building/Furniture/Tentacle/Egg/LeftLower/4</li>
+                      <li>Yuran/Things/Building/Furniture/Tentacle/Egg/LeftLower/5</li>
+                      <li>Yuran/Things/Building/Furniture/Tentacle/Egg/LeftLower/6</li>
+                    </paths>
+                  </li>
+                  <li>
+                    <offset>(0,-1)</offset>
+                    <layerOffset>7.73</layerOffset>
+                    <paths>
+                      <li>Yuran/Things/Building/Furniture/Tentacle/Egg/LeftUpper/1</li>
+                      <li>Yuran/Things/Building/Furniture/Tentacle/Egg/LeftUpper/2</li>
+                      <li>Yuran/Things/Building/Furniture/Tentacle/Egg/LeftUpper/3</li>
+                      <li>Yuran/Things/Building/Furniture/Tentacle/Egg/LeftUpper/4</li>
+                      <li>Yuran/Things/Building/Furniture/Tentacle/Egg/LeftUpper/5</li>
+                      <li>Yuran/Things/Building/Furniture/Tentacle/Egg/LeftUpper/6</li>
+                    </paths>
+                  </li>
+                  <li>
+                    <offset>(0,-1)</offset>
+                    <layerOffset>7.73</layerOffset>
+                    <paths>
+                      <li>Yuran/Things/Building/Furniture/Tentacle/Egg/RightLower/1</li>
+                      <li>Yuran/Things/Building/Furniture/Tentacle/Egg/RightLower/2</li>
+                      <li>Yuran/Things/Building/Furniture/Tentacle/Egg/RightLower/3</li>
+                      <li>Yuran/Things/Building/Furniture/Tentacle/Egg/RightLower/4</li>
+                      <li>Yuran/Things/Building/Furniture/Tentacle/Egg/RightLower/5</li>
+                      <li>Yuran/Things/Building/Furniture/Tentacle/Egg/RightLower/6</li>
+                    </paths>
+                  </li>
+                  <li>
+                    <offset>(0,-1)</offset>
+                    <layerOffset>7.73</layerOffset>
+                    <paths>
+                      <li>Yuran/Things/Building/Furniture/Tentacle/Egg/RightUpper/1</li>
+                      <li>Yuran/Things/Building/Furniture/Tentacle/Egg/RightUpper/2</li>
+                      <li>Yuran/Things/Building/Furniture/Tentacle/Egg/RightUpper/3</li>
+                      <li>Yuran/Things/Building/Furniture/Tentacle/Egg/RightUpper/4</li>
+                      <li>Yuran/Things/Building/Furniture/Tentacle/Egg/RightUpper/5</li>
+                      <li>Yuran/Things/Building/Furniture/Tentacle/Egg/RightUpper/6</li>
+                    </paths>
+                  </li>
+                </pathSets>
+              </li>
+            </pathByConditions>
+          </li>
+        </pathByRaces>
+      </li>
+    </comps>
+    <statBases>
+      <MaxHitPoints>140</MaxHitPoints>
+      <Flammability>1.0</Flammability>
+      <Beauty>1</Beauty>
+      <WorkToBuild>800</WorkToBuild>
+      <Mass>30</Mass>
+      <BedRestEffectiveness>1</BedRestEffectiveness>
+      <Comfort>0.75</Comfort>
+      <ImmunityGainSpeedFactor>1.07</ImmunityGainSpeedFactor>
+      <SurgerySuccessChanceFactor>1</SurgerySuccessChanceFactor>
+    </statBases>
+    <size>(1,2)</size>
+    <costList>
+      <ComponentIndustrial>1</ComponentIndustrial>
+      <Steel>50</Steel>
+    </costList>
+    <techLevel>Medieval</techLevel>
+    <researchPrerequisites>
+    </researchPrerequisites>
+    <uiIconScale>1.4</uiIconScale>
+  </ThingDef>
+</Defs>

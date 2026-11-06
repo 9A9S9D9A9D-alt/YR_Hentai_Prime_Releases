@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<LanguageData>
+  <YR_StopAnimation>애니메이션을 중단합니다</YR_StopAnimation>
+  <YR_GainTrait>{0}(은)는 {2} 특성을 얻었습니다. (원인 : {1})</YR_GainTrait>
+  <YR_RemoveUnrecruitable>{0}의 {2}이 꺾였습니다. (원인 : {1})</YR_RemoveUnrecruitable>
+  <YR_ForcePlay>팡팡 놀이 시키기</YR_ForcePlay>
+</LanguageData>

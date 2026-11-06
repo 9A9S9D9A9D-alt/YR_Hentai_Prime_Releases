@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<ThingDef ParentName="BuildingBase">
+		<thingClass>YR_RJW.Building_ChangeTextureGizmo</thingClass>
+		<defName>YR_AdditionalTool</defName>
+		<label>additional sex toy</label>
+		<description>A variety of sex toys to enjoy more when do pang pang play.</description>
+		<uiOrder>3500</uiOrder>
+		<thingCategories>
+			<li>BuildingsFurniture</li>
+		</thingCategories>
+		<designationCategory>YR_RJW_Furniture</designationCategory>
+		<minifiedDef>MinifiedThing</minifiedDef>
+		<graphicData>
+			<texPath>Yuran/Things/Building/Furniture/YR_AdditionalTool/Dilldo</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>(1,1)</drawSize>
+		</graphicData>
+		<tickerType>Normal</tickerType>
+		<drawerType>RealtimeOnly</drawerType>
+		<rotatable>false</rotatable>
+		<defaultPlacingRot>North</defaultPlacingRot>
+		<altitudeLayer>Building</altitudeLayer>
+		<passability>PassThroughOnly</passability>
+		<fillPercent>0.4</fillPercent>
+		<castEdgeShadows>false</castEdgeShadows>
+		<pathCost>42</pathCost>
+		<costList>
+			<WoodLog>75</WoodLog>
+		</costList>
+		<statBases>
+			<MaxHitPoints>120</MaxHitPoints>
+			<Mass>15</Mass>
+			<WorkToBuild>2000</WorkToBuild>
+			<Flammability>1.0</Flammability>
+			<Beauty>5</Beauty>
+		</statBases>
+		<size>(1,1)</size>
+		<staticSunShadowHeight>0.5</staticSunShadowHeight>
+		<surfaceType>Item</surfaceType>
+		<canOverlapZones>false</canOverlapZones>
+		<placeWorkers>
+			<li>PlaceWorker_ShowFacilitiesConnections</li>
+		</placeWorkers>
+		<socialPropernessMatters>true</socialPropernessMatters>
+		<uiIconScale>0.75</uiIconScale>
+		<comps>
+			<li Class="CompProperties_Facility">
+				<maxSimultaneous>1</maxSimultaneous>
+				<maxDistance>6</maxDistance>
+				<statOffsets>
+					<JoyGainFactor>0.2</JoyGainFactor>
+				</statOffsets>
+			</li>
+			<li Class="YR_RJW.CompProperties_ChangeTextureGizmo">
+				<graphicDatas>
+					<li>
+						<texPath>Yuran/Things/Building/Furniture/YR_AdditionalTool/Dilldo</texPath>
+						<graphicClass>Graphic_Single</graphicClass>
+						<drawSize>(1,1)</drawSize>
+					</li>
+					<li>
+						<texPath>Yuran/Things/Building/Furniture/YR_AdditionalTool/Lovegel</texPath>
+						<graphicClass>Graphic_Single</graphicClass>
+						<drawSize>(1,1)</drawSize>
+					</li>
+					<li>
+						<texPath>Yuran/Things/Building/Furniture/YR_AdditionalTool/Punch</texPath>
+						<graphicClass>Graphic_Single</graphicClass>
+						<drawSize>(1,1)</drawSize>
+					</li>
+				</graphicDatas>
+			</li>
+		</comps>
+	</ThingDef>
+</Defs>

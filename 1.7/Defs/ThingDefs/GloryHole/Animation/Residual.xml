@@ -1,0 +1,12 @@
+<Defs>
+  <YR_Hentai_Prime_AnimationBed.BedAnimationDef>
+    <defName>YR_GloryHole_ResidualV33</defName>
+    <bedAnimationSettings><li>
+      <tick>0</tick><offset>(0,0.11,0)</offset>
+      <graphicData>
+        <texPath>Yuran/Things/Building/Furniture/GloryHole/Body/Semen/Bed/1</texPath>
+        <graphicClass>Graphic_Single</graphicClass><drawSize>(2.25,2.25)</drawSize><drawRotated>false</drawRotated>
+      </graphicData>
+    </li></bedAnimationSettings>
+  </YR_Hentai_Prime_AnimationBed.BedAnimationDef>
+</Defs>

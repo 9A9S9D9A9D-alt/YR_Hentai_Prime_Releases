@@ -1,0 +1,6 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<LanguageData>
+  <YR_TentacleRushSkipRadius.label>촉수 돌진 생략 반경</YR_TentacleRushSkipRadius.label>
+  <YR_TentacleRushSkipRadius.description>The Maxium distance that a Booster can skip.</YR_TentacleRushSkipRadius.description>
+  <YR_TentacleRushSkipRadius.formatString>{0} c</YR_TentacleRushSkipRadius.formatString>
+</LanguageData>

@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<LanguageData>
+  <YR_PerformanceMod>성능 절약 모드</YR_PerformanceMod>
+  <YR_ChangeTexture_Label>외형 변경</YR_ChangeTexture_Label>
+  <YR_ChangeTexture_Desc>표시할 외형을 변경합니다.</YR_ChangeTexture_Desc>
+  <YR_Birth_Tentacle_Start>촉수의 출산이 시작되었습니다.</YR_Birth_Tentacle_Start>
+  <YR_Birth_Tentacle>{0}이(가) 태어났습니다.</YR_Birth_Tentacle>
+  <YR_ToggleHediff_Label>모드 전환</YR_ToggleHediff_Label>
+  <YR_ToggleHediff_Desc>기본 모드, 모드 1, 모드 2를 순서대로 전환합니다.</YR_ToggleHediff_Desc>
+  <YR_ToggleMainCNMS_Label>주 영양 관리 장치 지정</YR_ToggleMainCNMS_Label>
+  <YR_ToggleMainCNMS_Desc>다른 영양 관리 장치의 생산물을 모으는 주 장치로 지정하거나 해제합니다.</YR_ToggleMainCNMS_Desc>
+  <YR_EjectInnerContainer_Label>내용물 꺼내기</YR_EjectInnerContainer_Label>
+  <YR_EjectInnerContainer_Desc>보관 중인 내용물을 주변에 꺼내 놓습니다.</YR_EjectInnerContainer_Desc>
+  <YR_Hentai_Prime_AnimationBed_Mod>유란 시설 애니메이션 설정</YR_Hentai_Prime_AnimationBed_Mod>
+  <YR_TransferVictim>대상 이동</YR_TransferVictim>
+  <YR_PawnIsDrafted>징집된 대상은 지정할 수 없습니다.</YR_PawnIsDrafted>
+  <YR_CancelTransfer>이동 취소</YR_CancelTransfer>
+  <YR_CancelTransferDesc>예약된 시설 간 이동을 취소합니다.</YR_CancelTransferDesc>
+  <YR_TransferEntity>다른 시설로 이동</YR_TransferEntity>
+  <YR_TransferEntityDesc>현재 대상을 옮길 시설을 선택합니다.</YR_TransferEntityDesc>
+</LanguageData>

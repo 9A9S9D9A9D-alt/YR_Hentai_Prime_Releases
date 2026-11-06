@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <ThingDef ParentName="BuildingBase">
+    <defName>YR_Tentacle_CNMS</defName>
+    <label>evil tree lewd nutrition pool</label>
+    <description>A bundle of tentacles, secreting an affectionate mixture of love juices of great quantity and aphrodisiac to be given as food for the brides.\n\nSimilar in function to CNMS, easier to maintain as they produce nutrient by themselves. As it can only produce enough nutrient for one by itself however, consider giving it additional nutrient pack as needed.</description>
+    <uiOrder>3550</uiOrder>
+    <descriptionHyperlinks>
+      <ThingDef>YR_NutritionPack</ThingDef>
+    </descriptionHyperlinks>
+    <thingCategories>
+      <li>BuildingsFurniture</li>
+    </thingCategories>
+    <designationCategory>YR_RJW_Furniture</designationCategory>
+    <minifiedDef>MinifiedThing</minifiedDef>
+    <graphicData>
+      <shaderType>CutoutComplex</shaderType>
+      <texPath>Yuran/Things/Building/Furniture/Tentacle/CNMS/CNMS</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(2,2)</drawSize>
+      <damageData>
+        <cornerTL>Damage/Corner</cornerTL>
+        <cornerTR>Damage/Corner</cornerTR>
+        <cornerBL>Damage/Corner</cornerBL>
+        <cornerBR>Damage/Corner</cornerBR>
+      </damageData>
+    </graphicData>
+    <tickerType>Normal</tickerType>
+    <rotatable>false</rotatable>
+    <altitudeLayer>Building</altitudeLayer>
+    <passability>PassThroughOnly</passability>
+    <fillPercent>0.4</fillPercent>
+    <castEdgeShadows>true</castEdgeShadows>
+    <pathCost>42</pathCost>
+    <costList>
+      <Meat_Human>15</Meat_Human>
+    </costList>
+    <statBases>
+      <MaxHitPoints>120</MaxHitPoints>
+      <Mass>15</Mass>
+      <WorkToBuild>2000</WorkToBuild>
+      <Flammability>1.0</Flammability>
+      <Beauty>5</Beauty>
+    </statBases>
+    <size>(1,1)</size>
+    <staticSunShadowHeight>0.5</staticSunShadowHeight>
+    <surfaceType>Item</surfaceType>
+    <canOverlapZones>false</canOverlapZones>
+    <placeWorkers>
+      <li>PlaceWorker_ShowFacilitiesConnections</li>
+    </placeWorkers>
+    <researchPrerequisites>
+      <li>ComplexFurniture</li>
+    </researchPrerequisites>
+    <socialPropernessMatters>true</socialPropernessMatters>
+    <uiIconScale>0.75</uiIconScale>
+    <comps>
+      <li Class="CompProperties_Facility">
+        <maxSimultaneous>1</maxSimultaneous>
+        <maxDistance>6</maxDistance>
+      </li>
+      <li Class="YR_RJW.CompProperties_CNMS">
+        <showMessageIfOwned>true</showMessageIfOwned>
+        <stackLimit>50</stackLimit>
+        <!-- 연료 1당 허기 채워지는 양-->
+        <!-- 일반 식재료 0.05-->
+        <!-- 식재료 10개 0.5 - 간단한 식사 0.9-->
+        <!-- 식재료 6개 0.3 - 영양죽 0.9-->
+        <!-- 식재료 40개 2.0 - 영양팩 6/4=1.5-->
+        <nutrition>0.09</nutrition>
+        <anotherCNMSDefnames>
+          <li>YR_CNMS</li>
+          <li>YR_CNMS_Wall</li>
+          <li>YR_Tentacle_CNMS</li>
+        </anotherCNMSDefnames>
+        <selfNutritionRecovery>0.091</selfNutritionRecovery>
+      </li>
+      <li Class="CompProperties_Refuelable">
+        <fuelLabel>stored nutrition</fuelLabel>
+        <fuelGizmoLabel>nutrition</fuelGizmoLabel>
+        <outOfFuelMessage>stored nutrition exhausted</outOfFuelMessage>
+        <fuelFilter>
+          <thingDefs>
+            <li>YR_NutritionPack</li>
+          </thingDefs>
+        </fuelFilter>
+        <fuelCapacity>500</fuelCapacity>
+        <targetFuelLevelConfigurable>true</targetFuelLevelConfigurable>
+        <initialConfigurableTargetFuelLevel>250</initialConfigurableTargetFuelLevel>
+        <autoRefuelPercent>0.2</autoRefuelPercent>
+        <showFuelGizmo>true</showFuelGizmo>
+        <showAllowAutoRefuelToggle>true</showAllowAutoRefuelToggle>
+        <consumeFuelOnlyWhenUsed>true</consumeFuelOnlyWhenUsed>
+        <fuelIconPath>Yuran/Things/Item/Resource/YR_NutritionPack</fuelIconPath>
+      </li>
+    </comps>
+  </ThingDef>
+</Defs>

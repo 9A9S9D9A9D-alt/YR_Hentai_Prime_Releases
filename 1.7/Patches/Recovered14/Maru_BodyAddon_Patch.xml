@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Patch>
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Maru Race</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName = "Maru"]/alienRace/generalSettings/alienPartGenerator/bodyAddons/li[1]/extendedGraphics</xpath>
+          <order>Append</order>
+          <value>
+            <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+              <path>Things/Inv/MR_Invisible</path>
+              <conditions>
+                <Hediff>YR_Building_MilkingMachine_Hediff</Hediff>
+              </conditions>
+            </li>
+          </value>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+</Patch>

@@ -1,0 +1,493 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Defs>
+  <HediffDef>
+    <defName>YR_MilkingMachineAddon_Hediff</defName>
+    <hediffClass>HediffWithComps</hediffClass>
+    <label>YR_MilkingMachineAddon_Hediff</label>
+    <description>Milked by a milking machine.(A Hediff that goes through to check the body type and to give a hediff for the hediff add-on.)</description>
+    <defaultLabelColor>(0.392, 0.678, 0.737)</defaultLabelColor>
+    <scenarioCanAdd>false</scenarioCanAdd>
+    <maxSeverity>1</maxSeverity>
+    <initialSeverity>1</initialSeverity>
+    <isBad>false</isBad>
+    <stages>
+      <li>
+        <becomeVisible>false</becomeVisible>
+        <capMods>
+          <li>
+            <capacity>Manipulation</capacity>
+            <setMax>0</setMax>
+          </li>
+          <li>
+            <capacity>Moving</capacity>
+            <setMax>0</setMax>
+          </li>
+          <li>
+            <capacity>Consciousness</capacity>
+            <setMax>0.01</setMax>
+          </li>
+        </capMods>
+      </li>
+    </stages>
+    <comps>
+      <li Class="YR_RJW.HediffCompProperties_GiveDiffirenceHediff">
+        <conditionAndHediffs>
+          <li>
+            <bedDefs>
+              <li>YR_Building_MilkingMachine</li>
+              <li>YR_Building_Tentacle</li>
+            </bedDefs>
+            <hediffDefs>
+              <li>YR_SexNeedIncrease_Hediff</li>
+            </hediffDefs>
+          </li>
+          <li>
+            <bedDefs>
+              <li>YR_Building_MilkingMachine</li>
+            </bedDefs>
+            <hediffDefs>
+              <li>YR_Building_MilkingMachine_Hediff</li>
+            </hediffDefs>
+          </li>
+          <li>
+            <bedDefs>
+              <li>YR_Building_Tentacle</li>
+            </bedDefs>
+            <hediffDefs>
+              <li>YR_Building_Tentacle_Hediff</li>
+            </hediffDefs>
+          </li>
+        </conditionAndHediffs>
+      </li>
+    </comps>
+  </HediffDef>
+  <HediffDef>
+    <defName>YR_Building_MilkingMachine_Hediff</defName>
+    <label>YR_Building_MilkingMachine_Hediff</label>
+    <hediffClass>HediffWithComps</hediffClass>
+    <description>YR_Building_MilkingMachine_Hediff</description>
+    <defaultLabelColor>(0.392, 0.678, 0.737)</defaultLabelColor>
+    <scenarioCanAdd>false</scenarioCanAdd>
+    <maxSeverity>1</maxSeverity>
+    <initialSeverity>1</initialSeverity>
+    <isBad>false</isBad>
+    <stages>
+      <li>
+        <becomeVisible>false</becomeVisible>
+      </li>
+    </stages>
+    <comps>
+      <li Class="YR_RJW.HediffCompProperties_YR_MilkingMachineAddon">
+        <ticks>1000000</ticks>
+        <severity>0.03</severity>
+        <minSeverity>0.1</minSeverity>
+        <maxSeverity>0.7</maxSeverity>
+        <backToMinSeverity>true</backToMinSeverity>
+      </li>
+    </comps>
+  </HediffDef>
+  <HediffDef>
+    <defName>YR_Building_Tentacle_Hediff</defName>
+    <label>YR_Building_Tentacle_Hediff</label>
+    <hediffClass>HediffWithComps</hediffClass>
+    <description>YR_Building_Tentacle_Hediff</description>
+    <defaultLabelColor>(0.392, 0.678, 0.737)</defaultLabelColor>
+    <scenarioCanAdd>false</scenarioCanAdd>
+    <maxSeverity>1</maxSeverity>
+    <initialSeverity>1</initialSeverity>
+    <isBad>false</isBad>
+    <stages>
+      <li>
+        <becomeVisible>false</becomeVisible>
+      </li>
+    </stages>
+    <comps>
+      <li Class="YR_RJW.HediffCompProperties_YR_MilkingMachineAddon">
+        <ticks>1000000</ticks>
+        <severity>0.03</severity>
+        <minSeverity>0.1</minSeverity>
+        <maxSeverity>0.7</maxSeverity>
+        <backToMinSeverity>true</backToMinSeverity>
+      </li>
+    </comps>
+  </HediffDef>
+  <HediffDef>
+    <defName>YR_HideHead_Hediff</defName>
+    <label>YR_HideHead_Hediff</label>
+    <hediffClass>HediffWithComps</hediffClass>
+    <description>YR_HideHead_Hediff</description>
+    <defaultLabelColor>(0.392, 0.678, 0.737)</defaultLabelColor>
+    <scenarioCanAdd>false</scenarioCanAdd>
+    <maxSeverity>1</maxSeverity>
+    <initialSeverity>1</initialSeverity>
+    <isBad>false</isBad>
+    <stages>
+      <li>
+        <becomeVisible>false</becomeVisible>
+      </li>
+    </stages>
+    <comps>
+      <li Class="YR_RJW.HediffCompProperties_YR_MilkingMachineAddon">
+        <ticks>1000000</ticks>
+        <severity>0.03</severity>
+        <minSeverity>0.1</minSeverity>
+        <maxSeverity>0.6</maxSeverity>
+        <backToMinSeverity>true</backToMinSeverity>
+      </li>
+    </comps>
+  </HediffDef>
+  <HediffDef>
+    <defName>YR_HideHat_Hediff</defName>
+    <label>YR_HideHat_Hediff</label>
+    <hediffClass>HediffWithComps</hediffClass>
+    <description>YR_HideHat_Hediff</description>
+    <defaultLabelColor>(0.392, 0.678, 0.737)</defaultLabelColor>
+    <scenarioCanAdd>false</scenarioCanAdd>
+    <maxSeverity>1</maxSeverity>
+    <initialSeverity>1</initialSeverity>
+    <isBad>false</isBad>
+    <stages>
+      <li>
+        <becomeVisible>false</becomeVisible>
+      </li>
+    </stages>
+    <comps>
+      <li Class="YR_RJW.HediffCompProperties_YR_MilkingMachineAddon">
+        <ticks>1000000</ticks>
+        <severity>0.03</severity>
+        <minSeverity>0.1</minSeverity>
+        <maxSeverity>0.6</maxSeverity>
+        <backToMinSeverity>true</backToMinSeverity>
+      </li>
+    </comps>
+  </HediffDef>
+  <HediffDef>
+    <defName>YR_HideApparel_Hediff</defName>
+    <label>YR_HideApparel_Hediff</label>
+    <hediffClass>HediffWithComps</hediffClass>
+    <description>YR_HideApparel_Hediff</description>
+    <defaultLabelColor>(0.392, 0.678, 0.737)</defaultLabelColor>
+    <scenarioCanAdd>false</scenarioCanAdd>
+    <maxSeverity>1</maxSeverity>
+    <initialSeverity>1</initialSeverity>
+    <isBad>false</isBad>
+    <stages>
+      <li>
+        <becomeVisible>false</becomeVisible>
+      </li>
+    </stages>
+    <comps>
+      <li Class="YR_RJW.HediffCompProperties_YR_MilkingMachineAddon">
+        <ticks>1000000</ticks>
+        <severity>0.03</severity>
+        <minSeverity>0.1</minSeverity>
+        <maxSeverity>0.6</maxSeverity>
+        <backToMinSeverity>true</backToMinSeverity>
+      </li>
+    </comps>
+  </HediffDef>
+  <HediffDef>
+    <defName>YR_HideHair_Hediff</defName>
+    <label>YR_HideHair_Hediff</label>
+    <hediffClass>HediffWithComps</hediffClass>
+    <description>YR_HideHair_Hediff</description>
+    <defaultLabelColor>(0.392, 0.678, 0.737)</defaultLabelColor>
+    <scenarioCanAdd>false</scenarioCanAdd>
+    <maxSeverity>1</maxSeverity>
+    <initialSeverity>1</initialSeverity>
+    <isBad>false</isBad>
+    <stages>
+      <li>
+        <becomeVisible>false</becomeVisible>
+      </li>
+    </stages>
+    <comps>
+      <li Class="YR_RJW.HediffCompProperties_YR_MilkingMachineAddon">
+        <ticks>1000000</ticks>
+        <severity>0.03</severity>
+        <minSeverity>0.1</minSeverity>
+        <maxSeverity>0.6</maxSeverity>
+        <backToMinSeverity>true</backToMinSeverity>
+      </li>
+    </comps>
+  </HediffDef>
+  <HediffDef>
+    <defName>YR_SexNeedIncrease_Hediff</defName>
+    <label>YR_SexNeedIncrease_Hediff</label>
+    <hediffClass>HediffWithComps</hediffClass>
+    <description>YR_SexNeedIncrease_Hediff</description>
+    <defaultLabelColor>(0.392, 0.678, 0.737)</defaultLabelColor>
+    <scenarioCanAdd>false</scenarioCanAdd>
+    <maxSeverity>1</maxSeverity>
+    <initialSeverity>1</initialSeverity>
+    <isBad>false</isBad>
+    <stages>
+      <li>
+        <becomeVisible>false</becomeVisible>
+      </li>
+    </stages>
+    <comps>
+      <li MayRequire="rim.job.world" Class="YR_RJW.HediffCompProperties_Need">
+        <need>Sex</need>
+        <offset>0.005</offset>
+        <ticks>600</ticks>
+      </li>
+      <li Class="YR_RJW.HediffCompProperties_YR_MilkingMachineAddon">
+        <ticks>1000000</ticks>
+        <severity>0.03</severity>
+        <minSeverity>0.1</minSeverity>
+        <maxSeverity>0.6</maxSeverity>
+        <backToMinSeverity>true</backToMinSeverity>
+      </li>
+    </comps>
+  </HediffDef>
+  <HediffDef>
+    <defName>YR_Disciplined_Hediff</defName>
+    <hediffClass>HediffWithComps</hediffClass>
+    <label>disciplined</label>
+    <description>It's being trained by discipline dress. Even if take off it, the progress will be maintained, but it will decrease slightly over time.</description>
+    <defaultLabelColor>(0.392, 0.678, 0.737)</defaultLabelColor>
+    <scenarioCanAdd>false</scenarioCanAdd>
+    <maxSeverity>1</maxSeverity>
+    <initialSeverity>0.01</initialSeverity>
+    <isBad>false</isBad>
+    <comps>
+      <li Class="YR_RJW.HediffCompProperties_Disciplined">
+        <ticks>600</ticks>
+        <traitDefs>
+          <li>Masochist</li>
+          <li>YR_Disciplined</li>
+        </traitDefs>
+        <addTraitSeverity>0.99</addTraitSeverity>
+        <removeHediffPostAddTrait>true</removeHediffPostAddTrait>
+        <apparelDefs>
+          <li MayRequire="RooAndGloomy.YuranRaceMod">YR_AP_DisciplineDress</li>
+        </apparelDefs>
+      </li>
+    </comps>
+  </HediffDef>
+  <HediffDef>
+    <defName>YR_EggVibrator_Hediff</defName>
+    <hediffClass>HediffWithComps</hediffClass>
+    <label>egg vibrator active</label>
+    <description>The vibrator is activated, slowing down movement and getting a little excited.</description>
+    <defaultLabelColor>(1, 0.752, 0.796)</defaultLabelColor>
+    <scenarioCanAdd>false</scenarioCanAdd>
+    <maxSeverity>1</maxSeverity>
+    <initialSeverity>1</initialSeverity>
+    <isBad>false</isBad>
+    <stages>
+      <li>
+        <capMods>
+          <li>
+            <capacity>Moving</capacity>
+            <setMax>0.5</setMax>
+          </li>
+        </capMods>
+      </li>
+    </stages>
+    <comps>
+      <li Class="HediffCompProperties_SeverityPerDay">
+        <severityPerDay>-150</severityPerDay>
+        <showHoursToRecover>true</showHoursToRecover>
+      </li>
+      <li Class="YR_RJW.HediffCompProperties_EggVibrator">
+        <ticks>10</ticks>
+        <maxNum>20</maxNum>
+        <sound>YR_EggVibrator_Sound</sound>
+      </li>
+    </comps>
+  </HediffDef>
+  <HediffDef>
+    <defName>YR_VaginalLubricationFireExtinguisher_Hediff</defName>
+    <hediffClass>HediffWithComps</hediffClass>
+    <label>YR_VaginalLubricationFireExtinguisher_Hediff</label>
+    <description>YR_VaginalLubricationFireExtinguisher_Hediff</description>
+    <defaultLabelColor>(1, 0.752, 0.796)</defaultLabelColor>
+    <scenarioCanAdd>false</scenarioCanAdd>
+    <maxSeverity>1</maxSeverity>
+    <initialSeverity>1</initialSeverity>
+    <isBad>false</isBad>
+    <stages>
+      <li>
+        <becomeVisible>false</becomeVisible>
+        <statFactors>
+          <Flammability>0</Flammability>
+        </statFactors>
+      </li>
+    </stages>
+    <comps>
+      <li Class="HediffCompProperties_SeverityPerDay">
+        <severityPerDay>-150</severityPerDay>
+        <showHoursToRecover>true</showHoursToRecover>
+      </li>
+    </comps>
+  </HediffDef>
+  <HediffDef Name="YR_BoteApparel_Hediff">
+    <defName>YR_BoteApparel_Hediff</defName>
+    <hediffClass>HediffWithComps</hediffClass>
+    <label>YR_BoteApparel_Hediff</label>
+    <description>Because wear special apparel, the face addon changed.</description>
+    <defaultLabelColor>(0.392, 0.678, 0.737)</defaultLabelColor>
+    <scenarioCanAdd>false</scenarioCanAdd>
+    <maxSeverity>1</maxSeverity>
+    <initialSeverity>1</initialSeverity>
+    <isBad>false</isBad>
+    <stages>
+      <li>
+        <becomeVisible>false</becomeVisible>
+      </li>
+    </stages>
+    <comps>
+		</comps>
+  </HediffDef>
+  <HediffDef ParentName="YR_BoteApparel_Hediff">
+    <defName>YR_TentacleApparel_Hediff</defName>
+    <label>YR_TentacleApparel_Hediff</label>
+  </HediffDef>
+  <HediffDef>
+    <defName>YR_Milking_Hediff</defName>
+    <hediffClass>HediffWithComps</hediffClass>
+    <label>milking-able</label>
+    <description>Can milking sweet breast milk from Yuran for a certain period of time during pregnancy and after birth.</description>
+    <defaultLabelColor>(0.392, 0.678, 0.737)</defaultLabelColor>
+    <scenarioCanAdd>false</scenarioCanAdd>
+    <maxSeverity>1</maxSeverity>
+    <initialSeverity>1</initialSeverity>
+    <isBad>false</isBad>
+    <stages>
+      <li>
+        <becomeVisible>false</becomeVisible>
+      </li>
+    </stages>
+    <comps>
+      <li Class="YR_RJW.HediffCompProperties_Milking">
+        <requestHediffDefs>
+          <li>Pregnant</li>
+          <li>YR_BB_Hediff</li>
+          <li>YR_Pregnant_Tentacle</li>
+          <li MayRequire="rim.job.world">RJW_pregnancy</li>
+          <li MayRequire="rim.job.world">RJW_pregnancy_beast</li>
+          <li MayRequire="rim.job.world">RJW_pregnancy_mech</li>
+        </requestHediffDefs>
+        <ticks>1200</ticks>
+        <severity>0.00132</severity>
+      </li>
+    </comps>
+  </HediffDef>
+  <HediffDef>
+    <defName>YR_BB_Hediff</defName>
+    <hediffClass>HediffWithComps</hediffClass>
+    <label>YR_BB_Hediff</label>
+    <description>Breasts got bigger because gave birth.</description>
+    <defaultLabelColor>(0.392, 0.678, 0.737)</defaultLabelColor>
+    <scenarioCanAdd>false</scenarioCanAdd>
+    <maxSeverity>1</maxSeverity>
+    <initialSeverity>1</initialSeverity>
+    <isBad>false</isBad>
+    <stages>
+      <li>
+        <becomeVisible>false</becomeVisible>
+      </li>
+    </stages>
+    <comps>
+      <li Class="HediffCompProperties_SeverityPerDay">
+        <severityPerDay>-0.2</severityPerDay>
+        <showHoursToRecover>true</showHoursToRecover>
+      </li>
+      <li Class="YR_RJW.HediffCompProperties_ChangeBodyType">
+        <bodyTypePostfix>_YR_BB</bodyTypePostfix>
+        <races>
+          <li MayRequire="RooAndGloomy.YuranRaceMod">Yuran_Race</li>
+          <li MayRequire="RooAndGloomy.YuranRaceMod">Yuran_Race_Miko</li>
+        </races>
+        <preferencePostfixs>
+          <li>_YR_Bote</li>
+        </preferencePostfixs>
+        <ticks>600</ticks>
+        <compSetting>
+          <compPostPostAdd>
+            <activeComp>true</activeComp>
+            <addHediffDefs>
+              <li>YR_Milking_Hediff</li>
+            </addHediffDefs>
+          </compPostPostAdd>
+          <compPostTick>
+            <activeComp>false</activeComp>
+          </compPostTick>
+          <compPostPostRemoved>
+            <activeComp>true</activeComp>
+            <addHediffDefs>
+              <li>YR_Milking_Hediff</li>
+            </addHediffDefs>
+          </compPostPostRemoved>
+        </compSetting>
+      </li>
+    </comps>
+  </HediffDef>
+  <HediffDef>
+    <defName>YR_TEST_Hediff</defName>
+    <label>YR_TEST_Hediff</label>
+    <hediffClass>HediffWithComps</hediffClass>
+    <description>YR_TEST_Hediff</description>
+    <defaultLabelColor>(0.392, 0.678, 0.737)</defaultLabelColor>
+    <scenarioCanAdd>false</scenarioCanAdd>
+    <maxSeverity>1</maxSeverity>
+    <initialSeverity>1</initialSeverity>
+    <isBad>false</isBad>
+    <comps>
+      <li Class="YR_RJW.HediffCompProperties_TEST">
+			</li>
+    </comps>
+  </HediffDef>
+  <HediffDef>
+    <defName>YR_Front_Hediff</defName>
+    <label>YR_Front_Hediff</label>
+    <hediffClass>HediffWithComps</hediffClass>
+    <description>YR_Front_Hediff</description>
+    <defaultLabelColor>(0.392, 0.678, 0.737)</defaultLabelColor>
+    <scenarioCanAdd>false</scenarioCanAdd>
+    <maxSeverity>1</maxSeverity>
+    <initialSeverity>1</initialSeverity>
+    <isBad>false</isBad>
+    <stages>
+      <li>
+        <becomeVisible>false</becomeVisible>
+      </li>
+    </stages>
+    <comps>
+      <li Class="YR_RJW.HediffCompProperties_YR_MilkingMachineAddon">
+        <ticks>1000000</ticks>
+        <severity>0.03</severity>
+        <minSeverity>0.1</minSeverity>
+        <maxSeverity>0.6</maxSeverity>
+        <backToMinSeverity>true</backToMinSeverity>
+      </li>
+    </comps>
+  </HediffDef>
+  <HediffDef>
+    <defName>YR_Back_Hediff</defName>
+    <label>YR_Back_Hediff</label>
+    <hediffClass>HediffWithComps</hediffClass>
+    <description>YR_Back_Hediff</description>
+    <defaultLabelColor>(0.392, 0.678, 0.737)</defaultLabelColor>
+    <scenarioCanAdd>false</scenarioCanAdd>
+    <maxSeverity>1</maxSeverity>
+    <initialSeverity>1</initialSeverity>
+    <isBad>false</isBad>
+    <stages>
+      <li>
+        <becomeVisible>false</becomeVisible>
+      </li>
+    </stages>
+    <comps>
+      <li Class="YR_RJW.HediffCompProperties_YR_MilkingMachineAddon">
+        <ticks>1000000</ticks>
+        <severity>0.03</severity>
+        <minSeverity>0.1</minSeverity>
+        <maxSeverity>0.6</maxSeverity>
+        <backToMinSeverity>true</backToMinSeverity>
+      </li>
+    </comps>
+  </HediffDef>
+</Defs>

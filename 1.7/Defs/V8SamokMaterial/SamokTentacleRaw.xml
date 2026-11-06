@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <StuffCategoryDef>
+    <defName>YR_SamokMatter</defName>
+    <label>사목 재료</label>
+  </StuffCategoryDef>
+  <ThingDef ParentName="MedicineBase">
+    <defName>YR_SamokTentacleRaw</defName>
+    <label>사목의 촉수</label>
+    <description>사목 주변에서 자란 명상 촉수를 수확한 재료. 목재를 받는 건축물의 재료, 생식이나 요리 재료, 약초 수준의 치료제로 사용할 수 있다. 수확한 촉수는 정신 연결에 사용할 수 없으며, 명상을 통해 새 촉수를 길러야 한다.</description>
+    <graphicData>
+      <texPath>Yuran/Things/Item/Resource/SamokTentacleRaw</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>0.85</drawSize>
+    </graphicData>
+    <techLevel>Neolithic</techLevel>
+    <stackLimit>75</stackLimit>
+    <statBases>
+      <MaxHitPoints>150</MaxHitPoints>
+      <MarketValue>2</MarketValue>
+      <Mass>0.4</Mass>
+      <Flammability>0</Flammability>
+      <DeteriorationRate>0.5</DeteriorationRate>
+      <Nutrition>0.05</Nutrition>
+      <FoodPoisonChanceFixedHuman>0.02</FoodPoisonChanceFixedHuman>
+      <MedicalPotency>0.6</MedicalPotency>
+      <MedicalQualityMax>0.7</MedicalQualityMax>
+      <StuffPower_Armor_Sharp>0.54</StuffPower_Armor_Sharp>
+      <StuffPower_Armor_Blunt>0.54</StuffPower_Armor_Blunt>
+      <StuffPower_Armor_Heat>0.4</StuffPower_Armor_Heat>
+      <StuffPower_Insulation_Cold>8</StuffPower_Insulation_Cold>
+      <StuffPower_Insulation_Heat>4</StuffPower_Insulation_Heat>
+      <SharpDamageMultiplier>0.4</SharpDamageMultiplier>
+      <BluntDamageMultiplier>0.9</BluntDamageMultiplier>
+    </statBases>
+    <thingCategories Inherit="False">
+      <li>Medicine</li>
+      <li>PlantFoodRaw</li>
+      <li>ResourcesRaw</li>
+    </thingCategories>
+    <ingestible>
+      <foodType>VegetableOrFruit</foodType>
+      <preferability>RawBad</preferability>
+      <tasteThought>AteRawFood</tasteThought>
+      <ingestEffect>EatVegetarian</ingestEffect>
+      <ingestSound>RawVegetable_Eat</ingestSound>
+    </ingestible>
+    <socialPropernessMatters>true</socialPropernessMatters>
+    <stuffProps>
+      <stuffAdjective>사목 촉수</stuffAdjective>
+      <categories>
+        <li>Woody</li>
+        <li>YR_SamokMatter</li>
+      </categories>
+      <commonality>0</commonality>
+      <color>(91,64,118)</color>
+      <constructEffect>ConstructWood</constructEffect>
+      <appearance>Planks</appearance>
+      <soundImpactBullet>BulletImpact_Wood</soundImpactBullet>
+      <soundMeleeHitSharp>MeleeHit_Wood</soundMeleeHitSharp>
+      <soundMeleeHitBlunt>MeleeHit_Wood</soundMeleeHitBlunt>
+      <soundImpactMelee>Pawn_Melee_Punch_HitBuilding_Wood</soundImpactMelee>
+      <statFactors>
+        <MaxHitPoints>1.53</MaxHitPoints>
+        <Beauty>1</Beauty>
+        <Flammability>0</Flammability>
+        <WorkToMake>0.7</WorkToMake>
+        <WorkToBuild>0.7</WorkToBuild>
+        <DoorOpenSpeed>1.2</DoorOpenSpeed>
+      </statFactors>
+      <allowedInStuffGeneration>false</allowedInStuffGeneration>
+    </stuffProps>
+    <tickerType>Rare</tickerType>
+    <comps>
+      <li Class="CompProperties_Rottable">
+        <daysToRotStart>150</daysToRotStart>
+        <rotDestroys>true</rotDestroys>
+      </li>
+    </comps>
+    <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
+    <allowedArchonexusCount>150</allowedArchonexusCount>
+  </ThingDef>
+</Defs>

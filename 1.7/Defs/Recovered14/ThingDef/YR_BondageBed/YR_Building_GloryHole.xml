@@ -1,0 +1,172 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Defs>
+  <ThingDef Name="YR_GloryHoleBase" ParentName="YR_BondageBedBase" Abstract="True">
+    <comps>
+      <li Class="YR_RJW.CompProperties_Usable_BondageBed">
+        <compClass>YR_RJW.CompUsableAdvancedBondageBed</compClass>
+        <useJob>YR_Job_BondageBed</useJob>
+        <useLabel>bound</useLabel>
+        <forbiddenHediffDefs>
+          <li>YR_Tentacle_Hediff</li>
+        </forbiddenHediffDefs>
+        <settingException>
+          <ageExceptionRaces>
+            <li MayRequire="bep.littlefairy.ttwsfabr">LittleFairy_Pawn</li>
+            <li MayRequire="bep.mofy.twfiaclr">Mofy_Pawn</li>
+            <li MayRequire="bep.resurreviewy.tnair">Resurreviewy_Pawn</li>
+            <li MayRequire="bep.glassy.terr">Glassy_Pawn</li>
+            <li MayRequire="bep.sweety.mcsr">Sweety_Pawn</li>
+            <li MayRequire="bep.legacyfairy.tftr">LegacyFairy_Pawn</li>
+            <li MayRequire="bep.magiaplant.tfmr">MagiaPlant_Pawn</li>
+            <li MayRequire="bep.forgotty.tfcr">Forgotty_Pawn</li>
+            <li MayRequire="bep.maddy.twmr">Maddy_Pawn</li>
+          </ageExceptionRaces>
+        </settingException>
+      </li>
+    </comps>
+    <statBases>
+      <MaxHitPoints>140</MaxHitPoints>
+      <Flammability>1.0</Flammability>
+      <Beauty>1</Beauty>
+      <WorkToBuild>800</WorkToBuild>
+      <Mass>30</Mass>
+      <BedRestEffectiveness>1</BedRestEffectiveness>
+      <Comfort>0.75</Comfort>
+      <ImmunityGainSpeedFactor>1.07</ImmunityGainSpeedFactor>
+      <SurgerySuccessChanceFactor>1</SurgerySuccessChanceFactor>
+      <JoyGainFactor>1.1</JoyGainFactor>
+    </statBases>
+    <size>(1,1)</size>
+    <stuffCategories>
+      <li>Woody</li>
+    </stuffCategories>
+    <costStuffCount>50</costStuffCount>
+    <costList>
+      <WoodLog>100</WoodLog>
+    </costList>
+    <hasInteractionCell>true</hasInteractionCell>
+    <placeWorkers>
+      <li>PlaceWorker_PreventInteractionSpotOverlap</li>
+    </placeWorkers>
+    <drawPlaceWorkersWhileSelected>True</drawPlaceWorkersWhileSelected>
+    <techLevel>Medieval</techLevel>
+    <researchPrerequisites>
+			
+		</researchPrerequisites>
+    <uiIconScale>0.50</uiIconScale>
+    <interactionCellOffset>(0,0,1)</interactionCellOffset>
+  </ThingDef>
+  <ThingDef Name="YR_GloryHoleBase_OohSound" ParentName="YR_GloryHoleBase" Abstract="True">
+    <comps>
+      <li Class="YR_RJW.CompProperties_SpawnDummyForJoy">
+        <spawnDummy>YR_DummyForJoy_GloryHole</spawnDummy>
+        <voiceProbability>50</voiceProbability>
+        <femaleEroVoice>OohSound</femaleEroVoice>
+        <soundAmbient>YR_PanPan_Sound</soundAmbient>
+        <finishSound>FinishSound</finishSound>
+        <joyPawnNeedIncrease>
+          <li MayRequire="rim.job.world">
+            <needDef>Sex</needDef>
+            <increase>0.05</increase>
+          </li>
+        </joyPawnNeedIncrease>
+        <occupantPawnNeedIncrease>
+          <li MayRequire="rim.job.world">
+            <needDef>Sex</needDef>
+            <increase>0.05</increase>
+          </li>
+        </occupantPawnNeedIncrease>
+        <joyPawnHediffSettings>
+          <li>
+            <hediffDefs>
+              <li>YR_PanPanPlay_Hediff</li>
+            </hediffDefs>
+            <raceBodyParts>
+              <li MayRequire="Roo.AntyRaceMod">
+                <race>Anty</race>
+                <bodyPart>Antyabdomen</bodyPart>
+              </li>
+            </raceBodyParts>
+          </li>
+        </joyPawnHediffSettings>
+        <apparelSetting>
+          <hideHat>true</hideHat>
+          <hideApparel>true</hideApparel>
+          <neverHideTags>
+            <li>YR_NeverNaked</li>
+          </neverHideTags>
+        </apparelSetting>
+      </li>
+    </comps>
+  </ThingDef>
+  <ThingDef ParentName="EtherealThingBase">
+    <defName>YR_DummyForJoy_GloryHole</defName>
+    <label>glory hole(dummy for joy)</label>
+    <description>TEST</description>
+    <thingClass>YR_RJW.DummyForJoy</thingClass>
+    <tickerType>Normal</tickerType>
+    <drawerType>RealtimeOnly</drawerType>
+    <hasInteractionCell>true</hasInteractionCell>
+    <interactionCellOffset>(0,0,1)</interactionCellOffset>
+    <rotatable>true</rotatable>
+    <placeWorkers>
+      <li>PlaceWorker_PreventInteractionSpotOverlap</li>
+    </placeWorkers>
+    <defaultPlacingRot>South</defaultPlacingRot>
+  </ThingDef>
+  <JobDef>
+    <defName>Play_GloryHole</defName>
+    <driverClass>YR_RJW.JobDriver_WatchDummy</driverClass>
+    <reportString>using glory hole.</reportString>
+    <joyDuration>4000</joyDuration>
+    <joyMaxParticipants>1</joyMaxParticipants>
+    <joyKind>YR_Gaming_PanPanPlay</joyKind>
+    <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+  </JobDef>
+  <JoyGiverDef>
+    <defName>Play_GloryHole</defName>
+    <giverClass>JoyGiver_InteractBuildingInteractionCell</giverClass>
+    <baseChance>10</baseChance>
+    <thingDefs>
+      <li>YR_DummyForJoy_GloryHole</li>
+    </thingDefs>
+    <jobDef>Play_GloryHole</jobDef>
+    <desireSit>false</desireSit>
+    <joyKind>YR_Gaming_PanPanPlay</joyKind>
+  </JoyGiverDef>
+  <JoyKindDef>
+    <defName>YR_Gaming_PanPanPlay</defName>
+    <label>panpan play</label>
+  </JoyKindDef>
+  <HediffDef>
+    <defName>YR_PanPanPlay_Hediff</defName>
+    <hediffClass>HediffWithComps</hediffClass>
+    <label>YR_PanPanPlay_Hediff</label>
+    <description>YR_PanPanPlay_Hediff</description>
+    <defaultLabelColor>(0.392,0.329,0.556)</defaultLabelColor>
+    <scenarioCanAdd>false</scenarioCanAdd>
+    <maxSeverity>1.0</maxSeverity>
+    <isBad>false</isBad>
+    <initialSeverity>1.0</initialSeverity>
+    <comps>
+      <li Class="HediffCompProperties_SeverityPerDay">
+        <severityPerDay>-1</severityPerDay>
+        <showHoursToRecover>false</showHoursToRecover>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <becomeVisible>false</becomeVisible>
+        <hediffGivers>
+          <li MayRequire="Roo.AntyRaceMod" Class="AntyHediffGiver_Random">
+            <hediff>YR_PanPanPlay_Anty_Sound</hediff>
+            <mtbDays>0.001</mtbDays>
+            <partsToAffect>
+              <li>AntyTool</li>
+            </partsToAffect>
+          </li>
+        </hediffGivers>
+      </li>
+    </stages>
+  </HediffDef>
+</Defs>

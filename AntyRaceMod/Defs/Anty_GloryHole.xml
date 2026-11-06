@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<HediffDef>
+		<defName>YR_PanPanPlay_Anty_Sound</defName>
+		<hediffClass>HediffWithComps</hediffClass>
+		<label>YR_PanPanPlay_Anty_Sound</label>
+		<description>YR_PanPanPlay_Anty_Sound</description>
+		<defaultLabelColor>(0.392,0.329,0.556)</defaultLabelColor>
+		<scenarioCanAdd>false</scenarioCanAdd>
+		<maxSeverity>1.0</maxSeverity>
+		<isBad>false</isBad>
+		<initialSeverity>1.0</initialSeverity>
+		<comps>
+			<li Class="HediffCompProperties_Disappears">
+				<disappearsAfterTicks>60</disappearsAfterTicks>
+			</li>
+			<li Class="HediffCompProperties_Effecter">
+				<stateEffecter>PanPanPlayAnty</stateEffecter>
+				<severityIndices>0~5</severityIndices>
+			</li>
+		</comps>
+		<stages>
+			<li>
+				<becomeVisible>false</becomeVisible>
+			</li>
+		</stages>
+	</HediffDef>
+	
+	<SoundDef>
+		<defName>PanPanPlayAnty</defName>
+		<context>MapOnly</context>
+		<maxSimultaneous>3</maxSimultaneous>
+		<subSounds>
+			<li>
+				<grains>
+					<li Class="AudioGrain_Folder">
+						<clipFolderPath>Ejaculation</clipFolderPath>
+					</li>
+				</grains>
+				<volumeRange>5~10</volumeRange>
+				<distRange>10~38</distRange>
+			</li>
+		</subSounds>
+	</SoundDef>
+	
+	<SoundDef>
+		<defName>Pawn_PanPanPlayAnty_Angry</defName>
+		<context>MapOnly</context>
+		<subSounds>
+		  <li>
+			<grains>
+			  <li Class="AudioGrain_Folder">
+				<clipFolderPath>Pawn/Animal/Megascarab/Megascarab_Angry</clipFolderPath>
+			  </li>
+			</grains>
+			<volumeRange>10~15</volumeRange>
+			<pitchRange>0.9311765~1.091765</pitchRange>
+			<distRange>10~12</distRange>
+			<sustainLoop>False</sustainLoop>
+		  </li>
+		</subSounds>
+	</SoundDef>
+	
+	<EffecterDef>
+		<defName>PanPanPlayAnty</defName>
+			<children>
+				<li>
+					<subEffecterClass>SubEffecter_SoundIntermittent</subEffecterClass>
+					<soundDef>PanPanPlayAnty</soundDef>
+					<intermittentSoundInterval><min>15</min><max>30</max></intermittentSoundInterval>
+				</li>
+				<li>
+					<subEffecterClass>SubEffecter_SoundIntermittent</subEffecterClass>
+					<soundDef>Pawn_Megascarab_Angry</soundDef>
+					<intermittentSoundInterval><min>40</min><max>80</max></intermittentSoundInterval>
+				</li>
+			</children>
+	</EffecterDef>
+</Defs>

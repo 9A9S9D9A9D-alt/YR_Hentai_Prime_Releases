@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+ <ResearchProjectDef>
+  <defName>YR_SamokBioengineeringI</defName><label>사목 생체공학 I</label>
+  <description>사목의 맥동 조직에서 흐르는 미약한 전류를 모으고, 나무와 연결된 생체기관을 배양하는 방법을 연구합니다.</description>
+  <baseCost>1200</baseCost><techLevel>Industrial</techLevel><researchViewX>3</researchViewX><researchViewY>5</researchViewY><prerequisites><li>Electricity</li></prerequisites>
+ </ResearchProjectDef>
+ <ThingDef ParentName="BuildingBase">
+  <defName>YR_SamokElectricSac</defName><label>사목의 전기낭</label>
+  <description>사목의 나무에서 배양한 작은 생체 발전기관. 검보랏빛 막을 감싼 촉수 사이로 희미한 빛이 번지고, 가느다란 맥선을 따라 모인 전류가 뿌리를 타고 흐른다. 사목 지반에 뿌리내린 전기낭은 별도의 연료 없이 주변 전력망에 전기를 공급한다. 지반과의 연결을 잃으면 내부의 전류도 잠잠해진다.</description>
+  <thingClass>Building</thingClass><size>(1,1)</size><rotatable>false</rotatable><tickerType>Normal</tickerType>
+  <drawerType>MapMeshOnly</drawerType><altitudeLayer>Building</altitudeLayer><passability>PassThroughOnly</passability><fillPercent>0.35</fillPercent><pathCost>30</pathCost>
+  <terrainAffordanceNeeded>Medium</terrainAffordanceNeeded><uiIconScale>0.65</uiIconScale>
+  <graphicData><texPath>Yuran/Things/Building/ElectricSac/Texture</texPath><graphicClass>Graphic_Single</graphicClass><drawSize>(1,1)</drawSize></graphicData>
+  <costList><YR_SamokTentacleRaw>75</YR_SamokTentacleRaw><YR_BaekyunFluid>30</YR_BaekyunFluid></costList>
+  <statBases><MaxHitPoints>250</MaxHitPoints><Mass>12</Mass><Flammability>0</Flammability><Beauty>3</Beauty><WorkToBuild>1200</WorkToBuild></statBases>
+  <building><isEdifice>true</isEdifice><deconstructible>true</deconstructible><isPowerConduit>true</isPowerConduit></building>
+  <comps><li Class="CompProperties_Power"><compClass>YR_RJW.CompPowerPlant_SamokElectric</compClass><basePowerConsumption>-250</basePowerConsumption><transmitsPower>true</transmitsPower><shortCircuitInRain>false</shortCircuitInRain></li></comps>
+ </ThingDef>
+</Defs>

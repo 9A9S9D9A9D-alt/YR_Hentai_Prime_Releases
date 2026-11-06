@@ -1,0 +1,390 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Defs>
+  <ThingDef ParentName="YR_BondageBedBase">
+    <defName>YR_Building_EggMachine</defName>
+    <label>egg machine</label>
+    <description>A machine tailored for oviposition enthusiasts. This one is calibrated for anal penetration./n/nThe mechanical eggs interferes with the Paniel's internal systems and organs, and it modifies them to constantly replicate the eggs and the grubs within. The intestinal analogs are the preferred site of incubation.\n\n(It only has the birth egg function yet)</description>
+    <passability>PassThroughOnly</passability>
+    <tickerType>Normal</tickerType>
+    <uiOrder>400</uiOrder>
+    <graphicData>
+      <texPath>Yuran/Things/Building/Furniture/EggMachine/Bed/Texture</texPath>
+      <graphicClass>YR_RJW.Graphic_EggMachineBaseV10</graphicClass>
+      <drawSize>(1.5,1.5)</drawSize>
+    </graphicData>
+    <comps>
+      <li Class="YR_RJW.CompProperties_Usable_BondageBed">
+        <compClass>YR_RJW.CompUsableRecovered22Bed</compClass>
+        <useJob>YR_Job_BondageBed</useJob>
+        <selfUseJob>YR_Job_SelfBondageBed</selfUseJob>
+        <useLabel>bound</useLabel>
+        <condition>
+          <neverHediffDefs>
+            <li>YR_Tentacle_Hediff</li>
+          </neverHediffDefs>
+          <allMatch>true</allMatch>
+        </condition>
+        <neverRelease>false</neverRelease>
+      </li>
+      <li Class="YR_RJW.CompProperties_ShowHatApparel">
+        <showHatGizmo>false</showHatGizmo>
+        <showApparelGizmo>false</showApparelGizmo>
+      </li>
+      <li Class="CompProperties_Power">
+        <compClass>CompPowerTrader</compClass>
+        <shortCircuitInRain>false</shortCircuitInRain>
+        <basePowerConsumption>120</basePowerConsumption>
+      </li>
+      <li Class="YR_RJW.CompProperties_SoundOnly">
+        <soundAmbient>YR_MilkingMachin_Sound</soundAmbient>
+      </li>
+      <li Class="YR_RJW.CompProperties_Spawner_MilkingMachine">
+        <thingToSpawnByConditions>
+          <li>
+            <spawnAmountRange>24~30</spawnAmountRange>
+            <thingToSpawn>YR_MechanicalEgg</thingToSpawn>
+          </li>
+        </thingToSpawnByConditions>
+        <spawnIntervalRange>
+          <min>240000</min>
+          <max>240000</max>
+        </spawnIntervalRange>
+        <writeTimeLeftToSpawn>true</writeTimeLeftToSpawn>
+        <showMessageIfOwned>true</showMessageIfOwned>
+      </li>
+      <li Class="YR_RJW.CompProperties_ChangeBedTexture">
+        <ticks>6</ticks>
+        <graphicData>
+          <graphicClass>Graphic_Multi</graphicClass>
+          <shaderType>Cutout</shaderType>
+        </graphicData>
+        <pathByRaces>
+          <li>
+            <headOffsetConditions>
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+						</headOffsetConditions>
+            <pathByConditions>
+              <li>
+                <condition>
+                  <ordinaryHumanlikeOnly>true</ordinaryHumanlikeOnly>
+                  <allMatch>true</allMatch>
+                </condition>
+                <pathSets>
+                  <li>
+                    <individualAnimationOffSets>
+                      <li>(0,0,0.006)</li>
+                      <li>(0,0,0.0035)</li>
+                      <li>(0,0,0.000)</li>
+                      <li>(0,0,0.000)</li>
+                      <li>(0,0,0.000)</li>
+                      <li>(0,0,0.0035)</li>
+                    </individualAnimationOffSets>
+                    <bodyColor>true</bodyColor>
+                    <pathIsPawnBody>true</pathIsPawnBody>
+                    <makeTestGizmoString>body</makeTestGizmoString>
+                  </li>
+                </pathSets>
+              </li>
+              <li MayRequire="RooAndGloomy.YuranRaceMod">
+                <condition>
+                  <races>
+                    <li MayRequire="RooAndGloomy.YuranRaceMod">Yuran_Race</li>
+                    <li MayRequire="RooAndGloomy.YuranRaceMod">Yuran_Race_Miko</li>
+                    <li MayRequire="RooAndGloomy.YuranRaceMod">Yuran_Race_Miko_BlackSnake</li>
+                  </races>
+                </condition>
+                <pathSets>
+                  <li>
+                    <offset>(0,-0.485)</offset>
+                    <drawSize>(1,1)</drawSize>
+                    <rotation>South</rotation>
+                    <layerOffset>5.7965</layerOffset>
+                    <isHeadPart>true</isHeadPart>
+                    <paths>
+                      <li>Yuran/Yuranlike/Addon/MilkingMachine/Face/1</li>
+                      <li>Yuran/Yuranlike/Addon/MilkingMachine/Face/2</li>
+                      <li>Yuran/Yuranlike/Addon/MilkingMachine/Face/3</li>
+                      <li>Yuran/Yuranlike/Addon/MilkingMachine/Face/4</li>
+                      <li>Yuran/Yuranlike/Addon/MilkingMachine/Face/7</li>
+                      <li>Yuran/Yuranlike/Addon/MilkingMachine/Face/4</li>
+                      <li>Yuran/Yuranlike/Addon/MilkingMachine/Face/3</li>
+                      <li>Yuran/Yuranlike/Addon/MilkingMachine/Face/2</li>
+                    </paths>
+                    <makeTestGizmoString>yuran head</makeTestGizmoString>
+                    <condition>
+                      <races>
+                        <li MayRequire="RooAndGloomy.YuranRaceMod">Yuran_Race</li>
+                        <li MayRequire="RooAndGloomy.YuranRaceMod">Yuran_Race_Miko</li>
+                        <li MayRequire="RooAndGloomy.YuranRaceMod">Yuran_Race_Miko_BlackSnake</li>
+                      </races>
+                    </condition>
+                  </li>
+                </pathSets>
+              </li>
+              <li>
+                <pathSets>
+                  <li>
+                    <offset>(0,-1)</offset>
+                    <drawSize>(1.5,1.5)</drawSize>
+                    <layerOffset>5.2</layerOffset>
+                    <paths>
+                      <li>Yuran/Things/Building/Furniture/EggMachine/Body/Structure/1</li>
+                    </paths>
+                    <makeTestGizmoString>Structure</makeTestGizmoString>
+                  </li>
+                  <li>
+                    <offset>(0,-1)</offset>
+                    <layerOffset>6.7</layerOffset>
+                    <paths>
+                      <li>Yuran/Things/Building/Furniture/EggMachine/Body/PipeBase/1</li>
+                    </paths>
+                    <makeTestGizmoString>PipeBase</makeTestGizmoString>
+                  </li>
+                  <li>
+                    <offset>(0,-1)</offset>
+                    <layerOffset>6.1</layerOffset>
+                    <paths>
+                      <li>Yuran/Things/Building/Furniture/EggMachine/Body/Monitor/1</li>
+                      <li>Yuran/Things/Building/Furniture/EggMachine/Body/Monitor/2</li>
+                      <li>Yuran/Things/Building/Furniture/EggMachine/Body/Monitor/3</li>
+                      <li>Yuran/Things/Building/Furniture/EggMachine/Body/Monitor/4</li>
+                      <li>Yuran/Things/Building/Furniture/EggMachine/Body/Monitor/5</li>
+                      <li>Yuran/Things/Building/Furniture/EggMachine/Body/Monitor/6</li>
+                    </paths>
+                    <makeTestGizmoString>Monitor</makeTestGizmoString>
+                  </li>
+                  <li>
+                    <offsetConditions>
+                      <li>
+                        <condition>
+                          <races>
+                            <li MayRequire="RooAndGloomy.YuranRaceMod">Yuran_Race</li>
+                            <li MayRequire="RooAndGloomy.YuranRaceMod">Yuran_Race_Miko</li>
+                            <li MayRequire="RooAndGloomy.YuranRaceMod">Yuran_Race_Miko_BlackSnake</li>
+                          </races>
+                        </condition>
+                        <offset>(0,-0.72)</offset>
+                      </li>
+                      <li>
+                        <condition>
+                          <races>
+                            <li MayRequire="SutSutMan.MinchoTheMintChocoSlimeHARver">Mincho_ThingDef</li>
+                          </races>
+                        </condition>
+                        <offset>(0,-0.57)</offset>
+                      </li>
+                    </offsetConditions>
+                    <offset>(0,-0.67)</offset>
+                    <drawSize>(0.65,0.65)</drawSize>
+                    <layerOffset>6.61</layerOffset>
+                    <paths>
+                      <li>Yuran/Things/Building/Furniture/EggMachine/Body/HMD/1</li>
+                    </paths>
+                    <makeTestGizmoString>HMD</makeTestGizmoString>
+                  </li>
+                  <li>
+                    <offset>(0,-0.8)</offset>
+                    <drawSize>(1.5,1.5)</drawSize>
+                    <layerOffset>6.7</layerOffset>
+                    <paths>
+                      <li>Yuran/Things/Building/Furniture/EggMachine/Body/Structure/2</li>
+                    </paths>
+                    <makeTestGizmoString>Structure 2</makeTestGizmoString>
+                  </li>
+                  <li>
+                    <offsetConditions>
+                      <li>
+                        <condition>
+                          <races>
+                            <li MayRequire="RooAndGloomy.YuranRaceMod">Yuran_Race</li>
+                            <li MayRequire="RooAndGloomy.YuranRaceMod">Yuran_Race_Miko</li>
+                            <li MayRequire="RooAndGloomy.YuranRaceMod">Yuran_Race_Miko_BlackSnake</li>
+                          </races>
+                        </condition>
+                        <offset>(-0.04,-0.63)</offset>
+                      </li>
+                      <li>
+                        <condition>
+                          <races>
+                            <li MayRequire="SutSutMan.MinchoTheMintChocoSlimeHARver">Mincho_ThingDef</li>
+                          </races>
+                        </condition>
+                        <offset>(-0.08,-0.62)</offset>
+                      </li>
+                    </offsetConditions>
+                    <offset>(-0.045,-0.565)</offset>
+                    <layerOffset>6.69</layerOffset>
+                    <autoSetBodyPosition>true</autoSetBodyPosition>
+                    <paths>
+                      <li>Yuran/Things/Building/Furniture/EggMachine/Body/Nipple/1</li>
+                    </paths>
+                    <makeTestGizmoString>Nipple</makeTestGizmoString>
+                  </li>
+                  <li>
+                    <offsetConditions>
+                      <li>
+                        <condition>
+                          <races>
+                            <li MayRequire="AhnDemi.PanieltheAutomata">Paniel_Race</li>
+                          </races>
+                        </condition>
+                        <offset>(0,-0.99)</offset>
+                      </li>
+                    </offsetConditions>
+                    <offset>(0,-1.05)</offset>
+                    <layerOffset>6.69</layerOffset>
+                    <paths>
+                      <li>Yuran/Things/Building/Furniture/EggMachine/Body/Anal/1</li>
+                      <li>Yuran/Things/Building/Furniture/EggMachine/Body/Anal/2</li>
+                      <li>Yuran/Things/Building/Furniture/EggMachine/Body/Anal/3</li>
+                      <li>Yuran/Things/Building/Furniture/EggMachine/Body/Anal/4</li>
+                      <li>Yuran/Things/Building/Furniture/EggMachine/Body/Anal/5</li>
+                      <li>Yuran/Things/Building/Furniture/EggMachine/Body/Anal/6</li>
+                    </paths>
+                    <makeTestGizmoString>Anal</makeTestGizmoString>
+                  </li>
+                  <li>
+                    <offset>(0,-1)</offset>
+                    <layerOffset>6.69</layerOffset>
+                    <paths>
+                      <li>Yuran/Things/Building/Furniture/EggMachine/Body/UnderBar/1</li>
+                    </paths>
+                    <makeTestGizmoString>UnderBar</makeTestGizmoString>
+                  </li>
+                  <li>
+                    <offsetConditions>
+                      <li>
+                        <condition>
+                          <races>
+                            <li MayRequire="RooAndGloomy.YuranRaceMod">Yuran_Race</li>
+                            <li MayRequire="RooAndGloomy.YuranRaceMod">Yuran_Race_Miko</li>
+                            <li MayRequire="RooAndGloomy.YuranRaceMod">Yuran_Race_Miko_BlackSnake</li>
+                          </races>
+                        </condition>
+                        <offset>(0,-1.08)</offset>
+                      </li>
+                    </offsetConditions>
+                    <offset>(0,-1.05)</offset>
+                    <layerOffset>6.69</layerOffset>
+                    <autoSetBodyPosition>true</autoSetBodyPosition>
+                    <paths>
+                      <li>Yuran/Things/Building/Furniture/EggMachine/Body/Pipe/1</li>
+                    </paths>
+                    <makeTestGizmoString>Pipe</makeTestGizmoString>
+                  </li>
+                  <li>
+                    <offsetConditions>
+                      <li>
+                        <condition>
+                          <races>
+                            <li MayRequire="bep.littlefairy.ttwsfabr">LittleFairy_Pawn</li>
+                            <li MayRequire="bep.mofy.twfiaclr">Mofy_Pawn</li>
+                            <li MayRequire="bep.resurreviewy.tnair">Resurreviewy_Pawn</li>
+                            <li MayRequire="bep.glassy.terr">Glassy_Pawn</li>
+                            <li MayRequire="bep.sweety.mcsr">Sweety_Pawn</li>
+                            <li MayRequire="bep.legacyfairy.tftr">LegacyFairy_Pawn</li>
+                            <li MayRequire="bep.magiaplant.tfmr">MagiaPlant_Pawn</li>
+                            <li MayRequire="bep.forgotty.tfcr">Forgotty_Pawn</li>
+                            <li MayRequire="bep.maddy.twmr">Maddy_Pawn</li>
+                          </races>
+                        </condition>
+                        <offset>(0,-0.98)</offset>
+                      </li>
+                    </offsetConditions>
+                    <offset>(0,-1.03)</offset>
+                    <layerOffset>6.68</layerOffset>
+                    <drawSize>(1,1)</drawSize>
+                    <paths>
+                      <li>Yuran/Things/Building/Furniture/GloryHole/Body/Penis/South/Semen/2</li>
+                      <li>Yuran/Things/Building/Furniture/GloryHole/Body/Penis/South/Semen/3</li>
+                      <li>Yuran/Things/Building/Furniture/GloryHole/Body/Penis/South/Semen/4</li>
+                      <li>Yuran/Things/Building/Furniture/GloryHole/Body/Penis/South/Semen/5</li>
+                      <li>Yuran/Things/Building/Furniture/GloryHole/Body/Penis/South/Semen/6</li>
+                      <li>Yuran/Things/Building/Furniture/GloryHole/Body/Penis/South/Semen/1</li>
+                    </paths>
+                    <makeTestGizmoString>SemenDown</makeTestGizmoString>
+                  </li>
+                </pathSets>
+              </li>
+            </pathByConditions>
+          </li>
+        </pathByRaces>
+      </li>
+      <li Class="YR_RJW.CompProperties_EggMilkingBodyV44" />
+    </comps>
+    <statBases>
+      <MaxHitPoints>140</MaxHitPoints>
+      <Flammability>1.0</Flammability>
+      <Beauty>1</Beauty>
+      <WorkToBuild>800</WorkToBuild>
+      <Mass>30</Mass>
+      <BedRestEffectiveness>1</BedRestEffectiveness>
+      <Comfort>0.75</Comfort>
+      <ImmunityGainSpeedFactor>1.07</ImmunityGainSpeedFactor>
+      <SurgerySuccessChanceFactor>1</SurgerySuccessChanceFactor>
+    </statBases>
+    <size>(1,2)</size>
+    <costList>
+      <ComponentIndustrial>3</ComponentIndustrial>
+      <Steel>200</Steel>
+    </costList>
+    <techLevel>Medieval</techLevel>
+    <uiIconScale>1.4</uiIconScale>
+    <defaultPlacingRot>North</defaultPlacingRot>
+    <rotatable>false</rotatable>
+  </ThingDef>
+</Defs>

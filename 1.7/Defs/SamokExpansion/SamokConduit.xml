@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+ <ThingDef ParentName="PowerConduit">
+  <defName>YR_SamokConduit</defName>
+  <label>전도근</label>
+  <description>사목의 뿌리에서 뻗어 나온 전력 전달 조직. 일반 전선 및 전기낭과 같은 전력망에 연결된다. 사목의 나무나 전도근의 표시 버튼으로 맵 전체의 전도근을 숨기거나 표시할 수 있다. 숨겨도 전력은 전달된다.</description>
+  <thingClass>YR_RJW.Building_SamokConduit</thingClass>
+  <graphicData><texPath>Yuran/Things/Building/SamokConduit/Conduit_Atlas</texPath><color>(1,1,1)</color></graphicData>
+  <uiIconPath>Yuran/Things/Building/SamokConduit/Conduit_Icon</uiIconPath>
+  <costList Inherit="False"><YR_SamokTentacleRaw>2</YR_SamokTentacleRaw></costList>
+  <comps Inherit="False"><li Class="CompProperties_Power"><compClass>CompPowerTransmitter</compClass><transmitsPower>true</transmitsPower><shortCircuitInRain>false</shortCircuitInRain></li></comps>
+  <uiOrder>2002</uiOrder>
+ </ThingDef>
+</Defs>

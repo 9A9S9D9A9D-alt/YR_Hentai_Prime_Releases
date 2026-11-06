@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <MeditationFocusDef MayRequire="Ludeon.RimWorld.Royalty">
+    <defName>YR_SamokBrideFocus</defName>
+    <label>사목숭배</label>
+    <description>심연의 신부가 사목 나무를 숭배하며 정신을 집중하는 명상 유형. 명상으로 나무 주변의 촉수를 성장시키고 초집중을 회복한다.</description>
+  </MeditationFocusDef>
+  <ThingDef ParentName="PlantBaseNonEdible" MayRequire="Ludeon.RimWorld.Royalty">
+    <defName>YR_SamokMeditationTentacle</defName>
+    <label>사목 명상 촉수</label>
+    <description>사목 나무에서 명상하여 자란 촉수. 10개로 정신 연결 수준을 하나 얻는다.</description>
+    <statBases>
+      <MaxHitPoints>85</MaxHitPoints>
+      <Flammability>1.3</Flammability>
+    </statBases>
+    <graphicData>
+      <texPath>Yuran/Things/Building/Furniture/Tentacle/Deco/Deco_A</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <plant>
+      <fertilityMin>0.08</fertilityMin>
+      <fertilitySensitivity>0</fertilitySensitivity>
+      <growDays>1</growDays>
+      <lifespanDaysPerGrowDays>60</lifespanDaysPerGrowDays>
+      <maxMeshCount>1</maxMeshCount>
+      <visualSizeRange>0.7~0.9</visualSizeRange>
+      <topWindExposure>0.4</topWindExposure>
+      <wildOrder>1</wildOrder>
+      <dieFromToxicFallout>false</dieFromToxicFallout>
+      <allowAutoCut>false</allowAutoCut>
+      <harvestedThingDef>YR_SamokTentacleRaw</harvestedThingDef>
+      <harvestYield>5</harvestYield>
+      <harvestMinGrowth>0.999</harvestMinGrowth>
+      <harvestAfterGrowth>0</harvestAfterGrowth>
+      <harvestFailable>false</harvestFailable>
+      <harvestWork>200</harvestWork>
+      <harvestTag>Standard</harvestTag>
+      <autoHarvestable>false</autoHarvestable>
+      <harvestYieldAffectedByDifficulty>false</harvestYieldAffectedByDifficulty>
+    </plant>
+    <selectable>true</selectable>
+    <neverMultiSelect>false</neverMultiSelect>
+  </ThingDef>
+  <JobDef MayRequire="Ludeon.RimWorld.Royalty">
+    <defName>YR_SamokPsychicLink</defName>
+    <driverClass>YR_RJW.JobDriver_SamokPsychicLink</driverClass>
+    <reportString>사목 나무와 정신 연결 중.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+</Defs>

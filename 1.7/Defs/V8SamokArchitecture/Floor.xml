@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <TerrainDef ParentName="FloorBase">
+    <defName>YR_SamokFloor</defName>
+    <label>사목 바닥</label>
+    <description>수확한 사목 촉수를 촘촘하게 엮은 내화성 바닥.</description>
+    <texturePath>Yuran/Things/Building/SamokArchitecture/FloorSoftV2</texturePath>
+    <edgeType>FadeRough</edgeType>
+    <renderPrecedence>225</renderPrecedence>
+    <designationCategory>Floors</designationCategory>
+    <costList>
+      <YR_SamokTentacleRaw>3</YR_SamokTentacleRaw>
+    </costList>
+    <statBases>
+      <WorkToBuild>160</WorkToBuild>
+      <Flammability>0</Flammability>
+      <Beauty>1</Beauty>
+    </statBases>
+    <color>(255,255,255)</color>
+  </TerrainDef>
+</Defs>

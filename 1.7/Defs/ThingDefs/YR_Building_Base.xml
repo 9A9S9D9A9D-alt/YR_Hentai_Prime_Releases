@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+	<HediffDef>
+		<defName>YR_MilkingMachine_DisableNeed</defName>
+		<hediffClass>HediffWithComps</hediffClass>
+		<label>YR_MilkingMachineAddon_Hediff</label>
+		<description>Milked by a milking machine.(A Hediff that goes through to check the body type and to give a hediff for the hediff add-on.)</description>
+		<defaultLabelColor>(0.392, 0.678, 0.737)</defaultLabelColor>
+		<scenarioCanAdd>false</scenarioCanAdd>
+		<maxSeverity>1</maxSeverity>
+		<initialSeverity>1</initialSeverity>
+		<isBad>false</isBad>
+		<stages>
+			<li>
+				<becomeVisible>false</becomeVisible>
+				<!-- <capMods> -->
+				<!-- <li> -->
+				<!-- <capacity>Manipulation</capacity> -->
+				<!-- <setMax>0</setMax> -->
+				<!-- </li> -->
+				<!-- <li> -->
+				<!-- <capacity>Moving</capacity> -->
+				<!-- <setMax>0</setMax> -->
+				<!-- </li> -->
+				<!-- <li> -->
+				<!-- <capacity>Consciousness</capacity> -->
+				<!-- <setMax>0.01</setMax> -->
+				<!-- </li> -->
+				<!-- </capMods> -->
+			<disablesNeeds>
+			<li>Rest</li>
+			<li>Joy</li>
+			<li>Beauty</li>
+			<li>Comfort</li>
+			<li>Outdoors</li>
+			<li>Indoors</li>
+			<li>RoomSize</li>
+			<li>DrugDesire</li>
+			<li>Food</li>
+		</disablesNeeds></li>
+		</stages>
+		
+	</HediffDef>
+	<DesignationCategoryDef>
+		<defName>YR_RJW_Furniture</defName>
+		<label>유란RJW</label>
+		<order>490</order>
+		<specialDesignatorClasses>
+			<li>Designator_Cancel</li>
+			<li>Designator_Deconstruct</li>
+		</specialDesignatorClasses>
+	</DesignationCategoryDef>
+	<ThingDef Name="YR_AnimationBedBase" ParentName="FurnitureBase" Abstract="True">
+		<graphicData>
+			<shaderType>CutoutComplex</shaderType>
+			<drawSize>(2.25,2.25)</drawSize>
+			<color>(255,255,255)</color>
+			<damageData>
+				<rect>(0,0.05,1,1.95)</rect>
+			</damageData>
+			<shadowData>
+				<volume>(1,1,1)</volume>
+				<offset>(0, 0, 0)</offset>
+			</shadowData>
+		</graphicData>
+		<thingClass>YR_Hentai_Prime_AnimationBed.Building_AnimationBed</thingClass>
+		<containedPawnsSelectable>true</containedPawnsSelectable>
+		<passability>PassThroughOnly</passability>
+		<rotatable>false</rotatable>
+		<fillPercent>0.4</fillPercent>
+		<drawerType>RealtimeOnly</drawerType>
+		<!-- Prevents items clipping into it -->
+		<tickerType>Normal</tickerType>
+		<terrainAffordanceNeeded>Medium</terrainAffordanceNeeded>
+		<pathCost>30</pathCost>
+		<canOverlapZones>false</canOverlapZones>
+		<size>(1, 2)</size>
+		<defaultPlacingRot>North</defaultPlacingRot>
+		<designationCategory>YR_RJW_Furniture</designationCategory>
+		<statBases>
+			<MaxHitPoints>140</MaxHitPoints>
+			<Flammability>1.0</Flammability>
+			<Beauty>1</Beauty>
+			<WorkToBuild>800</WorkToBuild>
+			<Mass>30</Mass>
+		</statBases>
+		<comps>
+			<li Class="CompProperties_AffectedByFacilities">
+				<linkableFacilities>
+					<li>YR_CNMS</li>
+				</linkableFacilities>
+			</li>
+		</comps>
+	</ThingDef>
+</Defs>

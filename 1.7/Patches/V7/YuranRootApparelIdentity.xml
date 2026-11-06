@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <!-- PrestigeCombatGear also matches native Yuran armor replacements.
+       HAR individual paths take precedence and retain original root assets. -->
+  <Operation Class="PatchOperationFindMod">
+    <mods><li>Yuran race</li></mods>
+    <match Class="PatchOperationAdd">
+    <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Yuran_Race" or defName="Yuran_Race_Miko" or defName="Yuran_Race_Miko_BlackSnake"]/alienRace/graphicPaths/apparel/individualPaths</xpath>
+    <value>
+      <li>
+        <key>YR_AP_Tentacle</key>
+        <value>
+          <path>Yuran/Yuranlike/Apparel/Bote/YR_AP_Tentacle/Texture_Thin</path>
+          <extendedGraphics>
+            <BodyType For="Thin_YR_Bote">Yuran/Yuranlike/Apparel/Bote/YR_AP_Tentacle/Texture_Thin_YR_Bote</BodyType>
+            <BodyType For="Thin_YR_BB">Yuran/Yuranlike/Apparel/Bote/YR_AP_Tentacle/Texture_Thin_YR_BB</BodyType>
+          </extendedGraphics>
+        </value>
+      </li>
+      <li>
+        <key>YR_AP_Tentacle_Rooted</key>
+        <value>Yuran/Yuranlike/Apparel/Bote/YR_AP_Tentacle_Rooted/Texture_Thin</value>
+      </li>
+      <li>
+        <key>YR_AP_Tentacle_Headgear</key>
+        <value>Yuran/Yuranlike/Apparel/Bote/YR_AP_Tentacle_Headgear/Texture</value>
+      </li>
+      <li>
+        <key>YR_AP_Tentacle_Headgear_Mask</key>
+        <value>Yuran/Yuranlike/Apparel/Bote/YR_AP_Tentacle_Headgear_Mask/Texture</value>
+      </li>
+    </value>
+    </match>
+  </Operation>
+</Patch>
+

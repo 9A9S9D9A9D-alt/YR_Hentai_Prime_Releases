@@ -1,0 +1,316 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Patch>
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Moyo-From the depth</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName = "Alien_Moyo"]/alienRace/generalSettings/alienPartGenerator/bodyAddons/li[1]</xpath>
+          <value>
+            <extendedGraphics>
+              <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+                <path>Moyo/Tail/Tentalce_MoyoTail</path>
+                <conditions>
+                  <Hediff>YR_Tentacle_Hediff</Hediff>
+                </conditions>
+              </li>
+            </extendedGraphics>
+          </value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>*/AlienRace.ThingDef_AlienRace[defName="Alien_Moyo"]/alienRace/generalSettings/alienPartGenerator/bodyAddons</xpath>
+          <value>
+            <li>
+              <path>Moyo/Hair/MYHair</path>
+              <inFrontOfBody>false</inFrontOfBody>
+              <colorChannel>hair</colorChannel>
+              <alignWithHead>true</alignWithHead>
+              <offsets>
+                <north>
+                  <layerOffset>-0.275</layerOffset>
+                  <bodyTypes>
+                    <Female>(0,0)</Female>
+                    <Thin>(0,0)</Thin>
+                  </bodyTypes>
+                </north>
+                <south>
+                  <layerOffset>-0.33</layerOffset>
+                  <bodyTypes>
+                    <Female>(0,0)</Female>
+                    <Thin>(0,0)</Thin>
+                  </bodyTypes>
+                </south>
+                <east>
+                  <layerOffset>-0.33</layerOffset>
+                  <bodyTypes>
+                    <Female>(0,0)</Female>
+                    <Thin>(0,0)</Thin>
+                  </bodyTypes>
+                </east>
+              </offsets>
+              <scaleWithPawnDrawsize>true</scaleWithPawnDrawsize>
+              <extendedGraphics>
+                <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+                  <path>Moyo/Hairs/MYDummy</path>
+                  <conditions>
+                    <Age>HumanlikeBaby</Age>
+                  </conditions>
+                </li>
+              </extendedGraphics>
+              <conditions>
+                <BodyPart>
+                  <bodyPart>Head</bodyPart>
+                </BodyPart>
+              </conditions>
+            </li>
+            <li>
+              <path>Moyo/Face/MoyoFace</path>
+              <inFrontOfBody>true</inFrontOfBody>
+              <colorChannel>skin</colorChannel>
+              <alignWithHead>true</alignWithHead>
+              <offsets>
+                <north>
+                  <bodyTypes>
+                    <Female>(0, 0)</Female>
+                    <Thin>(0, 0)</Thin>
+                  </bodyTypes>
+                </north>
+                <south>
+                  <layerOffset>-0.272</layerOffset>
+                  <bodyTypes>
+                    <Female>(0, 0)</Female>
+                    <Thin>(0, 0)</Thin>
+                  </bodyTypes>
+                </south>
+                <east>
+                  <layerOffset>-0.272</layerOffset>
+                  <bodyTypes>
+                    <Female>(0, 0)</Female>
+                    <Thin>(0, 0)</Thin>
+                  </bodyTypes>
+                </east>
+              </offsets>
+              <jobs>
+                <jobs>
+                  <li>
+                    <job>LayDown</job>
+                    <drawPostures>
+                      <li>
+                        <key>LayingInBed</key>
+                        <value>true</value>
+                      </li>
+                      <li>
+                        <key>LayingOnGroundFaceUp</key>
+                        <value>true</value>
+                      </li>
+                      <li>
+                        <key>LayingOnGroundNormal</key>
+                        <value>true</value>
+                      </li>
+                    </drawPostures>
+                    <drawUnmoving>false</drawUnmoving>
+                  </li>
+                  <li>
+                    <job>Wait_Downed</job>
+                    <drawPostures>
+                      <li>
+                        <key>LayingInBed</key>
+                        <value>true</value>
+                      </li>
+                      <li>
+                        <key>LayingOnGroundFaceUp</key>
+                        <value>true</value>
+                      </li>
+                      <li>
+                        <key>LayingOnGroundNormal</key>
+                        <value>true</value>
+                      </li>
+                    </drawPostures>
+                    <drawUnmoving>false</drawUnmoving>
+                  </li>
+                </jobs>
+              </jobs>
+              <scaleWithPawnDrawsize>true</scaleWithPawnDrawsize>
+              <extendedGraphics>
+                <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+                  <path>Moyo/Face/MoyoFaceEro</path>
+                  <conditions>
+                    <Hediff>RJW_FertPill</Hediff>
+                  </conditions>
+                </li>
+                <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+                  <path>Moyo/Face/MoyoFaceEro</path>
+                  <conditions>
+                    <Hediff>HumpShroomEffect</Hediff>
+                  </conditions>
+                </li>
+                <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+                  <path>Moyo/Face/MoyoFaceEro</path>
+                  <conditions>
+                    <Hediff>YR_Tentacle_Hediff</Hediff>
+                  </conditions>
+                </li>
+                <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+                  <path>Moyo/Face/MoyoFaceBirth</path>
+                  <conditions>
+                    <Hediff>PregnancyLabor</Hediff>
+                  </conditions>
+                </li>
+                <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+                  <path>Moyo/Face/MoyoFaceBirth</path>
+                  <conditions>
+                    <Hediff>PregnancyLaborPushing</Hediff>
+                  </conditions>
+                </li>
+                <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+                  <path>Moyo/Face/MoyoFaceBirth</path>
+                  <conditions>
+                    <Hediff>YR_Pregnant_Tentacle_Birth</Hediff>
+                  </conditions>
+                </li>
+              </extendedGraphics>
+              <conditions>
+                <BodyPart>
+                  <bodyPart>Head</bodyPart>
+                </BodyPart>
+                <RotStage>
+                  <allowedStages>
+                    <li>Fresh</li>
+                    <li>Rotting</li>
+                  </allowedStages>
+                </RotStage>
+              </conditions>
+            </li>
+            <li>
+              <path>Moyo/Heads/MoyoHead</path>
+              <inFrontOfBody>true</inFrontOfBody>
+              <colorChannel>skin</colorChannel>
+              <alignWithHead>true</alignWithHead>
+              <angle>0</angle>
+              <offsets>
+                <north>
+                  <bodyTypes>
+                    <Female>(0, 0)</Female>
+                    <Thin>(0, 0)</Thin>
+                  </bodyTypes>
+                </north>
+                <south>
+                  <layerOffset>-0.273</layerOffset>
+                  <bodyTypes>
+                    <Female>(0, 0)</Female>
+                    <Thin>(0, 0)</Thin>
+                  </bodyTypes>
+                </south>
+                <east>
+                  <layerOffset>-0.273</layerOffset>
+                  <bodyTypes>
+                    <Female>(0, 0)</Female>
+                    <Thin>(0, 0)</Thin>
+                  </bodyTypes>
+                </east>
+              </offsets>
+              <scaleWithPawnDrawsize>true</scaleWithPawnDrawsize>
+              <extendedGraphics>
+                <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+                  <path>Moyo/Heads/MoyoHeadEro</path>
+                  <conditions>
+                    <Hediff>RJW_FertPill</Hediff>
+                  </conditions>
+                </li>
+                <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+                  <path>Moyo/Heads/MoyoHeadEro</path>
+                  <conditions>
+                    <Hediff>HumpShroomEffect</Hediff>
+                  </conditions>
+                </li>
+                <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+                  <path>Moyo/Heads/MoyoHeadEro</path>
+                  <conditions>
+                    <Hediff>YR_Tentacle_Hediff</Hediff>
+                  </conditions>
+                </li>
+                <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+                  <path>Moyo/Face/MoyoFaceBirth</path>
+                  <conditions>
+                    <Hediff>PregnancyLabor</Hediff>
+                  </conditions>
+                </li>
+                <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+                  <path>Moyo/Face/MoyoFaceBirth</path>
+                  <conditions>
+                    <Hediff>PregnancyLaborPushing</Hediff>
+                  </conditions>
+                </li>
+                <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+                  <path>Moyo/Face/MoyoFaceBirth</path>
+                  <conditions>
+                    <Hediff>YR_Pregnant_Tentacle_Birth</Hediff>
+                  </conditions>
+                </li>
+              </extendedGraphics>
+              <conditions>
+                <BodyPart>
+                  <bodyPart>Head</bodyPart>
+                </BodyPart>
+                <RotStage>
+                  <allowedStages>
+                    <li>Fresh</li>
+                    <li>Rotting</li>
+                  </allowedStages>
+                </RotStage>
+              </conditions>
+            </li>
+          </value>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Moyo-From the depth</li>
+      <li>Nemonian.MY</li>
+    </mods>
+    <match Class="PatchOperationReplace">
+      <xpath>*/AlienRace.ThingDef_AlienRace[defName="Alien_Moyo"]/alienRace/generalSettings/alienPartGenerator/bodyAddons/li[1]/offsets</xpath>
+      <value>
+        <offsets>
+          <south>
+            <layerOffset>-0.27</layerOffset>
+            <bodyTypes>
+              <Female>(0,0)</Female>
+              <Thin>(0,0)</Thin>
+              <Baby>(0,0)</Baby>
+              <Child>(0,0)</Child>
+              <Female_YR_Bote>(0,0)</Female_YR_Bote>
+              <Thin_YR_Bote>(0,0)</Thin_YR_Bote>
+            </bodyTypes>
+          </south>
+          <north>
+            <layerOffset>-0.28</layerOffset>
+            <bodyTypes>
+              <Female>(0,0.551)</Female>
+              <Thin>(0,0.551)</Thin>
+              <Baby>(0,0.551)</Baby>
+              <Child>(0,0.548)</Child>
+              <Female_YR_Bote>(0,0.551)</Female_YR_Bote>
+              <Thin_YR_Bote>(0,0.551)</Thin_YR_Bote>
+            </bodyTypes>
+          </north>
+          <east>
+            <layerOffset>-0.28</layerOffset>
+            <bodyTypes>
+              <Female>(-0.34,0.193)</Female>
+              <Thin>(-0.34,0.193)</Thin>
+              <Baby>(-0.36,0.193)</Baby>
+              <Child>(-0.36,0.193)</Child>
+              <Female_YR_Bote>(-0.34,0.193)</Female_YR_Bote>
+              <Thin_YR_Bote>(-0.34,0.193)</Thin_YR_Bote>
+            </bodyTypes>
+          </east>
+        </offsets>
+      </value>
+    </match>
+  </Operation>
+</Patch>

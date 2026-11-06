@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='utf-8'?>
+<LanguageData>
+  <YR_CaptureEntity>施設に割り当てる</YR_CaptureEntity>
+  <YR_CaptureEntityDesc>{0}の施設を選択します。</YR_CaptureEntityDesc>
+  <YR_CancelCapture>施設の割り当てを解除</YR_CancelCapture>
+  <YR_CancelCaptureDesc>{0}の施設の割り当てを解除します。</YR_CancelCaptureDesc>
+  <YR_ReleaseVictim>{0}を解放</YR_ReleaseVictim>
+  <YR_ReleaseVictimDesc>{0}を施設から解放します。</YR_ReleaseVictimDesc>
+  <YR_TieUpPawn>施設に配置</YR_TieUpPawn>
+  <YR_TieUpPawn_Condition>施設の利用条件を満たしていません。</YR_TieUpPawn_Condition>
+  <YRP_OfferingNeeded>供物：{0}/{2}、あと {1}。上限：{3}。</YRP_OfferingNeeded>
+  <YRP_OfferingExtra>成長完了。供物 {0}、追加可能 {1}、上限 {2}。</YRP_OfferingExtra>
+  <YRP_OfferingMaximum>供物の上限に到達：{0}/{1}。</YRP_OfferingMaximum>
+  <YRP_DebugAddOffering>開発者：供物を1回追加</YRP_DebugAddOffering>
+  <YRP_DebugMaxOffering>開発者：供物を上限に設定</YRP_DebugMaxOffering>
+  <YRP_DebugOfferingDescription>原版の供物進行用の開発者コマンドです。備蓄燃料は別計算です。</YRP_DebugOfferingDescription>
+  <YRP_AdultOnly>設定された最低生物学的年齢と種族の成人期を満たす人型の成人のみ利用できます。</YRP_AdultOnly>
+  <YRP_NoTargets>マップに生存している対象がいません。</YRP_NoTargets>
+</LanguageData>

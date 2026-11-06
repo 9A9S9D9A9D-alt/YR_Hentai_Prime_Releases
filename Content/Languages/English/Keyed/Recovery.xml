@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='utf-8'?>
+<LanguageData>
+  <YRP_AdultRule>Humanlike adults only. Biological age must be at least 18 and the race's adult life stage is also required.</YRP_AdultRule>
+  <YRP_MinimumAge>Minimum biological age: {0}</YRP_MinimumAge>
+  <YRP_AdultOnly>Only humanlike adults meeting the configured minimum age and adult life stage can use this facility.</YRP_AdultOnly>
+  <YRP_Animations>Enable animation facilities</YRP_Animations>
+  <YRP_Sounds>Enable facility sounds</YRP_Sounds>
+  <YRP_Portraits>Enable facility portrait rendering</YRP_Portraits>
+  <YRP_RjwGuard>Prevent conflicting RJW jobs for facility occupants</YRP_RjwGuard>
+  <YRP_Samok>Enable Samok altar and tree</YRP_Samok>
+  <YRP_AltarCost>Corpses required to complete the altar: {0}</YRP_AltarCost>
+  <YRP_GrowthCost>Additional corpses required to mature the tree: {0}</YRP_GrowthCost>
+  <YRP_TreeSummoned>The Samok altar has grown into a tree.</YRP_TreeSummoned>
+  <YRP_TreeProgress>Growth contributions: {0} / {1}</YRP_TreeProgress>
+  <YRP_Disabled>Disabled in mod settings</YRP_Disabled>
+  <YRP_Pulse>Defensive pulse</YRP_Pulse>
+  <YRP_PulseDescription>Spend {0} units of reserve fuel for a map-wide defensive pulse. Allies are stunned for 4 seconds and enemies for 8 seconds.</YRP_PulseDescription>
+  <YRP_ImmatureTree>The tree is still growing.</YRP_ImmatureTree>
+  <YRP_NeedFuel>Requires {0} units of corpse reserve.</YRP_NeedFuel>
+  <YRP_Cooldown>The pulse is recharging.</YRP_Cooldown>
+  <YRP_NoTargets>No living targets are available on this map.</YRP_NoTargets>
+  <YR_CaptureEntity>Assign to facility</YR_CaptureEntity>
+  <YR_CaptureEntityDesc>Choose a facility for {0}.</YR_CaptureEntityDesc>
+  <YR_CancelCapture>Cancel facility assignment</YR_CancelCapture>
+  <YR_CancelCaptureDesc>Cancel the facility assignment for {0}.</YR_CancelCaptureDesc>
+  <YR_ReleaseVictim>Release {0}</YR_ReleaseVictim>
+  <YR_ReleaseVictimDesc>Release {0} from the facility.</YR_ReleaseVictimDesc>
+  <YR_TieUpPawn>Place in facility</YR_TieUpPawn>
+  <YR_TieUpPawn_Condition>Facility requirements are not met</YR_TieUpPawn_Condition>
+  <YRP_OfferingNeeded>Offerings: {0}/{2}; {1} more required. Maximum: {3}.</YRP_OfferingNeeded>
+  <YRP_OfferingExtra>Growth complete. Offerings: {0}; {1} more accepted, maximum {2}.</YRP_OfferingExtra>
+  <YRP_OfferingMaximum>Maximum offerings reached: {0}/{1}.</YRP_OfferingMaximum>
+  <YRP_DebugAddOffering>DEV: Add one offering</YRP_DebugAddOffering>
+  <YRP_DebugMaxOffering>DEV: Set maximum offerings</YRP_DebugMaxOffering>
+  <YRP_DebugOfferingDescription>Developer control for original offering progression. Reserve fuel is separate.</YRP_DebugOfferingDescription>
+</LanguageData>

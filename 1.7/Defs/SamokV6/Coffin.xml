@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <JobDef>
+    <defName>YR_SamokHaulBrideCorpse</defName>
+    <driverClass>YR_RJW.JobDriver_SamokHaulBrideCorpse</driverClass>
+    <reportString>carrying an abyss bride to the tentacle coffin.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+  <WorkGiverDef>
+    <defName>YR_SamokHaulBrideCorpse</defName>
+    <label>preserve abyss brides</label>
+    <giverClass>YR_RJW.WorkGiver_SamokHaulBrideCorpse</giverClass>
+    <workType>Hauling</workType>
+    <verb>carry to the tentacle coffin</verb>
+    <gerund>carrying to the tentacle coffin</gerund>
+    <priorityInType>320</priorityInType>
+    <requiredCapacities><li>Manipulation</li></requiredCapacities>
+  </WorkGiverDef>
+</Defs>

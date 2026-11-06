@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch><Operation Class="PatchOperationAdd"><xpath>Defs/ThingDef[defName="Building_Tentacle_Tree"]/comps</xpath><value><li Class="YR_RJW.CompProperties_SamokGrowth" /></value></Operation></Patch>

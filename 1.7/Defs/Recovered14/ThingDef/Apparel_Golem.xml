@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Defs>
+  <ThingCategoryDef>
+    <defName>YR_AP_Golem</defName>
+    <label>golem apparel</label>
+    <parent>Apparel</parent>
+  </ThingCategoryDef>
+  <ThingDef ParentName="ApparelNoQualityBase" Name="YR_AP_Golem_Base" Abstract="True">
+    <thingCategories Inherit="False">
+      <li>YR_AP_Golem</li>
+    </thingCategories>
+    <techLevel>Neolithic</techLevel>
+    <tickerType>Normal</tickerType>
+    <smeltable>false</smeltable>
+    <apparel>
+      <tags Inherit="False">
+        <li>YR_NeverNaked</li>
+      </tags>
+      <canBeDesiredForIdeo>false</canBeDesiredForIdeo>
+      <canBeGeneratedToSatisfyWarmth>false</canBeGeneratedToSatisfyWarmth>
+      <canBeGeneratedToSatisfyToxicEnvironmentResistance>false</canBeGeneratedToSatisfyToxicEnvironmentResistance>
+      <careIfDamaged>false</careIfDamaged>
+    </apparel>
+    <colorGenerator Class="ColorGenerator_Options">
+      <options>
+        <li>
+          <weight>10</weight>
+          <only>RGBA(1,1,1,1)</only>
+        </li>
+      </options>
+    </colorGenerator>
+    <tradeability>None</tradeability>
+  </ThingDef>
+  <ThingDef ParentName="YR_AP_Golem_Base">
+    <defName>YR_AP_Golem</defName>
+    <description>TEST</description>
+    <label>the root of the evil tree(rooted)</label>
+    <graphicData>
+      <texPath>Yuran/Yuranlike/Apparel/Bote/YR_AP_Golem/Texture</texPath>
+      <graphicClass>Graphic_Multi</graphicClass>
+      <drawSize>(1,1)</drawSize>
+    </graphicData>
+    <statBases>
+      <MaxHitPoints>500</MaxHitPoints>
+      <Mass>9</Mass>
+      <ArmorRating_Sharp>0</ArmorRating_Sharp>
+      <ArmorRating_Blunt>0</ArmorRating_Blunt>
+      <ArmorRating_Heat>0</ArmorRating_Heat>
+      <Insulation_Cold>0</Insulation_Cold>
+      <Insulation_Heat>0</Insulation_Heat>
+      <EquipDelay>11</EquipDelay>
+      <IncomingDamageFactor>0.7</IncomingDamageFactor>
+    </statBases>
+    <apparel>
+      <bodyPartGroups>
+        <li>Torso</li>
+        <li>Shoulders</li>
+        <li>Arms</li>
+        <li>Legs</li>
+      </bodyPartGroups>
+      <wornGraphicPath>Yuran/Yuranlike/Apparel/Bote/YR_AP_Golem/Texture</wornGraphicPath>
+      <useWornGraphicMask>true</useWornGraphicMask>
+      <layers>
+        <li>Shell</li>
+      </layers>
+    </apparel>
+    <comps>
+      <li Class="YR_RJW.CompProperties_Golem_Apparel">
+			</li>
+    </comps>
+  </ThingDef>
+</Defs>

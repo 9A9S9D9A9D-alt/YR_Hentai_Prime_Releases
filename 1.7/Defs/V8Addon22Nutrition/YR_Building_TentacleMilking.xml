@@ -1,0 +1,500 @@
+﻿<Defs>
+  <ThingDef ParentName="YR_BondageBedBase">
+    <defName>YR_Building_TentacleMilking</defName>
+    <label>evil tree milking tentacle</label>
+    <description>A bundle of tentacles, squeezing the love out of the unruly bride while soothing them with affection. While initial resistance is expected from forceful bondage, they become submissive bride after repeated milking and being fed love juice.</description>
+    <passability>PassThroughOnly</passability>
+    <tickerType>Normal</tickerType>
+    <uiOrder>200</uiOrder>
+    <graphicData>
+      <texPath>Yuran/Things/Building/Furniture/TentacleMilking/Bed/Texture</texPath>
+      <graphicClass>Graphic_Multi</graphicClass>
+      <drawSize>(1.5,1.5)</drawSize>
+    </graphicData>
+    <altitudeLayer>BuildingOnTop</altitudeLayer>
+    <minifiedDef />
+    <thingCategories Inherit="false" />
+    <comps>
+      <li Class="YR_RJW.CompProperties_Usable_BondageBed">
+        <compClass>YR_RJW.CompUsableRecovered22Bed</compClass>
+        <useJob>YR_Job_BondageBed</useJob>
+        <selfUseJob>YR_Job_SelfBondageBed</selfUseJob>
+        <useLabel>bound</useLabel>
+        <settingException>
+        <femaleOnly>true</femaleOnly></settingException>
+        <neverRelease>false</neverRelease>
+        </li>
+      <li Class="YR_RJW.CompProperties_ShowHatApparel">
+        <showHatGizmo>false</showHatGizmo>
+        <showApparelGizmo>false</showApparelGizmo>
+        <showHatNonGizmo>true</showHatNonGizmo>
+        <showApparelNonGizmo>true</showApparelNonGizmo>
+      </li>
+      <li Class="YR_RJW.CompProperties_SoundOnly">
+        <soundAmbient>YR_MilkingMachin_Sound</soundAmbient>
+      </li>
+      <li Class="YR_RJW.CompProperties_Spawner_MilkingMachine">
+        <thingToSpawnByConditions>
+          <li>
+            <spawnAmountRange>3~4</spawnAmountRange>
+            <thingToSpawn>YR_Tentacle_BreastMilk</thingToSpawn>
+          </li>
+          <li MayRequire="bep.mofy.twfiaclr">
+            <condition>
+              <races>
+                <li>Mofy_Pawn</li>
+              </races>
+            </condition>
+            <spawnAmountRange>3~4</spawnAmountRange>
+            <thingToSpawn>Mofy_Tentacle_BreastMilk</thingToSpawn>
+          </li>
+          <li MayRequire="bep.sweety.mcsr">
+            <condition>
+              <races>
+                <li>Sweety_Pawn</li>
+              </races>
+            </condition>
+            <spawnAmountRange>3~4</spawnAmountRange>
+            <thingToSpawn>Sweety_Tentacle_BreastMilk</thingToSpawn>
+          </li>
+        </thingToSpawnByConditions>
+        <spawnIntervalRange>
+          <min>30000</min>
+          <max>30000</max>
+        </spawnIntervalRange>
+        <writeTimeLeftToSpawn>true</writeTimeLeftToSpawn>
+        <showMessageIfOwned>true</showMessageIfOwned>
+      </li>
+      <li Class="YR_RJW.CompProperties_HediffControl">
+        <hediffGizmos>
+          <li>
+            <hediffDefs>
+              <li>YR_North_Hediff</li>
+            </hediffDefs>
+            <label>YR_PowerMode</label>
+            <iconPath>UI/Icons/ChangingPosition</iconPath>
+            <disabledReason>YR_OnlyForYuran_Thin</disabledReason>
+          </li>
+        </hediffGizmos>
+      </li>
+      <li Class="YR_RJW.CompProperties_ChangeBedTexture">
+        <ticks>6</ticks>
+        <graphicData>
+          <graphicClass>Graphic_Multi</graphicClass>
+          <shaderType>Cutout</shaderType>
+        </graphicData>
+        <pathByRaces>
+          <li>
+            <headOffsetConditions>
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+            </headOffsetConditions>
+            <pathByConditions>
+              <li>
+                <pathSets>
+                  <li>
+                    <makeTestGizmoString>body</makeTestGizmoString>
+                    <individualAnimationOffSets>
+                      <li>(0,0,0.006)</li>
+                      <li>(0,0,0.0035)</li>
+                      <li>(0,0,0.000)</li>
+                      <li>(0,0,0.000)</li>
+                      <li>(0,0,0.000)</li>
+                      <li>(0,0,0.0035)</li>
+                    </individualAnimationOffSets>
+                    <bodyColor>true</bodyColor>
+                    <pathIsPawnBody>true</pathIsPawnBody>
+                  </li>
+                </pathSets>
+              </li>
+              <li>
+                <pathSets>
+                  <li>
+                    <makeTestGizmoString>Milking(LitF)</makeTestGizmoString>
+                    <condition>
+                      <races>
+                        <li MayRequire="bep.littlefairy.ttwsfabr">LittleFairy_Pawn</li>
+                        <li MayRequire="bep.mofy.twfiaclr">Mofy_Pawn</li>
+                        <li MayRequire="bep.resurreviewy.tnair">Resurreviewy_Pawn</li>
+                        <li MayRequire="bep.glassy.terr">Glassy_Pawn</li>
+                        <li MayRequire="bep.sweety.mcsr">Sweety_Pawn</li>
+                        <li MayRequire="bep.legacyfairy.tftr">LegacyFairy_Pawn</li>
+                        <li MayRequire="bep.magiaplant.tfmr">MagiaPlant_Pawn</li>
+                        <li MayRequire="bep.forgotty.tfcr">Forgotty_Pawn</li>
+                        <li MayRequire="bep.maddy.twmr">Maddy_Pawn</li>
+                      </races>
+                    </condition>
+                    <offset>(0,-0.96)</offset>
+                    <layerOffset>6.68</layerOffset>
+                    <paths>
+                      <li>OY_Yuran_Addon/Body/Tentacle_Milking/Bed/1</li>
+                      <li>OY_Yuran_Addon/Body/Tentacle_Milking/Bed/2</li>
+                      <li>OY_Yuran_Addon/Body/Tentacle_Milking/Bed/3</li>
+                      <li>OY_Yuran_Addon/Body/Tentacle_Milking/Bed/4</li>
+                      <li>OY_Yuran_Addon/Body/Tentacle_Milking/Bed/5</li>
+                      <li>OY_Yuran_Addon/Body/Tentacle_Milking/Bed/6</li>
+                    </paths>
+                  </li>
+                  <li>
+                    <makeTestGizmoString>UpLayer</makeTestGizmoString>
+                    <offset>(0,-1)</offset>
+                    <layerOffset>6.7</layerOffset>
+                    <paths>
+                      <li>Yuran/Things/Building/Furniture/TentacleMilking/Body/UpLayer/1</li>
+                      <li>Yuran/Things/Building/Furniture/TentacleMilking/Body/UpLayer/2</li>
+                      <li>Yuran/Things/Building/Furniture/TentacleMilking/Body/UpLayer/3</li>
+                      <li>Yuran/Things/Building/Furniture/TentacleMilking/Body/UpLayer/4</li>
+                      <li>Yuran/Things/Building/Furniture/TentacleMilking/Body/UpLayer/5</li>
+                    </paths>
+                  </li>
+                  <li>
+                    <makeTestGizmoString>Dildo</makeTestGizmoString>
+                    <offsetConditions>
+                      <li>
+                        <condition>
+                          <races>
+                            <li MayRequire="bep.littlefairy.ttwsfabr">LittleFairy_Pawn</li>
+                            <li MayRequire="bep.mofy.twfiaclr">Mofy_Pawn</li>
+                            <li MayRequire="bep.resurreviewy.tnair">Resurreviewy_Pawn</li>
+                            <li MayRequire="bep.glassy.terr">Glassy_Pawn</li>
+                            <li MayRequire="bep.sweety.mcsr">Sweety_Pawn</li>
+                            <li MayRequire="bep.legacyfairy.tftr">LegacyFairy_Pawn</li>
+                            <li MayRequire="bep.magiaplant.tfmr">MagiaPlant_Pawn</li>
+                            <li MayRequire="bep.forgotty.tfcr">Forgotty_Pawn</li>
+                            <li MayRequire="bep.maddy.twmr">Maddy_Pawn</li>
+                          </races>
+                        </condition>
+                        <offset>(0,-1)</offset>
+                      </li>
+                    </offsetConditions>
+                    <offset>(0,-1.05)</offset>
+                    <layerOffset>6.69</layerOffset>
+                    <paths>
+                      <li>Yuran/Things/Building/Furniture/TentacleMilking/Body/Dildo/1</li>
+                      <li>Yuran/Things/Building/Furniture/TentacleMilking/Body/Dildo/2</li>
+                      <li>Yuran/Things/Building/Furniture/TentacleMilking/Body/Dildo/3</li>
+                      <li>Yuran/Things/Building/Furniture/TentacleMilking/Body/Dildo/4</li>
+                      <li>Yuran/Things/Building/Furniture/TentacleMilking/Body/Dildo/5</li>
+                      <li>Yuran/Things/Building/Furniture/TentacleMilking/Body/Dildo/1</li>
+                    </paths>
+                  </li>
+                  <li>
+                    <makeTestGizmoString>Milk</makeTestGizmoString>
+                    <offsetConditions>
+                      <li>
+                        <condition>
+                          <races>
+                            <li MayRequire="bep.littlefairy.ttwsfabr">LittleFairy_Pawn</li>
+                            <li MayRequire="bep.mofy.twfiaclr">Mofy_Pawn</li>
+                            <li MayRequire="bep.resurreviewy.tnair">Resurreviewy_Pawn</li>
+                            <li MayRequire="bep.glassy.terr">Glassy_Pawn</li>
+                            <li MayRequire="bep.sweety.mcsr">Sweety_Pawn</li>
+                            <li MayRequire="bep.legacyfairy.tftr">LegacyFairy_Pawn</li>
+                            <li MayRequire="bep.magiaplant.tfmr">MagiaPlant_Pawn</li>
+                            <li MayRequire="bep.forgotty.tfcr">Forgotty_Pawn</li>
+                            <li MayRequire="bep.maddy.twmr">Maddy_Pawn</li>
+                          </races>
+                        </condition>
+                        <offset>(0,-1.12)</offset>
+                        <drawSize>(0.75,1.0)</drawSize>
+                      </li>
+                    </offsetConditions>
+                    <offset>(0,-1.05)</offset>
+                    <layerOffset>6.8</layerOffset>
+                    <autoSetBodyPosition>true</autoSetBodyPosition>
+                    <paths>
+                      <li>Yuran/Things/Building/Furniture/TentacleMilking/Body/Milk/1</li>
+                      <li>Yuran/Things/Building/Furniture/TentacleMilking/Body/Milk/2</li>
+                      <li>Yuran/Things/Building/Furniture/TentacleMilking/Body/Milk/3</li>
+                      <li>Yuran/Things/Building/Furniture/TentacleMilking/Body/Milk/4</li>
+                      <li>Yuran/Things/Building/Furniture/TentacleMilking/Body/Milk/5</li>
+                      <li>Yuran/Things/Building/Furniture/TentacleMilking/Body/Milk/6</li>
+                    </paths>
+                  </li>
+                  <li>
+                    <makeTestGizmoString>Mouth</makeTestGizmoString>
+                    <offsetConditions>
+                      <li>
+                        <condition>
+                          <races>
+                            <li MayRequire="bep.littlefairy.ttwsfabr">LittleFairy_Pawn</li>
+                            <li MayRequire="bep.mofy.twfiaclr">Mofy_Pawn</li>
+                            <li MayRequire="bep.resurreviewy.tnair">Resurreviewy_Pawn</li>
+                            <li MayRequire="bep.glassy.terr">Glassy_Pawn</li>
+                            <li MayRequire="bep.sweety.mcsr">Sweety_Pawn</li>
+                            <li MayRequire="bep.legacyfairy.tftr">LegacyFairy_Pawn</li>
+                            <li MayRequire="bep.magiaplant.tfmr">MagiaPlant_Pawn</li>
+                            <li MayRequire="bep.forgotty.tfcr">Forgotty_Pawn</li>
+                            <li MayRequire="bep.maddy.twmr">Maddy_Pawn</li>
+                          </races>
+                        </condition>
+                        <offset>(0.015,-1.21)</offset>
+                        <drawSize>(1.05,1.05)</drawSize>
+                      </li>
+                    </offsetConditions>
+                    <offset>(0.02,-1.07)</offset>
+                    <layerOffset>7</layerOffset>
+                    <paths>
+                      <li>Yuran/Things/Building/Furniture/TentacleMilking/Body/Mouth/1</li>
+                      <li>Yuran/Things/Building/Furniture/TentacleMilking/Body/Mouth/2</li>
+                      <li>Yuran/Things/Building/Furniture/TentacleMilking/Body/Mouth/3</li>
+                      <li>Yuran/Things/Building/Furniture/TentacleMilking/Body/Mouth/4</li>
+                      <li>Yuran/Things/Building/Furniture/TentacleMilking/Body/Mouth/5</li>
+                      <li>Yuran/Things/Building/Furniture/TentacleMilking/Body/Mouth/6</li>
+                      <li>Yuran/Things/Building/Furniture/TentacleMilking/Body/Mouth/7</li>
+                    </paths>
+                  </li>
+                  <li>
+                    <makeTestGizmoString>PeroPero</makeTestGizmoString>
+                    <offsetConditions>
+                      <li>
+                        <condition>
+                          <races>
+                            <li MayRequire="bep.littlefairy.ttwsfabr">LittleFairy_Pawn</li>
+                            <li MayRequire="bep.mofy.twfiaclr">Mofy_Pawn</li>
+                            <li MayRequire="bep.resurreviewy.tnair">Resurreviewy_Pawn</li>
+                            <li MayRequire="bep.glassy.terr">Glassy_Pawn</li>
+                            <li MayRequire="bep.sweety.mcsr">Sweety_Pawn</li>
+                            <li MayRequire="bep.legacyfairy.tftr">LegacyFairy_Pawn</li>
+                            <li MayRequire="bep.magiaplant.tfmr">MagiaPlant_Pawn</li>
+                            <li MayRequire="bep.forgotty.tfcr">Forgotty_Pawn</li>
+                            <li MayRequire="bep.maddy.twmr">Maddy_Pawn</li>
+                          </races>
+                        </condition>
+                        <offset>(-0.02,-1.14)</offset>
+                        <drawSize>(0.9,0.9)</drawSize>
+                      </li>
+                    </offsetConditions>
+                    <offset>(0,-1.05)</offset>
+                    <layerOffset>7</layerOffset>
+                    <paths>
+                      <li>Yuran/Things/Building/Furniture/TentacleMilking/Body/PeroPero/1</li>
+                      <li>Yuran/Things/Building/Furniture/TentacleMilking/Body/PeroPero/2</li>
+                      <li>Yuran/Things/Building/Furniture/TentacleMilking/Body/PeroPero/3</li>
+                      <li>Yuran/Things/Building/Furniture/TentacleMilking/Body/PeroPero/4</li>
+                      <li>Yuran/Things/Building/Furniture/TentacleMilking/Body/PeroPero/5</li>
+                      <li>Yuran/Things/Building/Furniture/TentacleMilking/Body/PeroPero/6</li>
+                      <li>Yuran/Things/Building/Furniture/TentacleMilking/Body/PeroPero/7</li>
+                      <li>Yuran/Things/Building/Furniture/TentacleMilking/Body/PeroPero/8</li>
+                    </paths>
+                  </li>
+                  <li>
+                    <makeTestGizmoString>Neck</makeTestGizmoString>
+                    <offsetConditions>
+                      <li>
+                        <condition>
+                          <races>
+                            <li MayRequire="bep.littlefairy.ttwsfabr">LittleFairy_Pawn</li>
+                            <li MayRequire="bep.mofy.twfiaclr">Mofy_Pawn</li>
+                            <li MayRequire="bep.resurreviewy.tnair">Resurreviewy_Pawn</li>
+                            <li MayRequire="bep.glassy.terr">Glassy_Pawn</li>
+                            <li MayRequire="bep.sweety.mcsr">Sweety_Pawn</li>
+                            <li MayRequire="bep.legacyfairy.tftr">LegacyFairy_Pawn</li>
+                            <li MayRequire="bep.magiaplant.tfmr">MagiaPlant_Pawn</li>
+                            <li MayRequire="bep.forgotty.tfcr">Forgotty_Pawn</li>
+                            <li MayRequire="bep.maddy.twmr">Maddy_Pawn</li>
+                          </races>
+                        </condition>
+                        <offset>(0,-1.18)</offset>
+                      </li>
+                    </offsetConditions>
+                    <offset>(0,-1.1)</offset>
+                    <layerOffset>6.6</layerOffset>
+                    <autoSetBodyPosition>true</autoSetBodyPosition>
+                    <paths>
+                      <li>Yuran/Things/Building/Furniture/TentacleMilking/Body/Neck/1</li>
+                    </paths>
+                  </li>
+                  <li>
+                    <makeTestGizmoString>SemenUp</makeTestGizmoString>
+                    <offsetConditions>
+                      <li>
+                        <condition>
+                          <races>
+                            <li MayRequire="bep.littlefairy.ttwsfabr">LittleFairy_Pawn</li>
+                            <li MayRequire="bep.mofy.twfiaclr">Mofy_Pawn</li>
+                            <li MayRequire="bep.resurreviewy.tnair">Resurreviewy_Pawn</li>
+                            <li MayRequire="bep.glassy.terr">Glassy_Pawn</li>
+                            <li MayRequire="bep.sweety.mcsr">Sweety_Pawn</li>
+                            <li MayRequire="bep.legacyfairy.tftr">LegacyFairy_Pawn</li>
+                            <li MayRequire="bep.magiaplant.tfmr">MagiaPlant_Pawn</li>
+                            <li MayRequire="bep.forgotty.tfcr">Forgotty_Pawn</li>
+                            <li MayRequire="bep.maddy.twmr">Maddy_Pawn</li>
+                          </races>
+                        </condition>
+                        <offset>(0,-0.665)</offset>
+                      </li>
+                    </offsetConditions>
+                    <offset>(0,-0.525)</offset>
+                    <layerOffset>6.79</layerOffset>
+                    <drawSize>(1,1)</drawSize>
+                    <paths>
+                      <li>Yuran/Things/Building/Furniture/GloryHole/Body/Penis/South/Semen/2</li>
+                      <li>Yuran/Things/Building/Furniture/GloryHole/Body/Penis/South/Semen/3</li>
+                      <li>Yuran/Things/Building/Furniture/GloryHole/Body/Penis/South/Semen/4</li>
+                      <li>Yuran/Things/Building/Furniture/GloryHole/Body/Penis/South/Semen/5</li>
+                      <li>Yuran/Things/Building/Furniture/GloryHole/Body/Penis/South/Semen/6</li>
+                      <li>Yuran/Things/Building/Furniture/GloryHole/Body/Penis/South/Semen/7</li>
+                      <li>Yuran/Things/Building/Furniture/GloryHole/Body/Penis/South/Semen/1</li>
+                    </paths>
+                  </li>
+                  <li>
+                    <makeTestGizmoString>SemenDown</makeTestGizmoString>
+                    <offsetConditions>
+                      <li>
+                        <condition>
+                          <races>
+                            <li MayRequire="bep.littlefairy.ttwsfabr">LittleFairy_Pawn</li>
+                            <li MayRequire="bep.mofy.twfiaclr">Mofy_Pawn</li>
+                            <li MayRequire="bep.resurreviewy.tnair">Resurreviewy_Pawn</li>
+                            <li MayRequire="bep.glassy.terr">Glassy_Pawn</li>
+                            <li MayRequire="bep.sweety.mcsr">Sweety_Pawn</li>
+                            <li MayRequire="bep.legacyfairy.tftr">LegacyFairy_Pawn</li>
+                            <li MayRequire="bep.magiaplant.tfmr">MagiaPlant_Pawn</li>
+                            <li MayRequire="bep.forgotty.tfcr">Forgotty_Pawn</li>
+                            <li MayRequire="bep.maddy.twmr">Maddy_Pawn</li>
+                          </races>
+                        </condition>
+                        <offset>(0,-0.98)</offset>
+                      </li>
+                    </offsetConditions>
+                    <offset>(0,-1.03)</offset>
+                    <layerOffset>6.68</layerOffset>
+                    <drawSize>(1,1)</drawSize>
+                    <paths>
+                      <li>Yuran/Things/Building/Furniture/GloryHole/Body/Penis/South/Semen/2</li>
+                      <li>Yuran/Things/Building/Furniture/GloryHole/Body/Penis/South/Semen/3</li>
+                      <li>Yuran/Things/Building/Furniture/GloryHole/Body/Penis/South/Semen/4</li>
+                      <li>Yuran/Things/Building/Furniture/GloryHole/Body/Penis/South/Semen/5</li>
+                      <li>Yuran/Things/Building/Furniture/GloryHole/Body/Penis/South/Semen/6</li>
+                      <li>Yuran/Things/Building/Furniture/GloryHole/Body/Penis/South/Semen/7</li>
+                      <li>Yuran/Things/Building/Furniture/GloryHole/Body/Penis/South/Semen/1</li>
+                    </paths>
+                  </li>
+                  <li>
+                    <makeTestGizmoString>Cover</makeTestGizmoString>
+                    <condition>
+                      <hediffDefs>
+                        <li>YR_North_Hediff</li>
+                      </hediffDefs>
+                      <allMatch>true</allMatch>
+                    </condition>
+                    <offset>(0,-1)</offset>
+                    <layerOffset>7.2</layerOffset>
+                    <drawSize>(1,1)</drawSize>
+                    <paths>
+                      <li>Yuran/Things/Building/Furniture/TentacleMilking/Body/Cover/1</li>
+                      <li>Yuran/Things/Building/Furniture/TentacleMilking/Body/Cover/2</li>
+                      <li>Yuran/Things/Building/Furniture/TentacleMilking/Body/Cover/3</li>
+                      <li>Yuran/Things/Building/Furniture/TentacleMilking/Body/Cover/4</li>
+                      <li>Yuran/Things/Building/Furniture/TentacleMilking/Body/Cover/5</li>
+                      <li>Yuran/Things/Building/Furniture/TentacleMilking/Body/Cover/4</li>
+                      <li>Yuran/Things/Building/Furniture/TentacleMilking/Body/Cover/3</li>
+                      <li>Yuran/Things/Building/Furniture/TentacleMilking/Body/Cover/2</li>
+                    </paths>
+                  </li>
+                  <li>
+                    <makeTestGizmoString>GasBag</makeTestGizmoString>
+                    <condition>
+                      <hediffDefs>
+                        <li>YR_North_Hediff</li>
+                      </hediffDefs>
+                      <allMatch>true</allMatch>
+                    </condition>
+                    <offset>(0,-1)</offset>
+                    <layerOffset>7.2</layerOffset>
+                    <drawSize>(1,1)</drawSize>
+                    <paths>
+                      <li>Yuran/Things/Building/Furniture/TentacleMilking/Body/GasBag/1</li>
+                      <li>Yuran/Things/Building/Furniture/TentacleMilking/Body/GasBag/1</li>
+                      <li>Yuran/Things/Building/Furniture/TentacleMilking/Body/GasBag/1</li>
+                      <li>Yuran/Things/Building/Furniture/TentacleMilking/Body/GasBag/2</li>
+                      <li>Yuran/Things/Building/Furniture/TentacleMilking/Body/GasBag/3</li>
+                      <li>Yuran/Things/Building/Furniture/TentacleMilking/Body/GasBag/4</li>
+                      <li>Yuran/Things/Building/Furniture/TentacleMilking/Body/GasBag/5</li>
+                      <li>Yuran/Things/Building/Furniture/TentacleMilking/Body/GasBag/5</li>
+                      <li>Yuran/Things/Building/Furniture/TentacleMilking/Body/GasBag/5</li>
+                      <li>Yuran/Things/Building/Furniture/TentacleMilking/Body/GasBag/4</li>
+                      <li>Yuran/Things/Building/Furniture/TentacleMilking/Body/GasBag/3</li>
+                      <li>Yuran/Things/Building/Furniture/TentacleMilking/Body/GasBag/2</li>
+                    </paths>
+                  </li>
+                </pathSets>
+              </li>
+            </pathByConditions>
+          </li>
+        </pathByRaces>
+      </li>
+    </comps>
+    <statBases>
+      <MaxHitPoints>140</MaxHitPoints>
+      <Flammability>1.0</Flammability>
+      <Beauty>1</Beauty>
+      <WorkToBuild>800</WorkToBuild>
+      <Mass>30</Mass>
+      <BedRestEffectiveness>1</BedRestEffectiveness>
+      <Comfort>0.75</Comfort>
+      <ImmunityGainSpeedFactor>1.07</ImmunityGainSpeedFactor>
+      <SurgerySuccessChanceFactor>1</SurgerySuccessChanceFactor>
+    </statBases>
+    <size>(1,2)</size>
+    <costList>
+      <YR_Tentacle_Egg>4</YR_Tentacle_Egg>
+    </costList>
+    <techLevel>Medieval</techLevel>
+    <uiIconScale>1.4</uiIconScale>
+  <defaultPlacingRot>North</defaultPlacingRot><rotatable>false</rotatable></ThingDef>
+</Defs>

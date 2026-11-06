@@ -1,0 +1,112 @@
+<Defs>
+  <ThingDef Name="YR_V7TreeDecorBase" Abstract="True">
+    <category>Building</category>
+    <thingClass>Building</thingClass>
+    <designationCategory>Furniture</designationCategory>
+    <selectable>true</selectable>
+    <drawerType>MapMeshAndRealTime</drawerType>
+    <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
+    <repairEffect>Repair</repairEffect>
+    <leaveResourcesWhenKilled>true</leaveResourcesWhenKilled>
+    <altitudeLayer>Building</altitudeLayer>
+    <passability>Standable</passability>
+    <rotatable>false</rotatable>
+    <clearBuildingArea>false</clearBuildingArea>
+    <saveCompressible>false</saveCompressible>
+    <statBases>
+      <MaxHitPoints>140</MaxHitPoints>
+      <WorkToBuild>650</WorkToBuild>
+      <Flammability>1</Flammability>
+      <Beauty>20</Beauty>
+      <Cleanliness>0.5</Cleanliness>
+      <Mass>10</Mass>
+    </statBases>
+    <costList>
+      <Meat_Human>3</Meat_Human>
+    </costList>
+  </ThingDef>
+  <ThingDef Name="YR_V7TreeRugBase" ParentName="YR_V7TreeDecorBase" Abstract="True">
+    <selectable>false</selectable>
+    <description>사목의 뿌리 모양을 한 바닥 장식입니다.</description>
+    <altitudeLayer>FloorCoverings</altitudeLayer>
+    <drawerType>MapMeshOnly</drawerType>
+    <building>
+      <isEdifice>false</isEdifice>
+      <deconstructible>true</deconstructible>
+    </building>
+    <rotatable>true</rotatable>
+    <graphicData>
+      <graphicClass>Graphic_Random</graphicClass>
+      <onGroundRandomRotateAngle>10</onGroundRandomRotateAngle>
+      <damageData>
+        <rect>(0.2,0.2,0.6,0.6)</rect>
+      </damageData>
+    </graphicData>
+  </ThingDef>
+  <ThingDef ParentName="YR_V7TreeRugBase">
+    <defName>YR_Tentacle_Rug_A</defName>
+    <label>사목 뿌리 (소형)</label>
+    <graphicData>
+      <texPath>Yuran/Things/Building/Furniture/Tentacle/Rug/A</texPath>
+      <drawSize>(5.2,5.2)</drawSize>
+    </graphicData>
+    <size>(3,3)</size>
+    <uiIconScale>0.35</uiIconScale>
+  <uiIconPath>Yuran/Things/Building/Furniture/Tentacle/Rug/A/A_A</uiIconPath></ThingDef>
+  <ThingDef ParentName="YR_V7TreeRugBase">
+    <defName>YR_Tentacle_Rug_B</defName>
+    <label>사목 뿌리 (중형)</label>
+    <graphicData>
+      <texPath>Yuran/Things/Building/Furniture/Tentacle/Rug/B</texPath>
+      <drawSize>(6,6)</drawSize>
+    </graphicData>
+    <size>(4,3)</size>
+    <uiIconScale>0.35</uiIconScale>
+  <uiIconPath>Yuran/Things/Building/Furniture/Tentacle/Rug/B/B_A</uiIconPath></ThingDef>
+  <ThingDef ParentName="YR_V7TreeRugBase">
+    <defName>YR_Tentacle_Rug_C</defName>
+    <label>사목 뿌리 (대형)</label>
+    <graphicData>
+      <texPath>Yuran/Things/Building/Furniture/Tentacle/Rug/A</texPath>
+      <drawSize>(6,6)</drawSize>
+    </graphicData>
+    <size>(5,5)</size>
+    <uiIconScale>0.35</uiIconScale>
+  <uiIconPath>Yuran/Things/Building/Furniture/Tentacle/Rug/A/A_A</uiIconPath></ThingDef>
+  <ThingDef Name="YR_V7TreeStandingDecorBase" ParentName="YR_V7TreeDecorBase" Abstract="True">
+    <description>사목 주변을 꾸미는 장식입니다.</description>
+    <filthLeaving>Filth_RubbleBuilding</filthLeaving>
+    <minifiedDef>MinifiedThing</minifiedDef>
+    <thingCategories>
+      <li>BuildingsFurniture</li>
+    </thingCategories>
+    <size>(1,1)</size>
+    <uiIconScale>0.7</uiIconScale>
+    <graphicData>
+      <graphicClass>Graphic_Random</graphicClass>
+      <drawSize>(3,3)</drawSize>
+    </graphicData>
+  </ThingDef>
+  <ThingDef ParentName="YR_V7TreeStandingDecorBase">
+    <defName>YR_Tentacle_Deco</defName>
+    <label>사목 가지</label>
+    <graphicData>
+      <texPath>Yuran/Things/Building/Furniture/Tentacle/Deco</texPath>
+      <drawSize>(4,4)</drawSize>
+    <drawOffset>(0,0,1.855)</drawOffset></graphicData>
+  <uiIconScale>0.35</uiIconScale><uiIconPath>Yuran/Things/Building/Furniture/Tentacle/Deco/Deco_A</uiIconPath><hasCustomRectForSelector>true</hasCustomRectForSelector></ThingDef>
+  <ThingDef ParentName="YR_V7TreeStandingDecorBase">
+    <defName>YR_Tentacle_Light</defName>
+    <label>사목 조명</label>
+    <graphicData>
+      <texPath>Yuran/Things/Building/Furniture/Tentacle/Light</texPath>
+      <drawSize>(4,4)</drawSize>
+    <drawOffset>(0,0,1.43)</drawOffset></graphicData>
+    <comps>
+      <li Class="CompProperties_Glower">
+        <glowRadius>2.9</glowRadius>
+        <glowColor>(78,226,229,0)</glowColor>
+      </li>
+    </comps>
+  <uiIconScale>0.35</uiIconScale><uiIconPath>Yuran/Things/Building/Furniture/Tentacle/Light/Light_A</uiIconPath><hasCustomRectForSelector>true</hasCustomRectForSelector></ThingDef>
+</Defs>

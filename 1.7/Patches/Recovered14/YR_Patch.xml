@@ -1,0 +1,745 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Yuran race</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName = "Yuran_Race"]/alienRace/raceRestriction/apparelList</xpath>
+          <value>
+            <li>YR_AP_MaternityDress</li>
+            <li>YR_AP_MilkingDress</li>
+            <li>YR_AP_BunnyDress</li>
+            <li>YR_AP_ReverseBunnyDress</li>
+            <li>YR_AP_SlaveDress</li>
+            <li>YR_AP_DisciplineDress</li>
+          </value>
+          <!--The four Samok root items are public wearable organic gear; RootGearCompatibility retains their HAR race whitelists without registering them as globally race-exclusive. Other Yuran garments remain exclusive.-->
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/FactionDef[defName = "YuranNPC"]/caravanTraderKinds</xpath>
+          <value>
+            <li>YR_SlaveTrader</li>
+          </value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/AlienRace.RaceSettings[defName = "Yuran_Race_Setting"]/pawnKindSettings/alienslavekinds</xpath>
+          <value>
+            <li>
+              <kindDefs>
+                <li>Yuran_Slave</li>
+              </kindDefs>
+              <chance>20</chance>
+            </li>
+          </value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName = "Yuran_Race"]/comps</xpath>
+          <value>
+            <li Class="YR_HPF.CompProperties_ResourceHarvestable">
+              <harvestJobDef>Milking_YR_BreastMilk</harvestJobDef>
+              <saveUniqueKey>YR_HPF.YR_BreastMilkFullness</saveUniqueKey>
+              <thingDef>YR_BreastMilk</thingDef>
+              <intervalDays>1</intervalDays>
+              <amount>4</amount>
+              <inspectText>BreastMilk</inspectText>
+              <apparelSetting>
+                <apparelMultiples>
+                  <li>
+                    <apparelThingDefs>
+                      <li>YR_AP_MilkingDress</li>
+                    </apparelThingDefs>
+                    <multiple>1.2</multiple>
+                  </li>
+                </apparelMultiples>
+              </apparelSetting>
+              <hediffSetting>
+                <hediffMultiples>
+                  <li>
+                    <hediffDefs>
+                      <li>YR_RabbitAphrodisiacHigh</li>
+                    </hediffDefs>
+                    <multiple>1.5</multiple>
+                  </li>
+                </hediffMultiples>
+                <hediffPluses>
+                  <li>
+                    <hediffDefs>
+                      <li>Pregnant</li>
+                      <li MayRequire="rim.job.world">RJW_pregnancy</li>
+                      <li MayRequire="rim.job.world">RJW_pregnancy_beast</li>
+                      <li MayRequire="rim.job.world">RJW_pregnancy_mech</li>
+                    </hediffDefs>
+                    <plus>1</plus>
+                  </li>
+                </hediffPluses>
+                <hediffMilks>
+                  <li>
+                    <hediffDefs>
+                      <li>YR_Milking_Tentacle_Hediff</li>
+                    </hediffDefs>
+                    <thingDef>YR_Tentacle_BreastMilk</thingDef>
+                  </li>
+                </hediffMilks>
+              </hediffSetting>
+              <constraints>
+                <li Class="YR_HPF.ConstraintPawnGenderOnly">
+                  <gender>Female</gender>
+                </li>
+                <li Class="YR_HPF.ConstraintPawnHediffListRequire">
+                  <hediffList>
+                    <li>YR_Milking_Hediff</li>
+                    <li>YR_Pregnant_Tentacle</li>
+                    <li>YR_Milking_Tentacle_Hediff</li>
+                  </hediffList>
+                </li>
+              </constraints>
+            </li>
+            <li MayRequire="rim.job.world" Class="YR_RJW.CompProperties_QuickNeed">
+              <need>Sex</need>
+              <offset>-0.001</offset>
+              <ticks>600</ticks>
+            </li>
+          </value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName = "Yuran_Race"]/alienRace/graphicPaths</xpath>
+          <value>
+            <skinShader>Cutout</skinShader>
+          </value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName = "Yuran_Race_Miko"]/alienRace/graphicPaths</xpath>
+          <value>
+            <skinShader>Cutout</skinShader>
+          </value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName = "Yuran_Race"]/alienRace/generalSettings/alienPartGenerator/bodyAddons</xpath>
+          <value>
+            <li>
+              <path>Yuran/Yuranlike/Bodies/Dummy/YR_Bote</path>
+              <inFrontOfBody>true</inFrontOfBody>
+              <colorChannel>skin</colorChannel>
+              <drawSize>1</drawSize>
+              <angle>0</angle>
+              <defaultOffset>Center</defaultOffset>
+              <shaderType>CutoutComplex</shaderType>
+              <offsets>
+                <south>
+                  <offset>(0.0,0.265)</offset>
+                  <layerOffset>-0.274</layerOffset>
+                </south>
+                <north>
+                  <offset>(0,0.265)</offset>
+                  <layerOffset>-0.32</layerOffset>
+                </north>
+                <east>
+                  <offset>(-0.09,0.265)</offset>
+                  <layerOffset>-0.274</layerOffset>
+                </east>
+              </offsets>
+              <extendedGraphics>
+                <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+                  <path>Yuran/Yuranlike/Bodies/Dummy/YR_Bote</path>
+                  <conditions>
+                    <Hediff>YR_HideHead_Hediff</Hediff>
+                  </conditions>
+                </li>
+                <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+                  <path>Yuran/Yuranlike/Addon/Tentacle/Face/1</path>
+                  <conditions>
+                    <Hediff>YR_Building_Tentacle_Hediff</Hediff>
+                  </conditions>
+                </li>
+                <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+                  <path>Yuran/Yuranlike/Bodies/Dummy/YR_Bote</path>
+                  <extendedGraphics>
+                    <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+                      <path>Yuran/Yuranlike/Heads/Female_YR_head1_Horny</path>
+                      <conditions>
+                        <li Class="YR_RJW.LegacyHeadCondition">
+                          <legacyHead>YR_Female_AverageNormalAone</legacyHead>
+                        </li>
+                      </conditions>
+                    </li>
+                    <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+                      <path>Yuran/Yuranlike/Heads/Female_YR_head2_Horny</path>
+                      <conditions>
+                        <li Class="YR_RJW.LegacyHeadCondition">
+                          <legacyHead>YR_Female_AverageNormalAtwo</legacyHead>
+                        </li>
+                      </conditions>
+                    </li>
+                    <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+                      <path>Yuran/Yuranlike/Heads/Female_YR_head3_Horny</path>
+                      <conditions>
+                        <li Class="YR_RJW.LegacyHeadCondition">
+                          <legacyHead>YR_Female_AverageNormalAthree</legacyHead>
+                        </li>
+                      </conditions>
+                    </li>
+                    <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+                      <path>Yuran/Yuranlike/Heads/Female_YR_head4_Horny</path>
+                      <conditions>
+                        <li Class="YR_RJW.LegacyHeadCondition">
+                          <legacyHead>YR_Female_AverageNormalAfour</legacyHead>
+                        </li>
+                      </conditions>
+                    </li>
+                    <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+                      <path>Yuran/Yuranlike/Heads/Miko/Female_YR_head1_Horny</path>
+                      <conditions>
+                        <li Class="YR_RJW.LegacyHeadCondition">
+                          <legacyHead>YR_Female_AverageNormalAoneMiko</legacyHead>
+                        </li>
+                      </conditions>
+                    </li>
+                    <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+                      <path>Yuran/Yuranlike/Heads/Miko/Female_YR_head2_Horny</path>
+                      <conditions>
+                        <li Class="YR_RJW.LegacyHeadCondition">
+                          <legacyHead>YR_Female_AverageNormalAtwoMiko</legacyHead>
+                        </li>
+                      </conditions>
+                    </li>
+                    <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+                      <path>Yuran/Yuranlike/Heads/Miko/Female_YR_head3_Horny</path>
+                      <conditions>
+                        <li Class="YR_RJW.LegacyHeadCondition">
+                          <legacyHead>YR_Female_AverageNormalAthreeMiko</legacyHead>
+                        </li>
+                      </conditions>
+                    </li>
+                    <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+                      <path>Yuran/Yuranlike/Heads/Miko/Female_YR_head4_Horny</path>
+                      <conditions>
+                        <li Class="YR_RJW.LegacyHeadCondition">
+                          <legacyHead>YR_Female_AverageNormalAfourMiko</legacyHead>
+                        </li>
+                      </conditions>
+                    </li>
+                  </extendedGraphics>
+                  <conditions>
+                    <Hediff>YR_BellyPunch_Hediff</Hediff>
+                  </conditions>
+                </li>
+                <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+                  <path>Yuran/Yuranlike/Bodies/Dummy/YR_Bote</path>
+                  <extendedGraphics>
+                    <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+                      <path>Yuran/Yuranlike/Heads/Female_YR_head1_Horny</path>
+                      <conditions>
+                        <li Class="YR_RJW.LegacyHeadCondition">
+                          <legacyHead>YR_Female_AverageNormalAone</legacyHead>
+                        </li>
+                      </conditions>
+                    </li>
+                    <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+                      <path>Yuran/Yuranlike/Heads/Female_YR_head2_Horny</path>
+                      <conditions>
+                        <li Class="YR_RJW.LegacyHeadCondition">
+                          <legacyHead>YR_Female_AverageNormalAtwo</legacyHead>
+                        </li>
+                      </conditions>
+                    </li>
+                    <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+                      <path>Yuran/Yuranlike/Heads/Female_YR_head3_Horny</path>
+                      <conditions>
+                        <li Class="YR_RJW.LegacyHeadCondition">
+                          <legacyHead>YR_Female_AverageNormalAthree</legacyHead>
+                        </li>
+                      </conditions>
+                    </li>
+                    <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+                      <path>Yuran/Yuranlike/Heads/Female_YR_head4_Horny</path>
+                      <conditions>
+                        <li Class="YR_RJW.LegacyHeadCondition">
+                          <legacyHead>YR_Female_AverageNormalAfour</legacyHead>
+                        </li>
+                      </conditions>
+                    </li>
+                    <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+                      <path>Yuran/Yuranlike/Heads/Miko/Female_YR_head1_Horny</path>
+                      <conditions>
+                        <li Class="YR_RJW.LegacyHeadCondition">
+                          <legacyHead>YR_Female_AverageNormalAoneMiko</legacyHead>
+                        </li>
+                      </conditions>
+                    </li>
+                    <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+                      <path>Yuran/Yuranlike/Heads/Miko/Female_YR_head2_Horny</path>
+                      <conditions>
+                        <li Class="YR_RJW.LegacyHeadCondition">
+                          <legacyHead>YR_Female_AverageNormalAtwoMiko</legacyHead>
+                        </li>
+                      </conditions>
+                    </li>
+                    <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+                      <path>Yuran/Yuranlike/Heads/Miko/Female_YR_head3_Horny</path>
+                      <conditions>
+                        <li Class="YR_RJW.LegacyHeadCondition">
+                          <legacyHead>YR_Female_AverageNormalAthreeMiko</legacyHead>
+                        </li>
+                      </conditions>
+                    </li>
+                    <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+                      <path>Yuran/Yuranlike/Heads/Miko/Female_YR_head4_Horny</path>
+                      <conditions>
+                        <li Class="YR_RJW.LegacyHeadCondition">
+                          <legacyHead>YR_Female_AverageNormalAfourMiko</legacyHead>
+                        </li>
+                      </conditions>
+                    </li>
+                  </extendedGraphics>
+                  <conditions>
+                    <Hediff>YR_Pee_Hediff</Hediff>
+                  </conditions>
+                </li>
+                <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+                  <path>Yuran/Yuranlike/Bodies/Dummy/YR_Bote</path>
+                  <extendedGraphics>
+                    <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+                      <path>Yuran/Yuranlike/Heads/Female_YR_head1_Horny</path>
+                      <conditions>
+                        <li Class="YR_RJW.LegacyHeadCondition">
+                          <legacyHead>YR_Female_AverageNormalAone</legacyHead>
+                        </li>
+                      </conditions>
+                    </li>
+                    <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+                      <path>Yuran/Yuranlike/Heads/Female_YR_head2_Horny</path>
+                      <conditions>
+                        <li Class="YR_RJW.LegacyHeadCondition">
+                          <legacyHead>YR_Female_AverageNormalAtwo</legacyHead>
+                        </li>
+                      </conditions>
+                    </li>
+                    <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+                      <path>Yuran/Yuranlike/Heads/Female_YR_head3_Horny</path>
+                      <conditions>
+                        <li Class="YR_RJW.LegacyHeadCondition">
+                          <legacyHead>YR_Female_AverageNormalAthree</legacyHead>
+                        </li>
+                      </conditions>
+                    </li>
+                    <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+                      <path>Yuran/Yuranlike/Heads/Female_YR_head4_Horny</path>
+                      <conditions>
+                        <li Class="YR_RJW.LegacyHeadCondition">
+                          <legacyHead>YR_Female_AverageNormalAfour</legacyHead>
+                        </li>
+                      </conditions>
+                    </li>
+                    <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+                      <path>Yuran/Yuranlike/Heads/Miko/Female_YR_head1_Horny</path>
+                      <conditions>
+                        <li Class="YR_RJW.LegacyHeadCondition">
+                          <legacyHead>YR_Female_AverageNormalAoneMiko</legacyHead>
+                        </li>
+                      </conditions>
+                    </li>
+                    <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+                      <path>Yuran/Yuranlike/Heads/Miko/Female_YR_head2_Horny</path>
+                      <conditions>
+                        <li Class="YR_RJW.LegacyHeadCondition">
+                          <legacyHead>YR_Female_AverageNormalAtwoMiko</legacyHead>
+                        </li>
+                      </conditions>
+                    </li>
+                    <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+                      <path>Yuran/Yuranlike/Heads/Miko/Female_YR_head3_Horny</path>
+                      <conditions>
+                        <li Class="YR_RJW.LegacyHeadCondition">
+                          <legacyHead>YR_Female_AverageNormalAthreeMiko</legacyHead>
+                        </li>
+                      </conditions>
+                    </li>
+                    <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+                      <path>Yuran/Yuranlike/Heads/Miko/Female_YR_head4_Horny</path>
+                      <conditions>
+                        <li Class="YR_RJW.LegacyHeadCondition">
+                          <legacyHead>YR_Female_AverageNormalAfourMiko</legacyHead>
+                        </li>
+                      </conditions>
+                    </li>
+                  </extendedGraphics>
+                  <conditions>
+                    <Hediff>YR_SexNeedIncrease_Hediff</Hediff>
+                  </conditions>
+                </li>
+                <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+                  <path>Yuran/Yuranlike/Bodies/Dummy/YR_Bote</path>
+                  <extendedGraphics>
+                    <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+                      <path>Yuran/Yuranlike/Heads/Female_YR_head1_Horny</path>
+                      <conditions>
+                        <li Class="YR_RJW.LegacyHeadCondition">
+                          <legacyHead>YR_Female_AverageNormalAone</legacyHead>
+                        </li>
+                      </conditions>
+                    </li>
+                    <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+                      <path>Yuran/Yuranlike/Heads/Female_YR_head2_Horny</path>
+                      <conditions>
+                        <li Class="YR_RJW.LegacyHeadCondition">
+                          <legacyHead>YR_Female_AverageNormalAtwo</legacyHead>
+                        </li>
+                      </conditions>
+                    </li>
+                    <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+                      <path>Yuran/Yuranlike/Heads/Female_YR_head3_Horny</path>
+                      <conditions>
+                        <li Class="YR_RJW.LegacyHeadCondition">
+                          <legacyHead>YR_Female_AverageNormalAthree</legacyHead>
+                        </li>
+                      </conditions>
+                    </li>
+                    <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+                      <path>Yuran/Yuranlike/Heads/Female_YR_head4_Horny</path>
+                      <conditions>
+                        <li Class="YR_RJW.LegacyHeadCondition">
+                          <legacyHead>YR_Female_AverageNormalAfour</legacyHead>
+                        </li>
+                      </conditions>
+                    </li>
+                    <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+                      <path>Yuran/Yuranlike/Heads/Miko/Female_YR_head1_Horny</path>
+                      <conditions>
+                        <li Class="YR_RJW.LegacyHeadCondition">
+                          <legacyHead>YR_Female_AverageNormalAoneMiko</legacyHead>
+                        </li>
+                      </conditions>
+                    </li>
+                    <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+                      <path>Yuran/Yuranlike/Heads/Miko/Female_YR_head2_Horny</path>
+                      <conditions>
+                        <li Class="YR_RJW.LegacyHeadCondition">
+                          <legacyHead>YR_Female_AverageNormalAtwoMiko</legacyHead>
+                        </li>
+                      </conditions>
+                    </li>
+                    <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+                      <path>Yuran/Yuranlike/Heads/Miko/Female_YR_head3_Horny</path>
+                      <conditions>
+                        <li Class="YR_RJW.LegacyHeadCondition">
+                          <legacyHead>YR_Female_AverageNormalAthreeMiko</legacyHead>
+                        </li>
+                      </conditions>
+                    </li>
+                    <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+                      <path>Yuran/Yuranlike/Heads/Miko/Female_YR_head4_Horny</path>
+                      <conditions>
+                        <li Class="YR_RJW.LegacyHeadCondition">
+                          <legacyHead>YR_Female_AverageNormalAfourMiko</legacyHead>
+                        </li>
+                      </conditions>
+                    </li>
+                  </extendedGraphics>
+                  <conditions>
+                    <Hediff>YR_TentacleApparel_Hediff</Hediff>
+                  </conditions>
+                </li>
+                <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+                  <path>Yuran/Yuranlike/Bodies/Dummy/YR_Bote</path>
+                  <extendedGraphics>
+                    <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+                      <path>Yuran/Yuranlike/Heads/Female_YR_head1_Horny</path>
+                      <conditions>
+                        <li Class="YR_RJW.LegacyHeadCondition">
+                          <legacyHead>YR_Female_AverageNormalAone</legacyHead>
+                        </li>
+                      </conditions>
+                    </li>
+                    <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+                      <path>Yuran/Yuranlike/Heads/Female_YR_head2_Horny</path>
+                      <conditions>
+                        <li Class="YR_RJW.LegacyHeadCondition">
+                          <legacyHead>YR_Female_AverageNormalAtwo</legacyHead>
+                        </li>
+                      </conditions>
+                    </li>
+                    <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+                      <path>Yuran/Yuranlike/Heads/Female_YR_head3_Horny</path>
+                      <conditions>
+                        <li Class="YR_RJW.LegacyHeadCondition">
+                          <legacyHead>YR_Female_AverageNormalAthree</legacyHead>
+                        </li>
+                      </conditions>
+                    </li>
+                    <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+                      <path>Yuran/Yuranlike/Heads/Female_YR_head4_Horny</path>
+                      <conditions>
+                        <li Class="YR_RJW.LegacyHeadCondition">
+                          <legacyHead>YR_Female_AverageNormalAfour</legacyHead>
+                        </li>
+                      </conditions>
+                    </li>
+                    <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+                      <path>Yuran/Yuranlike/Heads/Miko/Female_YR_head1_Horny</path>
+                      <conditions>
+                        <li Class="YR_RJW.LegacyHeadCondition">
+                          <legacyHead>YR_Female_AverageNormalAoneMiko</legacyHead>
+                        </li>
+                      </conditions>
+                    </li>
+                    <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+                      <path>Yuran/Yuranlike/Heads/Miko/Female_YR_head2_Horny</path>
+                      <conditions>
+                        <li Class="YR_RJW.LegacyHeadCondition">
+                          <legacyHead>YR_Female_AverageNormalAtwoMiko</legacyHead>
+                        </li>
+                      </conditions>
+                    </li>
+                    <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+                      <path>Yuran/Yuranlike/Heads/Miko/Female_YR_head3_Horny</path>
+                      <conditions>
+                        <li Class="YR_RJW.LegacyHeadCondition">
+                          <legacyHead>YR_Female_AverageNormalAthreeMiko</legacyHead>
+                        </li>
+                      </conditions>
+                    </li>
+                    <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+                      <path>Yuran/Yuranlike/Heads/Miko/Female_YR_head4_Horny</path>
+                      <conditions>
+                        <li Class="YR_RJW.LegacyHeadCondition">
+                          <legacyHead>YR_Female_AverageNormalAfourMiko</legacyHead>
+                        </li>
+                      </conditions>
+                    </li>
+                  </extendedGraphics>
+                  <conditions>
+                    <Hediff>YR_EggVibrator_Hediff</Hediff>
+                  </conditions>
+                </li>
+                <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+                  <path>Yuran/Yuranlike/Bodies/Dummy/YR_Bote</path>
+                  <extendedGraphics>
+                    <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+                      <path>Yuran/Yuranlike/Heads/Female_YR_head1_Horny</path>
+                      <conditions>
+                        <li Class="YR_RJW.LegacyHeadCondition">
+                          <legacyHead>YR_Female_AverageNormalAone</legacyHead>
+                        </li>
+                      </conditions>
+                    </li>
+                    <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+                      <path>Yuran/Yuranlike/Heads/Female_YR_head2_Horny</path>
+                      <conditions>
+                        <li Class="YR_RJW.LegacyHeadCondition">
+                          <legacyHead>YR_Female_AverageNormalAtwo</legacyHead>
+                        </li>
+                      </conditions>
+                    </li>
+                    <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+                      <path>Yuran/Yuranlike/Heads/Female_YR_head3_Horny</path>
+                      <conditions>
+                        <li Class="YR_RJW.LegacyHeadCondition">
+                          <legacyHead>YR_Female_AverageNormalAthree</legacyHead>
+                        </li>
+                      </conditions>
+                    </li>
+                    <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+                      <path>Yuran/Yuranlike/Heads/Female_YR_head4_Horny</path>
+                      <conditions>
+                        <li Class="YR_RJW.LegacyHeadCondition">
+                          <legacyHead>YR_Female_AverageNormalAfour</legacyHead>
+                        </li>
+                      </conditions>
+                    </li>
+                    <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+                      <path>Yuran/Yuranlike/Heads/Miko/Female_YR_head1_Horny</path>
+                      <conditions>
+                        <li Class="YR_RJW.LegacyHeadCondition">
+                          <legacyHead>YR_Female_AverageNormalAoneMiko</legacyHead>
+                        </li>
+                      </conditions>
+                    </li>
+                    <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+                      <path>Yuran/Yuranlike/Heads/Miko/Female_YR_head2_Horny</path>
+                      <conditions>
+                        <li Class="YR_RJW.LegacyHeadCondition">
+                          <legacyHead>YR_Female_AverageNormalAtwoMiko</legacyHead>
+                        </li>
+                      </conditions>
+                    </li>
+                    <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+                      <path>Yuran/Yuranlike/Heads/Miko/Female_YR_head3_Horny</path>
+                      <conditions>
+                        <li Class="YR_RJW.LegacyHeadCondition">
+                          <legacyHead>YR_Female_AverageNormalAthreeMiko</legacyHead>
+                        </li>
+                      </conditions>
+                    </li>
+                    <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+                      <path>Yuran/Yuranlike/Heads/Miko/Female_YR_head4_Horny</path>
+                      <conditions>
+                        <li Class="YR_RJW.LegacyHeadCondition">
+                          <legacyHead>YR_Female_AverageNormalAfourMiko</legacyHead>
+                        </li>
+                      </conditions>
+                    </li>
+                  </extendedGraphics>
+                  <conditions>
+                    <Hediff>YR_RabbitAphrodisiacHigh</Hediff>
+                  </conditions>
+                </li>
+                <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+                  <path>Yuran/Yuranlike/Bodies/Dummy/YR_Bote</path>
+                  <extendedGraphics>
+                    <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+                      <path>Yuran/Yuranlike/Heads/Female_YR_head1_Shame</path>
+                      <conditions>
+                        <li Class="YR_RJW.LegacyHeadCondition">
+                          <legacyHead>YR_Female_AverageNormalAone</legacyHead>
+                        </li>
+                      </conditions>
+                    </li>
+                    <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+                      <path>Yuran/Yuranlike/Heads/Female_YR_head2_Shame</path>
+                      <conditions>
+                        <li Class="YR_RJW.LegacyHeadCondition">
+                          <legacyHead>YR_Female_AverageNormalAtwo</legacyHead>
+                        </li>
+                      </conditions>
+                    </li>
+                    <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+                      <path>Yuran/Yuranlike/Heads/Female_YR_head3_Shame</path>
+                      <conditions>
+                        <li Class="YR_RJW.LegacyHeadCondition">
+                          <legacyHead>YR_Female_AverageNormalAthree</legacyHead>
+                        </li>
+                      </conditions>
+                    </li>
+                    <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+                      <path>Yuran/Yuranlike/Heads/Female_YR_head4_Shame</path>
+                      <conditions>
+                        <li Class="YR_RJW.LegacyHeadCondition">
+                          <legacyHead>YR_Female_AverageNormalAfour</legacyHead>
+                        </li>
+                      </conditions>
+                    </li>
+                    <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+                      <path>Yuran/Yuranlike/Heads/Miko/Female_YR_head1_Shame</path>
+                      <conditions>
+                        <li Class="YR_RJW.LegacyHeadCondition">
+                          <legacyHead>YR_Female_AverageNormalAoneMiko</legacyHead>
+                        </li>
+                      </conditions>
+                    </li>
+                    <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+                      <path>Yuran/Yuranlike/Heads/Miko/Female_YR_head2_Shame</path>
+                      <conditions>
+                        <li Class="YR_RJW.LegacyHeadCondition">
+                          <legacyHead>YR_Female_AverageNormalAtwoMiko</legacyHead>
+                        </li>
+                      </conditions>
+                    </li>
+                    <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+                      <path>Yuran/Yuranlike/Heads/Miko/Female_YR_head3_Shame</path>
+                      <conditions>
+                        <li Class="YR_RJW.LegacyHeadCondition">
+                          <legacyHead>YR_Female_AverageNormalAthreeMiko</legacyHead>
+                        </li>
+                      </conditions>
+                    </li>
+                    <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+                      <path>Yuran/Yuranlike/Heads/Miko/Female_YR_head4_Shame</path>
+                      <conditions>
+                        <li Class="YR_RJW.LegacyHeadCondition">
+                          <legacyHead>YR_Female_AverageNormalAfourMiko</legacyHead>
+                        </li>
+                      </conditions>
+                    </li>
+                  </extendedGraphics>
+                  <conditions>
+                    <Hediff>YR_BoteApparel_Hediff</Hediff>
+                  </conditions>
+                </li>
+                <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+                  <path>Yuran/Yuranlike/Bodies/Dummy/YR_Bote</path>
+                  <extendedGraphics>
+                    <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+                      <path>Yuran/Yuranlike/Heads/Female_YR_head1_Pregnant</path>
+                      <conditions>
+                        <li Class="YR_RJW.LegacyHeadCondition">
+                          <legacyHead>YR_Female_AverageNormalAone</legacyHead>
+                        </li>
+                      </conditions>
+                    </li>
+                    <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+                      <path>Yuran/Yuranlike/Heads/Female_YR_head2_Pregnant</path>
+                      <conditions>
+                        <li Class="YR_RJW.LegacyHeadCondition">
+                          <legacyHead>YR_Female_AverageNormalAtwo</legacyHead>
+                        </li>
+                      </conditions>
+                    </li>
+                    <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+                      <path>Yuran/Yuranlike/Heads/Female_YR_head3_Pregnant</path>
+                      <conditions>
+                        <li Class="YR_RJW.LegacyHeadCondition">
+                          <legacyHead>YR_Female_AverageNormalAthree</legacyHead>
+                        </li>
+                      </conditions>
+                    </li>
+                    <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+                      <path>Yuran/Yuranlike/Heads/Female_YR_head4_Pregnant</path>
+                      <conditions>
+                        <li Class="YR_RJW.LegacyHeadCondition">
+                          <legacyHead>YR_Female_AverageNormalAfour</legacyHead>
+                        </li>
+                      </conditions>
+                    </li>
+                    <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+                      <path>Yuran/Yuranlike/Heads/Miko/Female_YR_head1_Pregnant</path>
+                      <conditions>
+                        <li Class="YR_RJW.LegacyHeadCondition">
+                          <legacyHead>YR_Female_AverageNormalAoneMiko</legacyHead>
+                        </li>
+                      </conditions>
+                    </li>
+                    <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+                      <path>Yuran/Yuranlike/Heads/Miko/Female_YR_head2_Pregnant</path>
+                      <conditions>
+                        <li Class="YR_RJW.LegacyHeadCondition">
+                          <legacyHead>YR_Female_AverageNormalAtwoMiko</legacyHead>
+                        </li>
+                      </conditions>
+                    </li>
+                    <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+                      <path>Yuran/Yuranlike/Heads/Miko/Female_YR_head3_Pregnant</path>
+                      <conditions>
+                        <li Class="YR_RJW.LegacyHeadCondition">
+                          <legacyHead>YR_Female_AverageNormalAthreeMiko</legacyHead>
+                        </li>
+                      </conditions>
+                    </li>
+                    <li Class="AlienRace.AlienPartGenerator+ExtendedConditionGraphic">
+                      <path>Yuran/Yuranlike/Heads/Miko/Female_YR_head4_Pregnant</path>
+                      <conditions>
+                        <li Class="YR_RJW.LegacyHeadCondition">
+                          <legacyHead>YR_Female_AverageNormalAfourMiko</legacyHead>
+                        </li>
+                      </conditions>
+                    </li>
+                  </extendedGraphics>
+                  <conditions>
+                    <Hediff>Pregnant</Hediff>
+                  </conditions>
+                </li>
+              </extendedGraphics>
+              <conditions>
+                <BodyPart>
+                  <bodyPart>Head</bodyPart>
+                </BodyPart>
+              </conditions>
+            </li>
+          </value>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+</Patch>
