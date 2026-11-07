@@ -2,15 +2,15 @@
 
 RimWorld 1.7용 Yuran Hentai Prime · Restoration v8의 실행 파일과 공개 소스입니다.
 
-- **[실행용 모드 ZIP 다운로드](https://github.com/9A9S9D9A9D-alt/YR_Hentai_Prime_Releases/releases/download/restoration-v8-20261107-split-final/YR_Hentai_Prime_20261107_Final.zip)**
+- **[실행용 모드 ZIP 다운로드](https://github.com/9A9S9D9A9D-alt/YR_Hentai_Prime_Releases/releases/download/restoration-v8-20261107-capture-label/YR_Hentai_Prime_20261107_Capture.zip)**
 - [최신 릴리스와 변경점](https://github.com/9A9S9D9A9D-alt/YR_Hentai_Prime_Releases/releases/latest)
-- [소스 ZIP 다운로드](https://github.com/9A9S9D9A9D-alt/YR_Hentai_Prime_Releases/archive/refs/tags/restoration-v8-20261107-split-final.zip)
+- [소스 ZIP 다운로드](https://github.com/9A9S9D9A9D-alt/YR_Hentai_Prime_Releases/archive/refs/tags/restoration-v8-20261107-capture-label.zip)
 
 게임에 설치할 때는 **실행용 모드 ZIP**을 받으세요. GitHub의 `Source code` ZIP은 C#·XML 소스이며 실행용 모드 전체가 아닙니다.
 
 ## 최종 변경사항 · 2026-11-07
 
-- **촉수 이식체와 자진입대** — 사목의 나무에서 이식 씨앗을 배양합니다. 이식체의 촉수 공격, 원거리 백윤액 사격, 전기 충전, 도약, 응급 처치와 자진입대를 지원합니다. 스플릿 마우스 외피는 한 번 펼쳐진 뒤 붙잡은 형태를 유지합니다.
+- **촉수 이식체와 포획** — 사목의 나무에서 이식 씨앗을 배양합니다. 이식체의 촉수 공격, 원거리 백윤액 사격, 전기 충전, 도약, 응급 처치와 포획를 지원합니다. 스플릿 마우스 외피는 한 번 펼쳐진 뒤 붙잡은 형태를 유지합니다.
 - **스플릿 마우스 말풍선** — 모드를 로드한 뒤 붙잡힌 폰에게 실제로 적용된 기본 몸체를 표시합니다. SA0 사용 시 해당 몸체 부품도 포함합니다. 장비·의상·머리는 표시하지 않습니다. 자동 방향은 앞모습이며, 몸체의 위치·배율·방향을 종족·제노타입·체형·성별별로 저장합니다.
 - **안쪽 촉수와 백윤액 착취** — 양옆에서 감기고 아래에서 교차하는 촉수가 말풍선 안에서 움직입니다. 게임용 이미지는 256×256, 약 22.9KB입니다. 스플릿 마우스로 대상을 붙잡은 상태에서 백윤액 착취를 시작하면 액체가 차오르고, 게임 시간 1시간 후 백윤액 10개가 배출됩니다.
 - **사목 무기와 연단낭** — 연단낭의 작업 탭에서 사목의 활과 단검을 제작합니다. 각 무기의 재료는 사목의 촉수 140개, 백교질 95개, 맥동조직 30개입니다. 연단낭의 내부 원료 가공과 제작 작업은 함께 진행할 수 있습니다. 활과 단검의 상호 변형은 한 무기를 다른 형태로 바꾸며 제작품의 품질을 유지합니다.

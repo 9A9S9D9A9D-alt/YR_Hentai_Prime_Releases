@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using HarmonyLib;
 using RimWorld;
@@ -124,12 +124,12 @@ namespace YR_RJW {
     if(splitMouthEscort)yield return ExtractionCommand(ThingDef.Named("YR_BaekyunFluid").uiIcon);
     yield return SplitAnimationCommand();
    }
-   var style=new Command_Action{defaultLabel=splitMouthEscort?"자진입대 · 스플릿 마우스":"자진입대 · 6가닥 감기",defaultDesc="눌러 붙잡는 형태를 전환합니다. 스플릿 마우스는 굵어진 한 가닥의 중앙 기관으로 고정하고, 양쪽 입술로 어깨 아래를 감쌉니다.",icon=icon,action=()=>splitMouthEscort=!splitMouthEscort};
+   var style=new Command_Action{defaultLabel=splitMouthEscort?"포획 · 스플릿 마우스":"포획 · 6가닥 감기",defaultDesc="눌러 붙잡는 형태를 전환합니다. 스플릿 마우스는 굵어진 한 가닥의 중앙 기관으로 고정하고, 양쪽 입술로 어깨 아래를 감쌉니다.",icon=icon,action=()=>splitMouthEscort=!splitMouthEscort};
    if(escortTarget!=null)style.Disable("대상을 내려놓은 뒤 형태를 바꿀 수 있습니다.");
    yield return style;
-   if(escortTarget!=null){yield return new Command_Action{defaultLabel="자진입대 해제",defaultDesc="촉수에서 대상을 내려놓습니다.",icon=icon,action=EndEscort};yield break;}
+   if(escortTarget!=null){yield return new Command_Action{defaultLabel="포획 해제",defaultDesc="촉수에서 대상을 내려놓습니다.",icon=icon,action=EndEscort};yield break;}
    var command=new CoccyxRangeTarget{
-    origin=Pawn,radius=Range,defaultLabel="촉수 자진입대",defaultDesc="대상 하나를 지정해 붙잡고 함께 이동합니다. 유지 중 대상은 이동하거나 공격할 수 없으며, 시전자의 촉수 공격도 잠깁니다.",icon=icon,
+    origin=Pawn,radius=Range,defaultLabel="촉수 포획",defaultDesc="대상 하나를 지정해 붙잡고 함께 이동합니다. 유지 중 대상은 이동하거나 공격할 수 없으며, 시전자의 촉수 공격도 잠깁니다.",icon=icon,
     targetingParams=new TargetingParameters{canTargetPawns=true,canTargetAnimals=true,canTargetHumans=true,canTargetMechs=true,canTargetBuildings=false,validator=t=>CanEscort(t.Thing as Pawn)},
     action=t=>BeginEscort(t.Pawn)
    };

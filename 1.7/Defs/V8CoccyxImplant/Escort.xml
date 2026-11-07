@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
- <HediffDef><defName>YR_CoccyxEscort</defName><label>촉수 자진입대</label><description>촉수에 붙잡혀 함께 이동 중이다.</description><hediffClass>YR_RJW.Hediff_CoccyxEscort</hediffClass><isBad>true</isBad><scenarioCanAdd>false</scenarioCanAdd></HediffDef>
+ <HediffDef><defName>YR_CoccyxEscort</defName><label>촉수 포획</label><description>촉수에 붙잡혀 함께 이동 중이다.</description><hediffClass>YR_RJW.Hediff_CoccyxEscort</hediffClass><isBad>true</isBad><scenarioCanAdd>false</scenarioCanAdd></HediffDef>
 </Defs>

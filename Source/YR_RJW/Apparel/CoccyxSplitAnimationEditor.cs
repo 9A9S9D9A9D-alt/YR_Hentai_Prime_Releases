@@ -89,7 +89,7 @@ namespace YR_RJW {
    Scribe_Values.Look(ref splitRed,"splitRed",1);Scribe_Values.Look(ref splitGreen,"splitGreen",1);Scribe_Values.Look(ref splitBlue,"splitBlue",1);
   }
   Gizmo SplitAnimationCommand()=>new Command_Action{
-   defaultLabel="자진입대 위치 조정",defaultDesc="기존 시설의 위치 조정 창에서 몸체·말풍선·외피를 이동하고 배율을 조절합니다. 선택값은 저장됩니다.",
+   defaultLabel="포획 위치 조정",defaultDesc="기존 시설의 위치 조정 창에서 몸체·말풍선·외피를 이동하고 배율을 조절합니다. 선택값은 저장됩니다.",
    icon=ContentFinder<Texture2D>.Get("UI/Icons/GDAV3/Up"),action=()=>Find.WindowStack.Add(new SplitAnimationEditor(this))
   };
  }
