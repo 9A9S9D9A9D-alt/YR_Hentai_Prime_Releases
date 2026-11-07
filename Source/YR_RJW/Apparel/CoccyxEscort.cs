@@ -20,6 +20,8 @@ namespace YR_RJW {
 
  public sealed partial class HediffComp_CoccyxCombat {
   const int EscortWindup=24;
+  const int ExtractionTicks=2500,ExtractionYield=10;
+  int extractReadyAt=-1,nextExtractDropAttempt;
   Pawn escortTarget;
   public bool splitMouthEscort;
   int escortGrabAt=-1,escortAnimationTicks=EscortWindup;
@@ -28,10 +30,15 @@ namespace YR_RJW {
   public bool HasEscortGrip=>escortGrabAt<0&&escortTarget?.Spawned==true&&!escortTarget.Dead&&
    Hediff_CoccyxEscort.IsHeld(escortTarget)&&Hediff_CoccyxEscort.Get(escortTarget).escort==Pawn;
   public float EscortProgress=>escortGrabAt<0?1f:Mathf.Clamp01(1f-(escortGrabAt-Find.TickManager.TicksGame)/(float)escortAnimationTicks);
-  void ExposeEscort(){ExposeSplitAnimation();Scribe_Values.Look(ref escortAnimationTicks,"escortAnimationTicks",EscortWindup);Scribe_Values.Look(ref splitMouthEscort,"coccyxSplitMouthEscort");Scribe_Values.Look(ref escortGrabAt,"coccyxEscortGrabAt",-1);Scribe_References.Look(ref escortTarget,"coccyxEscortTarget");Scribe_Values.Look(ref lastEscortCell,"coccyxEscortCell",IntVec3.Invalid);Scribe_Values.Look(ref escortOffset,"coccyxEscortOffset",IntVec3.Invalid);Scribe_Values.Look(ref lastLandingCell,"coccyxEscortLandingCell",IntVec3.Invalid);}
+  public float ExtractionFill=>extractReadyAt<0?0f:
+   Mathf.Clamp01(1f-(extractReadyAt-Find.TickManager.TicksGame)/(float)ExtractionTicks);
+  void ExposeEscort(){ExposeSplitAnimation();Scribe_Values.Look(ref extractReadyAt,"coccyxExtractReadyAt",-1);Scribe_Values.Look(ref escortAnimationTicks,"escortAnimationTicks",EscortWindup);Scribe_Values.Look(ref splitMouthEscort,"coccyxSplitMouthEscort");Scribe_Values.Look(ref escortGrabAt,"coccyxEscortGrabAt",-1);Scribe_References.Look(ref escortTarget,"coccyxEscortTarget");Scribe_Values.Look(ref lastEscortCell,"coccyxEscortCell",IntVec3.Invalid);Scribe_Values.Look(ref escortOffset,"coccyxEscortOffset",IntVec3.Invalid);Scribe_Values.Look(ref lastLandingCell,"coccyxEscortLandingCell",IntVec3.Invalid);
+   if(Scribe.mode==LoadSaveMode.PostLoadInit&&splitTargetKey==null&&escortTarget!=null)splitTargetKey=SplitTargetKey(escortTarget);
+  }
   bool CanEscort(Pawn target)=>Pawn.Spawned&&Pawn.Drafted&&!Pawn.Downed&&!Pawn.Dead&&!Hediff_CoccyxEscort.IsHeld(Pawn)&&target!=null&&target!=Pawn&&target.Spawned&&!target.Dead&&target.Map==Pawn.Map&&!Hediff_CoccyxEscort.IsHeld(target)&&Pawn.Position.DistanceToSquared(target.Position)<=Range*Range&&GenSight.LineOfSight(Pawn.Position,target.Position,Pawn.Map);
   public bool BeginEscort(Pawn target){
    if(escortTarget!=null||!CanEscort(target))return false;
+   SelectSplitTargetSettings(target);
    CancelTentacleAttacks();escortTarget=target;escortAnimationTicks=EscortDuration;escortGrabAt=Find.TickManager.TicksGame+escortAnimationTicks;lastEscortCell=Pawn.Position;
    return true;
   }
@@ -48,6 +55,7 @@ namespace YR_RJW {
    foreach(var limb in limbs){limb.started=-1;limb.target=null;limb.shotTick=-1;}
   }
   public void EndEscort(){
+   extractReadyAt=-1;
    drawing.ReleaseSplitBubble();
    var target=escortTarget;var landing=lastLandingCell;
    escortTarget=null;escortGrabAt=-1;lastEscortCell=IntVec3.Invalid;escortOffset=IntVec3.Invalid;lastLandingCell=IntVec3.Invalid;
@@ -70,6 +78,7 @@ namespace YR_RJW {
     return true;
    }
    if(!Pawn.Spawned||Pawn.Dead||Pawn.Downed||!Pawn.Drafted||target.Dead||!target.Spawned||target.Map!=Pawn.Map||Hediff_CoccyxEscort.Get(target)?.escort!=Pawn){EndEscort();return false;}
+   TickExtraction(now);
    var cell=Pawn.Position;var map=Pawn.Map;
    if(escortOffset==IntVec3.Invalid)escortOffset=target.Position-cell;
    if(cell==lastEscortCell)return true;
@@ -81,11 +90,39 @@ namespace YR_RJW {
    if(desired.Walkable(map))lastLandingCell=desired;
    return true;
   }
+  void BeginExtraction(){
+   if(splitMouthEscort&&HasEscortGrip&&extractReadyAt<0){
+    extractReadyAt=Find.TickManager.TicksGame+ExtractionTicks;
+    nextExtractDropAttempt=0;
+   }
+  }
+  void TickExtraction(int now){
+   if(!splitMouthEscort||extractReadyAt<0||now<extractReadyAt||now<nextExtractDropAttempt)return;
+   var fluid=ThingMaker.MakeThing(ThingDef.Named("YR_BaekyunFluid"));
+   fluid.stackCount=ExtractionYield;
+   if(!GenPlace.TryPlaceThing(fluid,Pawn.Position,Pawn.Map,ThingPlaceMode.Near,out var placed)){
+    fluid.Destroy();
+    nextExtractDropAttempt=now+250;
+    return;
+   }
+   extractReadyAt=-1;
+   if(Pawn.Faction==Faction.OfPlayer)
+    Messages.Message("백윤액 10개를 얻었습니다.",placed??Pawn,MessageTypeDefOf.PositiveEvent,false);
+  }
+  Gizmo ExtractionCommand(Texture2D icon){
+   var command=new Command_Action{
+    defaultLabel=extractReadyAt<0?"백윤액 착취":$"백윤액 착취 중 · {ExtractionFill:P0}",
+    defaultDesc="스플릿 마우스로 대상을 붙잡은 채 1시간을 유지하면 백윤액 10개가 나옵니다. 도중에 내려놓으면 중단됩니다.",
+    icon=icon,action=BeginExtraction
+   };
+   if(extractReadyAt>=0)command.Disable(ExtractionFill>=1f?"배출 공간 대기 중입니다.":"이미 진행 중입니다.");
+   return command;
+  }
   IEnumerable<Gizmo> EscortGizmos(){
    var icon=ContentFinder<Texture2D>.Get("Yuran/UI/Commands/TentacleFocus");
    if(HasEscortGrip){
+    if(splitMouthEscort)yield return ExtractionCommand(ThingDef.Named("YR_BaekyunFluid").uiIcon);
     yield return SplitAnimationCommand();
-    yield return new Command_Action{defaultLabel="몸통 선택",defaultDesc="기존 시설의 몸통 목록에서 말풍선에 표시할 프레임을 선택합니다.",icon=icon,action=()=>new SplitPositionAdapter(this).OpenBodyChoices()};
    }
    var style=new Command_Action{defaultLabel=splitMouthEscort?"자진입대 · 스플릿 마우스":"자진입대 · 6가닥 감기",defaultDesc="눌러 붙잡는 형태를 전환합니다. 스플릿 마우스는 굵어진 한 가닥의 중앙 기관으로 고정하고, 양쪽 입술로 어깨 아래를 감쌉니다.",icon=icon,action=()=>splitMouthEscort=!splitMouthEscort};
    if(escortTarget!=null)style.Disable("대상을 내려놓은 뒤 형태를 바꿀 수 있습니다.");

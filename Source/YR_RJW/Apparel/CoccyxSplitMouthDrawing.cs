@@ -131,7 +131,9 @@ namespace YR_RJW {
 
   void DisposeSplitMeshes(){
    ReleaseSplitBubble();
-   foreach(var mesh in splitWrapMeshes)if(mesh!=null)UnityEngine.Object.Destroy(mesh);
+   if(splitBraceMesh!=null)UnityEngine.Object.Destroy(splitBraceMesh);
+   if(splitFluidMesh!=null)UnityEngine.Object.Destroy(splitFluidMesh);
+   if(splitFluidMaterial!=null)UnityEngine.Object.Destroy(splitFluidMaterial);
    if(splitFrames!=null)foreach(var material in splitFrames)if(material!=null)UnityEngine.Object.Destroy(material);
    if(splitPanels!=null)foreach(var mesh in splitPanels)if(mesh!=null)UnityEngine.Object.Destroy(mesh);
    foreach(var mesh in splitMeshes)if(mesh!=null)UnityEngine.Object.Destroy(mesh);

@@ -26,28 +26,40 @@ namespace YR_Hentai_Prime_AnimationBed
             AccessTools.FieldRefAccess<PawnRenderTree, PawnDrawParms>("oldParms");
         public static bool HeadOnlyFor(Pawn pawn) => pawn != null && pawn == headOnlyPawn;
 
+        public readonly struct BodyGraphicLayer
+        {
+            public readonly Graphic graphic;
+            public readonly Vector3 offset;
+            public readonly Vector2 size;
+            public readonly float depth;
+            public BodyGraphicLayer(Graphic graphic,Vector3 offset,Vector2 size,float depth)
+            { this.graphic=graphic;this.offset=offset;this.size=size;this.depth=depth; }
+        }
+
         // Prepare an authored sprite once; playback only switches these textures.
         // This path never renders a Pawn or changes its render-tree preparation.
-        public static Texture2D FrameTexture(BedAnimationSetting frame,Vector3 offset,float scale,Texture2D mask,Graphic nativeBody=null,Rot4? direction=null)
+        public static Texture2D FrameTexture(BedAnimationSetting frame,Vector3 offset,float scale,Texture2D mask,Graphic nativeBody=null,Rot4? direction=null,
+            Vector3? nativeOffset=null,Vector2? sharedMeshSize=null,IReadOnlyList<BodyGraphicLayer> bodyLayers=null)
         {
             const int size=256;
             var pixels=new Color[size*size];
             var maskPixels=mask.GetPixels32();
-            void Layer(Graphic graphic,Vector3 position)
+            void Layer(Graphic graphic,Vector3 position,float layerScale,Rot4 facing,Vector2? layerSize=null)
             {
                 if(graphic==null)return;
-                var material=graphic.MatAt(direction??Rot4.South);
+                var material=graphic.MatAt(facing);
                 var texture=material.mainTexture as Texture2D;
-                if(texture==null)return;
+                if(texture==null||texture==BaseContent.BadTex)return;
                 var source=texture.GetPixels32();
+                var drawSize=layerSize??sharedMeshSize??graphic.drawSize;
                 var tintMask=material.GetTexture("_MaskTex") as Texture2D;
                 var tintPixels=tintMask?.GetPixels32();
                 bool complex=material.shader==ShaderDatabase.CutoutComplex;
                 bool skin=material.shader==ShaderDatabase.CutoutSkin;
                 bool skinOverride=material.shader==ShaderDatabase.CutoutSkinColorOverride;
                 for(int y=0;y<size;y++)for(int x=0;x<size;x++){
-                    float u=(((x+.5f)/size-.5f)*2-position.x)/(graphic.drawSize.x*scale)+.5f;
-                    float v=(((y+.5f)/size-.5f)*2-position.z)/(graphic.drawSize.y*scale)+.5f;
+                    float u=(((x+.5f)/size-.5f)*2-position.x)/(drawSize.x*layerScale)+.5f;
+                    float v=(((y+.5f)/size-.5f)*2-position.z)/(drawSize.y*layerScale)+.5f;
                     if(u<0||u>=1||v<0||v>=1)continue;
                     Color color=source[(int)(v*texture.height)*texture.width+(int)(u*texture.width)];
                     var original=color;
@@ -71,8 +83,17 @@ namespace YR_Hentai_Prime_AnimationBed
                             (color.g*opacity+below.g*covered)/alpha,(color.b*opacity+below.b*covered)/alpha,alpha);
                 }
             }
-            Layer(nativeBody,offset);
-            Layer(frame?.graphic,offset+(frame?.offset??Vector3.zero));
+            var facing=direction??Rot4.South;
+            void BodyLayers(bool behind)
+            {
+                if(bodyLayers==null)return;
+                foreach(var layer in bodyLayers)
+                    if((layer.depth<0)==behind)Layer(layer.graphic,offset+layer.offset*scale,scale,facing,layer.size);
+            }
+            BodyLayers(true);
+            Layer(nativeBody,nativeOffset??offset,scale,facing);
+            BodyLayers(false);
+            Layer(frame?.graphic,offset+(frame?.offset??Vector3.zero),scale,facing);
             for(int y=0;y<size;y++)for(int x=0;x<size;x++)
                 pixels[y*size+x].a*=1f-maskPixels[(y*mask.height/size)*mask.width+x*mask.width/size].r/255f;
             var result=new Texture2D(size,size,TextureFormat.RGBA32,false);
