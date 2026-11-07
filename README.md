@@ -2,9 +2,9 @@
 
 RimWorld 1.7용 Yuran Hentai Prime · Restoration v8의 실행 파일과 공개 소스입니다.
 
-- **[실행용 모드 ZIP 다운로드](https://github.com/9A9S9D9A9D-alt/YR_Hentai_Prime_Releases/releases/download/restoration-v8-20261107-coccyx-samok/YR_Hentai_Prime_20261107_Coccyx_Samok.zip)**
+- **[실행용 모드 ZIP 다운로드](https://github.com/9A9S9D9A9D-alt/YR_Hentai_Prime_Releases/releases/download/restoration-v8-20261107-samok-costs/YR_Hentai_Prime_20261107_SamokCosts.zip)**
 - [최신 릴리스와 변경점](https://github.com/9A9S9D9A9D-alt/YR_Hentai_Prime_Releases/releases/latest)
-- [소스 ZIP 다운로드](https://github.com/9A9S9D9A9D-alt/YR_Hentai_Prime_Releases/archive/refs/tags/restoration-v8-20261107-coccyx-samok.zip)
+- [소스 ZIP 다운로드](https://github.com/9A9S9D9A9D-alt/YR_Hentai_Prime_Releases/archive/refs/tags/restoration-v8-20261107-samok-costs.zip)
 
 게임에 설치할 때는 **실행용 모드 ZIP**을 받으세요. GitHub의 `Source code` ZIP은 C#·XML 소스이며 실행용 모드 전체가 아닙니다.
 
@@ -14,9 +14,9 @@ RimWorld 1.7용 Yuran Hentai Prime · Restoration v8의 실행 파일과 공개 
 - **촉수 자진입대** — 6가닥 감기와 스플릿 마우스 중 붙잡는 형태를 선택합니다. 외피는 한 번 펼쳐진 뒤 붙잡은 형태를 유지합니다. 스플릿 마우스의 줄기와 외피 연결을 다듬고, 외피의 앞뒤 부분을 폰을 기준으로 나눠 그립니다. 무력화된 대상은 들려 있는 동안 화면에 세워서 표시합니다.
 - **말풍선과 위치 조정** — 대상을 붙잡은 동안 위치 조정과 몸통 선택 메뉴가 표시됩니다. 기존 시설의 몸통 카탈로그, 배경, 마스크, 테두리와 프레임을 사용합니다. 몸체 프레임은 별도 카메라 없이 준비합니다. 사목 촉수 침대의 수면 덩굴이 말풍선 내부 좌우의 몸체 앞에 표시되며, 안쪽 촉수의 위치와 크기를 따로 조절할 수 있습니다.
 - **사목 무기** — 활의 유도 화살과 궤적, 단검의 은신과 기습, 채찍의 공격 처리를 추가했습니다. 활과 단검을 변형하면 원래 무기 한 개가 다른 형태 한 개로 바뀝니다. 제작품 여부와 품질은 변형 후에도 유지됩니다.
-- **사목의 연단낭** — 내부 원료를 자동 가공하면서 작업 탭에서 사목의 활·단검을 제작할 수 있습니다. 임시 재료는 단검에 사목의 촉수 12개와 백교질 4개, 활에 사목의 촉수 20개와 백교질 6개입니다. 제작품에는 일반 품질이 붙고 바닥에 내려놓을 수 있습니다.
+- **사목의 연단낭** — 내부 원료를 자동 가공하면서 작업 탭에서 사목의 활·단검을 제작할 수 있습니다. 활과 단검 모두 사목의 촉수 140개, 백교질 95개, 맥동조직 30개가 필요합니다. 제작품에는 일반 품질이 붙고 바닥에 내려놓을 수 있습니다.
 
-**검증:** 빌드본과 배포 ZIP의 DLL이 일치합니다. 테스트 맵과 변경된 무기·레시피 정의 로딩을 확인했습니다. 게임 안에서 제작을 완료하고 변형하는 실동작 확인은 남아 있습니다.
+**검증:** 빌드본과 배포 ZIP의 DLL이 일치합니다. 두 제작 정의에서 재료와 수량을 확인했습니다. 변경된 비용으로 실제 게임에서 제작을 완료하는 확인은 남아 있습니다.
 
 ## 이전 수정사항 · 2026-11-06
 

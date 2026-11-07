@@ -18,20 +18,21 @@
     <workSkill>Crafting</workSkill>
     <recipeUsers><li>YR_SamokRefinery</li></recipeUsers>
     <fixedIngredientFilter>
-      <thingDefs><li>YR_SamokTentacleRaw</li><li>YR_Baekgyojil</li></thingDefs>
+      <thingDefs><li>YR_SamokTentacleRaw</li><li>YR_Baekgyojil</li><li>YR_PulsatingTissue</li></thingDefs>
     </fixedIngredientFilter>
-    <defaultIngredientFilter><thingDefs><li>YR_SamokTentacleRaw</li><li>YR_Baekgyojil</li></thingDefs></defaultIngredientFilter>
+    <defaultIngredientFilter><thingDefs><li>YR_SamokTentacleRaw</li><li>YR_Baekgyojil</li><li>YR_PulsatingTissue</li></thingDefs></defaultIngredientFilter>
   </RecipeDef>
 
   <RecipeDef ParentName="YR_SamokRefineryWeaponRecipe">
     <defName>YR_MakeSamokDagger</defName>
     <label>사목의 단검 제작</label>
-    <description>사목의 촉수와 백교질을 엮어 단검 하나를 만듭니다.</description>
+    <description>사목의 촉수, 백교질과 맥동조직을 엮어 단검 하나를 만듭니다.</description>
     <jobString>사목의 단검을 만드는 중.</jobString>
     <workAmount>1600</workAmount>
     <ingredients>
-      <li><filter><thingDefs><li>YR_SamokTentacleRaw</li></thingDefs></filter><count>12</count></li>
-      <li><filter><thingDefs><li>YR_Baekgyojil</li></thingDefs></filter><count>4</count></li>
+      <li><filter><thingDefs><li>YR_SamokTentacleRaw</li></thingDefs></filter><count>140</count></li>
+      <li><filter><thingDefs><li>YR_Baekgyojil</li></thingDefs></filter><count>95</count></li>
+      <li><filter><thingDefs><li>YR_PulsatingTissue</li></thingDefs></filter><count>30</count></li>
     </ingredients>
     <products><OY_Tentacle_Dagger>1</OY_Tentacle_Dagger></products>
   </RecipeDef>
@@ -39,12 +40,13 @@
   <RecipeDef ParentName="YR_SamokRefineryWeaponRecipe">
     <defName>YR_MakeSamokBow</defName>
     <label>사목의 활 제작</label>
-    <description>사목의 촉수와 백교질을 엮어 활 하나를 만듭니다.</description>
+    <description>사목의 촉수, 백교질과 맥동조직을 엮어 활 하나를 만듭니다.</description>
     <jobString>사목의 활을 만드는 중.</jobString>
     <workAmount>2200</workAmount>
     <ingredients>
-      <li><filter><thingDefs><li>YR_SamokTentacleRaw</li></thingDefs></filter><count>20</count></li>
-      <li><filter><thingDefs><li>YR_Baekgyojil</li></thingDefs></filter><count>6</count></li>
+      <li><filter><thingDefs><li>YR_SamokTentacleRaw</li></thingDefs></filter><count>140</count></li>
+      <li><filter><thingDefs><li>YR_Baekgyojil</li></thingDefs></filter><count>95</count></li>
+      <li><filter><thingDefs><li>YR_PulsatingTissue</li></thingDefs></filter><count>30</count></li>
     </ingredients>
     <products><OY_Tentacle_Bow>1</OY_Tentacle_Bow></products>
   </RecipeDef>
