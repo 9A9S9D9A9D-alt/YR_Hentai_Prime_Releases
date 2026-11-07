@@ -73,7 +73,7 @@
       <li>
         <grains>
           <li Class="AudioGrain_Clip">
-            <clipPath>Pawn/Abilities/AcidSpray/Acid_Spray_Resolve</clipPath>
+            <clipPath>Coccyx/FluidSpit</clipPath>
           </li>
         </grains>
         <volumeRange>16</volumeRange>
