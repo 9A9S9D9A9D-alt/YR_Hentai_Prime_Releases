@@ -28,6 +28,7 @@
   <thingClass>YR_RJW.Building_SamokRefinery</thingClass><size>(2,2)</size><rotatable>false</rotatable><tickerType>Rare</tickerType>
   <drawerType>RealtimeOnly</drawerType><altitudeLayer>Building</altitudeLayer><passability>PassThroughOnly</passability><pathCost>50</pathCost><fillPercent>0.6</fillPercent>
   <hasInteractionCell>true</hasInteractionCell><interactionCellOffset>(0,0,-1)</interactionCellOffset>
+  <inspectorTabs><li>ITab_Bills</li></inspectorTabs>
   <terrainAffordanceNeeded>Medium</terrainAffordanceNeeded><designationCategory>Production</designationCategory><uiIconScale>0.65</uiIconScale>
   <graphicData><texPath>Yuran/Things/Building/SamokRefinery/Texture</texPath><graphicClass>Graphic_Single</graphicClass><drawSize>(2.2,2.2)</drawSize></graphicData>
   <costList><YR_SamokTentacleRaw>50</YR_SamokTentacleRaw><YR_BaekyunFluid>30</YR_BaekyunFluid></costList>

@@ -11,7 +11,7 @@ namespace YR_RJW {
   public static IEnumerable<ThingDef> All=>defs??=new HashSet<ThingDef>(DefDatabase<ThingDef>.AllDefsListForReading.Where(d=>d.race?.Humanlike==true&&d.race.meatDef!=null).Select(d=>d.race.meatDef).Where(d=>d.ingestible!=null&&(d.ingestible.foodType&FoodTypeFlags.Meat)!=0));
   public static bool Allows(ThingDef def){_ = All;return def!=null&&defs.Contains(def);}
  }
- public class Building_SamokRefinery : Building,IThingHolder {
+ public class Building_SamokRefinery : Building_WorkTable,IThingHolder {
   private ThingOwner<Thing> contents;
   private readonly RefineryProgress progress=new RefineryProgress();
   private int mode,lastProcessTick=-1,pendingOutput;
@@ -20,11 +20,11 @@ namespace YR_RJW {
   public bool AllowsSupply(bool forced)=>autoSupplyEnabled || forced;
   private Material idleMat,activeMat;
   public Building_SamokRefinery(){contents=new ThingOwner<Thing>(this);}
-  public ThingDef InputDef=>ThingDef.Named(mode==0?"YR_BaekyunFluid":"Meat_Human");
-  public bool Accepts(ThingDef input)=>mode==0?input==InputDef:SamokHumanlikeMeat.Allows(input);
-  public string InputLabel=>mode==0?InputDef.label:"인간형 고기";
-  public ThingDef OutputDef=>ThingDef.Named(mode==0?"YR_Baekgyojil":"YR_PulsatingTissue");
-  public int Ratio=>mode==0?3:2;
+  public ThingDef InputDef=>ThingDef.Named(mode==1?"Meat_Human":"YR_BaekyunFluid");
+  public bool Accepts(ThingDef input)=>mode==1?SamokHumanlikeMeat.Allows(input):input==InputDef;
+  public string InputLabel=>mode==1?"인간형 고기":InputDef.label;
+  public ThingDef OutputDef=>ThingDef.Named(mode==0?"YR_Baekgyojil":mode==1?"YR_PulsatingTissue":HediffComp_CoccyxCombat.CartridgeDef);
+  public int Ratio=>mode==0?3:mode==1?2:10;
   public int InputCount=>contents.Where(t=>Accepts(t.def)).Sum(t=>t.stackCount);
   public int SpaceLeft=>Math.Max(0,200-InputCount);
   public bool Processing=>InputCount>=Ratio;
@@ -37,7 +37,7 @@ namespace YR_RJW {
    return contents.TryAddOrTransfer(t,Math.Min(SpaceLeft,t.stackCount));
   }
   public bool SelectRecipe(int choice){
-   if(choice<0 || choice>1)return false;if(choice==mode)return true;
+   if(choice<0 || choice>2)return false;if(choice==mode)return true;
    SettleProgress();if(contents.Count>0 || pendingOutput>0)return false;
    mode=choice;progress.Credit=0;progress.BatchElapsed=0;return true;
   }
@@ -76,7 +76,7 @@ namespace YR_RJW {
    Scribe_Values.Look(ref progress.BatchElapsed,"samokRefineryBatchElapsed");
    Scribe_Values.Look(ref pendingOutput,"samokRefineryPendingOutput");Scribe_Values.Look(ref animationEnabled,"samokRefineryAnimation",true);
    Scribe_Values.Look(ref autoSupplyEnabled,"samokRefineryAutoSupply",true);
-   if(Scribe.mode==LoadSaveMode.PostLoadInit){contents??=new ThingOwner<Thing>(this);mode=Math.Max(0,Math.Min(1,mode));}
+   if(Scribe.mode==LoadSaveMode.PostLoadInit){billStack??=new BillStack(this);contents??=new ThingOwner<Thing>(this);mode=Math.Max(0,Math.Min(2,mode));}
   }
   public override string GetInspectString(){
    string prefix=base.GetInspectString();
@@ -85,7 +85,7 @@ namespace YR_RJW {
   public override IEnumerable<Gizmo> GetGizmos(){
    foreach(var g in base.GetGizmos())yield return g;
    yield return new Command_Action {defaultLabel="가공 항목: "+OutputDef.label,icon=OutputDef.uiIcon,action=()=>{
-    var list=new List<FloatMenuOption>();for(int i=0;i<2;i++){int choice=i;string label=i==0?"백윤액 3 → 백교질 1":"인간형 고기 2 → 맥동조직 1";
+    var list=new List<FloatMenuOption>();for(int i=0;i<3;i++){int choice=i;string label=i==0?"백윤액 3 → 백교질 1":i==1?"인간형 고기 2 → 맥동조직 1":"백윤액 10 → 카트리지 1";
      list.Add(new FloatMenuOption(label,()=>{if(!SelectRecipe(choice))Messages.Message("원료와 생산물을 먼저 비워야 가공 항목을 변경할 수 있습니다.",this,MessageTypeDefOf.RejectInput,false);}));}
     Find.WindowStack.Add(new FloatMenu(list));
    }};

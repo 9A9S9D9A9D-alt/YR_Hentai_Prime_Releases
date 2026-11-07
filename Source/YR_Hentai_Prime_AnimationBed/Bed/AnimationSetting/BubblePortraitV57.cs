@@ -47,21 +47,37 @@ namespace YR_Hentai_Prime_AnimationBed
             var source=DefDatabase<BedAnimationDef>.GetNamedSilentFail(adjustment.BubbleChoice(ingredient.pawn,ingredient.slot)??"");
             if(source==null || !FacilityBodyCatalogV47.Choices().Contains(source))return;
             ingredient.bubbleSource=source;
+            ingredient.bubbleFrames.AddRange(PrepareFrames(ingredient.pawn,source,adjustment.parent as Building_AnimationBed));
+        }
+        // The detached display supplies a color read from the existing body node.
+        // The facility path retains its original node/color lookup.
+        public static List<BedAnimationSetting> PrepareFrames(Pawn pawn,BedAnimationDef source,Building_AnimationBed facility=null,Color? bodyColor=null)
+        {
+            var frames=new List<BedAnimationSetting>();
             foreach(var frame in source.bedAnimationSettings){
-                if(!Condition.Match(ingredient.pawn,adjustment.parent as Building_AnimationBed,frame.condition,out _))continue;
+                if(!Condition.Match(pawn,facility,frame.condition,out _))continue;
                 var data=frame.graphicData;
                 foreach(var choice in frame.conditionGraphicDatas)
-                    if(Condition.Match(ingredient.pawn,adjustment.parent as Building_AnimationBed,choice.condition,out bool stop)){
+                    if(Condition.Match(pawn,facility,choice.condition,out bool stop)){
                         data=choice.graphicData;if(stop)break;
                     }
                 if(data==null || ContentFinder<Texture2D>.Get(data.texPath,false)==null)continue;
                 var copy=frame.Copy();
-                var bodyNode=source.setPawnColor?FacilityRenderNodes.Find(ingredient.pawn,PawnRenderNodeTagDefOf.Body):null;
-                var color=source.setPawnColor?(bodyNode?.ColorFor(ingredient.pawn)??Color.white):data.color;
+                var bodyNode=source.setPawnColor&&!bodyColor.HasValue?FacilityRenderNodes.Find(pawn,PawnRenderNodeTagDefOf.Body):null;
+                var color=source.setPawnColor?(bodyColor??bodyNode?.ColorFor(pawn)??Color.white):data.color;
                 copy.graphic=GraphicDatabase.Get<Graphic_Single>(data.texPath,data.shaderType?.Shader??ShaderDatabase.Cutout,
                     data.drawSize,color,data.colorTwo,data,data.maskPath);
-                ingredient.bubbleFrames.Add(copy);
+                frames.Add(copy);
             }
+            return frames;
+        }
+        public static BedAnimationSetting FrameAtTick(List<BedAnimationSetting> frames,BedAnimationDef source,int elapsed,int automaticDuration=60)
+        {
+            if(frames.Count==0)return null;
+            int duration=source.autoDurationTicksSetting?automaticDuration:source.durationTicks;
+            duration=Math.Max(duration,frames.Max(f=>f.tick)+1);
+            int tick=elapsed%Math.Max(1,duration);
+            return frames.Where(f=>f.tick<=tick).OrderByDescending(f=>f.tick).FirstOrDefault()??frames[0];
         }
         public static Texture Capture(PortraitIngredient ingredient,Vector3 cameraOffset,float zoom,Rot4 rotation)
         {
@@ -73,10 +89,7 @@ namespace YR_Hentai_Prime_AnimationBed
             var tree=pawn.Drawer.renderer.renderTree;
             BedAnimationSetting frame=null;
             if(customBody){
-                int duration=ingredient.bubbleSource.autoDurationTicksSetting?(pawn.Drawer.renderer.CurAnimation?.durationTicks??60):ingredient.bubbleSource.durationTicks;
-                duration=Math.Max(duration,ingredient.bubbleFrames.Max(f=>f.tick)+1);
-                int tick=tree.AnimationTick%Math.Max(1,duration);
-                frame=ingredient.bubbleFrames.Where(f=>f.tick<=tick).OrderByDescending(f=>f.tick).FirstOrDefault()??ingredient.bubbleFrames[0];
+                frame=FrameAtTick(ingredient.bubbleFrames,ingredient.bubbleSource,tree.AnimationTick,pawn.Drawer.renderer.CurAnimation?.durationTicks??60);
             }
             int nativeTick=Find.TickManager.TicksGame;
             if(ingredient.ownedTexture!=null && (customBody||ingredient.lastBubbleNativeTick==nativeTick) && ingredient.lastBubbleGraphic==frame?.graphic &&

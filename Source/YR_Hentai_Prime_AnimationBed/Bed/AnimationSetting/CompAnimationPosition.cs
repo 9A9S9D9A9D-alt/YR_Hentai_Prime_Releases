@@ -45,7 +45,7 @@ namespace YR_Hentai_Prime_AnimationBed
         }
         public bool BubbleBodyAllowed => parent.def.defName.StartsWith("YR_Building_GloryHole",StringComparison.Ordinal);
         public string BubbleChoice(Pawn pawn,int slot) => bubbleChoices.TryGetValue(Key(pawn,"bubble:"+slot),out var name)?name:null;
-        public float DisplayScale(Pawn pawn,string layer) => Mathf.Clamp(1f+Offset(pawn,"scale:"+layer).x,.2f,3f);
+        public virtual float DisplayScale(Pawn pawn,string layer) => Mathf.Clamp(1f+Offset(pawn,"scale:"+layer).x,.2f,3f);
         public float RenderScale(Pawn pawn,string layer) => DisplayScale(pawn,"all")*(layer=="all"?1f:DisplayScale(pawn,layer));
         public void OpenBubbleChoices(int slot)
         {
@@ -63,9 +63,9 @@ namespace YR_Hentai_Prime_AnimationBed
             if(name==null)copy.Remove(key);else copy[key]=name;bubbleChoices=copy;
             if(parent is Building_AnimationBed bed){BedAnimationUtility.MakePortrait(bed);bed.makePortrait=true;}
         }
-        public bool SupportsBodyChoice => parent.def.defName=="YR_Building_MilkingMachine" || parent.def.defName=="YR_Building_EggMachine";
-        public string BodyChoice(Pawn pawn) => bodyChoices.TryGetValue(Context(pawn),out var name)?name:null;
-        public void SetBodyChoice(Pawn pawn,string name)
+        public virtual bool SupportsBodyChoice => parent.def.defName=="YR_Building_MilkingMachine" || parent.def.defName=="YR_Building_EggMachine";
+        public virtual string BodyChoice(Pawn pawn) => bodyChoices.TryGetValue(Context(pawn),out var name)?name:null;
+        public virtual void SetBodyChoice(Pawn pawn,string name)
         {
             var copy=new Dictionary<string,string>(bodyChoices);
             if(string.IsNullOrEmpty(name))copy.Remove(Context(pawn));else copy[Context(pawn)]=name;
@@ -77,11 +77,11 @@ namespace YR_Hentai_Prime_AnimationBed
             foreach(var refresh in parent.AllComps.OfType<IBodyChoiceRefreshV47>())refresh.RefreshBodyChoice();
         }
         private IAnimationPositionSource Source => parent.AllComps.OfType<IAnimationPositionSource>().FirstOrDefault();
-        public Pawn Pawn => Source?.PositionPawn;
+        public virtual Pawn Pawn => Source?.PositionPawn;
         private string Context(Pawn pawn) => (pawn?.def.defName??"empty")+"/"+(pawn?.story?.bodyType?.defName??"none")+"/"+pawn?.gender;
         private string Key(Pawn pawn,string layer) => Context(pawn)+"/"+layer;
-        public Vector3 Offset(Pawn pawn,string layer) => offsets.TryGetValue(Key(pawn,layer),out var value)?value:Vector3.zero;
-        public void Move(Pawn pawn,string layer,Vector3 delta,bool reset=false)
+        public virtual Vector3 Offset(Pawn pawn,string layer) => offsets.TryGetValue(Key(pawn,layer),out var value)?value:Vector3.zero;
+        public virtual void Move(Pawn pawn,string layer,Vector3 delta,bool reset=false)
         {
             var next=new Dictionary<string,Vector3>(offsets);string key=Key(pawn,layer);
             if(reset)next.Remove(key);else next[key]=Offset(pawn,layer)+delta;
@@ -102,7 +102,7 @@ namespace YR_Hentai_Prime_AnimationBed
                 if(bubbleChoices==null)bubbleChoices=new Dictionary<string,string>();
             }
         }
-        public List<KeyValuePair<string,string>> Layers()
+        public virtual List<KeyValuePair<string,string>> Layers()
         {
             var result=new List<KeyValuePair<string,string>> {
                 new KeyValuePair<string,string>("all","전체 애니메이션"),
@@ -125,7 +125,7 @@ namespace YR_Hentai_Prime_AnimationBed
                 icon=ContentFinder<Texture2D>.Get("UI/Icons/GDAV3/Up"),
                 action=()=>Find.WindowStack.Add(new DialogAnimationPosition(this)) };
         }
-        public void OpenBodyChoices()
+        public virtual void OpenBodyChoices()
         {
             var pawn=Pawn;
             if(pawn==null){Messages.Message("장치에 대상을 배치한 뒤 몸통을 선택하세요.",MessageTypeDefOf.RejectInput,false);return;}
@@ -152,8 +152,8 @@ namespace YR_Hentai_Prime_AnimationBed
         private string selected="body";
         private float step=.05f;
         public override Vector2 InitialSize => new Vector2(370,475);
-        public DialogAnimationPosition(CompAnimationPosition comp)
-        { this.comp=comp;doCloseX=true;draggable=true;closeOnClickedOutside=false; }
+        public DialogAnimationPosition(CompAnimationPosition comp,string initialLayer="body")
+        { this.comp=comp;selected=initialLayer;doCloseX=true;draggable=true;closeOnClickedOutside=false; }
         public override void DoWindowContents(Rect rect)
         {
             Widgets.Label(new Rect(0,0,330,27),"애니메이션 위치 조정");

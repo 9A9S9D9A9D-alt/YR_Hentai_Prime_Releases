@@ -26,6 +26,61 @@ namespace YR_Hentai_Prime_AnimationBed
             AccessTools.FieldRefAccess<PawnRenderTree, PawnDrawParms>("oldParms");
         public static bool HeadOnlyFor(Pawn pawn) => pawn != null && pawn == headOnlyPawn;
 
+        // Prepare an authored sprite once; playback only switches these textures.
+        // This path never renders a Pawn or changes its render-tree preparation.
+        public static Texture2D FrameTexture(BedAnimationSetting frame,Vector3 offset,float scale,Texture2D mask,Graphic nativeBody=null,Rot4? direction=null)
+        {
+            const int size=256;
+            var pixels=new Color[size*size];
+            var maskPixels=mask.GetPixels32();
+            void Layer(Graphic graphic,Vector3 position)
+            {
+                if(graphic==null)return;
+                var material=graphic.MatAt(direction??Rot4.South);
+                var texture=material.mainTexture as Texture2D;
+                if(texture==null)return;
+                var source=texture.GetPixels32();
+                var tintMask=material.GetTexture("_MaskTex") as Texture2D;
+                var tintPixels=tintMask?.GetPixels32();
+                bool complex=material.shader==ShaderDatabase.CutoutComplex;
+                bool skin=material.shader==ShaderDatabase.CutoutSkin;
+                bool skinOverride=material.shader==ShaderDatabase.CutoutSkinColorOverride;
+                for(int y=0;y<size;y++)for(int x=0;x<size;x++){
+                    float u=(((x+.5f)/size-.5f)*2-position.x)/(graphic.drawSize.x*scale)+.5f;
+                    float v=(((y+.5f)/size-.5f)*2-position.z)/(graphic.drawSize.y*scale)+.5f;
+                    if(u<0||u>=1||v<0||v>=1)continue;
+                    Color color=source[(int)(v*texture.height)*texture.width+(int)(u*texture.width)];
+                    var original=color;
+                    if(complex&&tintPixels!=null){
+                        Color tint=tintPixels[(int)(v*tintMask.height)*tintMask.width+(int)(u*tintMask.width)];
+                        float gate=Mathf.Clamp01(tint.a*255f);tint.r*=gate;tint.g*=gate;
+                        color*=Color.Lerp(Color.white,graphic.color,tint.r);
+                        color*=Color.Lerp(Color.white,graphic.colorTwo,tint.g);
+                    }else if(!complex)color*=graphic.color;
+                    if(skin){
+                        if(original.a<.1f)continue;
+                        color+=material.GetColor("_ShadowColor")*Mathf.Min((1-original.r)*original.r,.11f);
+                    }else if(color.a<(skinOverride?.1f:.5f))continue;
+                    int i=y*size+x;
+                    Color below=pixels[i];
+                    float opacity=Mathf.Clamp01(color.a);
+                    float covered=below.a*(1-opacity);
+                    float alpha=opacity+covered;
+                    if(alpha>0)
+                        pixels[i]=new Color((color.r*opacity+below.r*covered)/alpha,
+                            (color.g*opacity+below.g*covered)/alpha,(color.b*opacity+below.b*covered)/alpha,alpha);
+                }
+            }
+            Layer(nativeBody,offset);
+            Layer(frame?.graphic,offset+(frame?.offset??Vector3.zero));
+            for(int y=0;y<size;y++)for(int x=0;x<size;x++)
+                pixels[y*size+x].a*=1f-maskPixels[(y*mask.height/size)*mask.width+x*mask.width/size].r/255f;
+            var result=new Texture2D(size,size,TextureFormat.RGBA32,false);
+            result.name="Facility fixed body frame";result.wrapMode=TextureWrapMode.Clamp;
+            result.SetPixels(pixels);result.Apply(false,false);
+            return result;
+        }
+
         public static Texture GetTexture(PortraitIngredient ingredient, Vector3 cameraOffset, float cameraZoom, Rot4? direction = null)
         {
             var setting = ingredient.portraitSetting;

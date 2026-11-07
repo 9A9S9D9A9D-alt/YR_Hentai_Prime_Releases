@@ -132,8 +132,11 @@ namespace YR_RJW {
    offset.y=depth;GenDraw.DrawMeshNowOrLater(MeshPool.plane10,Matrix4x4.TRS(offset,Quaternion.identity,new Vector3(scale,1,scale)),mat,true);
   }
   internal Matrix4x4 BodyTransform(){
-   var offset=Offset("body");offset.y=0;offset.z+=0.004f*Mathf.Sin(currentFrame*Mathf.PI/3f);
-   float s=Scale("body");return Matrix4x4.TRS(offset,Quaternion.identity,new Vector3(s,1,s));
+   return PawnPoseTransform(currentFrame,Offset("body"),Scale("body"));
+  }
+  public static Matrix4x4 PawnPoseTransform(int frame,Vector3 offset,float scale){
+   offset.y=0;offset.z+=.004f*Mathf.Sin(frame*Mathf.PI/3f);
+   return Matrix4x4.TRS(offset,Quaternion.identity,new Vector3(scale,1,scale));
   }
   private void Prepare(Pawn pawn){
    if(tendrils==null){

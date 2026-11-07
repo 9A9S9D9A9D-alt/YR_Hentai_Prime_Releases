@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <ThingDef>
+    <defName>YR_SamokWhipStrike</defName>
+    <label>사목의 채찍 타격</label>
+    <thingClass>YR_RJW.SamokWhipStrike</thingClass>
+    <category>Ethereal</category>
+    <tickerType>Normal</tickerType>
+    <drawerType>RealtimeOnly</drawerType>
+    <altitudeLayer>Projectile</altitudeLayer>
+    <useHitPoints>false</useHitPoints>
+  </ThingDef>
+</Defs>

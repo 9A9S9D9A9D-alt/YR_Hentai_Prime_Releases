@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <FleckDef ParentName="FleckBase">
+    <defName>YR_SamokAmbushImpact</defName>
+    <altitudeLayer>MoteOverhead</altitudeLayer>
+    <fadeInTime>0.02</fadeInTime>
+    <solidTime>0.10</solidTime>
+    <fadeOutTime>0.38</fadeOutTime>
+    <graphicData>
+      <texPath>Yuran/Effects/SamokAmbushSlash</texPath>
+      <shaderType>Mote</shaderType>
+    </graphicData>
+  </FleckDef>
+  <FleckDef ParentName="FleckBase"><defName>YR_SamokAmbushFlash</defName><altitudeLayer>MoteOverhead</altitudeLayer><solidTime>0.04</solidTime><fadeOutTime>0.16</fadeOutTime><graphicData><texPath>Things/Mote/BodyImpact</texPath><shaderType>MoteGlow</shaderType><color>(1,0.85,1,1)</color></graphicData></FleckDef>
+  <FleckDef ParentName="FleckBase_Thrown"><defName>YR_SamokSakuraPetal</defName><altitudeLayer>MoteOverhead</altitudeLayer><solidTime>0.15</solidTime><fadeOutTime>0.65</fadeOutTime><graphicData><texPath>Yuran/Effects/SamokSakuraPetal</texPath><shaderType>Mote</shaderType></graphicData></FleckDef>
+</Defs>

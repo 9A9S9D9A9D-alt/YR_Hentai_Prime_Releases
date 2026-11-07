@@ -46,7 +46,7 @@ namespace YR_RJW {
    if(!ResearchFinished)grow.Disable("사목 생체공학 I 연구가 필요합니다.");else if(LinkedCount==0)grow.Disable("공물함을 먼저 연결하세요.");yield return grow;
   }
   private static bool ResearchFinished=>DefDatabase<ResearchProjectDef>.GetNamedSilentFail("YR_SamokBioengineeringI")?.IsFinished==true;
-  private List<Thing> AvailableStock(){
+  internal List<Thing> AvailableStock(){
    return LinkedCabinets.SelectMany(s=>s.AllSlotCells()).Distinct()
     .SelectMany(c=>c.GetThingList(parent.Map)).Where(t=>t.def.category==ThingCategory.Item&&!parent.Map.reservationManager.IsReserved(t)).Distinct().ToList();
   }

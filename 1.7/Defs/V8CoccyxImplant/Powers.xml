@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+ <BodyPartDef><defName>YR_CoccyxSocket</defName><label>미추 접합부</label><hitPoints>20</hitPoints><bleedRate>0</bleedRate><permanentInjuryChanceFactor>0</permanentInjuryChanceFactor></BodyPartDef>
+ <ThingDef ParentName="ResourceBase">
+  <defName>YR_CoccyxTentacleSeed</defName><label>촉수 이식 씨앗</label><description>사목의 나무에서 전용 자원으로 8시간 동안 배양한 씨앗. 사용하면 자신의 미추 접합부에 촉수 이식체를 장착하며, 조작 능력이 20%p 증가한다.</description>
+  <thingClass>ThingWithComps</thingClass><stackLimit>1</stackLimit><techLevel>Spacer</techLevel><tradeability>None</tradeability><generateCommonality>0</generateCommonality><generateAllowChance>0</generateAllowChance>
+  <graphicData><texPath>Yuran/Implants/CoccyxTentacles/Seed</texPath><graphicClass>Graphic_Single</graphicClass><drawSize>0.55</drawSize></graphicData>
+  <statBases><MaxHitPoints>80</MaxHitPoints><Mass>0.1</Mass><MarketValue>0</MarketValue><Flammability>0.5</Flammability></statBases>
+  <comps>
+   <li Class="CompProperties_Usable"><useJob>UseItem</useJob><useLabel>자신에게 이식하기</useLabel><useDuration>120</useDuration></li>
+   <li Class="CompProperties_UseEffect"><compClass>YR_RJW.CompUseEffect_CoccyxSeed</compClass></li>
+   <li Class="CompProperties_UseEffectDestroySelf" />
+  </comps>
+ </ThingDef>
+ <JobDef><defName>YR_CoccyxCharge</defName><driverClass>YR_RJW.JobDriver_CoccyxService</driverClass><reportString>전기낭에서 충전하는 중.</reportString></JobDef>
+ <JobDef><defName>YR_CoccyxRefill</defName><driverClass>YR_RJW.JobDriver_CoccyxService</driverClass><reportString>백윤액을 충전하는 중.</reportString></JobDef>
+ <ThingDef>
+  <defName>YR_CoccyxSlimePuddle</defName><label>백윤액 웅덩이</label><thingClass>YR_RJW.CoccyxSlimePuddle</thingClass><category>Ethereal</category><tickerType>Normal</tickerType><altitudeLayer>Filth</altitudeLayer><useHitPoints>false</useHitPoints><selectable>false</selectable><neverMultiSelect>true</neverMultiSelect>
+  <graphicData><texPath>Yuran/Implants/CoccyxTentacles/SlimePuddle</texPath><graphicClass>Graphic_Single</graphicClass><shaderType>Transparent</shaderType><color>(1,1,1,0.65)</color><drawSize>1</drawSize></graphicData>
+ </ThingDef>
+ <HediffDef><defName>YR_CoccyxSlimeCoat</defName><label>백윤액이 묻음</label><description>몸에 반투명한 흰색 점액이 묻어 있다. 잠시 후 사라진다.</description><hediffClass>HediffWithComps</hediffClass><isBad>true</isBad><comps><li Class="HediffCompProperties_Disappears"><disappearsAfterTicks>600</disappearsAfterTicks></li></comps><renderNodeProperties><li><nodeClass>YR_RJW.PawnRenderNode_CoccyxSlime</nodeClass><parentTagDef>Body</parentTagDef><texPath>Yuran/Implants/CoccyxTentacles/SlimeCoat</texPath><drawSize>(1.2,1.2)</drawSize><baseLayer>60</baseLayer></li></renderNodeProperties></HediffDef>
+</Defs>

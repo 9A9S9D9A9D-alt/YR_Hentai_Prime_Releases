@@ -36,6 +36,29 @@ namespace YR_Hentai_Prime_AnimationBed
             }
             return result;
         }
+        public static BedAnimationDef DetachedChoice(Pawn pawn,string name,out Vector3 offset)
+        {
+            offset=Vector3.zero;
+            if(name=="native")return null;
+            var manual=Choices().FirstOrDefault(d=>d.defName==name);
+            // Reuse the facility's actual race/gender/hediff conditions, including its
+            // authored offsets. No new body-type list or race-name mapping.
+            var props=DefDatabase<ThingDef>.GetNamedSilentFail("YR_Building_MilkingMachine")?
+                .comps.OfType<CompProperties_AnimationSetting>().FirstOrDefault();
+            var layer=props?.bedAnimationList.FirstOrDefault();
+            var automatic=layer?.bedAnimationDef;
+            if(layer!=null){
+                offset=layer.offset;
+                foreach(var choice in layer.conditionBedAnimationDefs){
+                    if(choice.bedAnimationDef==null)continue;
+                    bool match=Condition.Match(pawn,null,choice.condition,out bool stop);
+                    if(match){automatic=choice.bedAnimationDef;offset=choice.offset;}
+                    if(stop)break;
+                }
+            }
+            var source=manual??automatic;
+            return source!=null&&Choices().Contains(source)?source:null;
+        }
         public static string Label(string name)
         {
             if(string.IsNullOrEmpty(name))return "자동";

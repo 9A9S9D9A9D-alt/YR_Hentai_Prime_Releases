@@ -177,7 +177,7 @@ namespace YR_Hentai_Prime_AnimationBed
                     angle = portraitSetting.angle,
                     offset = portraitSetting.offset,
                     portraitMesh = portraitSetting.portraitMeshGraphicData.Graphic.MeshAt(Rot4.South),
-                    iconMat = CreateMaterial(portraitSetting, drawPawn),
+                    iconMat = CreatePortraitMaterial(portraitSetting),
                     cameraOffset = portraitSetting.cameraOffset,
                     cameraZoom = portraitSetting.cameraZoom,
                     portraitSetting = portraitSetting
@@ -200,7 +200,7 @@ namespace YR_Hentai_Prime_AnimationBed
             foreach (var previous in previousPortraits) FacilityPortrait.Release(previous);
         }
 
-        private static Material CreateMaterial(PortraitSetting portraitSetting, Pawn pawn)
+        public static Material CreatePortraitMaterial(PortraitSetting portraitSetting)
         {
             // The ingredient supplies its configured texture immediately after construction.
             var mainTexture = Texture2D.blackTexture;

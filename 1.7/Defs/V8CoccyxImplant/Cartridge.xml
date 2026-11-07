@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+ <ThingDef ParentName="ResourceBase">
+  <defName>YR_BaekyunCartridge</defName><label>백윤액 카트리지</label>
+  <description>검보라색 생체 외피가 반투명한 저장막을 감싼 사목의 보급 앰플. 안쪽에는 흰 백윤액이 응축되어 있으며, 둥근 접합구를 통해 촉수 이식체에 내용물을 공급한다.
+
+카트리지는 충전구에 꽂아 쓴다고 한다. 그런데 촉수 이식체 주변에는 아무리 살펴봐도 구멍이 없다. 대체 어디에 꽂는 걸까?</description>
+  <graphicData><texPath>Yuran/Items/BaekyunCartridge</texPath><graphicClass>Graphic_Single</graphicClass></graphicData>
+  <stackLimit>10</stackLimit><statBases><MaxHitPoints>100</MaxHitPoints><Mass>0.2</Mass><MarketValue>20</MarketValue><Flammability>0.3</Flammability></statBases>
+  <thingCategories><li>Manufactured</li></thingCategories>
+ </ThingDef>
+ <JobDef><defName>YR_CoccyxLoadCartridge</defName><driverClass>YR_RJW.JobDriver_CoccyxService</driverClass><reportString>카트리지를 이식체 홀더에 장전하는 중.</reportString></JobDef>
+</Defs>

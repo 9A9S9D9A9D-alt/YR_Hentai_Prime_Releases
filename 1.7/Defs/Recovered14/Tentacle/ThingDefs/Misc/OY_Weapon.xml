@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <Defs>
   <ThingDef ParentName="BaseWeapon">
     <defName>OY_Tentacle_Dagger</defName>
@@ -23,6 +23,10 @@
     <comps>
       <li Class="YR_RJW.CompProperties_Tentacle_Weapon" />
       <li Class="YR_ItemFormChange.CompPropertiesFormChange">
+        <sharedComps>
+          <li>YR_RJW.Comp_Tentacle_Weapon</li>
+          <li>RimWorld.CompQuality</li>
+        </sharedComps>
         <transformData>
           <li>
             <label>transformed into bow of the evil tree</label>
@@ -33,6 +37,7 @@
           </li>
         </transformData>
       </li>
+      <li><compClass>CompQuality</compClass></li>
     </comps>
     <tools>
       <li>
@@ -81,14 +86,18 @@
       <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
     </statBases>
     <weaponClasses>
-      <li>Melee</li>
-      <li>MeleeBlunt</li>
+      <li>Ranged</li>
+      <li>RangedLight</li>
     </weaponClasses>
     <equippedAngleOffset>0</equippedAngleOffset>
     <tickerType>Normal</tickerType>
     <comps>
       <li Class="YR_RJW.CompProperties_Tentacle_Weapon" />
       <li Class="YR_ItemFormChange.CompPropertiesFormChange">
+        <sharedComps>
+          <li>YR_RJW.Comp_Tentacle_Weapon</li>
+          <li>RimWorld.CompQuality</li>
+        </sharedComps>
         <transformData>
           <li>
             <label>transformed into dagger of the evil tree</label>
@@ -99,6 +108,7 @@
           </li>
         </transformData>
       </li>
+      <li><compClass>CompQuality</compClass></li>
     </comps>
     <verbs>
       <li>
@@ -125,6 +135,7 @@
   </ThingDef>
   <ThingDef ParentName="BaseBullet">
     <defName>OY_Tentacle_Arrow</defName>
+    <thingClass>YR_RJW.Projectile_SamokGuidedArrow</thingClass>
     <label>arrow of the evil tree</label>
     <graphicData>
       <texPath>OY_Yuran_Addon/Equipment/TentacleWeapon/Tentacle_Arrow</texPath>

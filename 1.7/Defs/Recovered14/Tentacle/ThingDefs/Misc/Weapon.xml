@@ -97,9 +97,12 @@
     </comps>
     <verbs>
       <li>
-        <verbClass>Verb_Shoot</verbClass>
+        <verbClass>YR_RJW.Verb_SamokWhip</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
-        <defaultProjectile>YR_Tentacle_BullWhip_Chain</defaultProjectile>
+        <meleeDamageDef>YR_Tentacle_BullWhip_ChainDamageDef</meleeDamageDef>
+        <meleeDamageBaseAmount>15</meleeDamageBaseAmount>
+        <meleeArmorPenetrationBase>1</meleeArmorPenetrationBase>
+        <defaultCooldownTime>1</defaultCooldownTime>
         <warmupTime>3</warmupTime>
         <range>38</range>
         <soundCast>Interact_BeatFire</soundCast>
@@ -180,7 +183,7 @@
     <impactSoundType />
     <armorCategory>Blunt</armorCategory>
     <overkillPctToDestroyPart>0~0.7</overkillPctToDestroyPart>
-    <isRanged>true</isRanged>
+    <isRanged>false</isRanged>
     <makesAnimalsFlee>true</makesAnimalsFlee>
     <defaultDamage>18</defaultDamage>
   </PawnKnockback.DamageKnockbackDef>

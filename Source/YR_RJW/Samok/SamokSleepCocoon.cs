@@ -17,6 +17,8 @@ namespace YR_RJW
         public Pawn PositionPawn => (parent as Building_Bed)?.CurOccupants.FirstOrDefault();
         public IEnumerable<KeyValuePair<string,string>> PositionLayers { get {yield return new KeyValuePair<string,string>("wrap","촉수 애니메이션");} }
         private Material wrap;
+        internal static Material WrapMaterial() =>
+            MaterialPool.MatFrom("Yuran/Things/Building/SamokArchitecture/BedWrap", ShaderDatabase.Cutout);
         public static bool ShouldWrap(Pawn pawn, Building_Bed bed)
         {
             return bed != null && bed.Spawned && !bed.Destroyed && pawn != null &&
@@ -36,7 +38,7 @@ namespace YR_RJW
             foreach (Pawn pawn in bed.CurOccupants)
             {
                 if (!ShouldWrap(pawn, bed)) continue;
-                if (wrap == null) wrap = MaterialPool.MatFrom("Yuran/Things/Building/SamokArchitecture/BedWrap", ShaderDatabase.Cutout);
+                if (wrap == null) wrap = WrapMaterial();
                 float scale = AnimatedScale(Find.TickManager.TicksGame, bed.thingIDNumber);
                 Vector3 pos = bed.DrawPos;
                 var adjustment=parent.TryGetComp<YR_Hentai_Prime_AnimationBed.CompAnimationPosition>();

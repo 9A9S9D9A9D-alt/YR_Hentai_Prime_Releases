@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <WorkGiverDef>
+    <defName>YR_DoBillsSamokRefinery</defName>
+    <label>연단낭에서 무기 제작</label>
+    <giverClass>WorkGiver_DoBill</giverClass>
+    <workType>Smithing</workType>
+    <priorityInType>115</priorityInType>
+    <fixedBillGiverDefs><li>YR_SamokRefinery</li></fixedBillGiverDefs>
+    <verb>무기 제작</verb>
+    <gerund>무기 제작 중</gerund>
+    <requiredCapacities><li>Manipulation</li></requiredCapacities>
+    <prioritizeSustains>true</prioritizeSustains>
+  </WorkGiverDef>
+
+  <RecipeDef Name="YR_SamokRefineryWeaponRecipe" Abstract="True">
+    <workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+    <workSkill>Crafting</workSkill>
+    <recipeUsers><li>YR_SamokRefinery</li></recipeUsers>
+    <fixedIngredientFilter>
+      <thingDefs><li>YR_SamokTentacleRaw</li><li>YR_Baekgyojil</li></thingDefs>
+    </fixedIngredientFilter>
+    <defaultIngredientFilter><thingDefs><li>YR_SamokTentacleRaw</li><li>YR_Baekgyojil</li></thingDefs></defaultIngredientFilter>
+  </RecipeDef>
+
+  <RecipeDef ParentName="YR_SamokRefineryWeaponRecipe">
+    <defName>YR_MakeSamokDagger</defName>
+    <label>사목의 단검 제작</label>
+    <description>사목의 촉수와 백교질을 엮어 단검 하나를 만듭니다.</description>
+    <jobString>사목의 단검을 만드는 중.</jobString>
+    <workAmount>1600</workAmount>
+    <ingredients>
+      <li><filter><thingDefs><li>YR_SamokTentacleRaw</li></thingDefs></filter><count>12</count></li>
+      <li><filter><thingDefs><li>YR_Baekgyojil</li></thingDefs></filter><count>4</count></li>
+    </ingredients>
+    <products><OY_Tentacle_Dagger>1</OY_Tentacle_Dagger></products>
+  </RecipeDef>
+
+  <RecipeDef ParentName="YR_SamokRefineryWeaponRecipe">
+    <defName>YR_MakeSamokBow</defName>
+    <label>사목의 활 제작</label>
+    <description>사목의 촉수와 백교질을 엮어 활 하나를 만듭니다.</description>
+    <jobString>사목의 활을 만드는 중.</jobString>
+    <workAmount>2200</workAmount>
+    <ingredients>
+      <li><filter><thingDefs><li>YR_SamokTentacleRaw</li></thingDefs></filter><count>20</count></li>
+      <li><filter><thingDefs><li>YR_Baekgyojil</li></thingDefs></filter><count>6</count></li>
+    </ingredients>
+    <products><OY_Tentacle_Bow>1</OY_Tentacle_Bow></products>
+  </RecipeDef>
+</Defs>
