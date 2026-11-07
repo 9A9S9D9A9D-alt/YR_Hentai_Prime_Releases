@@ -49,7 +49,18 @@ namespace YR_RJW {
     hitCells.Add(cell);var puddle=cell.GetThingList(Pawn.Map).OfType<CoccyxSlimePuddle>().FirstOrDefault();
     if(puddle==null)puddle=(CoccyxSlimePuddle)GenSpawn.Spawn(ThingMaker.MakeThing(ThingDef.Named("YR_CoccyxSlimePuddle")),cell,Pawn.Map);puddle.expires=now+600;
    }
-   foreach(var target in Pawn.Map.mapPawns.AllPawnsSpawned.Where(p=>p!=Pawn&&!p.Dead&&hitCells.Contains(p.Position))){var def=DefDatabase<HediffDef>.GetNamed("YR_CoccyxSlimeCoat");var h=target.health.hediffSet.GetFirstHediffOfDef(def)??target.health.AddHediff(def);var disappear=h.TryGetComp<HediffComp_Disappears>();if(disappear!=null)disappear.ticksToDisappear=600;CoccyxAttackSound.Play(target,"FluidImpact");}
+   var acid=DefDatabase<DamageDef>.GetNamed("YR_CoccyxFluidAcid");
+   var coat=DefDatabase<HediffDef>.GetNamed("YR_CoccyxSlimeCoat");
+   foreach(var target in Pawn.Map.mapPawns.AllPawnsSpawned.Where(p=>p!=Pawn&&!p.Dead&&hitCells.Contains(p.Position)).ToArray()){
+    if(!target.Spawned||target.Dead)continue;
+    if(target.HostileTo(Pawn))
+     target.TakeDamage(new DamageInfo(acid,5,0,(target.DrawPos-Pawn.DrawPos).AngleFlat(),Pawn));
+    if(!target.Spawned||target.Dead)continue;
+    var h=target.health.hediffSet.GetFirstHediffOfDef(coat)??target.health.AddHediff(coat);
+    var disappear=h.TryGetComp<HediffComp_Disappears>();
+    if(disappear!=null)disappear.ticksToDisappear=600;
+    CoccyxAttackSound.Play(target,"FluidImpact");
+   }
   }
   public bool CanCharge(Thing source)=>source?.Spawned==true&&source.Map==Pawn.Map&&source.def.defName=="YR_SamokElectricSac"&&source.TryGetComp<CompPowerPlant_SamokElectric>()?.PowerOutput>0;
   public void ChargeTick(int delta){electricOn=false;battery=Mathf.Min(BatteryCapacity,battery+(float)BatteryCapacity/ChargeDuration*delta);}
@@ -68,7 +79,7 @@ namespace YR_RJW {
    int now=Find.TickManager.TicksGame;
    foreach(var gizmo in CartridgeGizmos())yield return gizmo;
    var jump=new CoccyxRangeTarget{origin=Pawn,radius=JumpRange,defaultLabel="촉수 점프",defaultDesc="점프팩보다 4칸 멀리 도약합니다. 재사용 3시간. 진행 중인 촉수 공격은 복귀 후 도약합니다.",icon=Icon("JumpIcon"),targetingParams=new TargetingParameters{canTargetLocations=true,canTargetPawns=false,canTargetBuildings=false,validator=t=>CanJump(t.Cell)},action=t=>jumpAim=t.Cell};if(now<jumpReady)jump.Disable("재사용 대기: "+((jumpReady-now)/2500f).ToString("0.0")+"시간");jump.onUpdate=t=>GenDraw.DrawRadiusRing(Pawn.Position,JumpRange);yield return jump;
-   yield return new CoccyxRangeTarget{origin=Pawn,radius=6,onUpdate=t=>DrawSprayRange(t.Cell),defaultLabel="백윤액 난사 "+fluidStock+"/"+StockCapacity,defaultDesc="방향을 지정해 흰색 백윤액을 연속 분사합니다. 다시 선택하면 분사를 멈춥니다. 스톡을 소모하며 잠시 웅덩이를 남깁니다.",icon=Icon("SlimeSpray"),targetingParams=new TargetingParameters{canTargetLocations=true,canTargetPawns=true,canTargetBuildings=false},action=t=>{if(fluidOn)fluidOn=false;else if(FluidCharges+ReserveCartridges*120>=6){SetRemoteFluidMode(false);fluidAim=t.Cell;fluidOn=true;}}};
+   yield return new CoccyxRangeTarget{origin=Pawn,radius=6,onUpdate=t=>DrawSprayRange(t.Cell),defaultLabel="백윤액 난사 "+fluidStock+"/"+StockCapacity,defaultDesc="방향을 지정해 흰색 백윤액을 연속 분사합니다. 적에게 분사 1회당 산성 화상 피해 5를 줍니다. 다시 선택하면 분사를 멈춥니다. 스톡을 소모하며 잠시 웅덩이를 남깁니다.",icon=Icon("SlimeSpray"),targetingParams=new TargetingParameters{canTargetLocations=true,canTargetPawns=true,canTargetBuildings=false},action=t=>{if(fluidOn)fluidOn=false;else if(FluidCharges+ReserveCartridges*120>=6){SetRemoteFluidMode(false);fluidAim=t.Cell;fluidOn=true;}}};
    yield return new Command_Action{defaultLabel="백윤액 충전",defaultDesc="백윤액 자원을 가져와 스톡을 충전합니다.",icon=Icon("SlimePuddle"),action=()=>Service(false)};
    yield return new Command_Toggle{defaultLabel="전기 촉수 "+(battery/2500f).ToString("0.0")+"시간",defaultDesc="ON인 동안 모든 촉수 공격에 전기 효과를 추가합니다. 풀충전 유지 7시간.",icon=Icon("ElectricOverlay"),isActive=()=>ElectricActive,toggleAction=()=>{if(electricOn)electricOn=false;else if(battery>0)electricOn=true;else Messages.Message("전기낭에서 배터리를 충전하세요.",MessageTypeDefOf.RejectInput,false);}};
    yield return new Command_Action{defaultLabel="전기낭에서 충전",defaultDesc="작동 중인 전기낭에 접근해 충전합니다. 완전 방전에서 풀충전까지 1시간.",icon=Icon("ChargeIcon"),action=()=>Service(true)};
