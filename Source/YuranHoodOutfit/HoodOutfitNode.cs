@@ -47,11 +47,13 @@ namespace YuranHoodOutfit
         };
         internal bool Animate = true;
         internal Vector3 GrabEast = new Vector3(45, 0, -15), GrabWest = new Vector3(45, 0, -15);
+        internal Vector2 GrabAnglesEast = new Vector2(2, -39), GrabAnglesWest = new Vector2(2, -39);
         internal static readonly Vector2 DefaultPinOffset = new Vector2(-27, 64);
         internal Vector2 PinOffsetEast = DefaultPinOffset, PinOffsetWest = DefaultPinOffset;
 
         private string Race => (parent as Apparel)?.Wearer?.def.defName;
         internal bool IsHelmet => parent.def.defName == OutfitRendering.HelmetDefName;
+        internal bool HasYuranGrabPose => HoodGrab.Grab.IsYuran((parent as Apparel)?.Wearer);
         private string OverrideKey(string key) => Race == null ? key : Race + "/" + key;
         private OutfitFit RaceFit(string race, string key)
         {
@@ -154,6 +156,8 @@ namespace YuranHoodOutfit
             Scribe_Values.Look(ref Animate, "outfitAnimation", true);
             Scribe_Values.Look(ref GrabEast, "grabContactEast", new Vector3(45, 0, -15));
             Scribe_Values.Look(ref GrabWest, "grabContactWest", new Vector3(45, 0, -15));
+            Scribe_Values.Look(ref GrabAnglesEast, "grabAnglesEast", new Vector2(2, -39));
+            Scribe_Values.Look(ref GrabAnglesWest, "grabAnglesWest", new Vector2(2, -39));
             Scribe_Values.Look(ref PinOffsetEast, "pinOffsetEast", DefaultPinOffset);
             Scribe_Values.Look(ref PinOffsetWest, "pinOffsetWest", DefaultPinOffset);
             if (Scribe.mode != LoadSaveMode.PostLoadInit) return;
@@ -244,6 +248,12 @@ namespace YuranHoodOutfit
             ref Vector3 position = ref (grabEast ? ref settings.GrabEast : ref settings.GrabWest);
             position.x = Slider(75, "몸통 좌우", position.x, -64, 64, 1);
             position.z = Slider(111, "몸통 상하", position.z, -64, 64, 1);
+            ref Vector2 angles = ref (grabEast ? ref settings.GrabAnglesEast : ref settings.GrabAnglesWest);
+            if (settings.HasYuranGrabPose)
+            {
+                angles.x = Slider(147, "바깥 다리 각도", angles.x, -180, 180, 1);
+                angles.y = Slider(183, "안쪽 다리 각도", angles.y, -180, 180, 1);
+            }
             Widgets.Label(new Rect(0, 220, rect.width, 28), "완전제압 착취 · 애니메이션 위치");
             ref Vector2 pinOffset = ref (grabEast ? ref settings.PinOffsetEast : ref settings.PinOffsetWest);
             pinOffset.x = Slider(252, "좌우", pinOffset.x, -64, 64, 1);
@@ -251,6 +261,7 @@ namespace YuranHoodOutfit
             if (Widgets.ButtonText(new Rect(0, 330, 165, 28), "현재 방향 초기화"))
             {
                 position = new Vector3(45, 0, -15);
+                angles = new Vector2(2, -39);
                 pinOffset = OutfitLayers.DefaultPinOffset;
             }
         }
@@ -404,7 +415,8 @@ namespace YuranHoodOutfit
             if (!base.CanDrawNow(node, parms)) return false;
             string part = ((OutfitPartNode)node).PartName;
             if (!parms.Portrait && !parms.Cache && HoodGrab.Current?.Attacker(parms.pawn) is HoodGrab.Grab grab &&
-                grab.CapeAction && part.StartsWith("Cape", StringComparison.Ordinal))
+                ((grab.UseYuranPose && (part == "Lower" || part == "LegWrap")) ||
+                 (grab.CapeAction && part.StartsWith("Cape", StringComparison.Ordinal))))
                 return false;
             return (part != "Hood" && part != "HoodLining") ||
                 (PawnRenderNodeWorker_Apparel_Head.HeadgearVisible(parms) && !parms.flags.FlagSet(PawnRenderFlags.HeadStump));

@@ -2,9 +2,9 @@
 
 RimWorld 1.7용 Yuran Hentai Prime · Restoration v8의 실행 파일과 공개 소스입니다.
 
-- **[실행용 모드 ZIP 다운로드](https://github.com/9A9S9D9A9D-alt/YR_Hentai_Prime_Releases/releases/download/restoration-v8-20261114/YR_Hentai_Prime_20261114.zip)**
+- **[실행용 모드 ZIP 다운로드](https://github.com/9A9S9D9A9D-alt/YR_Hentai_Prime_Releases/releases/download/restoration-v8-20261114-yuran-pose/YR_Hentai_Prime_20261114_YuranPose.zip)**
 - [최신 릴리스와 변경점](https://github.com/9A9S9D9A9D-alt/YR_Hentai_Prime_Releases/releases/latest)
-- [소스 ZIP 다운로드](https://github.com/9A9S9D9A9D-alt/YR_Hentai_Prime_Releases/archive/refs/tags/restoration-v8-20261114.zip)
+- [소스 ZIP 다운로드](https://github.com/9A9S9D9A9D-alt/YR_Hentai_Prime_Releases/archive/refs/tags/restoration-v8-20261114-yuran-pose.zip)
 
 게임에 설치할 때는 **실행용 모드 ZIP**을 받으세요. GitHub의 `Source code` ZIP은 C#·XML 소스이며 실행용 모드 전체가 아닙니다.
 
@@ -26,7 +26,7 @@ RimWorld 1.7용 Yuran Hentai Prime · Restoration v8의 실행 파일과 공개 
 
 ### 수정
 
-- 암살·제압·완전제압 착취 중 착용자의 현재 몸체와 의상을 사용합니다. 목장식의 실제 위치를 기준으로 케이프 촉수 6가닥을 그리도록 수정했습니다.
+- 유란의 암살·제압에는 기존 전용 몸통·다리 자세와 동·서 각도 조정을 복원했습니다. 다른 종족의 암살·제압과 모든 종족의 완전제압 착취에는 착용자의 현재 몸체와 의상을 사용합니다. 목장식의 실제 위치를 기준으로 케이프 촉수 6가닥을 그리도록 수정했습니다.
 - 랫킨 네 방향과 드라고니안 동·서 방향에 의상 기본값을 추가했습니다. 드라고니안 동쪽은 외부인들1의 서쪽 저장값에서 파츠를 대응시켜 좌우 위치와 회전각을 반전했습니다.
 - 사목의 벽 연결 텍스처, 백윤액 사격·사출, 사목의 채찍과 장비 생성 관련 처리를 수정했습니다.
 

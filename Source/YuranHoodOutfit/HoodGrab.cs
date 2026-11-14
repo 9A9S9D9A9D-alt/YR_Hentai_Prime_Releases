@@ -269,6 +269,9 @@ namespace YuranHoodOutfit
             }
             internal int Age => Find.TickManager.TicksGame - StartTick;
             internal bool CapeAction => Age >= 35 && (FullPin || Age < 67);
+            internal bool UseYuranPose => !FullPin && IsYuran(Source);
+            internal static bool IsYuran(Pawn pawn) =>
+                pawn?.def.defName is "Yuran_Race" or "Yuran_Race_Miko_BlackSnake";
             internal float Side => East ? 1f : -1f;
             internal bool PinLoop => FullPin && Age >= HoldTick;
             internal float PinPulse => PinLoop
@@ -320,7 +323,7 @@ namespace YuranHoodOutfit
 
     internal static class HoodGrabDrawing
     {
-        private static Material cape;
+        private static Material cape, grabTorso, nearLeg, farLeg;
 
         internal static void Install(Harmony harmony)
         {
@@ -337,6 +340,10 @@ namespace YuranHoodOutfit
             harmony.Patch(AccessTools.Method(typeof(PawnRenderTree), nameof(PawnRenderTree.Draw)),
                 postfix: new HarmonyMethod(typeof(HoodGrabDrawing), nameof(DrawParts)));
             cape = MaterialPool.MatFrom("Yuran/Implants/CoccyxTentacles/ReinforcedShaft", ShaderDatabase.Cutout);
+            const string posePath = "Yuran/Apparel/YuranHoodOutfit/GrabPose";
+            grabTorso = MaterialPool.MatFrom(posePath + "Torso", ShaderDatabase.Cutout);
+            nearLeg = MaterialPool.MatFrom(posePath + "Near", ShaderDatabase.Cutout);
+            farLeg = MaterialPool.MatFrom(posePath + "Far", ShaderDatabase.Cutout);
         }
 
         private static void ShowOnlyFullPinRelease(Pawn __instance, ref IEnumerable<Gizmo> __result)
@@ -378,7 +385,8 @@ namespace YuranHoodOutfit
             if (grab != null)
             {
                 transform = Matrix4x4.Translate(grab.BodyShift + Vector3.up * ForegroundLift(parms));
-                float lean = grab.Assassinate ? 12f : grab.FullPin ? 16f + grab.PinPulse * 4f : 10f + grab.Takedown * 19f;
+                float lean = grab.UseYuranPose ? 0f : grab.Assassinate ? 12f :
+                    grab.FullPin ? 16f + grab.PinPulse * 4f : 10f + grab.Takedown * 19f;
                 var pivot = parms.matrix.MultiplyPoint3x4(Vector3.zero);
                 transform *= Matrix4x4.Translate(pivot) *
                     Matrix4x4.Rotate(Quaternion.AngleAxis(lean * grab.PoseBlend * (1f - grab.Release) * grab.Side, Vector3.up)) *
@@ -402,6 +410,15 @@ namespace YuranHoodOutfit
                     ___drawRequests.RemoveAt(i--);
                     continue;
                 }
+                if (grab?.UseYuranPose == true && request.node is PawnRenderNode_Body)
+                {
+                    float width = HumanlikeMeshPoolUtility.HumanlikeBodyWidthForPawn(parms.pawn);
+                    request = new PawnGraphicDrawRequest(request.node, grab.East ? MeshPool.plane10 : MeshPool.plane10Flip, grabTorso)
+                    {
+                        preDrawnComputedMatrix = request.preDrawnComputedMatrix *
+                            Matrix4x4.Scale(new Vector3(width, 1f, width))
+                    };
+                }
                 request.preDrawnComputedMatrix = transform * request.preDrawnComputedMatrix;
                 ___drawRequests[i] = request;
             }
@@ -411,9 +428,20 @@ namespace YuranHoodOutfit
         {
             if (parms.Portrait || parms.Cache || parms.flags.FlagSet(PawnRenderFlags.Invisible)) return;
             var grab = HoodGrab.Current?.Attacker(parms.pawn);
-            if (grab?.CapeAction != true) return;
+            if (grab == null) return;
             float depth = AltitudeLayer.MoteOverhead.AltitudeFor() + .01f;
             float width = HumanlikeMeshPoolUtility.HumanlikeBodyWidthForPawn(parms.pawn);
+            if (grab.UseYuranPose)
+            {
+                var torso = parms.matrix.MultiplyPoint3x4(Vector3.zero) + grab.BodyShift;
+                var outfit = OutfitRendering.SettingsFor(parms.pawn);
+                Vector2 angles = (grab.East ? outfit?.GrabAnglesEast : outfit?.GrabAnglesWest) ?? new Vector2(2f, -39f);
+                float close = grab.PoseBlend * (1f - grab.Release);
+                DrawLeg(grab, torso, width, Mathf.Lerp(74f, angles.y, close), 0f, depth - .004f, farLeg, parms.DrawNow);
+                DrawLeg(grab, torso, width, Mathf.Lerp(116f, angles.x, close), -5f,
+                    depth + PawnRenderUtility.AltitudeForLayer(48), nearLeg, parms.DrawNow);
+            }
+            if (!grab.CapeAction) return;
             var contact = grab.TargetSpot + new Vector3(grab.Side * grab.Takedown * .27f, 0, .46f - grab.Takedown * .34f);
             foreach (var request in ___drawRequests)
             {
@@ -424,6 +452,18 @@ namespace YuranHoodOutfit
                 DrawCape(grab, collar, width, contact, 1, Mathf.Min(depth, root.y) - .002f, parms.DrawNow);
                 break;
             }
+        }
+
+        private static void DrawLeg(HoodGrab.Grab grab, Vector3 torso, float width, float angle,
+            float offsetX, float depth, Material material, bool drawNow)
+        {
+            float units = width / 256f;
+            var pivot = new Vector3(-7f * grab.Side, 0f, -62f) * units;
+            torso.y = depth;
+            torso.x += offsetX * units * grab.Side;
+            var rotation = Quaternion.AngleAxis(angle * grab.Side, Vector3.up);
+            var matrix = Matrix4x4.TRS(torso + pivot - rotation * pivot, rotation, new Vector3(width, 1f, width));
+            GenDraw.DrawMeshNowOrLater(grab.East ? MeshPool.plane10 : MeshPool.plane10Flip, matrix, material, drawNow);
         }
 
         private static float ForegroundLift(PawnDrawParms parms)
