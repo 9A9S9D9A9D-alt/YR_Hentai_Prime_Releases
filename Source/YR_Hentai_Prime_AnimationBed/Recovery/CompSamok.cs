@@ -22,7 +22,7 @@ namespace YR_Hentai_Prime_AnimationBed
         public CompProperties_Samok Props => (CompProperties_Samok)props;
         private CompRefuelable Fuel => parent.GetComp<CompRefuelable>();
         private YR_Hentai_Prime_AnimationBed_Setting Settings => YR_Hentai_Prime_AnimationBed_Mod.Settings;
-        private int Required => TreeRules.Required(Props.isAltar ? Settings?.altarCorpses ?? 20 : Settings?.growthCorpses ?? 12);
+        private int Required => TreeRules.Required(Props.isAltar ? Settings?.altarCorpses ?? YR_Hentai_Prime_AnimationBed_Setting.DefaultAltarCorpses : Settings?.growthCorpses ?? 12);
         private bool Enabled => Settings?.enableSamok ?? true;
         public float Growth => TreeRules.Growth((parent as YR_RJW.Building_Tentacle_Altar)?.offeredCorpse ?? 0, Required);
 

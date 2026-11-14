@@ -9,6 +9,8 @@
     <thingCategories Inherit="False">
       <li>YR_AP_Golem</li>
     </thingCategories>
+    <generateCommonality>0</generateCommonality>
+    <generateAllowChance>0</generateAllowChance>
     <techLevel>Neolithic</techLevel>
     <tickerType>Normal</tickerType>
     <smeltable>false</smeltable>

@@ -59,16 +59,6 @@ namespace YR_RJW {
     retired=true;
    }
   }
-  public override void GameComponentTick(){
-   if(Verse.Find.TickManager.TicksGame%500!=0)return;
-   var rooted=Verse.DefDatabase<Verse.ThingDef>.GetNamedSilentFail("YR_AP_Tentacle_Rooted");if(rooted==null)return;
-   foreach(var map in Verse.Find.Maps)foreach(var pawn in map.mapPawns.AllPawnsSpawned) {
-    if(!pawn.def.defName.StartsWith("Yuran_Race")||!SamokBrideRules.IsBride(pawn)||pawn.apparel==null)continue;
-    if(pawn.apparel.WornApparel.Exists(a=>a.def==rooted))continue;
-    var item=(RimWorld.Apparel)Verse.ThingMaker.MakeThing(rooted);
-    pawn.apparel.Wear(item);pawn.apparel.Lock(item);
-   }
-  }
  }
 }
 

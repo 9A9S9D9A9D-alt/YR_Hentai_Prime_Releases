@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <BodyPartGroupDef>
+    <defName>YR_BioArmorExtraCoverage</defName>
+    <label>추가 외부 신체 부위</label>
+  </BodyPartGroupDef>
+  <ThingDef ParentName="ApparelNoQualityBase">
+    <defName>YR_AP_YuranBioArmor</defName>
+    <label>유란 생체 아머 (임시)</label>
+    <description>유란 체형에 맞춘 보랏빛 생체 의상. 붉은 발광선이 상의와 하의를 잇는다.</description>
+    <generateCommonality>0</generateCommonality>
+    <generateAllowChance>0</generateAllowChance>
+    <tradeability>None</tradeability>
+    <smeltable>false</smeltable>
+    <thingCategories>
+      <li>ApparelMisc</li>
+    </thingCategories>
+    <graphicData>
+      <texPath>Yuran/Apparel/YuranBioArmor/Armor</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <statBases>
+      <Mass>1</Mass>
+      <ArmorRating_Sharp>0.80</ArmorRating_Sharp>
+      <ArmorRating_Blunt>0.40</ArmorRating_Blunt>
+      <ArmorRating_Heat>0.35</ArmorRating_Heat>
+    </statBases>
+    <comps>
+      <li>
+        <compClass>YR_RJW.CompBioArmorCoccyx</compClass>
+      </li>
+    </comps>
+    <apparel>
+      <wornGraphicPath>Yuran/Apparel/YuranBioArmor/Armor</wornGraphicPath>
+      <shellRenderedBehindHead>true</shellRenderedBehindHead>
+      <developmentalStageFilter>Adult</developmentalStageFilter>
+      <canBeDesiredForIdeo>false</canBeDesiredForIdeo>
+      <renderSkipFlags>
+        <li>None</li>
+      </renderSkipFlags>
+      <bodyPartGroups>
+        <li>FullHead</li>
+        <li>Neck</li>
+        <li>Torso</li>
+        <li>Shoulders</li>
+        <li>Arms</li>
+        <li>Hands</li>
+        <li>Waist</li>
+        <li>Legs</li>
+        <li>Feet</li>
+        <li>YR_BioArmorExtraCoverage</li>
+      </bodyPartGroups>
+      <layers>
+        <li>Shell</li>
+      </layers>
+    </apparel>
+  </ThingDef>
+</Defs>

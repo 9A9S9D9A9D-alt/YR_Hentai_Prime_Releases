@@ -22,16 +22,16 @@ namespace YR_RJW {
   const float WrapStartsAt=.56f;
   static float EscortProgressForLimb(float progress,int limb)=>Smooth((progress-limb*.055f)/.72f);
   static float EscortBandHeight(int limb)=>.10f-limb*.123f;
-  static Vector3 EscortPoint(Vector3 root,Pawn target,int limb,float t,float progress){
+  static Vector3 EscortPoint(Vector3 root,Pawn target,int limb,float t,float progress,bool throwGrip,float tightness){
    float size=Mathf.Clamp(Mathf.Sqrt(target.BodySize),.72f,1.5f);
    float lift=Hediff_CoccyxEscort.Get(target)?.Lift??0;
    var center=target.DrawPos+new Vector3(0,0,EscortBandHeight(limb)*size+.22f*lift);
    float direction=limb%2==0?1f:-1f;
    float entryAngle=Mathf.Atan2((root.z-center.z)*1.6f,root.x-center.x);
-   float radiusX=Mathf.Lerp(.42f,.29f,limb/5f)*size*(1+.16f*(1-progress));
-   float radiusZ=.095f*size*(1+.16f*(1-progress));
+   float radiusX=Mathf.Lerp(.42f,.29f,limb/5f)*size*(1+.16f*(1-progress))*tightness;
+   float radiusZ=.095f*size*(1+.16f*(1-progress))*tightness;
    Vector3 Orbit(float u){
-    float angle=entryAngle+direction*u*2.18f*Mathf.PI;
+    float angle=entryAngle+direction*u*(throwGrip?2.65f:2.18f)*Mathf.PI;
     float tuck=1-.22f*Smooth((u-.85f)/.15f);
     return center+new Vector3(Mathf.Cos(angle)*radiusX*tuck,0,Mathf.Sin(angle)*radiusZ*tuck-u*.038f*size);
    }
@@ -57,26 +57,39 @@ namespace YR_RJW {
    float scale=Mathf.Clamp(Mathf.Sqrt(comp.Pawn.BodySize),.65f,1.5f)*comp.visualScale,width=.065f*scale*comp.visualWidth;
    Quaternion rotation=Quaternion.AngleAxis(parms.facing.AsAngle,Vector3.up);
    int now=Find.TickManager.TicksGame;
-   for(int i=0;i<6;i++){
-    var l=comp.limbs[i];Vector3 e=ends[i];e.x*=comp.poseSpread;e.z*=comp.poseHeight;
-    if(comp.FrenzyActive){float t=Mathf.Clamp01((now-comp.frenzyStart)/90f),angle=t*Mathf.PI*4+i*Mathf.PI/3,blend=Mathf.Sin(t*Mathf.PI);var dance=new Vector3(Mathf.Cos(angle)*4.8f,0,Mathf.Sin(angle)*4.8f);e=Vector3.Lerp(e,dance,blend); }
+   bool type2=comp.Type2Active;
+   bool spraying=!type2&&(comp.fluidOn||(comp.SprayAttackMode&&now>=comp.lastSprayTick&&now-comp.lastSprayTick<HediffComp_CoccyxCombat.SprayVisualTicks));
+   bool reinforcedPose=type2&&!comp.FrenzyActive&&(comp.EscortTarget==null||comp.ThrowHoldingPawn);
+   int limbCount=type2?HediffComp_CoccyxCombat.ReinforcedLimbCount:comp.limbs.Count;
+   for(int i=0;i<limbCount;i++){
+    var l=comp.limbs[i];
+    if(reinforcedPose||(type2&&comp.ThrowCoilTarget(i,out _)!=null)){
+     DrawReinforced(comp,parms,i,l,root,scale,width,now);
+     continue;
+    }
+    int poseIndex=type2?ReinforcedSharedPoseIndices[i]:i;
+    float limbWidth=type2?width*1.85f:width;
+    Vector3 e=ends[poseIndex];e.x*=comp.poseSpread;e.z*=comp.poseHeight;
+    if(comp.FrenzyActive){float t=Mathf.Clamp01((now-comp.frenzyStart)/90f),angle=t*Mathf.PI*4+i*(2f*Mathf.PI/limbCount),blend=Mathf.Sin(t*Mathf.PI);var dance=new Vector3(Mathf.Cos(angle)*4.8f,0,Mathf.Sin(angle)*4.8f);e=Vector3.Lerp(e,dance,blend); }
     bool rallied=comp.Pawn.Drafted||l.Active;
     Vector3 end=rallied?e:new Vector3(e.x*.42f,0,-.24f-Mathf.Abs(e.z)*.28f);
-    if(comp.fluidOn&&!l.Active&&comp.fluidAim.IsValid){var direction=comp.fluidAim.ToVector3Shifted()-root;direction.y=0;direction.Normalize();end=Quaternion.Inverse(rotation)*(direction*1.2f+Vector3.Cross(Vector3.up,direction)*((i-2.5f)*.18f));}
+    if(spraying&&!l.Active&&comp.fluidAim.IsValid){var direction=comp.fluidAim.ToVector3Shifted()-root;direction.y=0;direction.Normalize();end=Quaternion.Inverse(rotation)*(direction*1.2f+Vector3.Cross(Vector3.up,direction)*((i-2.5f)*.18f));}
     Vector3 a=root,b=root+rotation*(new Vector3(end.x*.18f,0,.1f)*scale),c=root+rotation*((end+new Vector3(0,0,.25f))*scale),d=root+rotation*(end*scale);
-    float k=l.Active?Mathf.Pow(Extension(now-l.started-HediffComp_CoccyxCombat.WarmupTicks),comp.easeFactor*l.reachEase):0;bool remote=l.Active&&l.remoteFluid;if(remote)k=HediffComp_CoccyxCombat.LimbExtension(l,now);
+    float k=l.Active&&!l.reinforced?Mathf.Pow(Extension(now-l.started-HediffComp_CoccyxCombat.WarmupTicks),comp.easeFactor*l.reachEase):0;bool remote=!type2&&l.Active&&l.remoteFluid;if(remote)k=HediffComp_CoccyxCombat.LimbExtension(l,now);
     Vector3 delta=l.endpoint-root;delta.y=0;Vector3 perpendicular=Vector3.Cross(Vector3.up,delta.normalized);
     if(l.Active){b=root+delta*.34f+perpendicular*(l.strikeBend*comp.curveFactor);c=root+delta*.76f+perpendicular*(l.strikeBend*l.strikeBias*comp.curveFactor);d=l.endpoint;}
-    bool splitEscort=comp.EscortTarget?.Spawned==true&&comp.splitMouthEscort;
+    bool splitEscort=comp.EscortTarget?.Spawned==true&&comp.splitMouthEscort&&!comp.ThrowHoldingPawn;
     if(splitEscort&&i==0){DrawSplitEscort(comp,parms,root,scale);continue;}
     bool escorting=comp.EscortTarget?.Spawned==true&&!splitEscort;
-    float escortProgress=escorting?EscortProgressForLimb(comp.EscortProgress,i):0;
+    float escortProgress=escorting?EscortProgressForLimb(comp.EscortProgress,poseIndex):0;
+    bool throwGrip=escorting&&comp.ThrowHoldingPawn;
+    float tightness=throwGrip?comp.ThrowGripTightness(comp.EscortTarget):1f;
     int segments=escorting?EscortSegments:Segments;
     Ensure(i,segments);
-    float finalWidth=width;
-    bool shaped=l.Active&&!remote&&l.trajectoryPattern>0;
+    float finalWidth=limbWidth;
+    bool shaped=l.Active&&!l.reinforced&&!remote&&l.trajectoryPattern>0;
     Vector3 StrikePoint(float t){
-     var rest=root+Rest(comp,parms.facing,i,t)*scale;
+     var rest=root+Rest(comp,parms.facing,poseIndex,t)*scale;
      var path=SamokTrajectory.Sample(l.trajectoryPattern,root,l.endpoint,b-root,l.endpoint-c,l.strikeWidth*comp.curveFactor,t*k,l.trajectoryVariation);
      return Vector3.Lerp(rest,path,Smooth(k/.23f));
     }
@@ -85,26 +98,27 @@ namespace YR_RJW {
      float t=(float)j/segments,lo=Mathf.Max(0,t-.005f),hi=Mathf.Min(1,t+.005f);Vector3 p=Bezier(a,b,c,d,t),before=Bezier(a,b,c,d,lo),after=Bezier(a,b,c,d,hi);
      if(escorting){
       float blend=Smooth(escortProgress/.22f);
-      p=Vector3.Lerp(root+Rest(comp,parms.facing,i,t)*scale,EscortPoint(root,comp.EscortTarget,i,t*escortProgress,escortProgress),blend);
-      before=Vector3.Lerp(root+Rest(comp,parms.facing,i,lo)*scale,EscortPoint(root,comp.EscortTarget,i,lo*escortProgress,escortProgress),blend);
-      after=Vector3.Lerp(root+Rest(comp,parms.facing,i,hi)*scale,EscortPoint(root,comp.EscortTarget,i,hi*escortProgress,escortProgress),blend);
-     }else if(shaped){p=StrikePoint(t);before=StrikePoint(lo);after=StrikePoint(hi);}else if(remote){p=RemoteDisplayPoint(comp,parms,root,l,i,t,k,scale);before=RemoteDisplayPoint(comp,parms,root,l,i,lo,k,scale);after=RemoteDisplayPoint(comp,parms,root,l,i,hi,k,scale);}else if(!comp.FrenzyActive&&!comp.fluidOn){p=Vector3.Lerp(root+Rest(comp,parms.facing,i,t)*scale,p,k);before=Vector3.Lerp(root+Rest(comp,parms.facing,i,lo)*scale,before,k);after=Vector3.Lerp(root+Rest(comp,parms.facing,i,hi)*scale,after,k);}
+      p=Vector3.Lerp(root+Rest(comp,parms.facing,poseIndex,t)*scale,EscortPoint(root,comp.EscortTarget,poseIndex,t*escortProgress,escortProgress,throwGrip,tightness),blend);
+      before=Vector3.Lerp(root+Rest(comp,parms.facing,poseIndex,lo)*scale,EscortPoint(root,comp.EscortTarget,poseIndex,lo*escortProgress,escortProgress,throwGrip,tightness),blend);
+      after=Vector3.Lerp(root+Rest(comp,parms.facing,poseIndex,hi)*scale,EscortPoint(root,comp.EscortTarget,poseIndex,hi*escortProgress,escortProgress,throwGrip,tightness),blend);
+     }else if(shaped){p=StrikePoint(t);before=StrikePoint(lo);after=StrikePoint(hi);}else if(remote){p=RemoteDisplayPoint(comp,parms,root,l,i,t,k,scale);before=RemoteDisplayPoint(comp,parms,root,l,i,lo,k,scale);after=RemoteDisplayPoint(comp,parms,root,l,i,hi,k,scale);}else if(!comp.FrenzyActive&&!spraying){p=Vector3.Lerp(root+Rest(comp,parms.facing,poseIndex,t)*scale,p,k);before=Vector3.Lerp(root+Rest(comp,parms.facing,poseIndex,lo)*scale,before,k);after=Vector3.Lerp(root+Rest(comp,parms.facing,poseIndex,hi)*scale,after,k);}
      tangent=(after-before).normalized;tangent.y=0;
      float along=t*escortProgress;
-     float localWidth=escorting?Mathf.Lerp(width,Mathf.Lerp(.105f,.205f,Smooth(along/.54f))*scale,Smooth(escortProgress/.25f))*(1-.42f*Smooth((along-.89f)/.11f)):width;
-     if(j==segments){p-=tangent*localWidth*.5f;finalWidth=localWidth;}
+     float localWidth=escorting?Mathf.Lerp(limbWidth,Mathf.Lerp(.105f,.205f,Smooth(along/.54f))*scale,Smooth(escortProgress/.25f))*(1-.42f*Smooth((along-.89f)/.11f)):limbWidth;
+     if(!type2&&j==segments){p-=tangent*localWidth*.5f;finalWidth=localWidth;}
      Vector3 side=Vector3.Cross(tangent,Vector3.up).normalized*localWidth*.5f;
-     p.y=escorting?EscortLayer(p,comp.EscortTarget,i,along,root.y):root.y+(remote?i*.00002f:0);
+     p.y=escorting?EscortLayer(p,comp.EscortTarget,poseIndex,along,root.y):root.y+(remote?i*.00002f:0);
      vertices[i][j*2]=p-side;vertices[i][j*2+1]=p+side;
     }
-    meshes[i].vertices=vertices[i];meshes[i].RecalculateBounds();Graphics.DrawMesh(meshes[i],Vector3.zero,Quaternion.identity,shaft,0);
+    meshes[i].vertices=vertices[i];meshes[i].RecalculateBounds();Graphics.DrawMesh(meshes[i],Vector3.zero,Quaternion.identity,type2?ReinforcedMaterial:shaft,0);
     if(comp.ElectricActive||(l.Active&&l.electric)){
      if(electricFrames==null){electricFrames=new Material[4];float[] opacity={.7f,1f,.85f,1f};for(int f=0;f<4;f++)electricFrames[f]=MaterialPool.MatFrom("Yuran/Implants/CoccyxTentacles/ElectricOverlay",ShaderDatabase.MoteGlow,new Color(.7f,.9f,1f,opacity[f]));}
      for(int j=0;j<=segments;j++){var center=(vertices[i][j*2]+vertices[i][j*2+1])*.5f;var half=(vertices[i][j*2+1]-vertices[i][j*2])*.5f;center.y+=.0003f;glowVertices[i][j*2]=center-half*2.7f;glowVertices[i][j*2+1]=center+half*2.7f;}
      glowMeshes[i].vertices=glowVertices[i];glowMeshes[i].RecalculateBounds();Graphics.DrawMesh(glowMeshes[i],Vector3.zero,Quaternion.identity,electricFrames[((now/2)+i)&3],0);
      Graphics.DrawMesh(meshes[i],new Vector3(0,.0004f,0),Quaternion.identity,electricFrames[((now/2)+i+1)&3],0);
     }
-    if(escorting)d=Vector3.Lerp(root+Rest(comp,parms.facing,i,1)*scale,EscortPoint(root,comp.EscortTarget,i,escortProgress,escortProgress),Smooth(escortProgress/.22f));else if(shaped)d=StrikePoint(1);else if(remote)d=RemoteDisplayPoint(comp,parms,root,l,i,1,k,scale);else if(!comp.FrenzyActive&&!comp.fluidOn)d=Vector3.Lerp(root+Rest(comp,parms.facing,i,1)*scale,d,k);
+    if(type2)continue;
+    if(escorting)d=Vector3.Lerp(root+Rest(comp,parms.facing,poseIndex,1)*scale,EscortPoint(root,comp.EscortTarget,poseIndex,escortProgress,escortProgress,false,1f),Smooth(escortProgress/.22f));else if(shaped)d=StrikePoint(1);else if(remote)d=RemoteDisplayPoint(comp,parms,root,l,i,1,k,scale);else if(!comp.FrenzyActive&&!spraying)d=Vector3.Lerp(root+Rest(comp,parms.facing,poseIndex,1)*scale,d,k);
     if(remote&&l.trajectoryPattern>0&&k>0){
      var last=d;last.y=root.y+.007f;
      for(int trail=0;trail<SamokTrajectory.TrailSegments;trail++){
@@ -113,21 +127,35 @@ namespace YR_RJW {
       SamokTrajectory.DrawTrailSegment(last,point,trail);last=point;if(prior<=0)break;
      }
     }
-    Vector3 cap=d-tangent*finalWidth*.5f;cap.y=escorting?EscortLayer(cap,comp.EscortTarget,i,escortProgress,root.y)+.0001f:root.y+.0001f;
+    Vector3 cap=d-tangent*finalWidth*.5f;cap.y=escorting?EscortLayer(cap,comp.EscortTarget,poseIndex,escortProgress,root.y)+.0001f:root.y+.0001f;
     Graphics.DrawMesh(MeshPool.plane10,Matrix4x4.TRS(cap,Quaternion.AngleAxis(-Mathf.Atan2(tangent.z,tangent.x)*Mathf.Rad2Deg,Vector3.up),new Vector3(finalWidth,1,finalWidth)),tip,0);
    }
   }
   public void DrawSpray(HediffComp_CoccyxCombat comp,Matrix4x4 matrix){
+   if(comp.Type2Active)return;
    DrawRemoteSprays(comp,matrix);
-   int age=Find.TickManager.TicksGame-comp.lastSprayTick;if(age<0||age>=15)return;
-   spray=spray??MaterialPool.MatFrom("Yuran/Implants/CoccyxTentacles/SlimeSpray",ShaderDatabase.Transparent);
-   var direction=comp.lastSprayDirection;if(direction.sqrMagnitude<.1f)return;
-   var root=comp.lastSprayOrigin;root.y=matrix.MultiplyPoint3x4(Vector3.zero).y;
-   for(int i=0;i<18;i++){
-    int local=age-i%4*2;if(local<0||local>12)continue;
-    float spread=((i*37%31)-15)*.9f;var velocity=Quaternion.AngleAxis(spread,Vector3.up)*direction;var cross=Vector3.Cross(Vector3.up,velocity);
-    float distance=1.05f+local*.4f;var center=root+velocity*distance+cross*((i%6-2.5f)*.09f);center.y=root.y+.004f+Mathf.Sin(local/12f*Mathf.PI)*.01f;
-    float size=.16f+(i%5)*.035f;Graphics.DrawMesh(MeshPool.plane10,Matrix4x4.TRS(center,Quaternion.AngleAxis(-Mathf.Atan2(velocity.z,velocity.x)*Mathf.Rad2Deg+180,Vector3.up),new Vector3(size*1.7f,1,size)),spray,0);
+   int age=Find.TickManager.TicksGame-comp.lastSprayTick;
+   if(age<0||age>=HediffComp_CoccyxCombat.SprayVisualTicks||comp.lastSprayDirection.sqrMagnitude<.1f||!comp.Pawn.Spawned)return;
+   spray??=MaterialPool.MatFrom("Yuran/Implants/CoccyxTentacles/SlimeSpray",ShaderDatabase.Transparent);
+   var root=comp.lastSprayOrigin;
+   root.y=matrix.MultiplyPoint3x4(Vector3.zero).y+.009f;
+   float front=Mathf.Clamp01((age+1)/7f),rear=Mathf.Clamp01((age-2)/7f);
+   var ends=comp.SprayEndsForDraw();
+   for(int i=0;i<ends.Length;i++){
+    var end=ends[i].WithY(root.y);
+    var direction=end-root;
+    if(direction.sqrMagnitude<.01f)continue;
+    var rotation=Quaternion.AngleAxis(direction.AngleFlat(),Vector3.up);
+    var tip=Vector3.Lerp(root,end,front);
+    var tail=Vector3.Lerp(root,end,rear);
+    var center=(tip+tail)*.5f;
+    float length=(tip-tail).magnitude;
+    if(length>.02f)
+     Graphics.DrawMesh(MeshPool.plane10,Matrix4x4.TRS(center,rotation,new Vector3(.15f,1,length)),spray,0);
+    if(age>=5&&age<11){
+     float splash=.30f*(1-(age-5)/6f);
+     Graphics.DrawMesh(MeshPool.plane10,Matrix4x4.TRS(tip+Vector3.up*.002f,rotation,new Vector3(splash,1,splash)),spray,0);
+    }
    }
   }
   static Vector3 Rest(HediffComp_CoccyxCombat c,Rot4 facing,int i,float t){

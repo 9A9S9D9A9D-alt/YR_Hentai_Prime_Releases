@@ -18,7 +18,7 @@ namespace YR_RJW {
   public int FluidCharges=>fluidStock*ChargesPerStock+remotePaidShots;
   void ExposeCartridges(){Scribe_Deep.Look(ref cartridges,"coccyxCartridgeHolder",this);}
   public bool TryAutoLoadCartridge(){
-   if(Pawn.Dead||FluidCharges>0||cartridges==null)return false;
+   if(Type2Active||Pawn.Dead||FluidCharges>0||cartridges==null)return false;
    var item=Cartridges.FirstOrDefault(t=>t.def.defName==CartridgeDef);if(item==null)return false;
    item.SplitOff(1).Destroy();fluidStock=StockCapacity;remotePaidShots=0;return true;
   }
@@ -64,7 +64,7 @@ namespace YR_RJW {
    Pawn.jobs.TryTakeOrderedJob(JobMaker.MakeJob(DefDatabase<JobDef>.GetNamed("YR_CoccyxLoadCartridge"),source),JobTag.Misc);
   }
   IEnumerable<Gizmo> CartridgeGizmos(){
-   var load=new Command_Action{defaultLabel="카트리지 "+ReserveCartridges+"/5",defaultDesc="장탄 "+(FluidCharges/6f).ToString("0.#")+"/20스톡 · 예비 "+ReserveCartridges+"/5개.\n카트리지를 가져와 이식체 전용 홀더에 장전합니다. 완전히 소진하면 예비 1개로 20스톡을 자동 충전합니다.",icon=ThingDef.Named(CartridgeDef).uiIcon,action=OrderCartridgeLoad};
+   var load=new Command_Action{defaultLabel="카트리지 "+ReserveCartridges+"/5",defaultDesc=Type2Active?"카트리지를 백윤액 분비용으로 보관합니다. 분비할 때 1개를 소모합니다.":"장탄 "+(FluidCharges/6f).ToString("0.#")+"/20스톡 · 예비 "+ReserveCartridges+"/5개.\n카트리지를 가져와 이식체 전용 홀더에 장전합니다. 완전히 소진하면 예비 1개로 20스톡을 자동 충전합니다.",icon=ThingDef.Named(CartridgeDef).uiIcon,action=OrderCartridgeLoad};
    if(ReserveCartridges>=ReserveLimit)load.Disable("예비 홀더가 가득 찼습니다.");yield return load;
    if(ReserveCartridges>0)yield return new Command_Action{defaultLabel="카트리지 꺼내기",defaultDesc="홀더의 예비 카트리지를 실물로 꺼냅니다. 현재 장탄은 유지합니다.",icon=ThingDef.Named(CartridgeDef).uiIcon,action=ReleaseCartridges};
   }

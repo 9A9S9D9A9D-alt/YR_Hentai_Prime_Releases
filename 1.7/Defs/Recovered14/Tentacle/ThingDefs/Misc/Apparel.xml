@@ -226,41 +226,11 @@
       <VacuumResistance MayRequire="Ludeon.RimWorld.Odyssey">1</VacuumResistance>
     </equippedStatOffsets>
   </ThingDef>
-  <ThingDef ParentName="YR_AP_Tentacle_Headgear_Base">
-    <defName>YR_AP_Tentacle_Headgear_Mask</defName>
-    <description>This is a mask made with the root of the evil tree completely close to the host's nose and mouth.\n\nThe mask completely blocks ordinary air as well as toxic substances around it, and emits only the combat aphrodisiac gas inside the mask. The host must continue to inhale this obscene gas to avoid suffocation.\n\nCombat aphrodisiac gas puts the inhaler in a state of extreme excitement. Literally going crazy, feeling no pain. Can fight longer because gas strengthens body.\n\nHowever, because the inhaler continues to taste pleasure that is never possible to get used to, the vagina infinitely spews of vaginal lubrication, and the orgasm is constantly repeated.\n\nThe root of the evil tree will take the mask if run out of the combat aphrodisiac gas that stored. And the inhaler's body, that  endured with gas, will eventually collapse due to fatigue caused by the orgasm. Since then, due to the gas and aftereffects remaining in the lungs, will have to lie in bed for a while and feel orgasm from masturbation.</description>
-    <label>the root of the evil tree(mask)</label>
-    <graphicData>
-      <texPath>Yuran/Yuranlike/Apparel/Bote/YR_AP_Tentacle_Headgear_Mask/Texture</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-    </graphicData>
-    <apparel>
-      <wornGraphicPath>Yuran/Yuranlike/Apparel/Bote/YR_AP_Tentacle_Headgear_Mask/Texture</wornGraphicPath>
-    </apparel>
+  <ThingDef ParentName="YR_AP_Tentacle_Headgear_Base" Name="YR_AP_SamokMaskEffects" Abstract="True">
     <comps Inherit="False">
       <li Class="YR_RJW.CompProperties_Tentacle_Apparel">
         <ticks>100</ticks>
         <hpRecovery>3</hpRecovery>
-      </li>
-      <li Class="YR_ItemFormChange.CompPropertiesFormChange">
-        <revertData>
-          <label>Reverting to the root of the evil tree(head)</label>
-          <description>Reverting back to the root of the evil tree(head)</description>
-          <thingDef>YR_AP_Tentacle_Headgear</thingDef>
-          <revertAfterTicks>18000</revertAfterTicks>
-          <commandIcon>Yuran/Icon/UnwearMask</commandIcon>
-          <disabledReason>Reverting to {1} after {0} second automatically.</disabledReason>
-        </revertData>
-        <transformData>
-          <li>
-            <label>unwear mask</label>
-            <description>Unwear the mask. For the time being, the host will suffer from the aftereffects.</description>
-            <thingDef>YR_AP_Tentacle_Headgear</thingDef>
-            <transformCooldown>180000</transformCooldown>
-            <soundOnTransform>YR_AP_Tentacle_Headgear_Mask_Sound</soundOnTransform>
-            <commandIcon>Yuran/Icon/UnwearMask</commandIcon>
-          </li>
-        </transformData>
       </li>
       <li Class="YR_RJW.CompProperties_Tentacle_Mask">
         <hediffDef>YR_Tentacle_Combat_Aphrodisiac_Gas</hediffDef>
@@ -309,6 +279,40 @@
             <eastOffSet>(0.2,-9, 0.275)</eastOffSet>
           </li>
         </raceSettings>
+      </li>
+    </comps>
+  </ThingDef>
+  <ThingDef ParentName="YR_AP_SamokMaskEffects">
+    <defName>YR_AP_Tentacle_Headgear_Mask</defName>
+    <description>This is a mask made with the root of the evil tree completely close to the host's nose and mouth.\n\nThe mask completely blocks ordinary air as well as toxic substances around it, and emits only the combat aphrodisiac gas inside the mask. The host must continue to inhale this obscene gas to avoid suffocation.\n\nCombat aphrodisiac gas puts the inhaler in a state of extreme excitement. Literally going crazy, feeling no pain. Can fight longer because gas strengthens body.\n\nHowever, because the inhaler continues to taste pleasure that is never possible to get used to, the vagina infinitely spews of vaginal lubrication, and the orgasm is constantly repeated.\n\nThe root of the evil tree will take the mask if run out of the combat aphrodisiac gas that stored. And the inhaler's body, that  endured with gas, will eventually collapse due to fatigue caused by the orgasm. Since then, due to the gas and aftereffects remaining in the lungs, will have to lie in bed for a while and feel orgasm from masturbation.</description>
+    <label>the root of the evil tree(mask)</label>
+    <graphicData>
+      <texPath>Yuran/Yuranlike/Apparel/Bote/YR_AP_Tentacle_Headgear_Mask/Texture</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <apparel>
+      <wornGraphicPath>Yuran/Yuranlike/Apparel/Bote/YR_AP_Tentacle_Headgear_Mask/Texture</wornGraphicPath>
+    </apparel>
+    <comps>
+      <li Class="YR_ItemFormChange.CompPropertiesFormChange">
+        <revertData>
+          <label>Reverting to the root of the evil tree(head)</label>
+          <description>Reverting back to the root of the evil tree(head)</description>
+          <thingDef>YR_AP_Tentacle_Headgear</thingDef>
+          <revertAfterTicks>18000</revertAfterTicks>
+          <commandIcon>Yuran/Icon/UnwearMask</commandIcon>
+          <disabledReason>Reverting to {1} after {0} second automatically.</disabledReason>
+        </revertData>
+        <transformData>
+          <li>
+            <label>unwear mask</label>
+            <description>Unwear the mask. For the time being, the host will suffer from the aftereffects.</description>
+            <thingDef>YR_AP_Tentacle_Headgear</thingDef>
+            <transformCooldown>180000</transformCooldown>
+            <soundOnTransform>YR_AP_Tentacle_Headgear_Mask_Sound</soundOnTransform>
+            <commandIcon>Yuran/Icon/UnwearMask</commandIcon>
+          </li>
+        </transformData>
       </li>
     </comps>
     <statBases>

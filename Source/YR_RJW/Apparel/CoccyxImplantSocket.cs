@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using AlienRace;
 using HarmonyLib;
 using RimWorld;
 using Verse;
@@ -20,6 +21,84 @@ namespace YR_RJW {
  public sealed class CompUseEffect_CoccyxSeed:CompUseEffect {
   public override AcceptanceReport CanBeUsedBy(Pawn p){if(!p.RaceProps.Humanlike)return "인간형만 사용할 수 있습니다.";if(p.health.hediffSet.HasHediff(DefDatabase<HediffDef>.GetNamed("YR_CoccyxTentacleImplant")))return "이미 촉수 이식체가 있습니다.";return true;}
   public override void DoEffect(Pawn p){if(!CanBeUsedBy(p).Accepted)return;p.health.AddHediff(DefDatabase<HediffDef>.GetNamed("YR_CoccyxTentacleImplant"),CoccyxSocket.Part(p));}
+ }
+ public sealed class CompBioArmorCoccyx : ThingComp {
+  private static HediffDef ImplantDef => HediffDef.Named("YR_CoccyxTentacleImplant");
+
+  public override void Notify_Equipped(Pawn pawn) {
+   if(!pawn.RaceProps.Humanlike||pawn.Dead||pawn.health.hediffSet.HasHediff(ImplantDef))return;
+   var implant=HediffMaker.MakeHediff(ImplantDef,pawn);
+   implant.TryGetComp<HediffComp_CoccyxCombat>().GrantFromArmor((Apparel)parent);
+   pawn.health.AddHediff(implant,CoccyxSocket.Part(pawn));
+  }
+
+  public override void Notify_Unequipped(Pawn pawn) {
+   var implant=pawn.health.hediffSet.GetFirstHediffOfDef(ImplantDef);
+   if(implant?.TryGetComp<HediffComp_CoccyxCombat>()?.GrantingArmor==parent)
+    pawn.health.RemoveHediff(implant);
+  }
+
+  public override void PostExposeData() {
+   base.PostExposeData();
+   if(Scribe.mode==LoadSaveMode.PostLoadInit)
+    LongEventHandler.ExecuteWhenFinished(()=>{
+     if(((Apparel)parent).Wearer is Pawn wearer)Notify_Equipped(wearer);
+    });
+  }
+ }
+
+ [StaticConstructorOnStartup]
+ internal static class CoccyxBioArmorCoverage {
+  static CoccyxBioArmorCoverage() {
+   var armor=ThingDef.Named(CoccyxGasArmor.ApparelName);
+   var extra=DefDatabase<BodyPartGroupDef>.GetNamed("YR_BioArmorExtraCoverage");
+   var groups=armor.apparel.bodyPartGroups;
+   foreach(var body in DefDatabase<ThingDef>.AllDefsListForReading
+    .Where(def=>def.race?.Humanlike==true).Select(def=>def.race.body).Where(body=>body!=null).Distinct())
+    foreach(var part in body.AllParts)
+     if(part.depth==BodyPartDepth.Outside&&!part.groups.Any(groups.Contains))
+      part.groups.Add(extra);
+  }
+ }
+
+ [HarmonyPatch(typeof(RaceRestrictionSettings),nameof(RaceRestrictionSettings.CanWear))]
+ internal static class CoccyxBioArmorRaceRestriction {
+  private static bool Prefix(ThingDef apparel,ThingDef race,ref bool __result) {
+   if(apparel?.defName!=CoccyxGasArmor.ApparelName&&apparel?.defName!=CoccyxGasArmor.HelmetName)return true;
+   __result=race?.race?.Humanlike==true;
+   return false;
+  }
+ }
+
+ [HarmonyPatch(typeof(ApparelGraphicRecordGetter),nameof(ApparelGraphicRecordGetter.TryGetGraphicApparel))]
+ internal static class CoccyxBioArmorWornGraphic {
+  private static bool Prefix(Apparel apparel,ref ApparelGraphicRecord rec,ref bool __result) {
+   if(apparel.def.defName!=CoccyxGasArmor.ApparelName)return true;
+   var graphic=GraphicDatabase.Get<Graphic_Multi>(apparel.WornGraphicPath+"_Thin",
+    ShaderDatabase.Cutout,apparel.def.graphicData.drawSize,apparel.DrawColor);
+   rec=new ApparelGraphicRecord(graphic,apparel);
+   __result=true;
+   return false;
+  }
+ }
+
+ public sealed partial class HediffComp_CoccyxCombat {
+  private bool grantedByArmor;
+  private Apparel grantingArmor;
+  internal Apparel GrantingArmor => grantingArmor;
+
+  internal void GrantFromArmor(Apparel armor) {
+   grantedByArmor=true;
+   grantingArmor=armor;
+  }
+
+  public override bool CompShouldRemove => base.CompShouldRemove||
+   (grantedByArmor&&(grantingArmor==null||grantingArmor.Wearer!=Pawn));
+
+  private void ExposeArmorGrant() {
+   Scribe_Values.Look(ref grantedByArmor,"coccyxGrantedByArmor");
+   Scribe_References.Look(ref grantingArmor,"coccyxGrantingArmor");
+  }
  }
  [HarmonyPatch(typeof(Pawn_HealthTracker),"PreApplyDamage")]
  static class CoccyxSocketCannotTakeDamage {

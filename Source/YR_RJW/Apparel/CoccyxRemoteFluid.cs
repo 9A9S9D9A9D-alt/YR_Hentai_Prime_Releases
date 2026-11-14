@@ -8,8 +8,27 @@ using Verse;
 namespace YR_RJW {
  public sealed partial class HediffComp_CoccyxCombat {
   public bool remoteFluidMode,continuousFluidMode;public int remotePaidShots;
+  internal bool SprayAttackMode=>sprayAttackMode&&!Type2Active;
+  internal float AttackRange => Type2Active ? Type2AttackRange : SprayAttackMode ? SprayRange : remoteFluidMode ? Range : Type1Range;
   public int AvailableRemoteShots=>fluidStock*6+remotePaidShots-limbs.Count(l=>l.Active&&l.remoteFluid&&!l.impacted);
-  public void SetRemoteFluidMode(bool value,bool continuous=false){remoteFluidMode=value;continuousFluidMode=value&&continuous;if(value&&fluidOn){fluidOn=false;autoAttack=true;}}
+  public void SetRemoteFluidMode(bool value,bool continuous=false){
+   if(value&&Type2Active)return;
+   sprayAttackMode=false;remoteFluidMode=value;continuousFluidMode=value&&continuous;
+   if(value&&fluidOn){fluidOn=false;autoAttack=true;}
+  }
+  private void CancelFluidAttacks(){
+   SetRemoteFluidMode(false);
+   fluidOn=false;
+   lastSprayTick=-9999;
+   foreach(var limb in limbs){
+    if(!limb.remoteFluid)continue;
+    limb.remoteFluid=false;
+    limb.continuous=false;
+    limb.started=-1;
+    limb.target=null;
+    limb.shotTick=-1;
+   }
+  }
   public static Vector3 RemotePath(Vector3 root,CoccyxLimb l,float t){if(l.trajectoryPattern>0)return SamokTrajectory.Sample(l.trajectoryPattern,root,l.endpoint,l.curveB-root,l.endpoint-l.curveC,l.strikeWidth,t,l.trajectoryVariation);float u=1-t;return u*u*u*root+3*u*u*t*l.curveB+3*u*t*t*l.curveC+t*t*t*l.endpoint;}
   public const int RemoteFireAt=WarmupTicks+30,RemoteFinishAt=RemoteFireAt+38;
   public static float RemoteExtension(int age){if(age<WarmupTicks)return 0;if(age<RemoteFireAt)return SamokTrajectory.Accelerate((age-WarmupTicks)/30f);if(age<RemoteFireAt+8)return 1;return 1-Mathf.SmoothStep(0,1,(age-RemoteFireAt-8)/30f);}
@@ -78,10 +97,15 @@ namespace YR_RJW {
   }
   internal void UpdateRemoteShots(int now){foreach(var l in limbs)if(l.remoteFluid&&l.shotTick>=0&&!l.fluidLanded&&now-l.shotTick>=l.shotDuration){l.fluidLanded=true;RemoteImpact(l);}}
   internal Gizmo RemoteFluidCommand()=>new Command_Action{
-   defaultLabel=continuousFluidMode?"백윤액 전량 사출":remoteFluidMode?"백윤액 포위 사격":"촉수 공격 · 타격",
-   defaultDesc="타격 → 포위 사격 → 전량 사출 순으로 전환합니다. 포위 사격은 적의 측후방 3~7칸에서 발사합니다. 전량 사출은 최대 여섯 가닥이 위치를 유지하며 현재 장탄을 물줄기로 뿜어내며 피해 판정마다 산성 화상 5를 줍니다. 장탄이 비면 복귀하고 자동 공격이 꺼집니다.",
+   defaultLabel=SprayAttackMode?"촉수 공격 · 백윤액 난사":continuousFluidMode?"백윤액 전량 사출":remoteFluidMode?"백윤액 포위 사격":"촉수 공격 · 타격",
+   defaultDesc="타격 → 포위 사격 → 전량 사출 → 백윤액 난사 순으로 전환합니다. 난사는 6칸 안의 적을 향해 아홉 갈래로 발사합니다. 포위 사격은 적의 측후방 3~7칸에서 발사합니다. 전량 사출은 최대 여섯 가닥이 위치를 유지하며 현재 장탄을 물줄기로 뿜어내며 피해 판정마다 산성 화상 5를 줍니다. 장탄이 비면 복귀하고 자동 공격이 꺼집니다.",
    icon=ContentFinder<Texture2D>.Get("Yuran/UI/Commands/RemoteFluid"),
-   action=()=>{if(!remoteFluidMode)SetRemoteFluidMode(true);else if(!continuousFluidMode)SetRemoteFluidMode(true,true);else SetRemoteFluidMode(false);}
+   action=()=>{
+    if(Type2Active)return;
+    if(SprayAttackMode){SetRemoteFluidMode(false);fluidOn=false;}
+    else if(continuousFluidMode){SetRemoteFluidMode(false);sprayAttackMode=true;}
+    else SetRemoteFluidMode(true,remoteFluidMode);
+   }
   };
  }
  public sealed class Hediff_CoccyxCorrosion:HediffWithComps {public override string LabelInBrackets=>Mathf.Clamp(Mathf.RoundToInt(Severity),1,5)+"/5 · 유효 방어력 -"+(Mathf.Clamp(Mathf.RoundToInt(Severity),1,5)*6)+"%";}

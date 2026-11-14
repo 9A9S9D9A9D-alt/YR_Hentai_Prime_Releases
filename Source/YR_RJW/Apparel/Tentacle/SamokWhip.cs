@@ -26,6 +26,16 @@ namespace YR_RJW {
   }
   protected override DamageWorker.DamageResult ApplyMeleeDamageToTarget(LocalTargetInfo target)=>target.Thing.TakeDamage(new DamageInfo(verbProps.meleeDamageDef,15,1,-1,caster,null,EquipmentSource?.def));
  }
+ [HarmonyPatch(typeof(Verb), nameof(Verb.TryFindShootLineFromTo))]
+ static class SamokWhipShootLine {
+  static bool Prefix(Verb __instance, IntVec3 root, LocalTargetInfo targ, ref ShootLine resultingLine, ref bool __result) {
+   if (__instance is not Verb_SamokWhip whip) return true;
+
+   resultingLine = new ShootLine(root, targ.Cell);
+   __result = whip.CanHitTargetFrom(root, targ);
+   return false;
+  }
+ }
  [StaticConstructorOnStartup]
  public sealed class SamokWhipStrike : Thing {
   static readonly Material Rope=MaterialPool.MatFrom("Yuran/Things/Item/Equipment/WeaponMelee/Tentacle_BullWhip_Rope",ShaderDatabase.Cutout);

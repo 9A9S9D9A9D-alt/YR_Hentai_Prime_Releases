@@ -19,4 +19,34 @@
   <graphicData><texPath>Yuran/Implants/CoccyxTentacles/SlimePuddle</texPath><graphicClass>Graphic_Single</graphicClass><shaderType>Transparent</shaderType><color>(1,1,1,0.65)</color><drawSize>1</drawSize></graphicData>
  </ThingDef>
  <HediffDef><defName>YR_CoccyxSlimeCoat</defName><label>백윤액이 묻음</label><description>몸에 반투명한 흰색 점액이 묻어 있다. 잠시 후 사라진다.</description><hediffClass>HediffWithComps</hediffClass><isBad>true</isBad><comps><li Class="HediffCompProperties_Disappears"><disappearsAfterTicks>600</disappearsAfterTicks></li></comps><renderNodeProperties><li><nodeClass>YR_RJW.PawnRenderNode_CoccyxSlime</nodeClass><parentTagDef>Body</parentTagDef><texPath>Yuran/Implants/CoccyxTentacles/SlimeCoat</texPath><drawSize>(1.2,1.2)</drawSize><baseLayer>60</baseLayer></li></renderNodeProperties></HediffDef>
+ <HediffDef>
+  <defName>YR_CoccyxSecretion</defName>
+  <label>백윤액 보호막</label>
+  <description>흰색 백윤액이 얼굴과 몸을 뒤덮는다. 1시간 동안 화염 피해에 면역이며 날카로움과 둔탁함 방어력이 각각 20%p 증가한다.</description>
+  <hediffClass>HediffWithComps</hediffClass>
+  <isBad>false</isBad>
+  <scenarioCanAdd>false</scenarioCanAdd>
+  <comps><li Class="HediffCompProperties_Disappears"><disappearsAfterTicks>2500</disappearsAfterTicks></li></comps>
+  <stages><li><statOffsets><ArmorRating_Sharp>0.20</ArmorRating_Sharp><ArmorRating_Blunt>0.20</ArmorRating_Blunt></statOffsets></li></stages>
+  <renderNodeProperties>
+   <li>
+    <nodeClass>YR_RJW.PawnRenderNode_CoccyxSecretion</nodeClass>
+    <workerClass>YR_RJW.PawnRenderNodeWorker_CoccyxSecretion</workerClass>
+    <parentTagDef>Body</parentTagDef>
+    <texPath>Yuran/Implants/CoccyxTentacles/SecretionBody</texPath>
+    <overrideMeshSize>(0.61,0.75)</overrideMeshSize>
+    <baseLayer>75</baseLayer>
+    <rotDrawMode>Fresh</rotDrawMode>
+   </li>
+   <li>
+    <nodeClass>YR_RJW.PawnRenderNode_CoccyxSecretion</nodeClass>
+    <workerClass>YR_RJW.PawnRenderNodeWorker_CoccyxSecretion</workerClass>
+    <parentTagDef>Head</parentTagDef>
+    <texPath>Yuran/Implants/CoccyxTentacles/SecretionHead</texPath>
+    <overrideMeshSize>(0.68,0.65)</overrideMeshSize>
+    <baseLayer>105</baseLayer>
+    <rotDrawMode>Fresh</rotDrawMode>
+   </li>
+  </renderNodeProperties>
+ </HediffDef>
 </Defs>

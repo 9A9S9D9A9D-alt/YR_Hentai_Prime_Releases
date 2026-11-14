@@ -19,9 +19,6 @@
       <li>Stony</li>
     </stuffCategories>
     <costStuffCount>200</costStuffCount>
-    <costList>
-      <Meat_Human>200</Meat_Human>
-    </costList>
     <uiIconScale>1.5</uiIconScale>
     <uiIconOffset>(0, 0.02)</uiIconOffset>
     <graphicData>
@@ -72,8 +69,8 @@
         </focusTypes>
       </li>
       <li Class="YR_RJW.CompProperties_Building_Tentacle_Altar">
-        <needCorpseCount>20</needCorpseCount>
-        <maxCorpseCount>20</maxCorpseCount>
+        <needCorpseCount>5</needCorpseCount>
+        <maxCorpseCount>5</maxCorpseCount>
         <thingDef>Building_Tentacle_Tree</thingDef>
       </li>
     </comps>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <ThingDef ParentName="ApparelNoQualityBase">
+    <defName>YR_AP_LavenderRootOutfit</defName>
+    <label>유란 연보라 뿌리 의상</label>
+    <description>유란 체형을 따라 흐르는 연보라색 뿌리 의상.</description>
+    <generateCommonality>0</generateCommonality>
+    <generateAllowChance>0</generateAllowChance>
+    <tradeability>None</tradeability>
+    <smeltable>false</smeltable>
+    <thingCategories><li>ApparelMisc</li></thingCategories>
+    <graphicData>
+      <texPath>Yuran/Apparel/LavenderRootOutfit/Item</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <statBases><Mass>1</Mass></statBases>
+    <apparel>
+      <wornGraphicPath>Yuran/Apparel/LavenderRootOutfit/Worn</wornGraphicPath>
+      <shellRenderedBehindHead>true</shellRenderedBehindHead>
+      <developmentalStageFilter>Adult</developmentalStageFilter>
+      <canBeDesiredForIdeo>false</canBeDesiredForIdeo>
+      <bodyPartGroups>
+        <li>Torso</li><li>Waist</li><li>Legs</li><li>Feet</li>
+      </bodyPartGroups>
+      <layers><li>Shell</li></layers>
+    </apparel>
+  </ThingDef>
+</Defs>

@@ -13,7 +13,8 @@ namespace YR_RJW {
   static readonly object sync = new object();
   public static bool Blocked(ThingDef def) => def != null &&
    (def.defName == "YR_AP_Tentacle" || def.defName == "YR_AP_Tentacle_Rooted" ||
-    def.defName == "YR_AP_Tentacle_Headgear" || def.defName == "YR_AP_Tentacle_Headgear_Mask");
+    def.defName == "YR_AP_Tentacle_Headgear" || def.defName == "YR_AP_Tentacle_Headgear_Mask" ||
+    def.defName == "YR_AP_Golem");
 
   internal static bool? SourceDecision(ThingDef def, Type type) {
    if (type == null) return null; // Harmony's generated wrappers have no declaring type.

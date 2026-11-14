@@ -18,7 +18,7 @@ namespace YR_RJW {
   public Graphic ForState(bool drafted,bool mesh=false)=>mesh?core:(drafted?rallied:idle);
  }
  public sealed class PawnRenderNodeWorker_CoccyxTentacles : PawnRenderNodeWorker {
-  protected override Graphic GetGraphic(PawnRenderNode node,PawnDrawParms parms)=>((PawnRenderNode_CoccyxTentacles)node).ForState(parms.pawn.Drafted,node.hediff?.TryGetComp<HediffComp_CoccyxCombat>() is HediffComp_CoccyxCombat c&&!parms.Portrait&&CoccyxTentacleDrawing.UsesMesh(c))??node.PrimaryGraphic;
+  protected override Graphic GetGraphic(PawnRenderNode node,PawnDrawParms parms)=>((PawnRenderNode_CoccyxTentacles)node).ForState(parms.pawn.Drafted,node.hediff?.TryGetComp<HediffComp_CoccyxCombat>() is HediffComp_CoccyxCombat c&&(c.Type2Active||!parms.Portrait&&CoccyxTentacleDrawing.UsesMesh(c)))??node.PrimaryGraphic;
   public override void PostDraw(PawnRenderNode node,PawnDrawParms parms,Mesh mesh,Matrix4x4 matrix){base.PostDraw(node,parms,mesh,matrix);var comp=node.hediff?.TryGetComp<HediffComp_CoccyxCombat>();if(comp!=null){comp.drawing.Draw(comp,parms,matrix);if(!parms.Portrait)comp.drawing.DrawSpray(comp,matrix);} }
   public override bool CanDrawNow(PawnRenderNode node,PawnDrawParms parms)=>parms.pawn.RaceProps.Humanlike&&base.CanDrawNow(node,parms);
   public override Vector3 ScaleFor(PawnRenderNode node,PawnDrawParms parms){var result=base.ScaleFor(node,parms);var c=node.hediff?.TryGetComp<HediffComp_CoccyxCombat>();if(c!=null){result*=Mathf.Clamp(Mathf.Sqrt(c.Pawn.BodySize),.65f,1.5f)*c.visualScale;if(!parms.Portrait){result.x*=.5f;result.z*=.5f;}}return result;}
@@ -60,6 +60,8 @@ namespace YR_RJW {
      int padding=Mathf.CeilToInt(Mathf.Max(Mathf.Abs(limb.strikeWidth),Mathf.Abs(limb.strikeBend))*Mathf.Abs(comp.curveFactor))+1;
      Include(limb.endpoint,padding);
      Include(pawn.DrawPos,padding);
+     if(limb.reinforced&&comp.ReinforcedRepeatGap>0)
+      Include(pawn.DrawPos,CoccyxTentacleDrawing.BarrageRecoilDrawPadding);
     }
     bool streaming=limb.continuous&&limb.streamStart>=0&&(limb.streamStop<0||now-limb.streamStop<6);
     if(limb.remoteFluid&&limb.shotTick>=0&&now>=limb.shotTick&&(streaming||now-limb.shotTick<limb.shotDuration)) {
@@ -67,11 +69,12 @@ namespace YR_RJW {
      Include(limb.target?.Spawned==true?limb.target.DrawPos:limb.shotEnd);
     }
    }
+   if(comp.ThrowGrabTarget?.Spawned==true)Include(comp.ThrowGrabTarget.DrawPos,2);
    if(comp.FrenzyActive)
     Include(pawn.DrawPos,Mathf.CeilToInt(4.8f*Mathf.Clamp(Mathf.Sqrt(pawn.BodySize),.65f,1.5f)*comp.visualScale)+1);
-   if(now>=comp.lastSprayTick&&now-comp.lastSprayTick<15) {
+   if(now>=comp.lastSprayTick&&now-comp.lastSprayTick<HediffComp_CoccyxCombat.SprayVisualTicks) {
     Include(comp.lastSprayOrigin,2);
-    Include(comp.lastSprayOrigin+comp.lastSprayDirection*6f,2);
+    Include(comp.lastSprayOrigin+comp.lastSprayDirection*HediffComp_CoccyxCombat.SprayRange,4);
    }
    if(comp.EscortTarget?.Spawned==true) {
     var target=comp.EscortTarget.DrawPos;

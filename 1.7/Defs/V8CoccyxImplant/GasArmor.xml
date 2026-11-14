@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <ThingDef ParentName="YR_AP_SamokMaskEffects">
+    <defName>YR_AP_CoccyxGasHelmet</defName>
+    <label>생체 가스 헬멧</label>
+    <description>생체 아머에서 전개되는 가스 헬멧. 착용 중 전투용 가스를 공급하며, 벗으면 후유증이 남는다.</description>
+    <thingClass>YR_RJW.CoccyxGasHelmetApparel</thingClass>
+    <generateCommonality>0</generateCommonality>
+    <generateAllowChance>0</generateAllowChance>
+    <tradeability>None</tradeability>
+    <smeltable>false</smeltable>
+    <graphicData>
+      <texPath>Yuran/Apparel/YuranBioArmor/GasSkill/Helmet0_south</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <apparel>
+      <wornGraphicPath IsNull="True" />
+      <useWornGraphicMask>false</useWornGraphicMask>
+      <renderSkipFlags>
+        <li>None</li>
+      </renderSkipFlags>
+    </apparel>
+  </ThingDef>
+  <HediffDef>
+    <defName>YR_CoccyxGasArmor</defName>
+    <label>폭주하는 최음가스</label>
+    <description>생체 가스 헬멧이 장착되어 있다.</description>
+    <hediffClass>YR_RJW.CoccyxGasArmor</hediffClass>
+    <isBad>false</isBad>
+    <initialSeverity>1</initialSeverity>
+    <scenarioCanAdd>false</scenarioCanAdd>
+    <stages>
+      <li>
+        <statFactors>
+          <InjuryHealingFactor>1.5</InjuryHealingFactor>
+          <MoveSpeed>1.1</MoveSpeed>
+        </statFactors>
+      </li>
+    </stages>
+    <renderNodeProperties>
+      <li>
+        <nodeClass>YR_RJW.PawnRenderNode_CoccyxGasHelmet</nodeClass>
+        <workerClass>YR_RJW.PawnRenderNodeWorker_CoccyxGasHelmet</workerClass>
+        <parentTagDef>Head</parentTagDef>
+        <overrideMeshSize>(0.68,0.68)</overrideMeshSize>
+        <baseLayer>77</baseLayer>
+        <rotDrawMode>Fresh</rotDrawMode>
+      </li>
+    </renderNodeProperties>
+  </HediffDef>
+</Defs>

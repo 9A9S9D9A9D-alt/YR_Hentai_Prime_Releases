@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <ThingDef ParentName="BodyPartBase" MayRequire="RooAndGloomy.YuranRaceMod">
+    <defName>YR_LivingSpineImplant</defName>
+    <label>생체척추 임플란트</label>
+    <description>목 아래에서 꼬리 밑동까지 이어지는 유란용 생체 이식체.</description>
+    <graphicData>
+      <texPath>Yuran/Implants/LivingSpine/Item</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <thingCategories><li>BodyParts</li></thingCategories>
+    <tradeability>None</tradeability>
+  </ThingDef>
+  <HediffDef ParentName="ImplantHediffBase" MayRequire="RooAndGloomy.YuranRaceMod">
+    <defName>YR_LivingSpineImplant</defName>
+    <label>생체척추 임플란트</label>
+    <description>척추를 따라 연결된 생체 이식체.</description>
+    <spawnThingOnRemoved>YR_LivingSpineImplant</spawnThingOnRemoved>
+    <renderNodeProperties>
+      <li>
+        <debugLabel>Living spine implant</debugLabel>
+        <workerClass>PawnRenderNodeWorker_Body</workerClass>
+        <parentTagDef>Body</parentTagDef>
+        <texPath>Yuran/Implants/LivingSpine/Worn</texPath>
+        <baseLayer>22</baseLayer>
+        <visibleFacing><li>North</li></visibleFacing>
+      </li>
+    </renderNodeProperties>
+  </HediffDef>
+  <RecipeDef ParentName="SurgeryInstallImplantBase" MayRequire="RooAndGloomy.YuranRaceMod">
+    <defName>YR_InstallLivingSpine</defName>
+    <label>생체척추 임플란트 이식</label>
+    <jobString>생체척추 임플란트 이식 중.</jobString>
+    <workerClass>YuranHoodOutfit.InstallLivingSpine</workerClass>
+    <recipeUsers Inherit="False"><li>Yuran_Race</li><li>Yuran_Race_Miko</li><li>Yuran_Race_Miko_BlackSnake</li></recipeUsers>
+    <ingredients><li><filter><thingDefs><li>YR_LivingSpineImplant</li></thingDefs></filter><count>1</count></li></ingredients>
+    <fixedIngredientFilter><thingDefs><li>YR_LivingSpineImplant</li></thingDefs></fixedIngredientFilter>
+    <appliedOnFixedBodyParts><li>Spine</li></appliedOnFixedBodyParts>
+    <addsHediff>YR_LivingSpineImplant</addsHediff>
+  </RecipeDef>
+</Defs>

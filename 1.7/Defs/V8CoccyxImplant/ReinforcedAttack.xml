@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <ThingDef ParentName="PawnFlyerBase">
+    <defName>YR_CoccyxReinforcedFlyer</defName>
+    <label>촉수에 맞아 날아가는 대상</label>
+    <thingClass>YR_RJW.CoccyxReinforcedFlyer</thingClass>
+    <pawnFlyer>
+      <flightDurationMin>0.14</flightDurationMin>
+      <flightSpeed>18</flightSpeed>
+      <heightFactor>0.4</heightFactor>
+    </pawnFlyer>
+  </ThingDef>
+</Defs>

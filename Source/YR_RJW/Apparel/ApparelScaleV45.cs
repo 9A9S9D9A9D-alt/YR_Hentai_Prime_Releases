@@ -25,10 +25,37 @@ namespace YR_RJW
     {
         private Dictionary<string,Vector3> scales=new Dictionary<string,Vector3>();
         private Dictionary<string,Vector3> positions=new Dictionary<string,Vector3>();
+        private bool animateBioArmor = true;
+        private int drawnAnimationFrame = -1;
         private Apparel Item => parent as Apparel;
         private string Key => (Item?.Wearer?.def.defName??"none")+"/"+(Item?.Wearer?.story?.bodyType?.defName??"none")+"/"+Item?.Wearer?.gender;
-        public Vector3 Scale => scales.TryGetValue(Key,out var value)?value:Vector3.one;
-        public Vector3 Position => positions.TryGetValue(Key,out var value)?value:Vector3.zero;
+        private bool IsYuranBioArmor => parent.def.defName == CoccyxGasArmor.ApparelName;
+        internal bool SupportsAnimation => IsYuranBioArmor;
+        internal bool AnimationEnabled => IsYuranBioArmor && animateBioArmor;
+        internal int AnimationFrame => (Find.TickManager.TicksGame + parent.thingIDNumber % 40) / 10 % 4;
+
+        internal void SetAnimationEnabled(bool enabled)
+        {
+            if (animateBioArmor == enabled)
+                return;
+            animateBioArmor = enabled;
+            drawnAnimationFrame = -1;
+            Item?.Wearer?.Drawer.renderer.SetAllGraphicsDirty();
+        }
+
+        internal void RequestAnimationFrame(PawnRenderNode root)
+        {
+            int frame = AnimationFrame;
+            if (root == null || drawnAnimationFrame == frame)
+                return;
+            drawnAnimationFrame = frame;
+            root.requestRecache = true;
+        }
+        private Vector3 DefaultScale => IsYuranBioArmor ? new Vector3(1.3f, 1f, 1f) : Vector3.one;
+        private Vector3 DefaultPosition => IsYuranBioArmor ? new Vector3(0f, 0f, -0.1f) : Vector3.zero;
+
+        public Vector3 Scale => scales.TryGetValue(Key, out var value) ? value : DefaultScale;
+        public Vector3 Position => positions.TryGetValue(Key, out var value) ? value : DefaultPosition;
         public void Move(float x,float z,bool reset=false)
         {
             var value=Position+new Vector3(x,0,z);
@@ -42,6 +69,8 @@ namespace YR_RJW
         {
             base.PostExposeData();Scribe_Collections.Look(ref scales,"wornApparelScaleV45",LookMode.Value,LookMode.Value);
             Scribe_Collections.Look(ref positions,"wornApparelPositionV45",LookMode.Value,LookMode.Value);
+            if (IsYuranBioArmor)
+                Scribe_Values.Look(ref animateBioArmor, "bioArmorAnimationEnabled", true);
             if(Scribe.mode==LoadSaveMode.PostLoadInit){
                 if(scales==null)scales=new Dictionary<string,Vector3>();
                 if(positions==null)positions=new Dictionary<string,Vector3>();
@@ -90,7 +119,7 @@ namespace YR_RJW
         private readonly CompApparelScaleV45 comp;
         private float step=.05f;
         private bool positionMode;
-        public override Vector2 InitialSize => new Vector2(360,345);
+        public override Vector2 InitialSize => new Vector2(360,comp.SupportsAnimation?385:345);
         public DialogApparelScaleV45(CompApparelScaleV45 comp){this.comp=comp;doCloseX=true;draggable=true;}
         public override void DoWindowContents(Rect rect)
         {
@@ -100,13 +129,19 @@ namespace YR_RJW
             TooltipHandler.TipRegion(titleRect,title);
             if(Widgets.ButtonText(new Rect(0,30,156,26),(positionMode?"":"● ")+"크기"))positionMode=false;
             if(Widgets.ButtonText(new Rect(164,30,156,26),(positionMode?"● ":"")+"위치"))positionMode=true;
+            if (comp.SupportsAnimation)
+            {
+                bool enabled = comp.AnimationEnabled;
+                Widgets.CheckboxLabeled(new Rect(0, 307, 320, 24), "생체 아머 애니메이션 재생", ref enabled);
+                comp.SetAnimationEnabled(enabled);
+            }
             if(positionMode){DrawPosition();return;}
             float[] steps={.01f,.05f,.1f};
             for(int i=0;i<steps.Length;i++)if(Widgets.ButtonText(new Rect(i*106,66,101,26),(step==steps[i]?"● ":"")+(steps[i]*100).ToString("0")+"%"))step=steps[i];
             Row(103,"전체",()=>comp.Change(-step,-step),()=>comp.Change(step,step));
             Row(142,"가로",()=>comp.Change(-step,0),()=>comp.Change(step,0));
             Row(181,"세로",()=>comp.Change(0,-step),()=>comp.Change(0,step));
-            if(Widgets.ButtonText(new Rect(0,221,100,28),"100% 초기화"))comp.Change(0,0,true);
+            if(Widgets.ButtonText(new Rect(0,221,100,28),"기본값 복원"))comp.Change(0,0,true);
             var s=comp.Scale;Widgets.Label(new Rect(110,221,210,35),"가로 "+(s.x*100).ToString("0")+"% · 세로 "+(s.z*100).ToString("0")+"%");
             Widgets.Label(new Rect(0,264,320,24),"범위 20~300% · 게임 저장에 함께 저장");
         }

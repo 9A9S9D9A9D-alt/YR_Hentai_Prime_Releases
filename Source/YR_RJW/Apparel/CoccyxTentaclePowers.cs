@@ -8,6 +8,10 @@ using Verse.AI;
 namespace YR_RJW {
  public sealed partial class HediffComp_CoccyxCombat {
   public const int FrenzyCooldown=417;
+  internal const int SprayRange=6,SprayPellets=9,SprayVisualTicks=15;
+  readonly Vector3[] sprayEnds=new Vector3[SprayPellets];
+  int sprayEndsTick=int.MinValue;
+  bool sprayAttackMode;
   public const int BatteryCapacity=17500,ChargeDuration=2500,StockCapacity=20;
   public bool electricOn,fluidOn;public float battery;public int fluidStock,jumpReady,frenzyReady,frenzyStart=-1;
   public IntVec3 fluidAim=IntVec3.Invalid,jumpAim=IntVec3.Invalid;public bool frenzyPending;
@@ -15,9 +19,10 @@ namespace YR_RJW {
   public bool ElectricActive=>electricOn&&battery>0;
   public bool FrenzyActive=>frenzyStart>=0;
   public bool PowerPending=>jumpAim.IsValid||frenzyPending||FrenzyActive||fluidOn;
-  public static float JumpRange=>(DefDatabase<ThingDef>.GetNamedSilentFail("Apparel_PackJump")?.GetStatValueAbstract(StatDefOf.JumpRange)??23.9f)+4;
+  public const float JumpRange = 8f;
   void ExposePowers(){
    ExposeCartridges();
+   Scribe_Values.Look(ref sprayAttackMode,"tentacleSprayAttackMode");
    Scribe_Values.Look(ref emergencyTendWork,"tentacleEmergencyTendWork");
    Scribe_Values.Look(ref remoteFluidMode,"tentacleRemoteFluidMode");Scribe_Values.Look(ref continuousFluidMode,"tentacleContinuousFluidMode");Scribe_Values.Look(ref remotePaidShots,"tentacleRemotePaidShots");
    Scribe_Values.Look(ref electricOn,"tentacleElectricOn");Scribe_Values.Look(ref battery,"tentacleBattery");Scribe_Values.Look(ref fluidStock,"tentacleFluidStock");Scribe_Values.Look(ref fluidOn,"tentacleFluidOn");Scribe_Values.Look(ref fluidAim,"tentacleFluidAim",IntVec3.Invalid);Scribe_Values.Look(ref jumpAim,"tentacleJumpAim",IntVec3.Invalid);Scribe_Values.Look(ref jumpReady,"tentacleJumpReady");Scribe_Values.Look(ref frenzyReady,"tentacleFrenzyReady");Scribe_Values.Look(ref frenzyStart,"tentacleFrenzyStart",-1);Scribe_Values.Look(ref frenzyPending,"tentacleFrenzyPending");Scribe_Values.Look(ref frenzyHits,"tentacleFrenzyHits");Scribe_Values.Look(ref nextSpray,"tentacleNextSpray");Scribe_Values.Look(ref lastSprayTick,"tentacleLastSprayTick",-9999);Scribe_Values.Look(ref lastSprayDirection,"tentacleLastSprayDirection");Scribe_Values.Look(ref lastSprayOrigin,"tentacleLastSprayOrigin");
@@ -40,13 +45,17 @@ namespace YR_RJW {
   public bool CanJump(IntVec3 cell)=>Pawn.Spawned&&!Pawn.Downed&&cell.InBounds(Pawn.Map)&&cell.Walkable(Pawn.Map)&&!cell.Fogged(Pawn.Map)&&Pawn.Position.DistanceToSquared(cell)<=JumpRange*JumpRange&&JumpUtility.ValidJumpTarget(Pawn,Pawn.Map,cell);
   VerbProperties JumpProps()=>new VerbProperties{flyWithCarriedThing=true,flightEffecterDef=null,soundLanding=DefDatabase<SoundDef>.GetNamed("YR_Coccyx_Land")};
   public void Spray(IntVec3 aim,int now){
-   if(!Pawn.Spawned||FluidCharges+ReserveCartridges*120<6)return;
-   Vector3 direction=aim.ToVector3Shifted()-Pawn.DrawPos;direction.y=0;if(direction.sqrMagnitude<.01f)return;direction.Normalize();lastSprayDirection=direction;lastSprayOrigin=Pawn.DrawPos;lastSprayTick=now;if(!TryConsumeFluid(6))return;CoccyxAttackSound.Play(Pawn,"Fluid");
+   if(Type2Active||!Pawn.Spawned||FluidCharges+ReserveCartridges*120<6)return;
+   var origin=Pawn.Position.ToVector3Shifted();
+   var direction=(aim.ToVector3Shifted()-origin).WithY(0);
+   if(direction.sqrMagnitude<.01f||!TryConsumeFluid(6))return;
+   lastSprayOrigin=origin;lastSprayDirection=direction.normalized;lastSprayTick=now;
+   CoccyxAttackSound.Play(Pawn,"Fluid");
    var hitCells=new HashSet<IntVec3>();
-   foreach(var cell in GenRadial.RadialCellsAround(Pawn.Position,6,true)){
-    if(!cell.InBounds(Pawn.Map)||!cell.Walkable(Pawn.Map))continue;Vector3 d=cell.ToVector3Shifted()-Pawn.DrawPos;d.y=0;
-    if(d.sqrMagnitude<1||Vector3.Dot(d.normalized,direction)<.866f||!GenSight.LineOfSight(Pawn.Position,cell,Pawn.Map))continue;
-    hitCells.Add(cell);var puddle=cell.GetThingList(Pawn.Map).OfType<CoccyxSlimePuddle>().FirstOrDefault();
+   TraceSpray(Pawn.Map,origin,lastSprayDirection,hitCells,sprayEnds);
+   sprayEndsTick=now;
+   foreach(var cell in hitCells){
+    var puddle=cell.GetThingList(Pawn.Map).OfType<CoccyxSlimePuddle>().FirstOrDefault();
     if(puddle==null)puddle=(CoccyxSlimePuddle)GenSpawn.Spawn(ThingMaker.MakeThing(ThingDef.Named("YR_CoccyxSlimePuddle")),cell,Pawn.Map);puddle.expires=now+600;
    }
    var acid=DefDatabase<DamageDef>.GetNamed("YR_CoccyxFluidAcid");
@@ -62,27 +71,81 @@ namespace YR_RJW {
     CoccyxAttackSound.Play(target,"FluidImpact");
    }
   }
-  public bool CanCharge(Thing source)=>source?.Spawned==true&&source.Map==Pawn.Map&&source.def.defName=="YR_SamokElectricSac"&&source.TryGetComp<CompPowerPlant_SamokElectric>()?.PowerOutput>0;
-  public void ChargeTick(int delta){electricOn=false;battery=Mathf.Min(BatteryCapacity,battery+(float)BatteryCapacity/ChargeDuration*delta);}
-  public int Refill(Thing resource){if(resource?.def.defName!="YR_BaekyunFluid")return 0;int count=Math.Min(StockCapacity-fluidStock-(remotePaidShots>0?1:0),resource.stackCount);if(count>0){resource.SplitOff(count).Destroy();fluidStock+=count;}return count;}
+  public bool CanCharge(Thing source)=>!Type2Active&&source?.Spawned==true&&source.Map==Pawn.Map&&source.def.defName=="YR_SamokElectricSac"&&source.TryGetComp<CompPowerPlant_SamokElectric>()?.PowerOutput>0;
+  public void ChargeTick(int delta){if(Type2Active)return;electricOn=false;battery=Mathf.Min(BatteryCapacity,battery+(float)BatteryCapacity/ChargeDuration*delta);}
+  public int Refill(Thing resource){if(Type2Active||resource?.def.defName!="YR_BaekyunFluid")return 0;int count=Math.Min(StockCapacity-fluidStock-(remotePaidShots>0?1:0),resource.stackCount);if(count>0){resource.SplitOff(count).Destroy();fluidStock+=count;}return count;}
   Texture2D Icon(string name)=>ContentFinder<Texture2D>.Get("Yuran/Implants/CoccyxTentacles/"+name);
   void Service(bool charge){
-   if(!Pawn.Spawned)return;Thing source=charge?Pawn.Map.listerBuildings.allBuildingsColonist.Where(b=>CanCharge(b)&&Pawn.CanReserveAndReach(b,PathEndMode.Touch,Danger.Some)).OrderBy(b=>b.Position.DistanceToSquared(Pawn.Position)).FirstOrDefault():Pawn.Map.listerThings.ThingsOfDef(ThingDef.Named("YR_BaekyunFluid")).Where(t=>!t.IsForbidden(Pawn)&&Pawn.CanReserveAndReach(t,PathEndMode.Touch,Danger.Some)).OrderBy(t=>t.Position.DistanceToSquared(Pawn.Position)).FirstOrDefault();
+   if(Type2Active||!Pawn.Spawned)return;Thing source=charge?Pawn.Map.listerBuildings.allBuildingsColonist.Where(b=>CanCharge(b)&&Pawn.CanReserveAndReach(b,PathEndMode.Touch,Danger.Some)).OrderBy(b=>b.Position.DistanceToSquared(Pawn.Position)).FirstOrDefault():Pawn.Map.listerThings.ThingsOfDef(ThingDef.Named("YR_BaekyunFluid")).Where(t=>!t.IsForbidden(Pawn)&&Pawn.CanReserveAndReach(t,PathEndMode.Touch,Danger.Some)).OrderBy(t=>t.Position.DistanceToSquared(Pawn.Position)).FirstOrDefault();
    if(source==null){Messages.Message(charge?"충전할 수 있는 전기낭이 없습니다.":"충전할 백윤액이 없습니다.",MessageTypeDefOf.RejectInput,false);return;}
    Pawn.jobs.TryTakeOrderedJob(JobMaker.MakeJob(DefDatabase<JobDef>.GetNamed(charge?"YR_CoccyxCharge":"YR_CoccyxRefill"),source),JobTag.Misc);
   }
+  Thing SecretionCartridge() => cartridges?.FirstOrDefault(t=>t.def.defName==CartridgeDef)
+   ?? Pawn.inventory?.innerContainer.FirstOrDefault(t=>t.def.defName==CartridgeDef);
+  void SecreteBaekyun(){
+   if(!Type2Active||!Pawn.Spawned||Pawn.Downed||Pawn.Dead||CoccyxSecretion.Active(Pawn))return;
+   var cartridge=SecretionCartridge();
+   if(cartridge==null)return;
+   Pawn.health.AddHediff(CoccyxSecretion.Def);
+   if(CoccyxSecretion.Active(Pawn)){
+    cartridge.SplitOff(1).Destroy();
+    CoccyxAttackSound.Play(Pawn,"Fluid");
+   }
+  }
+  Gizmo SecretionCommand(){
+   var command=new Command_Action{
+    defaultLabel="백윤액 분비",
+    defaultDesc="카트리지 1개를 소모해 게임 시간 1시간 동안 전신을 덮습니다. 화염 피해 면역, 날카로움·둔탁함 방어력 각각 +20%p.",
+    icon=Icon("SlimePuddle"),action=SecreteBaekyun
+   };
+   if(CoccyxSecretion.Active(Pawn))command.Disable("이미 전신이 백윤액으로 덮여 있습니다.");
+   else if(Pawn.Downed)command.Disable("쓰러진 상태에서는 분비할 수 없습니다.");
+   else if(SecretionCartridge()==null)command.Disable("백윤액 카트리지가 필요합니다.");
+   return command;
+  }
+  static void TraceSpray(Map map,Vector3 origin,Vector3 direction,HashSet<IntVec3> hits,Vector3[] ends=null){
+   var start=origin.ToIntVec3();
+   for(int pellet=0;pellet<SprayPellets;pellet++){
+    float angle=Mathf.Lerp(-30f,30f,pellet/(float)(SprayPellets-1));
+    var ray=Quaternion.AngleAxis(angle,Vector3.up)*direction;
+    var destination=(origin+ray*SprayRange).ToIntVec3();
+    float length=0;
+    foreach(var cell in GenSight.PointsOnLineOfSight(start,destination)){
+     if(cell==start)continue;
+     if(!cell.InBounds(map)||start.DistanceToSquared(cell)>SprayRange*SprayRange||
+        !cell.Walkable(map)||!GenSight.LineOfSight(start,cell,map))break;
+     hits?.Add(cell);
+     length=Mathf.Clamp(Vector3.Dot(cell.ToVector3Shifted()-origin,ray)+.32f,0,SprayRange);
+    }
+    if(ends!=null)ends[pellet]=origin+ray*length;
+   }
+  }
+  internal Vector3[] SprayEndsForDraw(){
+   if(sprayEndsTick!=lastSprayTick){
+    TraceSpray(Pawn.Map,lastSprayOrigin,lastSprayDirection,null,sprayEnds);
+    sprayEndsTick=lastSprayTick;
+   }
+   return sprayEnds;
+  }
   void DrawSprayRange(IntVec3 aim){
-   if(!Pawn.Spawned)return;GenDraw.DrawRadiusRing(Pawn.Position,6);var direction=aim.ToVector3Shifted()-Pawn.DrawPos;direction.y=0;if(direction.sqrMagnitude<.01f)return;direction.Normalize();
-   var cells=GenRadial.RadialCellsAround(Pawn.Position,6,true).Where(cell=>cell.InBounds(Pawn.Map)&&cell.Walkable(Pawn.Map)).Where(cell=>{var d=cell.ToVector3Shifted()-Pawn.DrawPos;d.y=0;return d.sqrMagnitude>=1&&Vector3.Dot(d.normalized,direction)>=.866f&&GenSight.LineOfSight(Pawn.Position,cell,Pawn.Map);}).ToList();GenDraw.DrawFieldEdges(cells);
+   if(!Pawn.Spawned)return;
+   GenDraw.DrawRadiusRing(Pawn.Position,SprayRange);
+   var origin=Pawn.Position.ToVector3Shifted();
+   var direction=(aim.ToVector3Shifted()-origin).WithY(0);
+   if(direction.sqrMagnitude<.01f)return;
+   var hits=new HashSet<IntVec3>();
+   TraceSpray(Pawn.Map,origin,direction.normalized,hits);
+   GenDraw.DrawFieldEdges(hits.ToList());
   }
   IEnumerable<Gizmo> PowerGizmos(){
    int now=Find.TickManager.TicksGame;
    foreach(var gizmo in CartridgeGizmos())yield return gizmo;
-   var jump=new CoccyxRangeTarget{origin=Pawn,radius=JumpRange,defaultLabel="촉수 점프",defaultDesc="점프팩보다 4칸 멀리 도약합니다. 재사용 3시간. 진행 중인 촉수 공격은 복귀 후 도약합니다.",icon=Icon("JumpIcon"),targetingParams=new TargetingParameters{canTargetLocations=true,canTargetPawns=false,canTargetBuildings=false,validator=t=>CanJump(t.Cell)},action=t=>jumpAim=t.Cell};if(now<jumpReady)jump.Disable("재사용 대기: "+((jumpReady-now)/2500f).ToString("0.0")+"시간");jump.onUpdate=t=>GenDraw.DrawRadiusRing(Pawn.Position,JumpRange);yield return jump;
-   yield return new CoccyxRangeTarget{origin=Pawn,radius=6,onUpdate=t=>DrawSprayRange(t.Cell),defaultLabel="백윤액 난사 "+fluidStock+"/"+StockCapacity,defaultDesc="방향을 지정해 흰색 백윤액을 연속 분사합니다. 적에게 분사 1회당 산성 화상 피해 5를 줍니다. 다시 선택하면 분사를 멈춥니다. 스톡을 소모하며 잠시 웅덩이를 남깁니다.",icon=Icon("SlimeSpray"),targetingParams=new TargetingParameters{canTargetLocations=true,canTargetPawns=true,canTargetBuildings=false},action=t=>{if(fluidOn)fluidOn=false;else if(FluidCharges+ReserveCartridges*120>=6){SetRemoteFluidMode(false);fluidAim=t.Cell;fluidOn=true;}}};
-   yield return new Command_Action{defaultLabel="백윤액 충전",defaultDesc="백윤액 자원을 가져와 스톡을 충전합니다.",icon=Icon("SlimePuddle"),action=()=>Service(false)};
-   yield return new Command_Toggle{defaultLabel="전기 촉수 "+(battery/2500f).ToString("0.0")+"시간",defaultDesc="ON인 동안 모든 촉수 공격에 전기 효과를 추가합니다. 풀충전 유지 7시간.",icon=Icon("ElectricOverlay"),isActive=()=>ElectricActive,toggleAction=()=>{if(electricOn)electricOn=false;else if(battery>0)electricOn=true;else Messages.Message("전기낭에서 배터리를 충전하세요.",MessageTypeDefOf.RejectInput,false);}};
-   yield return new Command_Action{defaultLabel="전기낭에서 충전",defaultDesc="작동 중인 전기낭에 접근해 충전합니다. 완전 방전에서 풀충전까지 1시간.",icon=Icon("ChargeIcon"),action=()=>Service(true)};
+   var jump=new CoccyxRangeTarget{origin=Pawn,radius=JumpRange,defaultLabel="촉수 점프",defaultDesc="최대 8칸까지 도약합니다. 재사용 3시간. 진행 중인 촉수 공격은 복귀 후 도약합니다.",icon=Icon("JumpIcon"),targetingParams=new TargetingParameters{canTargetLocations=true,canTargetPawns=false,canTargetBuildings=false,validator=t=>CanJump(t.Cell)},action=t=>jumpAim=t.Cell};if(now<jumpReady)jump.Disable("재사용 대기: "+((jumpReady-now)/2500f).ToString("0.0")+"시간");jump.onUpdate=t=>GenDraw.DrawRadiusRing(Pawn.Position,JumpRange);yield return jump;
+   if(!Type2Active)yield return new CoccyxRangeTarget{origin=Pawn,radius=SprayRange,onUpdate=t=>DrawSprayRange(t.Cell),defaultLabel="백윤액 난사 "+fluidStock+"/"+StockCapacity,defaultDesc="백윤액을 한 번에 아홉 갈래로 퍼뜨려 연속 발사합니다. 적에게 분사 1회당 산성 화상 피해 5를 줍니다. 다시 선택하면 분사를 멈춥니다. 스톡을 소모하며 잠시 웅덩이를 남깁니다.",icon=Icon("SlimeSpray"),targetingParams=new TargetingParameters{canTargetLocations=true,canTargetPawns=true,canTargetBuildings=false},action=t=>{if(Type2Active)return;if(fluidOn)fluidOn=false;else if(FluidCharges+ReserveCartridges*120>=6){if(!SprayAttackMode)SetRemoteFluidMode(false);fluidAim=t.Cell;fluidOn=true;}}};
+   if(Type2Active)yield return SecretionCommand();
+   else yield return new Command_Action{defaultLabel="백윤액 충전",defaultDesc="백윤액 자원을 가져와 스톡을 충전합니다.",icon=Icon("SlimePuddle"),action=()=>Service(false)};
+   if(!Type2Active||battery>0)yield return new Command_Toggle{defaultLabel="전기 촉수 "+(battery/2500f).ToString("0.0")+"시간",defaultDesc="ON인 동안 모든 촉수 공격에 전기 효과를 추가합니다. 풀충전 유지 7시간.",icon=Icon("ElectricOverlay"),isActive=()=>ElectricActive,toggleAction=()=>{if(electricOn)electricOn=false;else if(battery>0)electricOn=true;else Messages.Message("전기낭에서 배터리를 충전하세요.",MessageTypeDefOf.RejectInput,false);}};
+   if(!Type2Active)yield return new Command_Action{defaultLabel="전기낭에서 충전",defaultDesc="작동 중인 전기낭에 접근해 충전합니다. 완전 방전에서 풀충전까지 1시간.",icon=Icon("ChargeIcon"),action=()=>Service(true)};
    var frenzy=new CoccyxRangeAction{origin=Pawn,radius=5,defaultLabel="촉수 난무",defaultDesc="반경 5칸의 적에게 1.5초 동안 피해 4로 9회 근접 공격합니다. 재사용 10분.",icon=Icon("FrenzyIcon"),action=()=>{if(Pawn.Drafted&&!Pawn.Downed)frenzyPending=true;}};if(now<frenzyReady)frenzy.Disable("재사용 대기: "+((frenzyReady-now)*60f/2500f).ToString("0.0")+"분");yield return frenzy;
   }
  }
@@ -112,6 +175,38 @@ namespace YR_RJW {
  public sealed class PawnRenderNode_CoccyxSlime:PawnRenderNode {
   public PawnRenderNode_CoccyxSlime(Pawn p,PawnRenderNodeProperties props,PawnRenderTree tree):base(p,props,tree){}
   public override Graphic GraphicFor(Pawn p)=>GraphicDatabase.Get<Graphic_Single>("Yuran/Implants/CoccyxTentacles/SlimeCoat",ShaderDatabase.Transparent,Props.drawSize,new Color(1,1,1,.55f));
+ }
+ public sealed class PawnRenderNode_CoccyxSecretion:PawnRenderNode {
+  public PawnRenderNode_CoccyxSecretion(Pawn pawn,PawnRenderNodeProperties props,PawnRenderTree tree):base(pawn,props,tree){}
+  public override Graphic GraphicFor(Pawn pawn)=>GraphicDatabase.Get<Graphic_Single>(
+   Props.texPath,ShaderDatabase.Transparent,Vector2.one,new Color(1f,1f,1f,.60f));
+ }
+ public sealed class PawnRenderNodeWorker_CoccyxSecretion:PawnRenderNodeWorker {
+  public override bool CanDrawNow(PawnRenderNode node,PawnDrawParms parms)=>
+   !parms.Portrait&&!parms.pawn.Dead&&
+   (node.Props.parentTagDef!=PawnRenderNodeTagDefOf.Head||!parms.flags.FlagSet(PawnRenderFlags.HeadStump))&&
+   base.CanDrawNow(node,parms);
+  public override Vector3 OffsetFor(PawnRenderNode node,PawnDrawParms parms,out Vector3 pivot){
+   var offset=base.OffsetFor(node,parms,out pivot);
+   if(node.Props.parentTagDef==PawnRenderNodeTagDefOf.Body)offset.z-=.21f;
+   return offset;
+  }
+  public override Vector3 ScaleFor(PawnRenderNode node,PawnDrawParms parms){
+   var scale=base.ScaleFor(node,parms);
+   if(parms.facing.IsHorizontal)scale.x*=.8f;
+   return scale;
+  }
+ }
+ [HarmonyLib.HarmonyPatch(typeof(Pawn_HealthTracker),"PreApplyDamage")]
+ internal static class CoccyxSecretion {
+  private static HediffDef definition;
+  internal static HediffDef Def=>definition??(definition=HediffDef.Named("YR_CoccyxSecretion"));
+  internal static bool Active(Pawn pawn)=>pawn.health?.hediffSet.HasHediff(Def)==true;
+  private static bool Prefix(Pawn ___pawn,DamageInfo dinfo,ref bool absorbed){
+   if((dinfo.Def!=DamageDefOf.Flame&&dinfo.Def!=DamageDefOf.Burn&&!(dinfo.Def.Worker is DamageWorker_Flame))||!Active(___pawn))return true;
+   absorbed=true;
+   return false;
+  }
  }
  [HarmonyLib.HarmonyPatch(typeof(Pawn_PathFollower),"CostToMoveIntoCell",new[]{typeof(Pawn),typeof(IntVec3)})]
  static class CoccyxPuddleSlowdown {

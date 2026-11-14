@@ -1,6 +1,91 @@
 <?xml version='1.0' encoding='utf-8'?>
 <Defs>
   <SoundDef>
+    <defName>YR_Coccyx_ThrowRelease</defName>
+    <context>MapOnly</context>
+    <maxVoices>4</maxVoices>
+    <subSounds>
+      <li>
+        <grains>
+          <li Class="AudioGrain_Clip">
+            <clipPath>TentacleRush/LaunchSound</clipPath>
+          </li>
+        </grains>
+        <volumeRange>35</volumeRange>
+        <pitchRange>1.15~1.25</pitchRange>
+        <distRange>0~45</distRange>
+      </li>
+    </subSounds>
+  </SoundDef>
+  <SoundDef>
+    <defName>YR_Coccyx_BarrageSwing</defName>
+    <context>MapOnly</context>
+    <maxVoices>5</maxVoices>
+    <subSounds>
+      <li>
+        <grains>
+          <li Class="AudioGrain_Folder">
+            <clipFolderPath>Impact/PunchMiss</clipFolderPath>
+          </li>
+        </grains>
+        <volumeRange>21</volumeRange>
+        <pitchRange>1.16~1.33</pitchRange>
+        <distRange>0~35</distRange>
+      </li>
+    </subSounds>
+  </SoundDef>
+  <SoundDef>
+    <defName>YR_Coccyx_BarrageImpact</defName>
+    <context>MapOnly</context>
+    <maxVoices>5</maxVoices>
+    <subSounds>
+      <li>
+        <grains>
+          <li Class="AudioGrain_Clip">
+            <clipPath>Yuran/Coccyx/DragonianMeleeImpact</clipPath>
+          </li>
+        </grains>
+        <volumeRange>26</volumeRange>
+        <pitchRange>1.65~1.95</pitchRange>
+        <distRange>0~38</distRange>
+      </li>
+    </subSounds>
+  </SoundDef>
+  <SoundDef>
+    <defName>YR_Coccyx_BarrageFinish</defName>
+    <context>MapOnly</context>
+    <maxVoices>2</maxVoices>
+    <subSounds>
+      <li>
+        <grains>
+          <li Class="AudioGrain_Clip">
+            <clipPath>Yuran/Coccyx/DragonianMeleeImpact</clipPath>
+          </li>
+        </grains>
+        <volumeRange>39</volumeRange>
+        <pitchRange>1.32~1.47</pitchRange>
+        <distRange>0~45</distRange>
+      </li>
+    </subSounds>
+  </SoundDef>
+  <SoundDef>
+    <defName>YR_Coccyx_Type2Impact</defName>
+    <context>MapOnly</context>
+    <maxVoices>5</maxVoices>
+    <subSounds>
+      <li>
+        <grains>
+          <li Class="AudioGrain_Clip">
+            <clipPath>Yuran/Coccyx/DragonianMeleeImpact</clipPath>
+          </li>
+        </grains>
+        <volumeRange>25~26</volumeRange>
+        <pitchRange>1.6516304~1.954348</pitchRange>
+        <distRange>0~38</distRange>
+      </li>
+    </subSounds>
+  </SoundDef>
+  <SoundDef>
     <defName>YR_Coccyx_Swing</defName>
     <context>MapOnly</context>
     <maxSimultaneous>8</maxSimultaneous>
@@ -15,6 +100,24 @@
         <volumeRange>32</volumeRange>
         <pitchRange>0.92~1.06</pitchRange>
         <distRange>0~45</distRange>
+      </li>
+    </subSounds>
+  </SoundDef>
+  <SoundDef>
+    <defName>YR_Coccyx_Grip</defName>
+    <context>MapOnly</context>
+    <maxSimultaneous>4</maxSimultaneous>
+    <priorityMode>PrioritizeNearest</priorityMode>
+    <subSounds>
+      <li>
+        <grains>
+          <li Class="AudioGrain_Folder">
+            <clipFolderPath>Coccyx/TentacleMotion</clipFolderPath>
+          </li>
+        </grains>
+        <volumeRange>26</volumeRange>
+        <pitchRange>0.65~0.76</pitchRange>
+        <distRange>0~35</distRange>
       </li>
     </subSounds>
   </SoundDef>

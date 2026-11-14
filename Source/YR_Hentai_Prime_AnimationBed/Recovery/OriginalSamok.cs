@@ -70,6 +70,17 @@ namespace YR_RJW
             (YR_Hentai_Prime_AnimationBed.YR_Hentai_Prime_AnimationBed_Mod.Settings?.enableSamok ?? true) &&
             Altar != null && offeredCorpse < Altar.Maximum && base.Accepts(thing);
 
+        public override void SpawnSetup(Map map, bool respawningAfterLoad)
+        {
+            base.SpawnSetup(map, respawningAfterLoad);
+            if (respawningAfterLoad && Altar?.IsAltar == true && CorpseFulfilled)
+                LongEventHandler.ExecuteWhenFinished(() =>
+                {
+                    if (Spawned && (YR_Hentai_Prime_AnimationBed.YR_Hentai_Prime_AnimationBed_Mod.Settings?.enableSamok ?? true))
+                        CompleteOffering();
+                });
+        }
+
         // RimWorld 1.7 replaced Notify_CorpseBuried with Notify_HauledTo.
         public override void Notify_HauledTo(Pawn worker, Thing thing, int count)
         {

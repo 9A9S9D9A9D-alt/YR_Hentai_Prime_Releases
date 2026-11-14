@@ -35,11 +35,13 @@ namespace YR_RJW {
   void ExposeEscort(){ExposeSplitAnimation();Scribe_Values.Look(ref extractReadyAt,"coccyxExtractReadyAt",-1);Scribe_Values.Look(ref escortAnimationTicks,"escortAnimationTicks",EscortWindup);Scribe_Values.Look(ref splitMouthEscort,"coccyxSplitMouthEscort");Scribe_Values.Look(ref escortGrabAt,"coccyxEscortGrabAt",-1);Scribe_References.Look(ref escortTarget,"coccyxEscortTarget");Scribe_Values.Look(ref lastEscortCell,"coccyxEscortCell",IntVec3.Invalid);Scribe_Values.Look(ref escortOffset,"coccyxEscortOffset",IntVec3.Invalid);Scribe_Values.Look(ref lastLandingCell,"coccyxEscortLandingCell",IntVec3.Invalid);
    if(Scribe.mode==LoadSaveMode.PostLoadInit&&splitTargetKey==null&&escortTarget!=null)splitTargetKey=SplitTargetKey(escortTarget);
   }
-  bool CanEscort(Pawn target)=>Pawn.Spawned&&Pawn.Drafted&&!Pawn.Downed&&!Pawn.Dead&&!Hediff_CoccyxEscort.IsHeld(Pawn)&&target!=null&&target!=Pawn&&target.Spawned&&!target.Dead&&target.Map==Pawn.Map&&!Hediff_CoccyxEscort.IsHeld(target)&&Pawn.Position.DistanceToSquared(target.Position)<=Range*Range&&GenSight.LineOfSight(Pawn.Position,target.Position,Pawn.Map);
+  bool CanEscort(Pawn target,float range)=>Pawn.Spawned&&Pawn.Drafted&&!Pawn.Downed&&!Pawn.Dead&&!Hediff_CoccyxEscort.IsHeld(Pawn)&&target!=null&&target!=Pawn&&target.Spawned&&!target.Dead&&target.Map==Pawn.Map&&!Hediff_CoccyxEscort.IsHeld(target)&&Pawn.Position.DistanceToSquared(target.Position)<=range*range&&GenSight.LineOfSight(Pawn.Position,target.Position,Pawn.Map);
   public bool BeginEscort(Pawn target){
-   if(escortTarget!=null||!CanEscort(target))return false;
+   if(Type2Active||escortTarget!=null||throwGrabTarget!=null||ThrowCargoCount>0||!CanEscort(target,Range))return false;
    SelectSplitTargetSettings(target);
-   CancelTentacleAttacks();escortTarget=target;escortAnimationTicks=EscortDuration;escortGrabAt=Find.TickManager.TicksGame+escortAnimationTicks;lastEscortCell=Pawn.Position;
+   CancelTentacleAttacks();escortTarget=target;
+   escortAnimationTicks=EscortDuration;
+   escortGrabAt=Find.TickManager.TicksGame+escortAnimationTicks;lastEscortCell=Pawn.Position;
    return true;
   }
   void LockEscort(Pawn target){
@@ -49,12 +51,15 @@ namespace YR_RJW {
    target.health.AddHediff(hold);lastEscortCell=Pawn.Position;escortOffset=target.Position-Pawn.Position;lastLandingCell=target.Position;escortGrabAt=-1;
    target.pather?.StopDead();target.stances?.CancelBusyStanceHard();
    if(target.CurJob!=null)target.jobs.EndCurrentJob(JobCondition.InterruptForced,false);
+   if(throwHoldingPawn&&HasEscortGrip)FinishThrowGrip(target,target.DrawPos,target.Position);
   }
   void CancelTentacleAttacks(){
    fluidOn=false;frenzyPending=false;frenzyStart=-1;jumpAim=IntVec3.Invalid;
-   foreach(var limb in limbs){limb.started=-1;limb.target=null;limb.shotTick=-1;}
+   foreach(var limb in limbs){limb.started=-1;limb.target=null;limb.shotTick=-1;limb.reinforced=false;}
+   reinforcedHitTargets.Clear();
   }
   public void EndEscort(){
+   throwHoldingPawn=false;
    extractReadyAt=-1;
    drawing.ReleaseSplitBubble();
    var target=escortTarget;var landing=lastLandingCell;
@@ -72,13 +77,14 @@ namespace YR_RJW {
   }
   public bool TickEscort(int now){
    var target=escortTarget;if(target==null)return false;
+   if(Type2Active&&!throwHoldingPawn){EndEscort();return false;}
    if(escortGrabAt>=0){
-    if(!CanEscort(target)){EndEscort();return false;}
+    if(!CanEscort(target,throwHoldingPawn?ThrowGrabRange:Range)){EndEscort();return false;}
     if(now>=escortGrabAt)LockEscort(target);
     return true;
    }
    if(!Pawn.Spawned||Pawn.Dead||Pawn.Downed||!Pawn.Drafted||target.Dead||!target.Spawned||target.Map!=Pawn.Map||Hediff_CoccyxEscort.Get(target)?.escort!=Pawn){EndEscort();return false;}
-   TickExtraction(now);
+   if(!throwHoldingPawn)TickExtraction(now);
    var cell=Pawn.Position;var map=Pawn.Map;
    if(escortOffset==IntVec3.Invalid)escortOffset=target.Position-cell;
    if(cell==lastEscortCell)return true;
@@ -91,7 +97,7 @@ namespace YR_RJW {
    return true;
   }
   void BeginExtraction(){
-   if(splitMouthEscort&&HasEscortGrip&&extractReadyAt<0){
+   if(!Type2Active&&!throwHoldingPawn&&splitMouthEscort&&HasEscortGrip&&extractReadyAt<0){
     extractReadyAt=Find.TickManager.TicksGame+ExtractionTicks;
     nextExtractDropAttempt=0;
    }
@@ -119,6 +125,7 @@ namespace YR_RJW {
    return command;
   }
   IEnumerable<Gizmo> EscortGizmos(){
+   if(Type2Active)yield break;
    var icon=ContentFinder<Texture2D>.Get("Yuran/UI/Commands/TentacleFocus");
    if(HasEscortGrip){
     if(splitMouthEscort)yield return ExtractionCommand(ThingDef.Named("YR_BaekyunFluid").uiIcon);
@@ -130,7 +137,7 @@ namespace YR_RJW {
    if(escortTarget!=null){yield return new Command_Action{defaultLabel="포획 해제",defaultDesc="촉수에서 대상을 내려놓습니다.",icon=icon,action=EndEscort};yield break;}
    var command=new CoccyxRangeTarget{
     origin=Pawn,radius=Range,defaultLabel="촉수 포획",defaultDesc="대상 하나를 지정해 붙잡고 함께 이동합니다. 유지 중 대상은 이동하거나 공격할 수 없으며, 시전자의 촉수 공격도 잠깁니다.",icon=icon,
-    targetingParams=new TargetingParameters{canTargetPawns=true,canTargetAnimals=true,canTargetHumans=true,canTargetMechs=true,canTargetBuildings=false,validator=t=>CanEscort(t.Thing as Pawn)},
+    targetingParams=new TargetingParameters{canTargetPawns=true,canTargetAnimals=true,canTargetHumans=true,canTargetMechs=true,canTargetBuildings=false,validator=t=>CanEscort(t.Thing as Pawn,Range)},
     action=t=>BeginEscort(t.Pawn)
    };
    if(!Pawn.Drafted||Pawn.Downed||Hediff_CoccyxEscort.IsHeld(Pawn))command.Disable("집결 상태에서 사용할 수 있습니다.");
@@ -154,7 +161,7 @@ namespace YR_RJW {
     __result.crawling=false;
     __result.facing=Rot4.South;
    }
-   if(owner?.splitMouthEscort==true){
+   if(owner?.splitMouthEscort==true&&!owner.ThrowHoldingPawn){
     __result.facing=Rot4.South;
     var pose=CompServiceSacInterior.PawnPoseTransform((Find.TickManager.TicksGame/6)%6,Vector3.zero,1);
     __result.matrix.m23+=pose.m23;

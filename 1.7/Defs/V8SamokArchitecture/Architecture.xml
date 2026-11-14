@@ -1,4 +1,4 @@
-﻿<Defs>
+<Defs>
   <ThingDef ParentName="BuildingBase">
     <defName>YR_SamokWall</defName>
     <label>사목 벽</label>
@@ -10,8 +10,8 @@
       <li>Wall</li>
     </replaceTags>
     <graphicData>
-      <texPath>Things/Building/Linked/Wall</texPath>
-      <graphicClass>Graphic_Appearances</graphicClass>
+      <texPath>Yuran/Things/Building/SamokArchitecture/SamokWallLinked</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
       <linkType>CornerFiller</linkType>
       <linkFlags>
         <li>Wall</li>

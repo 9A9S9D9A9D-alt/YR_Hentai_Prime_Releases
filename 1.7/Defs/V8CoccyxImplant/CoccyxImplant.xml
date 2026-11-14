@@ -2,7 +2,7 @@
 <Defs>
   <HediffDef>
     <defName>YR_CoccyxTentacleImplant</defName>
-    <label>촉수 이식체</label>
+    <label>사목의 촉수 1식</label>
     <description>미추 접합부에 연결된 여섯 가닥의 유연한 촉수. 끝은 둥글며, 집결하면 길게 뻗어 위협적인 자세를 취한다. 이식한 동안 조작 능력이 20%p 증가한다.</description>
     <hediffClass>HediffWithComps</hediffClass>
     <isBad>false</isBad>

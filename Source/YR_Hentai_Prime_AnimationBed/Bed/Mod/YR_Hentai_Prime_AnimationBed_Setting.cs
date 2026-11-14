@@ -12,7 +12,8 @@ namespace YR_Hentai_Prime_AnimationBed
         public bool enablePortraits = true;
         public bool preventRjwJobConflicts = true;
         public bool enableSamok = true;
-        public int altarCorpses = 20;
+        public const int DefaultAltarCorpses = 5;
+        public int altarCorpses = DefaultAltarCorpses;
         public int growthCorpses = 12;
 
         public override void ExposeData()
@@ -24,7 +25,7 @@ namespace YR_Hentai_Prime_AnimationBed
             Scribe_Values.Look(ref enablePortraits, "recoveryPortraits", true);
             Scribe_Values.Look(ref preventRjwJobConflicts, "recoveryRjwConflictGuard", true);
             Scribe_Values.Look(ref enableSamok, "recoverySamok", true);
-            Scribe_Values.Look(ref altarCorpses, "recoveryAltarCorpses", 20);
+            Scribe_Values.Look(ref altarCorpses, "recoveryAltarCorpses", DefaultAltarCorpses);
             Scribe_Values.Look(ref growthCorpses, "recoveryGrowthCorpses", 12);
             minimumAge = System.Math.Clamp(minimumAge, 18, 100);
             altarCorpses = System.Math.Clamp(altarCorpses, 1, 100);
